@@ -1,0 +1,12 @@
+Test Case,Description,Test Steps
+1,Basic Gameplay Mechanism - Part 1 (SG-01),"1. Start the game.,2. Press the left arrow key and check if the snake moves left.,3. Press the right arrow key and check if the snake moves right.,4. Press the up arrow key and check if the snake moves up.,5. Press the down arrow key and check if the snake moves down."
+2,Basic Gameplay Mechanism - Part 2 (SG-01),"1. Start the game.,2. Press the corresponding keys (e.g., A for left, D for right, W for up, S for down) and check if the snake moves in the expected directions."
+3,Game Objective (SG-02),"1. Start the game.,2. Confirm that items (fruits or dots) appear at random positions on the grid.,3. Move the snake to eat an item.,4. Verify that the snake becomes longer after eating the item."
+4,Game Over Condition (SG-03),"1. Start the game.,2. Move the snake in such a way that it collides with the grid boundaries.,3. Verify that the game displays a Game Over message.,4. Move the snake in such a way that it collides with itself.,5. Verify that the game displays a Game Over message."
+5,Score System (SG-04),"1. Start the game.,2. Eat an item and check if the score increases by the expected amount.,3. Eat multiple items and verify that the score accumulates correctly."
+6,Level of Difficulty (SG-05),"1. Start the game.,2. Observe the initial speed of the snake.,3. Eat items to make the snake longer and observe if the speed increases.,4. Verify that the game becomes more challenging as the snake grows."
+7,User Interface (SG-06),"1. Start the game.,2. Check that the user interface displays the player's score.,3. Check that the user interface displays the highest score achieved.,4. Check that the user interface displays the current level of difficulty."
+8,Sound Effects (SG-07),"1. Start the game.,2. Eat an item and verify that a sound effect plays.,3. Trigger a Game Over condition and verify that a sound effect plays."
+9,Restart Game - Partial Test (SG-09),"1. Start the game.,2. Trigger a Game Over condition.,3. Choose the restart option (if available) and verify that the game restarts."
+10,High Score Memory (SG-10),"1. Start the game and achieve a high score.,2. Close the game.,3. Start the game again and check if the highest score is retained."
+11,Responsiveness and Compatibility (SG-11),"1. Play the game on different devices (e.g., desktop, mobile, tablet).,2. Test the game on various screen sizes and orientations.,3. Ensure that the game adapts and functions correctly on different platforms."

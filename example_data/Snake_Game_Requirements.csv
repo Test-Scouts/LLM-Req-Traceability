@@ -1,0 +1,13 @@
+ID,Description
+SG-01,"Basic Gameplay Mechanism: The game shall feature a snake that moves in a 2D grid. The snake can move left, right, up, and down. The movement is controlled by the player using keyboard arrow keys or equivalent input methods."
+SG-02,Game Objective: The primary objective of the game shall be to eat items (usually represented as fruits or dots) that appear at random positions on the grid. Each item eaten makes the snake longer.
+SG-03,Game Over Condition: The game shall end (Game Over) if the snake collides with the grid boundaries or itself.
+SG-04,Score System: The game shall keep track of the player's score. The score shall increase by a fixed amount each time the snake eats an item.
+SG-05,Level of Difficulty: The game shall progressively become more difficult as the snake grows longer. The difficulty can be increased by increasing the speed of the snake or by adding more obstacles.
+SG-06,"User Interface: The game shall have a simple and intuitive user interface, showing the score, the highest score, and the current level of difficulty."
+SG-07,Sound Effects: The game shall include sound effects for actions like eating an item and game over.
+SG-08,Pause and Resume: The game shall allow the player to pause and resume the game.
+SG-09,Restart Game: The player shall have the option to restart the game after a game over.
+SG-10,High Score Memory: The game shall remember the highest score achieved across sessions.
+SG-11,Responsiveness and Compatibility: The game shall be responsive and compatible with various devices and screen sizes.
+SG-12,Accessibility Features: The game shall include accessibility features such as customizable control options and contrast adjustments for better visibility.
