@@ -10,6 +10,9 @@
 # macOS stuff
 .DS_Store
 
+# Data files
+data/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
