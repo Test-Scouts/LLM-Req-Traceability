@@ -5,7 +5,7 @@ st.title('Prototype V2  🔍👣')
 st.header("Upload documents", divider='rainbow')
 
 # Upload multiple files and store them in session state
-uploaded_files = st.file_uploader("Upload Python files", accept_multiple_files=True, type=None, key="uploaded_files")
+uploaded_files = st.file_uploader("Upload files", accept_multiple_files=True, type=None, key="uploaded_files")
 
 if 'uploaded_file_names' not in st.session_state:
     st.session_state['uploaded_file_names'] = []

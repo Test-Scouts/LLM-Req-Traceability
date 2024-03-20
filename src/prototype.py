@@ -20,7 +20,7 @@ code_file_content = upload_file('Requirment file', 'code_file')
 # Checkbox to show or hide the Python code file content
 
 if st.checkbox('Show RE content'):
-    st.text('Python Code File Content:')
+    st.text('Requirement File Content:')
     st.code(code_file_content, language='text')
 
 # Upload Python test file
@@ -30,7 +30,7 @@ test_file_content = upload_file('Test Cases File', 'test_file')
 # Checkbox to show or hide the Python test file content
 
 if st.checkbox('Show Test Cases content'):
-    st.text('Python Test File Content:')
+    st.text('Test Case File Content:')
     st.code(test_file_content, language='text')
 
 
