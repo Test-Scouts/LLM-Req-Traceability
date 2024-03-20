@@ -45,12 +45,12 @@ def initialize_prompt_templates():
 
 
 
-def upload_file(file_type='', file_description='file', widget_name='widget_name'):
+def upload_file(file_description='file', widget_name='widget_name'):
     # Generate a unique key based on file type and description
     widget_key = f"{widget_name}_file_uploader"
     
-    st.write(f"Upload or drag and drop a {file_type} {file_description} below.")
-    uploaded_file = st.file_uploader(f"Upload a {file_type} {file_description} here:", 
+    st.write(f"Upload or drag and drop a  {file_description} below.")
+    uploaded_file = st.file_uploader(f"Upload a {file_description} here:", 
                                      type=None, label_visibility="collapsed", key=widget_key)
     if uploaded_file is not None:
         return uploaded_file.getvalue().decode("utf-8")

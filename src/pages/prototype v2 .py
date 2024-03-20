@@ -1,8 +1,7 @@
 import streamlit as st
-from openai import OpenAI
 
 st.set_page_config(page_title="Prototype -Testing ground", page_icon="✍️")
-st.title('Prototype - LM Studio')
+st.title('Prototype V2  🔍👣')
 st.header("Upload documents", divider='rainbow')
 
 # Upload multiple files and store them in session state
@@ -45,7 +44,7 @@ if st.session_state['uploaded_file_names']:
 #==================================================
 #                  LLM
 #================================================== 
-
+"""
     # Point to the local server
     client = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed")
     pre_prompt_default = "You are a helpful AI assistant."
@@ -77,3 +76,4 @@ if st.session_state['uploaded_file_names']:
         st.markdown(completion.choices[0].message['content'])
 else:
     st.write("No files uploaded yet or choose a file to display.")
+"""
