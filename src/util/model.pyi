@@ -1,3 +1,11 @@
+"""
+Utility module for handling models.
+
+Includes:
+---------
+`load_model` - Loads a model.
+`get_model` - Gets a model if loaded.
+"""
 import os
 from transformers import PreTrainedTokenizer, PreTrainedTokenizerFast, PreTrainedModel
 from typing import TypeAlias

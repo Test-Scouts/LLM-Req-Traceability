@@ -16,7 +16,6 @@ def main() -> None:
 
 
     model_id = os.getenv("MODEL_PATH")
-
     tokenizer, model = ml.load_model(model_id)
 
     user_prompt = gen_prompt("Who are you? and what can you help me with?")
