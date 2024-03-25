@@ -3,7 +3,7 @@ Utility module for REST-at.
 
 Includes:
 ---------
-Utility functions for loading and retrieving models.
+A class for abstracting pretrained models.
 """
-import model
-from model import *
+from . import model
+from .model import *
