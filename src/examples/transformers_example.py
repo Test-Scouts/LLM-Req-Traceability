@@ -1,8 +1,7 @@
-import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
 from dotenv import load_env
 from typing import Final
+from util import model as ml
 
 
 SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
@@ -18,9 +17,7 @@ def main() -> None:
 
     model_id = os.getenv("MODEL_PATH")
 
-    tokenizer = AutoTokenizer.from_pretrained(model_id)
-
-    model = AutoModelForCausalLM.from_pretrained(model_id, torch_dtype=torch.float16, device_map="auto")
+    tokenizer, model = ml.load_model(model_id)
 
     user_prompt = gen_prompt("Who are you? and what can you help me with?")
 
