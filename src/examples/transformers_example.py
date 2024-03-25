@@ -1,38 +1,22 @@
 import os
-from dotenv import load_env
-from typing import Final
-from util import model as ml
-
-
-SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
-
-
-def gen_prompt(user_prompt: str) -> str:
-    return f"[SYS] {SYSTEM_PROMPT} [\\SYS]\n\n{user_prompt}"
+from dotenv import load_dotenv
+from ..util import model as ml
 
 
 def main() -> None:
-    load_env()
+    load_dotenv()
 
+    model_id: str = os.getenv("MODEL_PATH")
+    max_new_tokens: int = 4096
 
-    model_id = os.getenv("MODEL_PATH")
-    tokenizer, model = ml.load_model(model_id)
+    model : ml.Model = ml.Model.load(model_id, max_new_tokens)
 
-    user_prompt = gen_prompt("Who are you? and what can you help me with?")
+    messages: list[dict[str, str]] = []
 
-    messages = [
-        {"role": "user", "content": user_prompt}
-    ]
-
-    input_ids = tokenizer.apply_chat_template(messages, return_tensors="pt").to("cuda")
-
-    outputs = model.generate(
-        input_ids,
-        max_new_tokens=4096,
-        do_sample=True,
-        temperature=0.7
-    )
-    print(tokenizer.decode(outputs[0], skip_special_tokens=True))
+    while True:
+        user_prompt = input("> ")
+        res = model.prompt(messages, user_prompt)
+        print(f"\nLLM> {res}\n")
 
 
 if __name__ == "__main__":
