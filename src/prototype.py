@@ -92,5 +92,7 @@ def interact_with_model() -> None:
     # Render response
     history.write(f"### Assistant\n{res}")
 
+    st.rerun()
+
 
 interact_with_model()
