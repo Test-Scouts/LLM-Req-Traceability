@@ -102,7 +102,7 @@ class Model:
         raw_res: str = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         # Cut out the instruction section of the output
-        res: str = raw_res[(raw_res.find(Model._INST_SUFFIX) + Model._INST_SUFFIX_LEN)::].strip()
+        res: str = raw_res[(raw_res.rfind(Model._INST_SUFFIX) + Model._INST_SUFFIX_LEN)::].strip()
 
         # Append response to history
         history.append({"role": "assistant", "content": res})
