@@ -27,6 +27,7 @@ class Model:
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="auto")
+        model.eval()
 
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
 
@@ -60,8 +61,8 @@ class Model:
 
         return f"[SYS] {Model._SYSTEM_PROMPT} [/SYS]\n\n{user_prompt}"
 
-    def __init__(self, tokenzer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
-        self.tokenzer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenzer
+    def __init__(self, tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
+        self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
         self.model: PreTrainedModel = model
         self.max_new_tokens: int = max_new_tokens
 
