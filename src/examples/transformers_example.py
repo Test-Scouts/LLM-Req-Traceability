@@ -20,6 +20,13 @@ def main() -> None:
     user_prompt: str = ""
     while user_prompt.lower() != "bye":
         user_prompt = input("> ")
+
+        # Clear message history if wanted
+        if user_prompt.lower() == "clear":
+            messages = []
+            print("\nMessage history cleared\n")
+            continue
+
         res = model.prompt(messages, user_prompt)
         print(f"\nLLM> {res}\n")
 
