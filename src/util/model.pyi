@@ -21,7 +21,7 @@ class Model:
     """
 
     @staticmethod
-    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model:
+    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
         """
         Loads a specified model if not already loaded.
 
@@ -31,7 +31,7 @@ class Model:
         max_new_tokens: int - The `max_new_tokens` parameter used when generating.
         Returns:
         --------
-        `Model` The model that was loaded.
+        `Model | None` The model that was loaded. None if the specified model is being loaded.
         """
         ...
 

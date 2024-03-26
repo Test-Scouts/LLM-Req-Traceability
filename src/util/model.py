@@ -7,7 +7,14 @@ from .model import *
 
 
 class Model:
+    def __init__(self, tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
+        self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
+        self.model: PreTrainedModel = model
+        self.max_new_tokens: int = max_new_tokens
+
     _MODELS: Final[dict[str | PathLike, Model]] = {}
+
+    _PLACEHOLDER: Model = None
 
     # Instruction suffix
     _INST_SUFFIX: Final[str] = "[/INST]"
@@ -17,16 +24,37 @@ class Model:
     _SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
 
     @staticmethod
-    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model:
+    def _get_placeholder() -> Model:
+        """
+        Retrieves the placeholder for loading models.
+
+        Returns:
+        --------
+        `Model` - An empty placeholder model.
+        """
+        if not Model._PLACEHOLDER:
+            Model._PLACEHOLDER = Model(None, None, None)
+        return Model._PLACEHOLDER
+
+    @staticmethod
+    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
         m: Model = Model.get(model_name_or_path)
+
+        # Return None if the loading placeholder is present
+        if m is Model._get_placeholder():
+            return None
 
         # Return model if already loaded
         if m:
             return m
+        
+        # Add a placeholder in the dict to prevent additional loads
+        Model._MODELS[model_name_or_path] = Model._get_placeholder()
 
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="auto")
+        model.eval()
 
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
 
@@ -60,14 +88,12 @@ class Model:
 
         return f"[SYS] {Model._SYSTEM_PROMPT} [/SYS]\n\n{user_prompt}"
 
-    def __init__(self, tokenzer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
-        self.tokenzer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenzer
-        self.model: PreTrainedModel = model
-        self.max_new_tokens: int = max_new_tokens
-
     def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
         history.append({"role": "user", "content": Model._gen_prompt(prompt)})
         input_ids: str | list[int] = self.tokenizer.apply_chat_template(history, return_tensors="pt").to("cuda")
+
+        # Reset prompt to the raw input
+        history[-1]["content"] = prompt
 
         outputs = self.model.generate(
             input_ids,
@@ -79,7 +105,7 @@ class Model:
         raw_res: str = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
 
         # Cut out the instruction section of the output
-        res: str = raw_res[(raw_res.find(Model._INST_SUFFIX) + Model._INST_SUFFIX_LEN)::].strip()
+        res: str = raw_res[(raw_res.rfind(Model._INST_SUFFIX) + Model._INST_SUFFIX_LEN)::].strip()
 
         # Append response to history
         history.append({"role": "assistant", "content": res})
