@@ -8,7 +8,7 @@ def main() -> None:
 
     # Model data
     model_id: str = os.getenv("MODEL_PATH")
-    max_new_tokens: int = 4096
+    max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
 
     # Load model
     model : ml.Model = ml.Model.load(model_id, max_new_tokens)
