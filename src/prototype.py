@@ -2,6 +2,8 @@ import streamlit as st
 import os
 from dotenv import load_dotenv
 from helper import *
+from torch import bfloat16
+import transformers
 from util.model import Model
 
 
@@ -18,26 +20,43 @@ st.header("Upload documents",divider='rainbow')
 # Create two columns layout
 
 
-# Upload Python code file
-
-code_file_content = upload_file('Requirment file', 'code_file')
+# Upload requirement file
+re_file_content = upload_file('Requirment file', 'code_file')
 
 # Checkbox to show or hide the Python code file content
 
 if st.checkbox('Show RE content'):
     st.text('Requirement File Content:')
-    st.code(code_file_content, language='text')
+    st.code(re_file_content, language='text')
 
-# Upload Python test file
-
+# Upload test suite file
 test_file_content = upload_file('Test Cases File', 'test_file')
 
 # Checkbox to show or hide the Python test file content
-
 if st.checkbox('Show Test Cases content'):
     st.text('Test Case File Content:')
     st.code(test_file_content, language='text')
 
+
+#==================================================
+#                  CSV PARSE
+#================================================== 
+
+if st.checkbox('Requirement CVS parse'):   
+    rows = parse_and_display_csv(re_file_content)
+    if rows:
+        for r in rows:
+            st.write(r)  # Display each row in the Streamlit app
+    else:
+        st.warning("No file content provided.")
+
+if st.checkbox('Test CVS parse'):   
+    rows = parse_and_display_csv(test_file_content)
+    if rows:
+        for r in rows:
+            st.write(r)  # Display each row in the Streamlit app
+    else:
+        st.warning("No file content provided.")
 
 #==================================================
 #                  Model section
