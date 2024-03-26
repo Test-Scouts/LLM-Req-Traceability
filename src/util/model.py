@@ -14,7 +14,7 @@ class Model:
 
     _MODELS: Final[dict[str | PathLike, Model]] = {}
 
-    _PLACEHOLDER: Final[Model] = Model(None, None, None)
+    _PLACEHOLDER: Model = None
 
     # Instruction suffix
     _INST_SUFFIX: Final[str] = "[/INST]"
@@ -24,11 +24,24 @@ class Model:
     _SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
 
     @staticmethod
+    def _get_placeholder() -> Model:
+        """
+        Retrieves the placeholder for loading models.
+
+        Returns:
+        --------
+        `Model` - An empty placeholder model.
+        """
+        if not Model._PLACEHOLDER:
+            Model._PLACEHOLDER = Model(None, None, None)
+        return Model._PLACEHOLDER
+
+    @staticmethod
     def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
         m: Model = Model.get(model_name_or_path)
 
         # Return None if the loading placeholder is present
-        if m is Model._PLACEHOLDER:
+        if m is Model._get_placeholder():
             return None
 
         # Return model if already loaded
@@ -36,7 +49,7 @@ class Model:
             return m
         
         # Add a placeholder in the dict to prevent additional loads
-        Model._MODELS[model_name_or_path] = Model._PLACEHOLDER
+        Model._MODELS[model_name_or_path] = Model._get_placeholder()
 
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
