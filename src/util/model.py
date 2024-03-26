@@ -9,6 +9,8 @@ from .model import *
 class Model:
     _MODELS: Final[dict[str | PathLike, Model]] = {}
 
+    _PLACEHOLDER: Final[Model] = Model(None, None, None)
+
     # Instruction suffix
     _INST_SUFFIX: Final[str] = "[/INST]"
     _INST_SUFFIX_LEN : Final[int] = len(_INST_SUFFIX)
@@ -17,12 +19,19 @@ class Model:
     _SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
 
     @staticmethod
-    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model:
+    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
         m: Model = Model.get(model_name_or_path)
+
+        # Return None if the loading placeholder is present
+        if m is Model._PLACEHOLDER:
+            return None
 
         # Return model if already loaded
         if m:
             return m
+        
+        # Add a placeholder in the dict to prevent additional loads
+        Model._MODELS[model_name_or_path] = Model._PLACEHOLDER
 
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
