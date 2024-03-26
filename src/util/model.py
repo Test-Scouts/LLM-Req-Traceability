@@ -92,6 +92,9 @@ class Model:
         history.append({"role": "user", "content": Model._gen_prompt(prompt)})
         input_ids: str | list[int] = self.tokenizer.apply_chat_template(history, return_tensors="pt").to("cuda")
 
+        # Reset prompt to the raw input
+        history[-1]["content"] = prompt
+
         outputs = self.model.generate(
             input_ids,
             max_new_tokens=self.max_new_tokens,
