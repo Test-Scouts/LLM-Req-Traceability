@@ -1,7 +1,10 @@
 import streamlit as st
 import os
 import json
+from io import StringIO
+import csv
 
+# use in the previous prototype -- may be removed in the final version
 def get_display_style():
     # Define the CSS style
     style = """
@@ -21,12 +24,13 @@ def get_display_style():
     </style>
     """
     return style 
-
+# use in the previous prototype -- may be removed in the final version
 def save_templates(templates):
     file_path = "prompt_templates.json"
     with open(file_path, "w") as file:
         json.dump(templates, file, indent=4)
 
+# use in the previous prototype -- may be removed in the final version
 def initialize_prompt_templates():
     file_path = "prompt_templates.json"
     if os.path.exists(file_path):
@@ -52,7 +56,34 @@ def upload_file(file_description='file', widget_name='widget_name'):
     st.write(f"Upload or drag and drop a  {file_description} below.")
     uploaded_file = st.file_uploader(f"Upload a {file_description} here:", 
                                      type=None, label_visibility="collapsed", key=widget_key)
+    
     if uploaded_file is not None:
         return uploaded_file.getvalue().decode("utf-8")
     return None
 
+
+def parse_and_display_csv(file_content):
+    """
+    Parses CSV file_content from a string and displays it using Streamlit or returns parsed data.
+    
+    Parameters:
+    - file_content (str): The CSV content as a string.
+    
+    Returns:
+    - None. Directly displays the content using Streamlit.
+    """
+    if file_content:
+        # Convert the string content to a file-like object for parsing
+        f = StringIO(file_content)
+        
+        # Detect the CSV dialect
+        try:
+            dialect: csv.Dialect = csv.Sniffer().sniff(f.read(1024))
+            f.seek(0)  # Reset file pointer to the beginning
+        except csv.Error:
+            st.error("Could not determine the file's dialect. Please ensure it is a valid CSV file.")
+            return
+        
+        # Parse the CSV content into a dictionary format
+        rows: csv.DictReader = csv.DictReader(f, dialect=dialect)
+        return rows
