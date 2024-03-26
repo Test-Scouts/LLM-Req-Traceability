@@ -69,12 +69,12 @@ def interact_with_model() -> None:
     user_prompt: str = input_container.text_input("Input", key="text-input")
 
     # Ignore the rest if the send button isn't clicked
-    if not input_container.button("Send"):
+    if input_container.button("Send"):
         # Disable Input field
         input_field.empty()
         input_container = input_field.container()
-        user_prompt: str = input_container.text_input("Input", key="text-input", disabled=True)
-        input_container.button("Send", disabled=True)
+        user_prompt: str = input_container.text_input("Input", key="text-input-disabled", disabled=True)
+        input_container.button("Send", key="send-disabled", disabled=True)
 
         # Render new input
         history.write(f"### User\n{user_prompt}")
