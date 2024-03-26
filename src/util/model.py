@@ -7,6 +7,11 @@ from .model import *
 
 
 class Model:
+    def __init__(self, tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
+        self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
+        self.model: PreTrainedModel = model
+        self.max_new_tokens: int = max_new_tokens
+
     _MODELS: Final[dict[str | PathLike, Model]] = {}
 
     _PLACEHOLDER: Final[Model] = Model(None, None, None)
@@ -69,11 +74,6 @@ class Model:
             raise ValueError("User prompt must consist of at least 1 non-whitespace character.")
 
         return f"[SYS] {Model._SYSTEM_PROMPT} [/SYS]\n\n{user_prompt}"
-
-    def __init__(self, tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
-        self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
-        self.model: PreTrainedModel = model
-        self.max_new_tokens: int = max_new_tokens
 
     def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
         history.append({"role": "user", "content": Model._gen_prompt(prompt)})
