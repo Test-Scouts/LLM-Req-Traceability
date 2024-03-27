@@ -183,16 +183,14 @@ class Session:
     def get(name: str) -> Session | None:
         return Session._SESSIONS.get(name, None)
     
-    def prompt(self, prompt: str) -> str:
-        return self.model.prompt(self.history, prompt, self.system_prompt)
-    
-    def ephemeral_prompt(self, prompt: str) -> str:
-        res: str = self.prompt(prompt)
+    def prompt(self, prompt: str, ephemeral: bool = False) -> str:
+        res: str = self.model.prompt(self.history, prompt, self.system_prompt)
 
-        # Pop twice to remove the newly added user and assistant messages
-        self.history.pop()
-        self.history.pop()
-
+        # Pop twice to remove the newly added user and assistant messages if ephemeral
+        if ephemeral:
+            self.history.pop()
+            self.history.pop()
+        
         return res
 
     def clear(self) -> None:
@@ -200,3 +198,4 @@ class Session:
 
     def delete(self) -> None:
         del Session._SESSIONS[self.name]
+        del self

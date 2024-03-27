@@ -3,7 +3,8 @@ Utility module for handling models.
 
 Includes:
 ---------
-`Model` - A class abstracting pretrained models, providing methods to load, retrieve, and prompt a model.
+`Model` - A class abstracting pretrained models, providing methods to load, retrieve, and prompt a model.\n
+`Session` - A class for handling conversations with models.
 """
 from os import PathLike
 from transformers import Conversation
@@ -118,31 +119,14 @@ class Session:
         """
         ...
     
-    def prompt(self, prompt: str) -> str:
+    def prompt(self, prompt: str, ephemeral: bool = False) -> str:
         """
         Prompts a the model and gets the response.
 
         Parameters:
         -----------
         prompt: str - The user prompt to send to the model. Must contain non-whitespace characters.
-
-        Returns:
-        --------
-        `str` - The response from the model if the model is loaded, else `None`.
-
-        Raises:
-        -------
-        `ValueError` if `user_prompt` is empty, `None`, or consists of only whitespace characters.
-        """
-        ...
-
-    def ephemeral_prompt(self, prompt: str) -> str:
-        """
-        Prompts a the model and gets the response. Does not affect the history.
-
-        Parameters:
-        -----------
-        prompt: str - The user prompt to send to the model. Must contain non-whitespace characters.
+        ephemeral: bool - Whether the prompt and response should be saved. Defaults to saving (`False`).
 
         Returns:
         --------
