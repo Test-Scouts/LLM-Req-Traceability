@@ -3,7 +3,11 @@ Utility module for REST-at.
 
 Includes:
 ---------
-A class for abstracting pretrained models.
+Classes for abstracting pretrained models and conversation sessions.
 """
-from . import model
-from .model import *
+__all__ = [
+    "model"
+]
+
+
+import model
