@@ -21,7 +21,7 @@ class Model:
     """
 
     @staticmethod
-    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
+    def get(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
         """
         Loads a specified model if not already loaded.
 
@@ -32,21 +32,6 @@ class Model:
         Returns:
         --------
         `Model | None` The model that was loaded. None if the specified model is being loaded.
-        """
-        ...
-
-    @staticmethod
-    def get(model_name_or_path: str | PathLike) -> Model:
-        """
-        Gets a model if loaded, else `None`
-
-        Parameters:
-        -----------
-        model_name_or_path: str | PathLike - The model to get. Can be either a model name from Hugging Face Hub or a path to a local model.
-
-        Returns:
-        --------
-        `Model | None` The tokenizer and the model itself if loaded, else None.
         """
         ...
 

@@ -11,7 +11,7 @@ def main() -> None:
     max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
 
     # Load model
-    model : ml.Model = ml.Model.load(model_id, max_new_tokens)
+    model : ml.Model = ml.Model.get(model_id, max_new_tokens)
 
     # Create an empty message history
     messages: list[dict[str, str]] = []

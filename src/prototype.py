@@ -68,7 +68,7 @@ def interact_with_model() -> None:
 
     model_id: str = os.getenv("MODEL_PATH")
     max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
-    model: Model = Model.load(model_id, max_new_tokens)
+    model: Model = Model.get(model_id, max_new_tokens)
 
     if "message_history" not in st.session_state:
         st.session_state["message_history"] = list[dict[str, str]]()

@@ -37,8 +37,23 @@ class Model:
         return Model._PLACEHOLDER
 
     @staticmethod
-    def load(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
-        m: Model = Model.get(model_name_or_path)
+    def _get(model_name_or_path: str | PathLike):
+        """
+        Gets a model if loaded, else `None`
+
+        Parameters:
+        -----------
+        model_name_or_path: str | PathLike - The model to get. Can be either a model name from Hugging Face Hub or a path to a local model.
+
+        Returns:
+        --------
+        `Model | None` The tokenizer and the model itself if loaded, else None.
+        """
+        return Model._MODELS.get(model_name_or_path, None)
+
+    @staticmethod
+    def get(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
+        m: Model = Model._get(model_name_or_path)
 
         # Return None if the loading placeholder is present
         if m is Model._get_placeholder():
@@ -59,13 +74,9 @@ class Model:
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
 
         return m
-
-    @staticmethod
-    def get(model_name_or_path: str | PathLike):
-        return Model._MODELS.get(model_name_or_path, None)
     
     @staticmethod
-    def _gen_prompt(user_prompt: str) -> str:
+    def _gen_prompt(user_prompt: str, system_prompt: str=_SYSTEM_PROMPT) -> str:
         """
         Generate a prompt using a predefined system prompt.
 
@@ -86,7 +97,7 @@ class Model:
         if not prompt:
             raise ValueError("User prompt must consist of at least 1 non-whitespace character.")
 
-        return f"[SYS] {Model._SYSTEM_PROMPT} [/SYS]\n\n{user_prompt}"
+        return f"[SYS] {system_prompt} [/SYS]\n\n{user_prompt}"
 
     def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
         history.append({"role": "user", "content": Model._gen_prompt(prompt)})
