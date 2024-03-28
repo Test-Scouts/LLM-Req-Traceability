@@ -1,5 +1,6 @@
 from __future__ import annotations
 from os import PathLike
+import copy
 from transformers import AutoTokenizer, AutoModelForCausalLM, Conversation, PreTrainedTokenizer, PreTrainedTokenizerFast, PreTrainedModel
 import torch
 from typing import Final
@@ -183,6 +184,11 @@ class Session:
     def get(name: str) -> Session | None:
         return Session._SESSIONS.get(name, None)
     
+    def set_system_prompt(self, system_prompt: str) -> None:
+        if not system_prompt:
+            system_prompt = Model._SYSTEM_PROMPT
+        self.system_prompt = system_prompt
+    
     def prompt(self, prompt: str, ephemeral: bool = False) -> str:
         res: str = self.model.prompt(self.history, prompt, self.system_prompt)
 
@@ -195,6 +201,9 @@ class Session:
 
     def clear(self) -> None:
         self.history = []
+
+    def get_history(self) -> list[dict[str, str]]:
+        return copy.deepcopy(self.history)
 
     def delete(self) -> None:
         del Session._SESSIONS[self.name]

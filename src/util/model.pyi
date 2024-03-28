@@ -119,6 +119,16 @@ class Session:
         """
         ...
     
+    def set_system_prompt(self, system_prompt: str) -> None:
+        """
+        Sets the system prompt for the session.
+
+        Parameters:
+        -----------
+        system_prompt: str - The system prompt to use. Pass `None` to use the default.
+        """
+        ...
+
     def prompt(self, prompt: str, ephemeral: bool = False) -> str:
         """
         Prompts a the model and gets the response.
@@ -143,6 +153,15 @@ class Session:
         Empties the conversation history.
         """
         ...
+
+    def get_history(self) -> list[dict[str, str]]:
+        """
+        Retrieves a copy of the message history of the session.
+
+        Returns:
+        --------
+        `list[dict[str, str]]` - A copy of all non-ephemeral messages and responses.
+        """
 
     def delete(self) -> None:
         """
