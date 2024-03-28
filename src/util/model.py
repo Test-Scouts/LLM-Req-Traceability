@@ -83,7 +83,7 @@ class Model:
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         tokenizer.chat_template
-        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="auto")
+        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="cuda")
         model.eval()
 
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
