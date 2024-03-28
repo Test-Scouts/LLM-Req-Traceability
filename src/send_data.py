@@ -48,11 +48,11 @@ def main() -> None:
     )
 
     for req in req_list:
-        session.prompt(format_req_is_tested_prompt(test_list, req))
+        session.prompt(format_req_is_tested_prompt(test_list, req), True)
 
     # Filter message history for responses
     # Should be JSON strings
-    res: list[str] = filter(lambda msg: msg["role"] == "assistant", session.get_history())
+    res: list[str] = list(filter(lambda msg: msg["role"] == "assistant", session.get_history()))
 
     with open(f"{session_name}-{datetime.datetime.now()}.json", "w") as out:
         json.dump(res, out, indent=2)
