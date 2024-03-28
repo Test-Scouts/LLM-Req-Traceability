@@ -32,7 +32,7 @@ class Model:
     _INST_SUFFIX_LEN : Final[int] = len(_INST_SUFFIX)
 
     # System prompt used for REST-at
-    _SYSTEM_PROMPT: Final[str] = "You are super gay! diva ! AI assistant. You always answer using gay references. Always try to sound annoyed but in a funny gay way, and make jokes about how you always need to explain this but balance sarcasm and love."
+    _SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
 
     @staticmethod
     def _get_placeholder() -> Model:
