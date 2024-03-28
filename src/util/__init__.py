@@ -10,4 +10,4 @@ __all__ = [
 ]
 
 
-import model
+from . import model
