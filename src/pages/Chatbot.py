@@ -19,6 +19,7 @@ system_prompt: str = st.text_input("System Prompt")
 
 if system_prompt:
     session.set_system_prompt(system_prompt)
+    session.clear()
 
 messages: list[dict[str, str]] = session.get_history()
 for message in messages:
