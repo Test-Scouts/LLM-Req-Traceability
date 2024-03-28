@@ -4,8 +4,8 @@ import os
 import json
 
 from dotenv import load_dotenv
-from util.model import Session
-from util.prompt import format_req_is_tested_prompt
+from .util.model import Session
+from .util.prompt import format_req_is_tested_prompt
 
 
 def main() -> None:
