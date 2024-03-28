@@ -159,7 +159,7 @@ class Session:
             raise ModelLoadingException(model_name_or_path)
 
         self.system_prompt: str = system_prompt
-        self.history: list[dict[str, str]]
+        self.history: list[dict[str, str]] = []
 
     _SESSIONS: dict[str, Session] = {}
 
