@@ -39,7 +39,7 @@ def main() -> None:
     # Set up a session
     model_path: str = os.getenv("MODEL_PATH")
     max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
-    session_name: str = f"{model_path}-REST-at-BTHS-eval"
+    session_name: str = "MistralAI-REST-at-BTHS-eval"
     session: Session = Session.create(
         session_name,
         model_path,
@@ -52,7 +52,9 @@ def main() -> None:
 
     # Filter message history for responses
     # Should be JSON strings
-    res: list[str] = list(filter(lambda msg: msg["role"] == "assistant", session.get_history()))
+    res: list[dict[str, str]] = list(filter(lambda msg: msg["role"] == "assistant", session.get_history()))
+
+    print(res)
 
     with open(f"{session_name}-{datetime.datetime.now()}.json", "w") as out:
         json.dump(res, out, indent=2)
