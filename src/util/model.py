@@ -75,7 +75,7 @@ class Model:
             return m
         
         if max_new_tokens is None:
-            raise ValueError("Cannot load model without max_new_tokens")
+            raise ValueError("Cannot load model without max_new_tokens.")
         
         # Add a placeholder in the dict to prevent additional loads
         Model._MODELS[model_name_or_path] = Model._get_placeholder()
@@ -111,7 +111,7 @@ class Model:
         if not prompt:
             raise ValueError("User prompt must consist of at least 1 non-whitespace character.")
 
-        return f"[SYS] {system_prompt} [/SYS]\n\n{user_prompt}"
+        return f"\nSystem definition:\n{system_prompt} \nEnd system definition.\n\n{user_prompt}"
     
     def prompt(
             self,
