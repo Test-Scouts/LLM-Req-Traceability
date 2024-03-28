@@ -47,18 +47,12 @@ def main() -> None:
         "You are a helpful AI assistant."  # Default system prompt of OpenAI
     )
 
-    print(req_list)
+    res: list[str] = []
     for req in req_list:
-        print(session.prompt(format_req_is_tested_prompt(test_list, req), True))
-
-    # Filter message history for responses
-    # Should be JSON strings
-    res: list[dict[str, str]] = list(filter(lambda msg: msg["role"] == "assistant", session.get_history()))
-
-    print(res)
+        res.append(session.prompt(format_req_is_tested_prompt(test_list, req), True))
 
     with open(f"{session_name}-{datetime.datetime.now()}.txt", "w") as out:
-        out.write(res)
+        out.write("\n".join(res))
 
 
 if __name__ == "__main__":
