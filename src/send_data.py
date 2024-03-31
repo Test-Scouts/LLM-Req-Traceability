@@ -51,7 +51,8 @@ def main() -> None:
     for req in req_list:
         res.append(session.prompt(format_req_is_tested_prompt(test_list, req), True))
 
-    with open(f"{session_name}-{datetime.datetime.now()}.txt", "w") as out:
+    now: str = str(datetime.datetime.now()).replace(" ", "-")
+    with open(f"./out/{session_name}/{now}.txt", "w") as out:
         out.write("\n".join(res))
 
 

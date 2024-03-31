@@ -21,10 +21,11 @@ def main() -> None:
     in_tokens: int = 0
     out_tokens: int = 0
 
+    model: str = "gpt-3.5-turbo-0125"
     # Use Literal["end"] as chat terminator
     while prompt != "end":
         completion: ChatCompletion = client.chat.completions.create(
-            model="gpt-3.5-turbo-0125",
+            model=model,
             messages=history,
             temperature=0.1
         )
@@ -45,13 +46,13 @@ def main() -> None:
     now: str = str(datetime.datetime.now()).replace(" ", "-")
 
     # Log the chat
-    chat_log: str = f"./out/chat-{now}.json"
+    chat_log: str = f"./out/{model}/{now}/chat.json"
     print(f"Logging chat to {chat_log}")
     with open(chat_log, "w") as f:
         json.dump(history, f, indent=2)
 
     # Log the token usage
-    stats_log: str = f"./out/stats-{now}.log"
+    stats_log: str = f"./out/{model}/{now}/stats.log"
     print(f"Logging token usage to {stats_log}")
     with open(stats_log, "w") as f:
         f.write(f"{in_tokens=}\n{out_tokens=}")
