@@ -45,7 +45,7 @@ def main() -> None:
     input_tokens: int = 0
     output_tokens: int = 0
     history: list[dict[str, str]]
-    res: list[str] = []
+    res: list[dict[str, str]] = []
     for req in req_list:
         history = [{"role": "user", "content": format_req_is_tested_prompt(test_list, req)}]
         completion: ChatCompletion = client.chat.completions.create(
@@ -54,7 +54,8 @@ def main() -> None:
             temperature=0.1
         )
 
-        res.append(completion.choices[0].message.content)
+        r: dict[str, str] = json.loads(completion.choices[0].message.content)
+        res.append(r)
 
         input_tokens += completion.usage.prompt_tokens
         output_tokens += completion.usage.completion_tokens
@@ -64,9 +65,9 @@ def main() -> None:
     log_dir: str = f"./out/{model}/{now}"
     os.makedirs(log_dir, exist_ok=True)
 
-    chat_log: str = f"{log_dir}/chat.txt"
+    chat_log: str = f"{log_dir}/res.json"
     with open(chat_log, "w") as out:
-        out.write("\n".join(res))
+        json.dump(res, out, indent=2)
 
     # Log the token usage
     stats_log: str = f"{log_dir}/stats.log"
