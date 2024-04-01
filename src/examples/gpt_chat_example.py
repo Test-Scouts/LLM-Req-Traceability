@@ -48,13 +48,13 @@ def main() -> None:
     # Log the chat
     chat_log: str = f"./out/{model}/{now}/chat.json"
     print(f"Logging chat to {chat_log}")
-    with open(chat_log, "w") as f:
+    with open(chat_log, "w+") as f:
         json.dump(history, f, indent=2)
 
     # Log the token usage
     stats_log: str = f"./out/{model}/{now}/stats.log"
     print(f"Logging token usage to {stats_log}")
-    with open(stats_log, "w") as f:
+    with open(stats_log, "w+") as f:
         f.write(f"{in_tokens=}\n{out_tokens=}")
 
     print("Done!")

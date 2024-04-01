@@ -52,7 +52,7 @@ def main() -> None:
         res.append(session.prompt(format_req_is_tested_prompt(test_list, req), True))
 
     now: str = str(datetime.datetime.now()).replace(" ", "-")
-    with open(f"./out/{session_name}/{now}.txt", "w") as out:
+    with open(f"./out/{session_name}/{now}.txt", "w+") as out:
         out.write("\n".join(res))
 
 

@@ -66,7 +66,7 @@ def main() -> None:
     # Log the token usage
     stats_log: str = f"./out/{model}/{now}/stats.log"
     print(f"Logging token usage to {stats_log}")
-    with open(stats_log, "w") as f:
+    with open(stats_log, "w+") as f:
         f.write(f"{input_tokens=}\n{output_tokens=}")
 
 
