@@ -22,8 +22,8 @@ def main() -> None:
             "Description"
         ]
         reader: csv.DictReader = csv.DictReader(reqs)
-        # Remove the headers (0th row)
-        req_list = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))[1::]
+
+        req_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
 
 
     # Load requirements file and filter the desired fields
@@ -35,8 +35,8 @@ def main() -> None:
             "Test steps"
         ]
         reader: csv.DictReader = csv.DictReader(tests)
-        # Remove the headers (0th row)
-        test_list = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))[1::]
+
+        test_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
 
     # Set up a session
     model: str = "gpt-3.5-turbo-0125"
