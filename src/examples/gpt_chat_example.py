@@ -1,5 +1,6 @@
 import json
 import datetime
+import os
 
 from dotenv import load_dotenv
 from openai import OpenAI
@@ -45,14 +46,17 @@ def main() -> None:
 
     now: str = str(datetime.datetime.now()).replace(" ", "-")
 
+    log_dir: str = f"./out/{model}/{now}"
+    os.makedirs(log_dir, exist_ok=True)
+
     # Log the chat
-    chat_log: str = f"./out/{model}/{now}/chat.json"
+    chat_log: str = f"{log_dir}/chat.json"
     print(f"Logging chat to {chat_log}")
     with open(chat_log, "w+") as f:
         json.dump(history, f, indent=2)
 
     # Log the token usage
-    stats_log: str = f"./out/{model}/{now}/stats.log"
+    stats_log: str = f"{log_dir}/stats.log"
     print(f"Logging token usage to {stats_log}")
     with open(stats_log, "w+") as f:
         f.write(f"{in_tokens=}\n{out_tokens=}")

@@ -60,11 +60,16 @@ def main() -> None:
         output_tokens += completion.usage.completion_tokens
 
     now: str = str(datetime.datetime.now()).replace(" ", "-")
-    with open(f"./out/{model}/{now}.txt", "w") as out:
+
+    log_dir: str = f"./out/{model}/{now}"
+    os.makedirs(log_dir, exist_ok=True)
+
+    chat_log: str = f"{log_dir}/chat.txt"
+    with open(chat_log, "w") as out:
         out.write("\n".join(res))
 
     # Log the token usage
-    stats_log: str = f"./out/{model}/{now}/stats.log"
+    stats_log: str = f"{log_dir}/stats.log"
     print(f"Logging token usage to {stats_log}")
     with open(stats_log, "w+") as f:
         f.write(f"{input_tokens=}\n{output_tokens=}")

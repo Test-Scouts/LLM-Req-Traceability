@@ -52,7 +52,11 @@ def main() -> None:
         res.append(session.prompt(format_req_is_tested_prompt(test_list, req), True))
 
     now: str = str(datetime.datetime.now()).replace(" ", "-")
-    with open(f"./out/{session_name}/{now}.txt", "w+") as out:
+
+    log_dir: str = f"./out/{session_name}/{now}"
+    os.makedirs(log_dir, exist_ok=True)
+
+    with open(f"{log_dir}/chat.txt", "w+") as out:
         out.write("\n".join(res))
 
 
