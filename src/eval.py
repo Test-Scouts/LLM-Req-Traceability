@@ -8,9 +8,11 @@ from dotenv import load_dotenv
 def main() -> None:
     load_dotenv()
 
+    out_path: str = os.getenv("OUT_PATH")
+
     # Load the tool output
     res: list[dict[str, str]]
-    with open(os.getenv("OUT_PATH"), "r") as f:
+    with open(out_path, "r") as f:
         res = json.load(f)
 
     # Load the set of tests
@@ -63,6 +65,14 @@ def main() -> None:
         tn += tnsn
         fp += fpsn
         fn += fnsn
+    
+    accuracy: int = 100 * (tp + tn) / num
+    recall: int = 100 * tp / (tp + fn)
+    precision: int = 100 * tp / (tp + fp)
+
+    eval_path = f"{os.path.dirname(out_path)}/eval.log"
+    with open(eval_path, "w+") as f:
+        f.write(f"{accuracy=}%\n{recall=}%\n{precision=}%\n")
 
 
 if __name__ == "__main__":
