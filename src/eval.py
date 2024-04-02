@@ -35,8 +35,8 @@ def main() -> None:
         for e in map_:
             e["Test IDs"] = e["Test IDs"].replace(" ", "").split(",") if e["Test IDs"] else []
 
-    # Values for truth tables
-    num: int = 0
+    # Values for confusion matrix
+    n: int = 0
     tp: int = 0
     tn: int = 0
     fp: int = 0
@@ -66,19 +66,29 @@ def main() -> None:
         fns: set[str] = actual_ns - expected_ns
         fnsn: int = len(fns)
 
-        num += tpsn + fpsn + tnsn + fnsn
+        n += tpsn + fpsn + tnsn + fnsn
         tp += tpsn
         tn += tnsn
         fp += fpsn
         fn += fnsn
     
-    accuracy: int = 100 * (tp + tn) / num if num != 0 else 0
+    accuracy: int = 100 * (tp + tn) / n if n != 0 else 0
     recall: int = 100 * tp / (tp + fn) if tp + fn != 0 else 0
     precision: int = 100 * tp / (tp + fp) if tp + fp != 0 else 0
 
     eval_path = f"{os.path.dirname(out_path)}/eval.log"
+    lines: list[str] = [
+        f"{n=}",
+        f"{tp=}",
+        f"{tn=}",
+        f"{fp=}",
+        f"{fn=}",
+        f"{accuracy=}%",
+        f"{recall=}%",
+        f"{precision=}%"
+    ]
     with open(eval_path, "w+") as f:
-        f.write(f"{accuracy=}%\n{recall=}%\n{precision=}%\n")
+        f.write("\n".join(lines) + "\n")
 
 
 if __name__ == "__main__":
