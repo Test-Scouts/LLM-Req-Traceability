@@ -31,7 +31,9 @@ def main() -> None:
         reader: csv.DictReader = csv.DictReader(f)
 
         map_ = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
-        map_["Test IDs"] = list(map(lambda row: row.replace(" ", "").split(",") if row else [], map_["Test IDs"]))
+
+        for e in map_:
+            e["Test IDs"] = e["Test IDs"].replace(" ", "").split(",") if e["Test IDs"] else []
 
     # Values for truth tables
     num: int = 0
