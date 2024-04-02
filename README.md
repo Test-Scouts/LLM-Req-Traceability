@@ -29,3 +29,11 @@ Test cases files must have the following rows (case sensitive) in whichever orde
 - ID
 - Purpose
 - Test steps
+
+### Alignment Files
+
+Only for development evaluations.
+Alignment files must have the following rows (case sensitive) in whichever order:
+- Req IDs
+- Test ID
+    - This column must consist of a list of Test IDs separated by commas
