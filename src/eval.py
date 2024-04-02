@@ -46,7 +46,11 @@ def main() -> None:
         req_id: str = req["requirementID"]
         actual_tests: set[str] = set(req["tests"].replace(" ", "").split(","))
 
-        expected_tests: set[str] = set(next((x for x in map_ if x["Req ID"] == req_id), None))
+        expected_tests: set[str]
+        try:
+            expected_tests = set([e["Test IDs"] for e in map_ if e["Req ID"] == req_id][0])
+        except:
+            expected_tests = set()
 
         tps: set[str] = actual_tests & expected_tests
         tpsn: int = len(tps)
