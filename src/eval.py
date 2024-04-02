@@ -68,9 +68,9 @@ def main() -> None:
         fp += fpsn
         fn += fnsn
     
-    accuracy: int = 100 * (tp + tn) / num
-    recall: int = 100 * tp / (tp + fn)
-    precision: int = 100 * tp / (tp + fp)
+    accuracy: int = 100 * (tp + tn) / num if num != 0 else 0
+    recall: int = 100 * tp / (tp + fn) if tp + fn != 0 else 0
+    precision: int = 100 * tp / (tp + fp) if tp + fp != 0 else 0
 
     eval_path = f"{os.path.dirname(out_path)}/eval.log"
     with open(eval_path, "w+") as f:
