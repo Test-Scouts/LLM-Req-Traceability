@@ -83,7 +83,16 @@ class Model:
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         tokenizer.chat_template
-        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="cuda")
+
+        # Parallelise across all cuda devices if possible
+        device_map: dict[int, str]
+        try:
+            device_map = {i: f"cuda:{i}" for i in range(torch.cuda.device_count())}
+        except Exception as e:
+            print(e)
+            device_map = "auto"
+        
+        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map=device_map)
         model.eval()
 
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
