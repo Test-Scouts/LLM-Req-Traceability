@@ -8,9 +8,11 @@ A function for formatting prompt strings.
 """
 __all__ = [
     "model",
-    "prompt"
+    "prompt",
+    "rest"
 ]
 
 
 from . import model
 from . import prompt
+from . import rest
