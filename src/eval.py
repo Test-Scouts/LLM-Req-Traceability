@@ -72,9 +72,9 @@ def main() -> None:
         fp += fpsn
         fn += fnsn
     
-    accuracy: int = 100 * (tp + tn) / n if n != 0 else 0
-    recall: int = 100 * tp / (tp + fn) if tp + fn != 0 else 0
-    precision: int = 100 * tp / (tp + fp) if tp + fp != 0 else 0
+    accuracy: float = 100 * (tp + tn) / n if n != 0 else 0
+    recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0
+    precision: float = 100 * tp / (tp + fp) if tp + fp != 0 else 0
 
     eval_path = f"{os.path.dirname(out_path)}/eval.log"
     lines: list[str] = [

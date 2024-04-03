@@ -159,8 +159,8 @@ class Session:
         if not self.model:
             raise ModelLoadingException(model_name_or_path)
 
-        self.system_prompt: str = system_prompt
-        self.history: list[dict[str, str]] = []
+        self._system_prompt: str = system_prompt
+        self._history: list[dict[str, str]] = []
 
     _SESSIONS: dict[str, Session] = {}
 
@@ -185,27 +185,32 @@ class Session:
     def get(name: str) -> Session | None:
         return Session._SESSIONS.get(name, None)
     
-    def set_system_prompt(self, system_prompt: str) -> None:
+    @property
+    def system_prompt(self) -> str:
+        return self._system_prompt
+
+    @system_prompt.setter
+    def system_prompt(self, system_prompt: str) -> None:
         if not system_prompt:
             system_prompt = Model._SYSTEM_PROMPT
-        self.system_prompt = system_prompt
+        self._system_prompt = system_prompt
     
     def prompt(self, prompt: str, ephemeral: bool = False) -> str:
-        res: str = self.model.prompt(self.history, prompt, self.system_prompt)
+        res: str = self.model.prompt(self._history, prompt, self._system_prompt)
 
         # Pop twice to remove the newly added user and assistant messages if ephemeral
         if ephemeral:
-            self.history.pop()
-            self.history.pop()
+            self._history.pop()
+            self._history.pop()
         
         return res
 
     def clear(self) -> None:
-        self.history = []
+        self._history = []
 
-    def get_history(self) -> list[dict[str, str]]:
-        return copy.deepcopy(self.history)
+    @property
+    def history(self) -> list[dict[str, str]]:
+        return copy.deepcopy(self._history)
 
     def delete(self) -> None:
         del Session._SESSIONS[self.name]
-        del self

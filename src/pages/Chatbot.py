@@ -18,10 +18,10 @@ session: Session = Session.create(session_name, model_id, max_new_tokens)
 system_prompt: str = st.text_input("System Prompt")
 
 if system_prompt:
-    session.set_system_prompt(system_prompt)
+    session.system_prompt = system_prompt
     session.clear()
 
-messages: list[dict[str, str]] = session.get_history()
+messages: list[dict[str, str]] = session.history
 for message in messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
