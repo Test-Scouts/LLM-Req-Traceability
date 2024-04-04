@@ -134,7 +134,9 @@ class Model:
                 raise ValueError("Messages can't be empty!")
 
             if message["role"] == "user":
-                chat += f"[INST]\n{f'<system>\n{sys_message}\n</system>\n\n' if sys_message else ''}{message["content"]}\n[/INST]"
+                chat += "[INST]\n" \
+                        + f"<system>\n{sys_message}\n</system>\n\n" if sys_message else "" \
+                        + f"{message['content']}\n[/INST]"
             elif message["role"] == "assistant":
                 chat += f"{message['content']}{self.tokenizer.eos_token}"
             elif message["role"] == "system":
