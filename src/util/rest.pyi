@@ -6,7 +6,7 @@ Includes:
 `RESTSpecification` - A class for abstracting REST and filtering out malformed requirements and tests.
 """
 
-from model import Session
+from .model import Session
 
 
 class RESTSpecification:
