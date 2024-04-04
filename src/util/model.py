@@ -147,7 +147,7 @@ class Model:
         return self.tokenizer(chat, return_tensors="pt", return_attention_mask=True)
     
     @deprecated("Use _apply_chat_template instead")
-    def _gen_prompt(self, user_prompt: str, system_prompt: str = Model._SYSTEM_PROMPT) -> str:
+    def _gen_prompt(self, user_prompt: str, system_prompt: str = None) -> str:
         """
         Generate a prompt using a predefined system prompt.
 
@@ -164,6 +164,10 @@ class Model:
         -------
         `ValueError` if `user_prompt` is empty, `None`, or consists of only whitespace characters.
         """
+        if not system_prompt:
+            system_prompt = Model._SYSTEM_PROMPT
+
+
         prompt: str = user_prompt.strip()
 
         if not prompt:
