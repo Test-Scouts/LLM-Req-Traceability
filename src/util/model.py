@@ -135,7 +135,7 @@ class Model:
 
             if message["role"] == "user":
                 chat += "[INST]\n" \
-                        + f"<system>\n{sys_message}\n</system>\n\n" if sys_message else "" \
+                        + (f"<system>\n{sys_message}\n</system>\n\n" if sys_message else "") \
                         + f"{message['content']}\n[/INST]"
             elif message["role"] == "assistant":
                 chat += f"{message['content']}{self.tokenizer.eos_token}"
@@ -167,7 +167,6 @@ class Model:
         if not system_prompt:
             system_prompt = Model._SYSTEM_PROMPT
 
-
         prompt: str = user_prompt.strip()
 
         if not prompt:
@@ -198,7 +197,6 @@ class Model:
         # Append response to history
         history.append({"role": "assistant", "content": res})
         return res
-
 
 
 class Session:
