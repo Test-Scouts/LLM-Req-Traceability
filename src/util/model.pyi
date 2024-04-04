@@ -48,7 +48,7 @@ class Model:
         """
         ...
 
-    def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str, system_prompt: str = Model._SYSTEM_PROMPT) -> str:
+    def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
         """
         Prompts a the model and gets the response. Appends the messages to the history.
 
@@ -75,7 +75,7 @@ class Session:
     Methods:
     --------
     `static create -> Session` - Creates a new prompting session.\n
-    `static get -> Session | None` - Retrieves an existing prompting session if it exists, ese `None`.\n
+    `static get -> Session | None` - Retrieves an existing prompting session if it exists, else `None`.\n
     `prompt -> str` - Prompts the model.
     """
 

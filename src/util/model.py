@@ -1,9 +1,20 @@
 from __future__ import annotations
 from os import PathLike
 import copy
-from transformers import AutoTokenizer, AutoModelForCausalLM, Conversation, PreTrainedTokenizer, PreTrainedTokenizerFast, PreTrainedModel
+from typing_extensions import deprecated
+
+from transformers import (
+    AutoTokenizer,
+    AutoModelForCausalLM,
+    BatchEncoding,
+    Conversation,
+    PreTrainedTokenizer,
+    PreTrainedTokenizerFast,
+    PreTrainedModel
+)
 import torch
 from typing import Final
+
 from .model import *
 
 
@@ -91,13 +102,57 @@ class Model:
 
         return m
     
-    def _gen_prompt(self, user_prompt: str, system_prompt: str) -> str:
+    def _apply_chat_template(self, messages: list[dict[str, str]]) -> BatchEncoding:
+        """
+        Applies a pre-defined chat template to a message history and tokenizes it.
+
+        Parameters:
+        -----------
+        messages: list[dict[str, str]] - The message history.
+
+        Returns:
+        --------
+        `BatchEncoding` - The encoded input.
+
+        Raises:
+        -------
+        `ValueError` if `message["content"]` is empty or consists of only whitespace characters for any message.
+        """
+        chat: str = self.tokenizer.bos_token
+
+        # Apply template
+        sys_message: str = Model._SYSTEM_PROMPT
+        if messages[0]["role"] == "system":
+            sys_message = messages[0]["content"]
+            messages = messages[1:]
+
+        for i, message in enumerate(messages):
+            if (message["role"] == "user") != (i % 2 == 0):
+                raise Exception("Conversation roles must alternate user/assistant/user/assistant/...")
+
+            if message["content"].strip().is_empty():
+                raise ValueError("Messages can't be empty!")
+
+            if message["role"] == "user":
+                chat += f"[INST]\n{f'<system>\n{sys_message}\n</system>\n\n' if sys_message else ''}{message["content"]}\n[/INST]"
+            elif message["role"] == "assistant":
+                chat += f"{message['content']}{self.tokenizer.eos_token}"
+            elif message["role"] == "system":
+                raise Exception("System messages must be the first entry in the history.")
+            else:
+                raise Exception("Only system, user, and assistant roles are supported!")
+
+        return self.tokenizer(chat, return_tensors="pt", return_attention_mask=True)
+    
+    @deprecated("Use _apply_chat_template instead")
+    def _gen_prompt(self, user_prompt: str, system_prompt: str = Model._SYSTEM_PROMPT) -> str:
         """
         Generate a prompt using a predefined system prompt.
 
         Parameters:
         -----------
-        `user_prompt: str` - The user prompt. Must consist of at least 1 non-whitespace character.
+        user_prompt: str - The user prompt. Must consist of at least 1 non-whitespace character.
+        system_prompt: str - The system prompt to prepend to the prompt.
 
         Returns:
         --------
@@ -118,16 +173,12 @@ class Model:
             self,
             history: list[dict[str, str]] | Conversation,
             prompt: str,
-            system_prompt: str = _SYSTEM_PROMPT
         ) -> str:
-        history.append({"role": "user", "content": self._gen_prompt(prompt, system_prompt)})
-        input_ids: str | list[int] = self.tokenizer.apply_chat_template(history, return_tensors="pt").to("cuda")
-
-        # Reset prompt to the raw input
-        history[-1]["content"] = prompt
+        history.append({"role": "user", "content": prompt})
+        input_ids: BatchEncoding = self._apply_chat_template(history).to("cuda")
 
         outputs = self.model.generate(
-            input_ids,
+            **input_ids,
             max_new_tokens=self.max_new_tokens,
             do_sample=True,
             temperature=0.1
@@ -160,7 +211,7 @@ class Session:
             raise ModelLoadingException(model_name_or_path)
 
         self._system_prompt: str = system_prompt
-        self._history: list[dict[str, str]] = []
+        self._history: list[dict[str, str]] = [{"role": "system", "content": system_prompt}]
 
     _SESSIONS: dict[str, Session] = {}
 
@@ -169,7 +220,7 @@ class Session:
         name: str,
         model_name_or_path: str | PathLike,
         max_new_tokens: int,
-        system_prompt: str=Model._SYSTEM_PROMPT
+        system_prompt: str = Model._SYSTEM_PROMPT
     ) -> Session:
         session: Session = Session.get(name)
 
@@ -194,6 +245,7 @@ class Session:
         if not system_prompt:
             system_prompt = Model._SYSTEM_PROMPT
         self._system_prompt = system_prompt
+        self._history[0] = {"role": "system", "content": self._system_prompt}
     
     def prompt(self, prompt: str, ephemeral: bool = False) -> str:
         res: str = self.model.prompt(self._history, prompt, self._system_prompt)
@@ -206,7 +258,7 @@ class Session:
         return res
 
     def clear(self) -> None:
-        self._history = []
+        self._history = [{"role": "system", "content": self._system_prompt}]
 
     @property
     def history(self) -> list[dict[str, str]]:
