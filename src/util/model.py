@@ -254,7 +254,7 @@ class Session:
         self._history[0] = {"role": "system", "content": self._system_prompt}
     
     def prompt(self, prompt: str, ephemeral: bool = False) -> str:
-        res: str = self.model.prompt(self._history, prompt, self._system_prompt)
+        res: str = self.model.prompt(self._history, prompt)
 
         # Pop twice to remove the newly added user and assistant messages if ephemeral
         if ephemeral:
