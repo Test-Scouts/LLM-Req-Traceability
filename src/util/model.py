@@ -130,7 +130,7 @@ class Model:
             if (message["role"] == "user") != (i % 2 == 0):
                 raise Exception("Conversation roles must alternate user/assistant/user/assistant/...")
 
-            if message["content"].strip().is_empty():
+            if not message["content"].strip():
                 raise ValueError("Messages can't be empty!")
 
             if message["role"] == "user":
