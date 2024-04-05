@@ -59,7 +59,7 @@ class Model:
         return Model._PLACEHOLDER
 
     @staticmethod
-    def _get(model_name_or_path: str | PathLike):
+    def _get(model_name_or_path: str | PathLike) -> Model | None:
         """
         Gets a model if loaded, else `None`
 
@@ -95,7 +95,12 @@ class Model:
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
         tokenizer.chat_template
 
-        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="auto")
+        model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
+            model_name_or_path,
+            torch_dtype=torch.float16,
+            use_flash_attention_2=True,
+            device_map="auto"
+        )
         model.eval()
 
         Model._MODELS[model_name_or_path] = m = Model(tokenizer, model, max_new_tokens)
@@ -121,18 +126,28 @@ class Model:
         chat: str = self.tokenizer.bos_token
 
         # Apply template
+
+        # Check for system message in the message history
+        # Use the default one in there is no system message
         sys_message: str = Model._SYSTEM_PROMPT
         if messages[0]["role"] == "system":
             sys_message = messages[0]["content"]
             messages = messages[1:]
 
         for i, message in enumerate(messages):
+            # The message history MUST lead with a user message
+            # and then alternate between user and assistant
             if (message["role"] == "user") != (i % 2 == 0):
                 raise Exception("Conversation roles must alternate user/assistant/user/assistant/...")
 
-            if not message["content"].strip():
+            # Remove any leading or trailing whitespace characters
+            message["content"] = message["content"].strip()
+
+            # Check for empty messages
+            if not message["content"]:
                 raise ValueError("Messages can't be empty!")
 
+            # Format the message history into a single string
             if message["role"] == "user":
                 chat += "[INST]\n" \
                         + (f"<system>\n{sys_message}\n</system>\n\n" if sys_message else "") \
@@ -145,34 +160,6 @@ class Model:
                 raise Exception("Only system, user, and assistant roles are supported!")
 
         return self.tokenizer(chat, return_tensors="pt", return_attention_mask=True)
-    
-    @deprecated("Use _apply_chat_template instead")
-    def _gen_prompt(self, user_prompt: str, system_prompt: str = None) -> str:
-        """
-        Generate a prompt using a predefined system prompt.
-
-        Parameters:
-        -----------
-        user_prompt: str - The user prompt. Must consist of at least 1 non-whitespace character.
-        system_prompt: str - The system prompt to prepend to the prompt.
-
-        Returns:
-        --------
-        `str` - A formatted prompt.
-
-        Raises:
-        -------
-        `ValueError` if `user_prompt` is empty, `None`, or consists of only whitespace characters.
-        """
-        if not system_prompt:
-            system_prompt = Model._SYSTEM_PROMPT
-
-        prompt: str = user_prompt.strip()
-
-        if not prompt:
-            raise ValueError("User prompt must consist of at least 1 non-whitespace character.")
-
-        return f"\nSystem definition:\n{system_prompt} \nEnd system definition.\n\n{user_prompt}"
     
     def prompt(
             self,
