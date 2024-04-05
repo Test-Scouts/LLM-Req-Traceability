@@ -40,10 +40,15 @@ def main() -> None:
         for day in os.listdir(f"./out/{model}"):
             for time in os.listdir(f"./out/{model}/{day}"):
                 # Skip outputs that already have been evaluated to save time and compute
-                if "eval.log" in os.listdir(f"./out/{model}/{day}/{time}"):
+                # Also skip folders with no res.json
+                dir_: list[str] = os.listdir(f"./out/{model}/{day}/{time}")
+                if "eval.log" in dir_ \
+                    or "res.json" not in dir_:
+                    print(f"Skipping ./out/{model}/{day}/{time}")
                     continue
 
                 out_path: str = f"./out/{model}/{day}/{time}/res.json"
+                print(f"Evaluating {out_path}")
 
                 # Load the tool output
                 res: list[dict[str, str]]
