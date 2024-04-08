@@ -98,7 +98,6 @@ class Model:
         model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
             model_name_or_path,
             torch_dtype=torch.float16,
-            attn_implementation="flash_attention_2",
             device_map="auto"
         )
         model.eval()

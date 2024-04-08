@@ -103,4 +103,3 @@ tzdata==2024.1
 urllib3==2.2.1
 watchdog==4.0.0
 wcwidth==0.2.13
-# flash-attn==2.4.2 # Install with --no-build-isolation
