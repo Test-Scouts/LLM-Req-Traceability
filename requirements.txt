@@ -92,7 +92,7 @@ tenacity==8.2.3
 tokenizers==0.15.2
 toml==0.10.2
 toolz==0.12.1
-torch==2.2.1
+# torch==2.2.1 # torch 2.3.0 is included in nvidia's pytorch 24.03 image
 tornado==6.4
 tqdm==4.66.2
 traitlets==5.14.1
@@ -103,3 +103,4 @@ tzdata==2024.1
 urllib3==2.2.1
 watchdog==4.0.0
 wcwidth==0.2.13
+# flash-attn==2.4.2 # Install with --no-build-isolation
