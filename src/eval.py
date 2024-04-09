@@ -1,3 +1,11 @@
+"""
+Evaluates the performance of different runs by checking the out/
+folder.
+
+Uses the format `out/{model}/{date}/{time}/res.json`, which
+is the outut from `send_data.py` and `send_data_gpt.py`.
+"""
+
 import csv
 import json
 import os
@@ -16,7 +24,7 @@ def main() -> None:
         tests = {row["ID"] for row in reader}
     
     # Maps Req ID -> Test IDs
-    map_: dict[str, tuple[tuple[str], int]]
+    map_: dict[str, set[str]]
     # Load the mappings
     with open(os.getenv("MAP_PATH"), "r") as f:
         fields: list[str] = [
@@ -34,7 +42,12 @@ def main() -> None:
         for e in tmp:
             e["Test IDs"] = e["Test IDs"].replace(" ", "").split(",") if e["Test IDs"] else []
 
-        map_ = map_ = {e["Req ID"]: (tuple(e["Test IDs"]), len(e["Test IDs"])) for e in tmp}
+        map_ = map_ = {
+            e["Req ID"]: (set(e["Test IDs"]) if e["Test IDs"] else set())
+            for e in tmp
+        }
+
+    print("Info - REST Mapping:\nInfo - {}".format(json.dumps({k: tuple(map_[k]) for k in map_}, indent=2).replace("\n", "\nInfo - ")))
 
     # Evaluate results of every output
     for model in os.listdir(f"./out"):
@@ -45,11 +58,11 @@ def main() -> None:
                 dir_: list[str] = os.listdir(f"./out/{model}/{day}/{time}")
                 if "eval.log" in dir_ \
                     or "res.json" not in dir_:
-                    print(f"Skipping ./out/{model}/{day}/{time}")
+                    print(f"Info - Skipping ./out/{model}/{day}/{time}")
                     continue
 
                 out_path: str = f"./out/{model}/{day}/{time}/res.json"
-                print(f"Evaluating {out_path}")
+                print(f"Info - Evaluating {out_path}")
 
                 # Load the tool output
                 res: list[dict[str, str]]
@@ -67,12 +80,12 @@ def main() -> None:
                     req_id: str = req["requirementID"]
 
                     if not req_id:
+                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty requirement ID\n")
                         continue
 
-                    actual_tests: set[str] = set(req["tests"].replace(" ", "").split(","))
+                    actual_tests: set[str] = set(req["tests"].replace(" ", "").split(",")) if req["tests"] else set()
 
-                    expected_tests: set[str] = set(map_.get(req_id, None))
-
+                    expected_tests: set[str] = map_.get(req_id, None)
                     # Skip if req ID returned None
                     if expected_tests is None:
                         sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty requirement ID ({req_id})\n")
@@ -81,17 +94,25 @@ def main() -> None:
                     outliers: set[str] = actual_tests - tests
 
                     if outliers:
+                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty test IDs for {req_id}:\n")
                         for o in outliers:
-                            sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty test ID ({o})\n")
+                            sys.stderr.write(f"Error - \t\t{o}\n")
 
                         # Remove outliers
                         actual_tests -= outliers
 
+                    print(f"Info - ./out/{model}/{day}/{time}: {req_id}:")
+                    # for t in actual_tests:
+                        # print(f"Info - ./out/{model}/{day}/{time}: Test ID {t} for requirement {req_id}")
+                    print(f"Info - \t\t{expected_tests = }")
+                    print(f"Info - \t\t{actual_tests   = }")
                     # Positives
                     tps: set[str] = actual_tests & expected_tests
                     tpsn: int = len(tps)
+                    print(f"Info - \t\t({tpsn}) {tps = }")
                     fps: set[str] = actual_tests - expected_tests
                     fpsn: int = len(fps)
+                    print(f"Info - \t\t({fpsn}) {fps = }")
 
                     # Negatives
                     expected_ns: set[str] = tests - expected_tests
@@ -99,10 +120,20 @@ def main() -> None:
 
                     tns: set[str] = actual_ns & expected_ns
                     tnsn: int = len(tns)
+                    print(f"Info - \t\t({tnsn}) {tns = }")
                     fns: set[str] = actual_ns - expected_ns
                     fnsn: int = len(fns)
+                    print(f"Info - \t\t({fnsn}) {fns = }")
 
-                    n += tpsn + fpsn + tnsn + fnsn
+                    curr_n: int = tpsn + fpsn + tnsn + fnsn
+                    
+                    expected_curr_n: int = len(tests)
+                    if curr_n != expected_curr_n:
+                        sys.stderr.write(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }\n")
+                    else:
+                        print(f"Info - \t\t{curr_n = }")
+
+                    n += curr_n
                     tp += tpsn
                     tn += tnsn
                     fp += fpsn
