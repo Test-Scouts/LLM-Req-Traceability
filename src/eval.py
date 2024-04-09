@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+import sys
 
 from dotenv import load_dotenv
 
@@ -15,7 +16,7 @@ def main() -> None:
         tests = {row["ID"] for row in reader}
     
     # Maps Req ID -> Test IDs
-    map_: dict[str, list[str]]
+    map_: dict[str, tuple[tuple[str], int]]
     # Load the mappings
     with open(os.getenv("MAP_PATH"), "r") as f:
         fields: list[str] = [
@@ -33,7 +34,7 @@ def main() -> None:
         for e in tmp:
             e["Test IDs"] = e["Test IDs"].replace(" ", "").split(",") if e["Test IDs"] else []
 
-        map_ = {e["Req ID"]: e["Test IDs"] for e in tmp}
+        map_ = map_ = {e["Req ID"]: (tuple(e["Test IDs"]), len(e["Test IDs"])) for e in tmp}
 
     # Evaluate results of every output
     for model in os.listdir(f"./out"):
@@ -64,10 +65,29 @@ def main() -> None:
 
                 for req in res:
                     req_id: str = req["requirementID"]
+
+                    if not req_id:
+                        continue
+
                     actual_tests: set[str] = set(req["tests"].replace(" ", "").split(","))
 
-                    expected_tests: set[str] = set(map_.get(req_id, []))
+                    expected_tests: set[str] = set(map_.get(req_id, None))
 
+                    # Skip if req ID returned None
+                    if expected_tests is None:
+                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty requirement ID ({req_id})\n")
+                        continue
+
+                    outliers: set[str] = actual_tests - tests
+
+                    if outliers:
+                        for o in outliers:
+                            sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty test ID ({o})\n")
+
+                        # Remove outliers
+                        actual_tests -= outliers
+
+                    # Positives
                     tps: set[str] = actual_tests & expected_tests
                     tpsn: int = len(tps)
                     fps: set[str] = actual_tests - expected_tests
