@@ -13,6 +13,7 @@
 # Data files
 data/
 out/
+res/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
