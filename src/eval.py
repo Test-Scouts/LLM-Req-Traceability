@@ -7,11 +7,21 @@ is the outut from `send_data.py` and `send_data_gpt.py`.
 """
 
 import csv
+import datetime
 import json
 import os
-import sys
+from contextlib import redirect_stdout
 
 from dotenv import load_dotenv
+
+
+now: datetime.datetime = datetime.datetime.now()
+
+date: str = str(now.date())
+time: str = str(now.time())
+
+res_dir: str = f"./res/{date}/{time}"
+log_path: str = f"{res_dir}/eval.log"
 
 
 def main() -> None:
@@ -47,21 +57,22 @@ def main() -> None:
             for e in tmp
         }
 
+    res_path: str = f"{res_dir}/res.log"
+
     print("Info - REST Mapping:\nInfo - {}".format(json.dumps({k: tuple(map_[k]) for k in map_}, indent=2).replace("\n", "\nInfo - ")))
 
     # Evaluate results of every output
-    for model in os.listdir(f"./out"):
-        for day in os.listdir(f"./out/{model}"):
-            for time in os.listdir(f"./out/{model}/{day}"):
-                # Skip outputs that already have been evaluated to save time and compute
-                # Also skip folders with no res.json
-                dir_: list[str] = os.listdir(f"./out/{model}/{day}/{time}")
-                if "eval.log" in dir_ \
-                    or "res.json" not in dir_:
-                    print(f"Info - Skipping ./out/{model}/{day}/{time}")
-                    continue
+    for m in os.listdir(f"./out"):
+        # Model stats
+        total_n: int = 0
+        total_tp: int = 0
+        total_tn: int = 0
+        total_fp: int = 0
+        total_fn: int = 0
 
-                out_path: str = f"./out/{model}/{day}/{time}/res.json"
+        for d in os.listdir(f"./out/{m}"):
+            for t in os.listdir(f"./out/{m}/{d}"):
+                out_path: str = f"./out/{m}/{d}/{t}/res.json"
                 print(f"Info - Evaluating {out_path}")
 
                 # Load the tool output
@@ -80,7 +91,7 @@ def main() -> None:
                     req_id: str = req["requirementID"]
 
                     if not req_id:
-                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty requirement ID\n")
+                        print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID")
                         continue
 
                     actual_tests: set[str] = set(req["tests"].replace(" ", "").split(",")) if req["tests"] else set()
@@ -88,24 +99,9 @@ def main() -> None:
                     expected_tests: set[str] = map_.get(req_id, None)
                     # Skip if req ID returned None
                     if expected_tests is None:
-                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty requirement ID ({req_id})\n")
+                        print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID ({req_id})")
                         continue
 
-                    outliers: set[str] = actual_tests - tests
-
-                    if outliers:
-                        sys.stderr.write(f"Error - ./out/{model}/{day}/{time}: Faulty test IDs for {req_id}:\n")
-                        for o in outliers:
-                            sys.stderr.write(f"Error - \t\t{o}\n")
-
-                        # Remove outliers
-                        actual_tests -= outliers
-
-                    print(f"Info - ./out/{model}/{day}/{time}: {req_id}:")
-                    # for t in actual_tests:
-                        # print(f"Info - ./out/{model}/{day}/{time}: Test ID {t} for requirement {req_id}")
-                    print(f"Info - \t\t{expected_tests = }")
-                    print(f"Info - \t\t{actual_tests   = }")
                     # Positives
                     tps: set[str] = actual_tests & expected_tests
                     tpsn: int = len(tps)
@@ -129,7 +125,7 @@ def main() -> None:
                     
                     expected_curr_n: int = len(tests)
                     if curr_n != expected_curr_n:
-                        sys.stderr.write(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }\n")
+                        print(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }")
                     else:
                         print(f"Info - \t\t{curr_n = }")
 
@@ -139,9 +135,9 @@ def main() -> None:
                     fp += fpsn
                     fn += fnsn
                 
-                accuracy: float = 100 * (tp + tn) / n if n != 0 else 0
-                recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0
-                precision: float = 100 * tp / (tp + fp) if tp + fp != 0 else 0
+                accuracy: float = 100 * (tp + tn) / n if n != 0 else 0.0
+                recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0.0
+                precision: float = 100 * tp / (tp + fp) if tp + fp != 0 else 0.0
 
                 eval_path = f"{os.path.dirname(out_path)}/eval.log"
                 lines: list[str] = [
@@ -154,9 +150,44 @@ def main() -> None:
                     f"{recall=}%",
                     f"{precision=}%"
                 ]
+                res_str: str = "\n".join(lines) + "\n"
+
                 with open(eval_path, "w+") as f:
-                    f.write("\n".join(lines) + "\n")
+                    f.write(res_str)
+
+                with open(res_path, "a+") as f:
+                    f.write(f"./out/{m}/{d}/{t}\n{res_str}\n")
+
+                total_n += n
+                total_tp += tp
+                total_tn += tn
+                total_fp += fp
+                total_fn += fn
+
+        avg_accuracy: float = 100 * (total_tp + total_tn) / total_n if total_n != 0 else 0.0
+        avg_recall: float = 100 * total_tp / (total_tp + total_fn) if total_tp + total_fn != 0 else 0.0
+        avg_precision: float = 100 * total_tp / (total_tp + total_fp) if total_tp + total_fp != 0 else 0.0
+
+        lines: list[str] = [
+            f"{total_n=}",
+            f"{total_tp=}",
+            f"{total_tn=}",
+            f"{total_fp=}",
+            f"{total_fn=}",
+            f"{avg_accuracy=}%",
+            f"{avg_recall=}%",
+            f"{avg_precision=}%"
+        ]
+
+        print(f"Info - Logging total and avarage metrics for {m}")
+        with open(f"{res_dir}/{m}.log", "w") as f:
+            f.write("\n".join(lines) + "\n")
 
 
 if __name__ == "__main__":
-    main()
+    os.makedirs(res_dir, exist_ok=True)
+
+    # Redirect stdout to a log file
+    with open(log_path, "a+") as out:
+        with redirect_stdout(out):
+            main()
