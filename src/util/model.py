@@ -1,7 +1,6 @@
 from __future__ import annotations
 from os import PathLike
 import copy
-from typing_extensions import deprecated
 
 from transformers import (
     AutoTokenizer,
