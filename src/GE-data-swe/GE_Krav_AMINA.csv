@@ -1,0 +1,546 @@
+ID,Rubrik,Beskrivning,GE KravID
+385,S1 - Lagkrav,"Vid tidpunkten för kontraktsskrivande gällande Lagar, Föreskrifter och standarder med avseende på funktion och säkerhet ska (S1) uppfyllas för Mätsystemets alla delar enligt nedanstående punkter 1–13.
+1. Ellag SFS 1997:857.
+2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el.
+3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el.
+4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument.
+5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi.
+6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el.
+7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi.
+8. EU:s MID direktiv 2014/32/EU.
+9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning.
+10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite).
+11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning).
+12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU.
+13. Lag (2003:389) om elektronisk kommunikation.",S1
+386,S2 - Spårbara mätenheter,"Samtliga levererade Mätenheter, ned till komponentnivå, ska (S2) vara spårbara och kunna knytas minst till tillverkningsbatch och tidpunkt för tillverkning",S2
+387,S3 - Spårbar Kommunikationsutrustningar,Samtliga levererade Kommunikationsutrustningar ska (S3) vara spårbara och kunna knytas minst till tillverkningsbatch och tidpunkt för tillverkning.,S3
+388,S4 - Nytillverkat,Samtliga levererade moduler (Mätenheter och Kommunikationsutrustning) i Mätsystemet och dess ingående elektroniska komponenter ska (S4) vara nytillverkade och inte ha ett tillverkningsdatum som är äldre än 12 månader från installationsdatum med Beställaren.,S4
+389,S5 - Registrering av strömavbrott,"Mätsystemet ska (S5) registrera alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 3 minuter.",S5
+390,S6 - Last Gasp,"Mätsystemet ska (S6) ha ""Last Gasp"" funktionalitet.",S6
+391,S7 - Strömavbrotts start och stopp,"Det ska (S7) vara möjligt att identifiera ett strömavbrotts ""start och stopp"" i Mätsystemet.",S7
+392,S8 - Blockera brytare från HES,Mätarens brytare ska (S8) kunna blockeras från HES för att förhindra lokal tillkoppling av strömmen.,S8
+393,S9 - Anrop från andra verksamhetssystem,HES ska (S9) kunna ta emot anrop för aktivering och deaktivering av Kundgränssnittet från annat verksamhetssystem inom GE,S9
+394,S10 - Manuell avfrågning - max 10 sek,Svarstiden på en manuell avfrågning av Energivärden från HES till enskild Mätenhet ska (S10) vara max 10 sekunder.,S10
+395,S11 - Energivärden till HES inom 2h,Energivärdena (15-minutersvärden) ska (S11) levereras till HES senast inom 2 timmar från registrering i Mätenhet.,S11
+396,S12 - PQ värden till HES inom 4h,PQ-värdena (15-minutersvärden) ska (S12) levereras senast inom 4 timmar från registrering i Mätenheterna till HES,S12
+397,"S13 - 98,0 %  till HES 4h efter dygnsskifte","98,0 % av Energivärdena ska (S13) vara insamlade till HES inom 4 timmar efter dygnsskiftet.",S13
+398,"S14 - 99,5 %  till HES 24h efter dygnsskifte","99,5 % av Energivärdena ska (S14) vara insamlade till HES inom 24 timmar efter dygnsskiftet.",S14
+399,S15 - Komdata registreras var 15:e min,Var 15:e minut ska (S15) Mätsystemet registrera och hantera all relevant Kommunikationsmetadata för all Kommunikationsutrustning som ingår i Mätsystemet.,S15
+400,S16 - Komdata till HES inom 2h,Kommunikationsmetadata (15-minutersvärden) ska (S16) levereras till HES senast inom 2 timmar från registrering i Kommunikationsutrustning.,S16
+401,S17 - PQ händelser till HES inom 5 min,PQ-händelser ska (S17) finnas tillgängliga i HES systemet inom 5 minuter.,S17
+402,S18 - Avbrottshändelser till HES inom 3 min,Avbrottshändelse ska (S18) finnas tillgängliga i HES systemet inom 3 minuter.,S18
+403,S19 - Övriga händelser till HES inom 5 min,Övriga Händelser (exklusive PQ-händelser och Avbrottshändelse) ska (S19) finnas tillgängliga i HES systemet inom 5 minuter.,S19
+404,S20 - Leverans av fabriksfil,"Leverantörens fabriksfil, innehållande Mätenheternas uppgifter, ska (S20) levereras i ett valfritt standardiserade textfilsformat, exempelvis csv.",S20
+405,S21 - Mätenhetens driftområde,"Mätenheten ska (S21) vara anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7) och tåla kondenserad fuktighet.",S21
+406,S22 - Mätenhetens strålningsnivå,Mätenhetens strålningsnivå ska (S22) inte överstiga gällande Lagkrav.,S22
+407,S23 - Mätehenten matas ov Omätt ström,Mätenheter ska (S23) vara så konstruerade att de matas av Omätt ström.,S23
+408,S24 - Mätenhetens funktion efter bortfall av faser,Mätenheten i en 3-fasanläggning ska (S24) ha fortsatt funktion även vid bortfall av en eller två faser.,S24
+409,S25 - Mätenhetens gränssnitt,"Det ska (S25) framgå på Mätenheten att det finns spänning, ström och effekt på respektive fas, effektriktning och fasernas ordningsföljd.",S25
+410,S26 - automatisk uppstart efter strömavbrott,"Efter strömavbrott, oavsett längd, ska (S26) Mätenheten starta upp automatiskt och eventuella nödvändiga parametrar laddas automatiskt.",S26
+411,S27 - typgodkännande,"Utökat typgodkännande och certifiering av Mätenheter ska (S27) genomföras enligt metod SPM 1618, test med 12 kV stötspänning.",S27
+412,S28 - Livslängd,En Mätenhet ska (S28) ha en förväntad livslängd som är 15 år räknat från tidpunkten då den levererats till GE.,S28
+413,S29 - inget behov av batteribyte,Mätenheten ska (S29) vara utformad så att om det ingår batteri ska de inte behöva bytas under mätarens livslängd och därmed ska Mätarställning och tid ej nollställas vid lagerhållning.,S29
+414,S30 - Mängd tillåtna felande mätare,"Under Mätenheternas förväntade livslängd ska (S30) utfallen av Fel (som kräver mätarbyte) inte överstiga 0,75 % per år av installerad volym.",S30
+415,S31 - Vektorsummerad mätning,Mätmetoden i Mätenheten ska (S31) vara vektorsummerad mätning enligt Föreskrift STAFS 2009:8.,S31
+416,S32 - Förbrukninsvärden upplösning 1Wh,De av Mätenheten registrerade Förbrukningsvärden ska (S32) minst ha upplösningen 1 Wh.,S32
+417,S33 - Inmating och uttag - aktiv och reaktiv / 15 min,Mätenheten ska (S33) kunna registrera mängden överförd aktiv och reaktiv energi för uttag och inmatning av el per 15 minuter.,S33
+418,S34 - Per fas min/max/medelvärden / 15 min,"Mätenheten ska (S34) för varje fas kunna mäta och registrera min, max och medelvärde för spänning, ström, aktiv och reaktiv effekt för uttag och inmatning av el per 15 minuter.",S34
+419,S35 - Händelser som registreras,"Mätsystemet ska (S35) registrera och lagra information när följande Händelser inträffar:
+1. Tid i mätenhetens klocka förändrats utifrån det konfigurerade tidsintervallet
+2. Om tiden i Mätenhetens klocka skiljer sig från tiden i HES
+3. Avvikelse vid självdiagnos
+4. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare (gäller endast Kategori 1)
+5. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare med kommando från HES (gäller endast Kategori 1)
+6. Misslyckad till- eller frånkoppling via Mätenhetens brytare (gäller endast Kategori 1)
+7. Strömavbrott i en eller flera faser
+8. Spänning saknas på fas
+9. Långvarig underspänning
+10. Långvarig överspänning
+11. Kortvarig överspänning
+12. Kortvarig underspänning
+13. Obalans spänning mellan faser (gäller ej enfasmätare)
+14. Felaktig effektriktning
+15. Ström utan spänning
+B.2.1 KRAVSPECIFIKATION
+TEKNISK LÖSNING
+8 (32)
+Upphandlingsreferens
+19-0019
+16. THD i spänning överskrider inställt gränsvärde
+17. THD i ström överskrider inställt gränsvärde
+18. Bortfall av neutralledare
+19. Fel fasföljd (gäller ej enfasmätare)
+20. Magnetisk åverkan
+21. Öppen lucka för Kommunikationsmodul
+22. Öppen lucka för anslutningar",S35
+420,S36 - Konfigurera värden för händelser från HES,Ingående gränsvärdena som används för Händelser ska (S36) var konfigurerbara från HES.,S36
+421,S37 - Innehåll för händelse,"Varje Händelse som skapas och lagras ska (S37) innehålla minst följande attribut:
+a. Händelse-ID: Ett ID för att identifiera en specifik typ av Händelse så att det går att särskilja det från en annan
+b. Löpnummer eller liknande för den unika Händelsen (en nummerserie för aktiviteter från en viss Mätenhet)
+c. Tidsstämpel för när aktiviteten registrerades i Mätenhet samt varaktighet på Händelsen
+d. Tillverkningsnumret på den Mätenhet där aktiviteten registrerades",S37
+422,S38 - Händelser momentat till HES,Händelser och tillhörande register (OBIS-koder) ska (S38) skickas momentant till HES.,S38
+423,S39 - Kontroll av mätenehtet,Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.,S39
+424,S40 - Ackrediterad part för kalibrering,Kalibreringen ska (S40) utföras av en för ändamålet ackrediterad part.,S40
+425,S41 - Kalibreringsrapport för mätenhet,En kalibreringsrapport ska (S41) levereras digitalt till GE innan eller i samband med att Mätenheterna levereras fysiskt där det framgår att varje enskild Mätenhet (med ID-nummer) är kalibrerad och kontrollerad.,S41
+426,S42 - Kalibreringsbevis retroaktiv,Beställaren ska (S42) kunna begära och få ut kalibreringsbevis retroaktivt från Leverantören i minst 10 år efter leverans av Mätenhet.,S42
+427,S43 - Testpuls för kalibrering,Mätenheten ska (S43) vara försedd med en testpuls som kan användas till kalibrering.,S43
+428,S44 - Energivärden lagras 40 dygn,Energivärdena (15-minutersvärden) ska (S44) lagras minst i 40 dygn i Mätenheterna.,S44
+429,S45 - PQ värden lagras 7 dygn,PQ-värdena (15-minutersvärden) ska (S45) lagras minst i 7 dygn i Mätenheterna.,S45
+430,S46 - Avbrottshändelser lagras 40 dygn,Avbrottshändelse ska (S46) lagras minst i 40 dygn i Mätenheterna.,S46
+431,S47 - PQ händelser lagras 40 dygn,PQ-händelser ska (S47) lagras minst i 40 dygn i Mätenheterna,S47
+432,S48 - Övriga händelser lagras 40 dygn,Övriga Händelser ska (S48) lagras minst i 40 dygn i Mätenheterna.,S48
+433,S49 - Registrera tid i Normaltid,Mätenheterna ska (S49) registrera tid i Normaltid (UTC+1).,S49
+434,S50 - Högst avvika med 7 sek,Tidsangivelsen ska (S50) högst avvika med 7 sekunder från Normaltid för Mätenhet.,S50
+435,S51 - Självdiagnos,Mätenheterna ska (S51) innehålla en självdiagnos som detekterar olika typer av felaktigheter.,S51
+436,S52 - Kundgränssnittet ska följa standard,"Kundgränssnittet i Mätenheten ska (S52) följa standarden beskriven i ”P1 Companion Standard, version 5.0.2, 2016-02-26” eller likvärdigt",S52
+437,S53 - Spec för kundgränssnittet,"förutom att det format, datatyp och omfattning ska (S53) vara enligt bilaga 3 Förslag på datapresentation i ”Branschrekommendation för lokalt Kundgränssnitt för elmätare"", utgivet av Energiföretagen - Swedenergy – AB version 2.0 2019-12-03.",S53
+438,S54 - ID ska ksickas ut via kundgränssnittet,Mätarleverantörens ID på Mätaren (motsvarar Equipment identifier i 7.1 P1 Companion Standard) ska (S54) skickas ut via Kundgränssnittet.,S54
+439,S55 - Aktivering och deaktivering av Kundgränssnittet ska kunna göras lokalt,Aktivering och deaktivering av Kundgränssnittet ska (S55) kunna göras lokalt från Mätenheten av Beställaren.,S55
+440,S56 - Kundgränssnitt är som default deaktiverat,Vid leverans från fabrik ska (S56) Mätenhetens Kundgränssnitt vara deaktiverat.,S56
+441,S57 - Brytare kan hanteras lokalt,Brytaren ska (S57) kunna manövreras lokalt på Mätenheten.,S57
+442,S58 - Kumulativt räkneverk,Mätenheten ska (S58) vara försedd med ett kumulativt räkneverk och visa minst 7 heltalssiffror samt 3 decimalsiffror.,S58
+443,S59 - Mätenhetens display,"Mätenhetens display ska (S59) för varje fas kunna visa momentanvärde för spänning, ström, effekt för uttag och inmatning av el.",S59
+444,S60 - Korrekt mätarställnigng,"Mätarställningen på Mätenheten ska (S60) alltid överensstämma med sifferkapaciteten på insamlat Energivärde och displayen, även om Mätarställningen varvas.",S60
+445,S61 - Serviceport för konfiguration,Det ska (S61) finnas funktionalitet för att lokalt konfigurera Mätenheten via serviceport eller motsvarande.,S61
+446,S62 - Konfiguration från fabrik,Mätenheterna ska (S62) vara komplett konfigurerade enligt Beställarens krav från fabrik.,S62
+447,S63 - Uppgradering från HES,Mjukvara i mätare (förutom metrologisk mjukvara) och kommunikationsenhet ska (S63) kunna uppgraderas från HES.,S63
+448,S64 - Uppdatering av Firmware,Mätenheten ska (S64) alltid kunna ta emot uppdateringar av Firmware.,S64
+449,S65 - Felhatering vid firmware uppdatering,Mätenheten ska (S65) behålla och återlagra existerande Firmware om uppdatering med ny Firmware misslyckas.,S65
+450,S66 - Konfigurering a Mätenhet till Händelselogg,Ändring av konfigurering i Mätenhet ska (S66) registreras i en Händelselogg.,S66
+451,S67 - Läsa ut mätdata från serviceport,Det ska (S67) vara möjligt att läsa ut all Mätdata från Mätenhetens serviceport eller motsvarande.,S67
+452,S68 - Unikt tillverkningsnummer,Mätaren ska (S68) vara försedd med Leverantörens unika tillverkningsnummer som inte får förekomma på Leverantörens tidigare eller framtida produkter.,S68
+453,S69 - Unikt tillverkningsnummer - kommunikationsmodul,Om Mätenheten består av mätare och en Kommunikationsmodul ska (S69) dessa vara försedda med var sitt unikt tillverkningsnummer.,S69
+454,S70 - Synligt tillverkningsnummer - kommunikationsmodul,Ett tillverkningsnummer på en Kommunikationsmodul ska (S70) vara placerat så att det inte är synligt på Mätenhetens framsida.,S70
+455,S71 - Synligt tillverkningsnummer,Mätarens tillverkningsnummer ska (S71) vara placerat synligt på framsidan av Mätenheten.,S71
+456,S72 - Beständig märkning,Märkningen av Mätarens tillverkningsnummer ska (S72) vara beständigt under Mätenhetens livslängd dvs inte löstagbar tejp eller tryck som går att skrapa bort.,S72
+457,S73 - Läsbar märkning,"Märkningen av Mätarens tillverkningsnummer ska (S73) vara väl läsbart
+- d.v.s. fontstorleken får inte vara för liten så att numret blir svårläst t.ex. för en kund",S73
+458,"S74 - Läsbar märkning, lock","Märkningen av Mätarens tillverkningsnummer ska vara väl läsbart
+- d.v.s. om det finns ett lock på Mätenheten där tillverkningsnumret är placerat ska (S74) locket vara transparent så att serienumret går att avläsa även med stängt lock.",S74
+459,S75 - Märkningens placering,"Mätarens tillverkningsnummer ska (S75) placeras på en ej löstagbar del (ej anslutningslock, ej lock till Kommunikationsmodul, etc.).",S75
+460,S76 - Märkning som kod och i klartext,Mätenhetens tillverkningsnummer ska (S76) utgöras av både en streckkod eller motsvarande och ett nummer i klartext.,S76
+461,S77 - Utformad för väggmontage,Mätenheterna ska (S77) vara utformad för väggmontage.,S77
+462,S78 - Montagehängslets placering,Montagehängslets nyckelhålshöjd ska (S78) vara placerad minst 12 mm från Mätenhetens ovansida.,S78
+463,S79 - Montering i mätarutrymme,Mätenheterna ska (S79) kunna monteras på olika typer av mätarutrymme med måttangivelser i enlighet med det som anges under punkt 5 i den senaste utgåvan av svensk standard SS 430 01 01.,S79
+464,S80 - Plombering,Mätenhetens lock och eventuellt separat lock till Kommunikationsmodul ska (S80) kunna plomberas.,S80
+465,S81 - Plintlock,Mätenheten ska (S81) ha plintlock som täcker anslutningskablaget.,S81
+466,S82 - 1-fas och 3-fas mätning ska uppfylla Mätarparametrar enligt MID,"1-fas och 3-fas mätning ska (S82) uppfylla mätarparametrar enligt MID:
+- Class index = B (eller bättre)
+- Minimum current (Imin) = 0,25 A (eller lägre)
+- Reference current (In) = 5 A
+- Maximum current (Imax) = 85 A (eller högre) (inklusive brytarfunktion)",S82
+467,S83 - Uppfylla kraven i Nationella Stickprovet,"Kategori 1 mätare ska (S83) uppfylla kraven i Nationella Stickprovet, enligt Föreskrift STAFS 2009:9, för de 2 första stickprovskontrollerna, dock maximalt 12 år efter att Slutgodkännande lämnats av Beställaren.",S83
+468,S84 - Mätenhet ska uppfylla Mätarparametrar enligt MID,"Mätenhet ska (S84) uppfylla mätarparametrar enligt MID:
+- Class index = B (eller bättre)
+- Minimum current (Imin) = 0,01 A (eller lägre)
+- Rated current (In) = 1 A
+- Maximum current (Imax) = 6 A (eller högre)",S84
+469,S85 - Dokumentation om Mätenhetens typiska påverkan,"Leverantören ska (S85) utöver typgodkännande specificera och tillhandahålla dokumentation om Mätenhetens typiska påverkan av följande influensstorheter (se SS-EN 50470-3, tabell 6):
+- Temperaturkoefficient
+- Voltage variation ± 10 %
+- Frequency variation ± 2 %",S85
+470,S86 - Hantering av både primär- och sekundärregistrering,"Mätenheterna ska (S86) kunna hantera både primär- och sekundärregistrering av Mätvärden,",S86
+471,S87 - Strömtransformatorns omsättningskonstant,Mätaren ska (S87) kunna hantera strömtransformatorns omsättningskonstant.,S87
+472,S88 - Kat 2 ska uppfylla kraven för kontroll,"Mätenheter Kategori 2 ska (S88) uppfylla kraven för Kontroll, enligt Föreskrift STAFS 2009:8, för den första Kontrollen, dock maximalt 12 år efter att Slutgodkännande lämnats av Beställaren.",S88
+473,S89 - Mätenhet i HES,"I HES ska (S89) det finnas funktionalitet för att automatiskt och manuellt administrera:
+- Installation av ny Mätenhet
+- Byte av Mätenhet
+- Nedtagning av Mätenhet",S89
+474,S90 - Kommunikationsutrustning i HES,"I HES ska (S90) det finnas funktionalitet för att automatiskt och manuellt administrera:
+- Installation av ny Kommunikationsutrustning
+- Byte av Kommunikationsutrustning
+- Nedtagning av Kommunikationsutrustning",S90
+475,S91 - Data i HES,"HES ska (S91) minst hantera följande typer av data:
+- Strukturdata (t.ex. Anläggnings-ID, Mätenhet)
+- Mätvärden (Mätvärden med t.ex. ID-nummer, status, tidsstämpel)
+- Händelse (Händelse med t.ex. Händelse-ID, tidpunkter, Larm)",S91
+476,S92 - Register/OBIS-koder,Det ska (S92) vara möjligt från HES att välja vilka register (OBIS-koder) från Mätenheter som ska läsas ut vid momentan avläsning.,S92
+477,S93 - Strukturdata i HES,En Användare ska (S93) manuellt kunna registrera strukturdata i HES.,S93
+478,S94 - Automatisk insamling av Mätvärden,Mätsystemet ska (S94) kunna konfigureras för regelbunden automatisk insamling av Mätvärden från Mätenheter till HES.,S94
+479,S95 - Hämtning av saknade Mätvärden,HES ska (S95) innehålla funktionalitet för automatisk och manuell hämtning av saknade Mätvärden.,S95
+480,S96 - Begära mätvärden från utvalda mätare,"Det ska (S96) vara möjligt att manuellt begära in Mätvärden, både momentana och tidsperiodiska, från enstaka Mätenheter, utvalda Mätenheter eller definierad grupp av Mätenheter.",S96
+481,S97 - schemalägga Jobb för mätinsamling,En Användare i HES ska (S97) kunna skapa och schemalägga Jobb för mätinsamling.,S97
+482,S98 - Flera insamlingsjobb samtidigt,HES ska (S98) kunna hantera att flera insamlingsjobb körs samtidigt.,S98
+483,S99 - Manuella Jobb för mätinsamling,En Användare i HES ska (S99) kunna skapa och starta manuella Jobb för mätinsamling.,S99
+484,S100 - Automatisk och manuell insamling,HES ska (S100) kunna ta emot och behandla Mätvärden som insamlats på manuell begäran och ska då behandlas på samma sätt som automatiskt insamlade.,S100
+485,S101 - Alla mätvärden ska märkas med status,"I HES ska (S101) alla Mätvärden märkas beträffande status för värdet. Exempel på statusmärkningar kan vara avläst värde, felaktigt värde, värde saknas, estimerat, manuellt registrerat och osäkert värde.",S101
+486,S102 - Rapporter utifrån status,Sammanställning av statusmärkt data i HES ska (S102) kunna tas ut i rapporter t.ex. alla Mätvärden med en specifik status.,S102
+487,S103 - Energivärdena lagras 13 mån,Energivärdena (15-minutersvärden) ska (S103) lagras minst i 13 månader i HES.,S103
+488,S104 - PQ-värdena lagras 60 dygn,PQ-värdena (15-minutersvärden) ska (S104) lagras minst 60 dygn i HES.,S104
+489,S105 - Kommunikationsmetadata lagras 36 mån,Kommunikationsmetadata (15-minutersvärden) ska (S105) lagras minst i 36 månader i HES,S105
+490,S106 - Skapa mätserier för tidsintervall,"Det ska (S106) vara möjligt att skapa mätserier för ett valt tidsintervall enligt följande:
+- Minutserie (1–15 minuter)
+- Timserie
+- Dygnsserie
+- Månadsserie",S106
+491,S107 - Positionskoordinater,I HES systemet ska (S107) det vara möjligt att lagra och presentera positionskoordinater för Mätenhet och eventuell Kommunikationsutrustning.,S107
+492,S108 - Konfigurera händelser med  gränsvärden,"Det ska (S108) vara möjligt, ifrån HES, att konfigurera Händelser med olika gränsvärden på Mätenhetens register som distribueras till Mätenheterna.",S108
+493,S109 - Händelse-ID till händelsetext,I HES ska (S109) Händelse-ID som skickas från Mätenheten översättas till händelsetext.,S109
+494,S110 - Händelser lagras 13 mån,Samtliga Händelser ska (S110) lagras minst i 13 månader i HES.,S110
+495,S111 - Exportera rapporter och data,"Framsökta mät- och strukturdata samt färdiga rapporter ska (S111) kunna exporteras till ett valfritt standardiserat textfilsformat, exempelvis csv.",S111
+496,S112 - Skapa och schemalägga Jobb för mätinsamling,En Användare i HES ska (S112) kunna skapa och schemalägga Jobb för mätinsamling.,S112
+497,S113 - Skapa och starta manuella exportjobb,En Användare i HES ska (S113) kunna skapa och starta manuella exportjobb.,S113
+498,S114 - Importera strukturdata,"Det ska (S114) finnas funktionalitet i HES för att kunna importera strukturdata från ett valfritt standardiserat textfilsformat, exempelvis csv.",S114
+499,S115 - Importera Mätdata,"Det ska (S115) finnas funktionalitet i HES för att kunna importera Mätdata från ett valfritt standardiserat textfilsformat, exempelvis csv.",S115
+500,S116 - Skalning av miljö,HES ska (S116) kunna skalas så att kravställd prestanda kan bibehållas med ökade datavolymer.,S116
+501,S117 - 50 samtidiga användare,HES i produktionsmiljön ska (S117) vara dimensionerad för minst 50 samtida Användare utan att Mätsystemets prestanda påverkas.,S117
+502,S118- 50% fler mätpunkter och längre lagringstid,"Det ska (S118) vara möjligt att bygga ut HES för 50 % fler Mätpunkter och längre lagringstider genom enkla åtgärder som inte kräver programutveckling, utan endast t.ex. licensändring, extra diskutrymme, nya filer för databasen.",S118
+503,S119- Energivärden exporteras inom 30 sek,Energivärdena (15-minutersvärden) ska (S119) kunna exporteras från HES via integrationer till annat system senast 30 sekunder efter registrering i HES,S119
+504,S120 - PQ-värden exporteras inom 30 sek,PQ-värdena (15-minutersvärden) ska (S120) kunna exporteras från HES via integrationer till annat system senast 30 sekunder efter registrering i HES.,S120
+505,S121 - PQ-händelser exporteras inom 1 min,PQ-händelser ska (S121) kunna exporteras från HES via integrationer till annat system senast 1 minut efter registrering i HES.,S121
+506,S122 - Avbrottshändelser exporteras inom 10 sek,Avbrottshändelse ska (S122) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,S122
+507,S123 - Kommunikationsmetadata exporteras inom 10 sek,Kommunikationsmetadata (15-minutersvärden) ska (S123) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,S123
+508,S124 - Sammanställa statistik för mätvärden,HES ska (S124) ha funktionalitet för att sammanställa statistik över Mätvärden och visa detta grafiskt och i tabellform.,S124
+509,S125 - Skapa egna rapporter,Det ska (S125) vara möjligt för Användaren att själv skapa rapporter och definiera innehåll i HES.,S125
+510,S126 - Presentera mätarställning för tidpunkt,HES ska (S126) presentera en Mätarställning för en viss tidpunkt.,S126
+511,S127 - Förbrukningsvärden för tidsintervall,"Det ska (S127) gå att beräkna, lagra och presentera förbrukningsvärden för olika tidsintervall. Förbrukning beräknas som skillnaden mellan Mätarställningar vid olika tidpunkter.",S127
+512,S128 - Användargränssnitt enligt standard,"Användargränssnittet ska (S128) vara ändamålsenligt, effektivt och ge god tillfredsställelse i användningen, såsom definierat i den internationella standarden ISO 9241-11 eller likvärdig.",S128
+513,S129 - Responsivt användargränssnitt,HES ska (S129) stödja ett responsivt användargränssnitt som gör att layouten förändras beroende på vilken skärmupplösning Användaren har.,S129
+514,S130 - Dynamiska fält,Fälten i HES ska (S130) vara dynamiska och anpassade för den information som kommer att visas upp för Användaren (kopplat till krav S131),S130
+515,S131 - Fältet visar alla siffror,Ex på dynamiska fält - Om fältet kan innehålla 18 positioner med siffror så ska (S131) alla siffror synas för Användaren (inga dolda delar). (kopplat till krav S130),S131
+516,S132 - Formulärvyer,Det ska (S132) finnas formulärvyer för presentation och inmatning/modifiering av strukturdata.,S132
+517,S133 - Formulärvyers upplägg,I formulären ska (S133) det framgå hur ingående delar i strukturen hänger samman hierarkiskt.,S133
+518,S134 - Vy för mätvärden,I HES ska (S134) det finnas vyer där Mätvärden från en eller flera Mätenheter presenteras i tabellform.,S134
+519,S135 - Tidsintervall för mätvärden,Det ska (S135) finnas funktionalitet för att välja olika tidsintervaller och tidsupplösning för de Mätvärden som presenteras.,S135
+520,S136 - Ställa in antalet decimaler,I HES användargränssnitt ska (S136) det finnas möjlighet att ställa in vilket antal decimaler som ska visas av ett Mätvärde.,S136
+521,S137 - Registrering av mätvärde,"Mätvärdet som registreras och lagras i HES ska (S137) vara oförvanskat, dvs. exakt samma värde som registrerats av Mätenheten.",S137
+522,S138 - Visning av mätvärde,Samtliga Mätvärden som kan samlas in från Mätenheten ska (S138) kunna visas i HES.,S138
+523,S139 - Händelser till larmlista,Händelser som konfigureras att generera Larm ska (S139) visas i en larmlista.,S139
+524,S140 - Larminformation,"Varje Larm ska (S140) minst innehålla information: Händelse-ID, löpnummer, tidsstämpel, tillverkningsnummer på Mätenhet och Anläggnings-ID och anläggningsadress som också ska vara sökbara och möjliga att sortera.",S140
+525,S141 - Presentation av händelser,I HES ska (S141) varje Händelse och dess ingående attributvärden (enl. kapitel 3.1.5) presenteras i en händelselista.,S141
+526,S142 - Händelseinformation,"Varje Händelse ska (S142) minst innehålla information: Händelse-ID, löpnummer, tidsstämpel, tillverkningsnummer på Mätenhet och Anläggnings-ID och anläggningsadress som också ska vara sökbara och möjliga att sortera.",S142
+527,S143 - loggning av händelser,Händelser i Mätsystemet ska (S143) loggas i en händelselista i HES.,S143
+528,S144 - Händelselistan,Händelselistan ska (S144) minst kunna omfatta samtliga Händelser 13 månader tillbaka i tiden. Händelselistans storlek bör (B76) endast begränsas av tillgänglig lagringsyta.,S144
+529,S145 - Sortering av händelser,I HES ska (S145) Händelser från Mätenheten kunna sorteras i kronologisk ordning utifrån Händelsens tidsstämpel.,S145
+530,S146 - Översiktsbild för mätvärdesinsamling,Det ska (S146) finnas funktionalitet i HES för att kunna övervaka mätinsamlingen med hjälp av t.ex. en översiktsbild som visar insamlade och saknade Mätvärden vid en valbar tidpunkt.,S146
+531,S147 - Visning av PQ värden,I HES ska (S147) det finnas möjlighet att analysera och visualisera PQ-värden i t.ex. grafer och staplar.,S147
+532,S148 - Tidstämpel för mätvärde,Varje Mätvärde ska (S148) tidstämplas med Aktuell tid då det inkom till HES.,S148
+533,S149 - Klocka i HES,"HES ska (S149) innehålla en klocka som visar Aktuell tid i timmar, minuter och sekunder.",S149
+534,S150 - Presentera normaltid/aktuell tid,"Presentationer i HES på bildskärm, rapporter m.m. ska (S150) valbart kunna visas i Normaltid eller Aktuell tid.",S150
+535,S151 - Kalender med aktuell tid,"HES ska (S151) innehålla en kalender som visar Aktuell tid i år, månad och dag",S151
+536,S152 - Välja datum med kalenderfunktion,Där det finns behov av att välja datum i HES ska (S152) detta kunna ske genom en tid- och kalenderfunktion.,S152
+537,S153 - Normaltid för mätserier,Internt i HES ska (S153) svensk Normaltid gälla för alla mätserier.,S153
+538,S154 - Tid i svenskt format,"HES tid ska (S154) visas i svenskt format (HH:MM:SS, H=timme, M=minut, S=sekund)",S154
+539,S155 - Kalender i svenskt format,"HES kalender ska (S155) visas i svenskt format (ÅÅÅÅ-MM-DD, Å=år, M=månad, D=dag)",S155
+540,S156 - Ingen påverkan av sommar/vintertid,"Omställning mellan sommar- och vintertid ska (S156) inte ge konsekvenser beträffande t.ex. mätvärdeslagring, mätvärdespresentation, Händelse- och larmhantering i HES.",S156
+541,S157 - Synkronisera tiden för enskild mätare,I HES ska (S157) det vara möjligt att manuellt synkronisera tiden för enskilda Mätenheter.,S157
+542,S158 - Manuell synkroniserings konsekvenser,"Manuell synkronisering av tid på enskild Mätenhet ska (S158) inte ge konsekvenser beträffande t.ex. lagring, presentation, händelse- och larmhantering i HES.",S158
+543,S159 - Sökfunktion med filtrering,"Det ska (S159) finnas en sökfunktion för utsökning av data i HES där det går att skapa sökningar med hjälp av filtrering på en eller flera inparametrar.
+T.ex. Anläggnings-ID, EAN-nummer, Mätpunkter, adresser och mätartyp.",S159
+544,S160 - Sökbar data,"Följande data ska (S160) kunna sökas ut ur HES databas:
+- Strukturdata
+- Mätvärden, varvid sökning ska kunna ske på valfri tidsperiod – definierar begränsning av tiden för sökt mätserie
+- Händelse
+- Larm",S160
+545,S161 - Söka på en delmängd,Vid sökning ska (S161) det vara möjligt att söka på en delmängd (med hjälp av ”wildcard”) av den informationen som eftersöks.,S161
+546,"S162 - Kopiera, klippa och klistra","Det ska (S162) vara möjligt för Användaren att kopiera, klippa ut och klistra in data i HES samtliga formulär och fält för inmatning.",S162
+547,S163 - Kräv ytterligare bekräftelse,"Kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) ska (S163) kräva ytterligare bekräftelse innan de utförs",S163
+548,S164 - Konfigurera mätenhet från HES,Samtliga parametrar som går att konfigurera av Beställaren i Mätenheten ska (S164) också kunna konfigureras fjärrstyrt från HES.,S164
+549,S165 - Registrera förändringar med unikt ID,"HES ska (S165) registrera förändringar i Mätsystemet med ett unikt ID för spårbarhet, t.ex. konfigurering i Mätenhet, uppgradering av mjukvara, till- och frånkoppling av kundanläggning via Mätenhetens brytare, ändringar av strukturdata och vilken Användare som har aktiverat eller avaktiverat ett Larm.",S165
+550,S166 -  Behörighetprofiler för användarrättigheter,"HES ska (S166) ha behörighetprofiler för åtminstone följande användarrättigheter:
+- Komma åt operativsystem, starta och stoppa systemet, uppdatera databas, ändra behörighetsprofiler m.m.
+- Inmatning/uppdatering av strukturdata, insamling av Mätvärden m.m.
+- Till- och frånkoppling av kundanläggning via Mätenhetens brytare
+- Åtkomst till Mätenhetens Mätdata och inställningar
+- Endast ”titta”, ej redigera",S166
+551,S167 - Behörighetsstruktur baserat på rollspecifikation,Leverantören ska (S167) under införandet definiera och implementera en behörighetsstruktur i HES med olika roller baserat på den rollspecifikation som tagits fram av Beställaren i samråd med Leverantören under införandet.,S167
+552,S168 - Administrera behörighetsnivåer,"Beställarens ska (S168) kunna administrera, skapa, redigera och ta bort behörighetsnivåer och roller i HES gränssnitt.",S168
+553,S169 - Till och frånkoppling av brytare från HES,Till- och frånkoppling av kundanläggning via Mätenhetens brytare ska (S169) kunna göras från HES.,S169
+554,S170 - Status för brytare,I HES ska (S170) det vara möjligt för Användaren att se om Mätenhetens brytare är till- eller frånkopplad.,S170
+555,S171 - Till och frånkoppling av brytare från annat GE system,HES ska (S171) kunna ta emot anrop från annat verksamhetssystem inom GE för till- och frånkoppling av kundanläggning via Mätenhetens brytare.,S171
+556,S172 - Status för brytare till annat GE system,HES ska (S172) kunna skicka information till annat verksamhetssystem om en Mätenhets brytare är till- eller frånkopplad.,S172
+557,S173 - Till och frånkoppling av kundgränssnittet från HES,Aktivering och deaktivering av Kundgränssnittet ska (S173) kunna göras från HES.,S173
+558,S174 - Status för kundgränssnittet,I HES ska (S174) det vara möjligt att se om Kundgränssnittet i en Mätenhet är aktiverat eller deaktiverat för datautskick.,S174
+559,S175 - Hantera rundgång,HES ska (S175) hantera rundgång (Mätarställning går från max till 0) i Mätenheten så att förbrukningen blir korrekt.,S175
+560,S176 - Korrigera mätvärden,"En Användare i HES ska (S176) ha möjlighet att korrigera Mätvärden, t.ex. ersätta ett felaktigt värde med ett manuellt registrerat data.",S176
+561,S177 - Interpolering i HES,Det ska (S177) finnas funktionalitet i HES för att kunna utföra Interpoleringar där insamlat värde saknas.,S177
+562,S178 - HES på svenska,Svenska och svensk teckenuppsättning ska (S178) gälla för HES.,S178
+563,S179 - Testmiljö,HES ska (S179) finnas tillgänglig i en testmiljö som ska spegla produktionsmiljön vad gäller konfigureringar och anpassningar.,S179
+564,S180 - Testmiljö 15 samtidiga användare,Testmiljön kommer att användas för att utföra tester vid förändringar i HES och vid utbildning och ska (S180) vara dimensionerad för minst 15 samtidiga Användare.,S180
+565,S181 - Skillnad på test och prod,Det ska (S181) vara tydligt för en Användare att se skillnad på HES test- och produktionsmiljö så att Användaren enkelt ser att hen är i rätt miljö.,S181
+566,S182 - Förväntad livslängd,Kommunikationsutrustning ska (S182) ha en förväntad livslängd som är >= 15 år räknat från tidpunkten då den levererats till GE.,S182
+567,S183 - Inget batteribyte,Kommunikationsutrustningen ska (S183) vara utformad så att om det ingår batteri ska de inte behöva bytas under Kommunikationsutrustningens livslängd.,S183
+568,"S184 - Felutfall under 0,75 % per år","Under Kommunikationsutrustningens förväntade livslängd ska (S184) felutfallet inte överstiga 0,75 % per år av installerad volym.",S184
+569,S185 - Förändring utan fysiskt besök,Om kommunikationslösningen använder sig av licensierad teletrafik ska (S185) operatörsbyten (portering) samt abonnemangsförändringar och avslut kunna utföras utan fysiskt besök på plats på ett sätt som stöds av de flesta teleoperatörer på marknaden.,S185
+570,S186 - Återställningstid efter kommunikationsavbrott max 60 min,Återställningstid för infrastrukturkommunikationen efter kommunikationsavbrott ska (S186) högst vara 60 minuter.,S186
+571,S187 - Återställningstid efter strömavbrott max 60 min,"Återställningstiden för infrastrukturkommunikationen, efter ett strömavbrott, ska (S187) högst vara 60 minuter efter den tidpunkt då elnätet åter är i drift.",S187
+572,S188 - Korrekt kommunikation,All kommunikation i Mätsystemet ska (S188) säkerställa korrekt kommunikation t.ex. med hjälp av checksummor.,S188
+573,S189 - All mätdata för alla mätare inom 60 min,Kommunikationslösningen ska (S189) klara av att hämta in 95 % av all Mätdata från 300 000 mätare och för de senaste 24 timmarna inom 60 minuter,S189
+574,S190 - Driftas av beställaren,Om Lösningen innehåller en kommunikationslösning som ska (S190) driftas av Beställaren (hänger ihop med krav S191),S190
+575,S191 - Managementverktyg för egen drift,Eventuell kommunikationslösning  ska (S191)  innehålla ett managementsverktyg för konfiguration av kommunikationslösningen.,S191
+576,S192 - Licensierade telenät,Om kommunikationslösningen innefattar licensierade telenät ska (S192) den följa Förordningar och Föreskrifter i enlighet med PTSFS 2015:2 utgiven av PTS (Post- och Telestyrelsen).,S192
+577,S193 - DLMS/ COSEM Suite 1,Mätsystemet ska (S193) minst följa kommunikation enligt specifikation DLMS/ COSEM Suite 1.,S193
+578,S194 - Automatiskt hittar ny kommunikationsväg,Systemlösningen ska (S194) innehålla funktionalitet som automatiskt hittar ny kommunikationsväg till HES även om omkopplingar eller förändringar sker i kommunikationsnätet.,S194
+579,S195 - Redogör för systemlösning,"Leverantören ska (S195) i Appendix A 3.1 Leverantörens tekniska lösningsbeskrivning redogöra för sin föreslagna systemlösning utifrån Beställarens tekniska krav för HES. Redogörelsen ska vara Leverantörens förslag för hur systemlösningen installeras i Beställarens IT-miljö och ska minst innehålla:
+
+- servrar, applikationer och integrationer mm som föreslås i Leverantörens offererade systemlösning 
+- prestandakrav både på Beställarens klient- och servermiljö
+- HES möjliga Integrationsgränssnitt 
+- övergripande nätverksdesign",S195
+580,S196 - Virtuella och fysiska servrar,HES ska (S196) kunna köras på virtuella servrar likväl som fysiska.,S196
+581,S197 - Redundans,HES ska (S197) vara anpassat för att kunna använda tekniska miljöer för redundans,S197
+582,S198 - Servrar,HES ska (S198) kunna köras på servrar som stödjs av Beställaren. Se Appendix B.15.1 Förutsättningar IT-miljö.,S198
+583,S199 - Köras som tjänst,HES ska (S199) kunna köras som en eller flera tjänster på applikationsservern.,S199
+584,S200 - Startas automatiskt,HES tjänst(er) ska (S200) kunna konfigureras att starta automatiskt vid exempelvis omstart.,S200
+585,S201 - Lista licenser och program,Leverantören ska (S201) leverera en lista på samtliga licenser och programvaror som är inkluderat i systemleveransen,S201
+586,S202 - Beställarens licenser,samt redovisa vilka licenser som Beställaren ska (S202) införskaffa om så är fallet.,S202
+587,S203 - Visa version,Det ska (S203) vara enkelt för en Användaren i HES att se vilken Version som är installerad.,S203
+588,S204 - Databashanterare med versionsnummer,Leverantören ska (S204) redogöra för vilken/vilka databashanterare med versionsnummer som rekommenderas för HES.,S204
+589,S205 - Säkerhetskopiering under drift,HES data ska (S205) kunna säkerhetskopieras under pågående drift utan väsentlig påverkan för HES Användare.,S205
+590,S206 - Inkluderas i säkerhetskopiering,HES konfigurationer och inställningar av applikationen ska (S206) kunna säkerhetskopieras.,S206
+591,S207 - Fjärruppkoppling,"För fjärrdiagnostik, support och underhåll ska (S207) systemlösningen erbjuda möjlighet till fjärruppkoppling under förutsättning att ställda säkerhets- och sekretesskrav kan tillgodoses.",S207
+592,S208 - HES från beställarens IT-arbetsplats,Användare ska (S208) kunna använda HES från operatörsplats som är Beställarens IT-arbetsplats. Se Appendix B.15.1 Förutsättningar IT-miljö.,S208
+593,S209 - Klientinstallation på Windows,"Klientinstallation ska (S209) under avtalsperioden stödja Microsofts supporterade Versioner av Windows, inklusive Versioner som finns att tillgå på extended support. 
+Om HES är helt webbaserat och ingen installation av plugin eller annan programvara krävs på klienten så anses detta krav vara uppfyllt.",S209
+594,S210 - MSI paketering,"Klientinstallation på Användarens dator ska (S210) kunna paketeras med MSI paketering för enkel hantering. 
+Om HES är helt webbaserat och ingen installation av plugin eller annan programvara krävs på klienten så anses detta krav vara uppfyllt.",S210
+595,S211 - Stödja marknadsledande webbläsare,"Om HES är webbaserat ska (S211) det stödja de vid varje tillfälle marknadsledande webbläsarna under avtalsperioden.
+Om HES inte är webbaserat så anses detta krav vara uppfyllt.",S211
+596,S212 - Standardiserade Integrationsgränssnitt,"HES ska (S212), via väldefinierade och standardiserade Integrationsgränssnitt, kunna integreras med Beställarens olika komponenter och system redovisade i Appendix B.15.1 Förutsättningar IT-miljö.",S212
+597,S213 - Webserviceanrop,HES ska (S213) kunna genomföra och ta emot webserviceanrop.,S213
+598,S214 - Utbyte av data via köhanterare,HES ska (S214) kunna hantera utbyte av data via köhanterare såsom exempelvis JMS eller IBM Websphere MQ.,S214
+599,S215 -  Integrationer via filer,HES ska (S215) kunna hantera integrationer via filer.,S215
+600,S216 - Händelsedrivna integrationer,HES ska (S216) kunna hantera händelsedrivna integrationer.,S216
+601,S217 - Parallella anrop,HES ska (S217) vara utformad för att kunna hantera parallella anrop.,S217
+602,S218 - Användarstyrning på integrationer,Användarstyrning eller likvärdigt ska (S218) finnas på samtliga integrationer.,S218
+603,S219 - Loggar för integrationer,HES ska (S219) ha läsbara loggar för integrationer till och från systemlösningen för att visa vilken data som skickats och tagits emot samt eventuella felaktigheter som uppträtt vid överföringarna.,S219
+604,S220 - Återsända information,"Det ska (S220) vara möjligt att återsända information som sänts via HES Integrationsgränssnitt, exempelvis om mottagarsystemet ligger nere.",S220
+605,S221 - Common Information Model (CIM),HES systemet ska (S221) stödja Common Information Model (CIM) och följa standard IEC 61968-9 eller likvärdigt vid informationsutbyte med t.ex. Distribution Management Systems (DMS) och Meter Data Management System (MDMS).,S221
+606,S222 - Byggas i en hållbar teknik,HES inklusive använda programvaror ska (S222) byggas i en teknik som i dagsläget anses vara hållbar över tid och bedöms ha lång återstående livslängd.,S222
+607,S223 - Behörighet till subjekt,Behörighet ska (S223) alltid tilldelas till ett Subjekt.,S223
+608,S224 - Dölja lösenord,Lösenord ska (S224) inte lagras i klartext. Redovisa hur detta säkerställs.,S224
+609,S225 - Åtskilda konton,Priviligierade konton ska (S225) vara skilda ifrån användarkonton.,S225
+610,S226 - Krypterad inloggning,Inloggning ska (S226) ske krypterat.,S226
+611,S227 - Bhörighetsstyrning för verktyg,Det ska (S227) finnas behörighetsstyrning för verktyg som kan ha förmåga att kringgå säkerhetsåtgärder.,S227
+612,S228 - Styra tid för utloggning,Beställaren ska (S228) kunna styra efter hur många minuters inaktivitet en Användare automatiskt loggas ut från HES.,S228
+613,S229 - Kryptera kommunikation,"All kommunikation som är möjlig att kryptera ska (S229) vara krypterad.
+Redovisa hur er lösning för nyckelhantering i Mätsystemet ser ut.",S229
+614,S230 - Krypteringsalgoritmer och kryptografiska hash-funktioner,"Krypteringsalgoritmer och kryptografiska hash-funktioner som används inom Lösningen ska (S230) vara säkra enligt Branschpraxis. Redovisa vilka lösningar som bygger på krypteringsteknik, samt vilka standarder dessa bygger på.",S230
+615,S231 - Krypteringsnycklar,Mätsystemet ska (S231) kunna hantera och administrera Mätenheternas krypteringsnycklar.,S231
+616,S232 - UTC tid med NTP synk,"Mätsystemet och kringliggande infrastruktur ska (S232) använda UTC som källa för tid, inkluderat synkning med NTP.",S232
+617,S233 - Tidavvikelse max 7s,Tidsavvikelsen mellan utrustningar i Mätsystemet ska (S233) maximalt vara 7 s.,S233
+618,S234 - Säkerhetslogg,Allt som är av betydelse för säkerheten i Mätsystemet ska (S234) registreras i en säkerhetslogg eller motsvarande.,S234
+619,S235 - Innehåll i säkerhetslogg,"Registrerade poster ska (S235) minst omfatta:
+- all autentisering och försök till autentisering 
+- skapande av nya identiteter och roller samt radering av dessa
+- förändringar av regler som styr behörighet
+- senaste inloggningar för respektive Användare 
+- nekande av åtkomst till objekt, förutom då det uppenbart inte har betydelse för säkerheten i systemet
+- alla förändringar av behörighet till informationsobjekt
+- skapande, förändring eller radering av informationsobjekt
+- varje upprättande och avslutande av session
+- konfigurationsförändringar i systemet, inklusive logg- och säkerhetsfunktioner",S235
+620,S236 - Logga datum och systemtid,Datum och systemtid ska (S236) registreras för varje loggad post.,S236
+621,S237 - Logga  unik identitet,Subjektets unika identitet ska (S237) registreras för varje loggad post.,S237
+622,S238 - Skydd av mätare,"Mätarna ska (S238) vara skyddade mot intrång, manipulering och exekvering av obehörig eller skadlig kod.",S238
+623,S239 - Transaktionssäkerhet,Transaktionssäkerhet ska (S239) garanteras,S239
+624,S240 - Transaktionssäkerhetsmetod,och metoden ska (S240) finnas beskriven. Redovisa metoden.,S240
+625,S241 - Autentisering mot angränsande system,Autentisering ska (S241) användas då Mätsystemet interagerar med angränsande system.,S241
+626,S242 - Skydd av mätenheterna,Mätsystemet ska (S242) vara skyddat mot intrång via Mätenheterna.,S242
+627,S243 - Skydd mot intrång via kommunikationslösningen,I den av Leverantören föreslagna Lösningen ska (S243) Mätsystemet vara skyddat mot intrång och extern åtkomst av data via kommunikationslösningen.,S243
+628,S244 - Återläsa data,"Det ska (S244) gå att återläsa data, i enlighet med de backuper som tas, till en given tidpunkt för att minimera dataförlust i samband med Incident.",S244
+629,S245 - Mätsystemet utvecklas enligt Branschpraxis,"Leverantören ska (S245) säkerställa att Mätsystemet utvecklas i enlighet med gällande Branschpraxis för säker och kvalitativ kod, såsom SDL, OWASP eller likvärdigt.",S245
+630,S246 - Dokumentation av interna gränssnitt,Mätsystemet ska (S246) ha väl strukturerade och dokumenterade interna gränssnitt för säker intern kommunikation.,S246
+631,S247 - Penetrationstester,"Beställaren ska (S247), med hjälp av oberoende part, kunna genomföra penetrationstester, eller likvärdiga revisioner, på Mätsystemet.",S247
+632,S248 - Samsyn kring pen-test,Beställaren och Leverantören ska (S248) vara informerade och överens om när ett penetrationstest eller revision,S248
+633,S249 - Samsyn kring revision,ska (S249) genomföras för att undvika att missförstånd uppstår.,S249
+634,S250 - Åtgärd utan kostnad,Om sårbarheter upptäcks ska (S250) Leverantören åtgärda dessa utan extra kostnad för Beställaren.,S250
+635,S251 - Åtgärd utan dröjsmål,Om sårbarheter i säkerhet avslöjas i Mätsystem ska (S251) Leverantören utan oskäligt Dröjsmål tillhandahålla uppdatering eller andra lösningar för att åtgärda nämnda sårbarheter.,S251
+636,S252 - Åtgärdsplan,Om en lösning inte tillhandahålles inom 24 timmar ska (S252) en åtgärdsplan och tidplan meddelas Beställaren.,S252
+637,S253 - Rutin för säkerhetsuppdateringar,Leverantören ska (S253) ha en process/rutin för säkerhetsuppdateringar. Redovisa er process/rutin.,S253
+638,S254 - Skydd i djupled,Mätsystemet ska (S254) uppfylla principer för skydd i djupled.,S254
+639,S255 - inbyggt skydd,Mätsystemet ska (S255) uppfylla principer för inbyggt skydd.,S255
+640,S256 - Härdning,Alla ingående delar i Mätsystemet ska (S256) vara härdade av Leverantören.,S256
+641,S257 - Ny nyckel/lösnenord,Fabriksinställningar och leverantörsspecifika standardlösenord eller krypteringsnycklar ska (S257) ersättas med nyskapade motsvarigheter som uppfyller Beställarens krav.,S257
+642,S258 - Uppdaterad autentiseringsinformation,"Det ska (S258) ske i samband med påbörjande av MSA 1, så att Leverantören inte längre känner till gällande autentiseringsinformation.",S258
+643,S259 - Beroenden mot andra system,Lösningsdesign ska (S259) utformas så att beroenden mot andra system inte innebär att systemet tappar skydd.,S259
+644,S260 - Alla delar täcks,Mätsystemet ska (S260) ha en säkerhet som bygger på att alla delar av systemets/komponenternas livscykel täcks in.,S260
+645,S261 - Fjärråtkomst,"Dellösningar eller funktionalitet för fjärråtkomst som ingår i Mätsystemet ska (S261) skyddas mot obehörig användning, insyn och förändring.",S261
+646,S262 - Kontrollutrustning,Kontrollutrustning ska (S262) i förekommande fall då de ingår i Mätsystemet omfattas av säkerhetskrav på samma sätt som annan utrustning.,S262
+647,B1 - Korrigerade mätvärden,"Om Mätenheten korrigerar uppmätta värden för spänning och/eller ström vid beräkning av energiförbrukning, ska (B1) dessa värden också vara de som används i Mätsystemet.",B1
+648,B2 - Strömavbrott längre än 10 sek,"Mätsystemet ska (B2) registrera alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder.",B2
+649,B3 - Svarstid på en manuell avfrågning,Svarstiden på en manuell avfrågning av Energivärden från HES till enskild Mätenhet ska (B3) vara max 5 sekunder.,B3
+650,B4 - Energivärdena ska levereras kontinuerligt,Energivärdena (15-minutersvärden) ska (B4) levereras kontinuerligt från Mätenhet till HES.,B4
+651,B5 -  PQ-värden ska levereras inom 15 min,PQ-värdena (15-minutersvärden) ska (B5) levereras senast inom 15 minuter från registrering i mätarna till HES för en utvald grupp av mätare (max 20 % av det totala antalet mätare),B5
+652,B6 - 100% energivärden inom 96h,100 % av Energivärdena ska (B6) vara insamlade till HES inom 96 timmar efter dygnsskiftet.,B6
+653,B7 - Kommunikationsmetadata  ska levereras kontinuerligt,Kommunikationsmetadata (15-minutersvärden) ska (B7) levereras kontinuerligt från Kommunikationsutrustning till HES.,B7
+654,B8 - Avbrottshändelse inom 1 minut,Avbrottshändelse ska (B8) finnas tillgängliga i HES systemet inom 1 minut.,B8
+655,B9 - Högfrekventa störningar,Mätenheterna ska (B9) uppfylla krav för högfrekventa störningar i strömmen enligt svensk standard SS EN 61000-4-19 ” Mät- och provningsmetoder – Provning av immunitet mot ledningsbundna symmetriska störningar och signaler i frekvensområdet 0 Hz till 150 kHz” och IEC TR 50579 eller likvärdigt.,B9
+656,B10 - Registrera sin egen temperatur,Mätenheten ska (B10) registrera sin egen temperatur.,B10
+657,B11 - Möjlig varmgång,Mätenheten ska (B11) ha möjlighet att detektera anslutningar som kan orsaka varmgång.,B11
+658,B12 - Varmgång,Mätenheten ska (B12) ha möjlighet att detektera varmgång i anslutningar.,B12
+659,B13 - Mätmetod,Det ska (B13) vara konfigurerbart vilken mätmetod som används för mätning av in- och utmatning av energi i samtliga faser.,B13
+660,B14 - Överförd aktiv och reaktiv energ / 5min,Mätenheten ska (B14) kunna registrera mängden överförd aktiv och reaktiv energi för uttag och inmatning av el per 5 minuter.,B14
+661,B15 - Mätning och registrering / fas,"Mätenheten ska (B15) för varje fas kunna mäta och registrera min, max och medelvärde för spänning, ström, aktiv och reaktiv effekt för uttag och inmatning av el per 5 minuter.",B15
+662,B16 - Mäta frekvensen i elnätet,Mätenheten ska (B16) kunna mäta frekvensen i elnätet.,B16
+663,B17 - Registrera First Breath,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+1. ”First Breath” från Mätenhet (B17)",B17
+664,B18 - Registrera mjukvara mottagen,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+2. Mjukvara mottagen (B18)",B18
+665,B19 - Registrera Mjukvaruverifiering – misslyckad,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+3. Mjukvaruverifiering – misslyckad (B19)",B19
+666,B20 - Registrera Mjukvaruverifiering – lyckad,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+4. Mjukvaruverifiering – lyckad (B20)",B20
+667,B21 - Registrera Mjukvaruuppdatering – misslyckad,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+5. Mjukvaruuppdatering – misslyckad (B21)",B21
+668,B22 - Registrera Mjukvaruuppdatering – lyckad,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+6. Mjukvaruuppdatering – lyckad (B22)",B22
+669,B23 - Registrera Ändring av parametrar,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+7. Ändring av parametrar (B23)",B23
+670,B24 - Registrera Kommunikationsfel,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+8. Kommunikationsfel (B24)",B24
+671,B25 - Registrera temperatur överskrider gränsvärde,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+9. Temperatur överskrider inställt gränsvärde (B25)",B25
+672,B26 - Registrera  Elnätets frekvens utanför gränsvärden,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+10. Elnätets frekvens över- eller underskrider inställda gränsvärden (B26)",B26
+673,B27 - Registrera  Effektfaktor överskrider  gränsvärde per fas,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+11. Effektfaktor överskrider inställt gränsvärde per fas (B27)",B27
+674,B28 - Registrera Vektordiagram spänning och ström per fas,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)",B28
+675,B29 - Registrera när hög ström överskrider gränsvärde per fas,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+13. Hög ström överskrider inställt gränsvärde per fas (B29)",B29
+676,B30 - Registrera när hög effekt överskrider gränsvärde per fas,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+14. Hög effekt överskrider inställt gränsvärde per fas (B30)",B30
+677,B31 - Registrera när effektuttag överskrider gränsvärde,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+15. Totalt effektuttag överskrider inställt gränsvärde (B31)",B31
+678,B32 - Registrera anslutning som kan orsaka varmgång,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+16. Identifierad anslutning som kan orsaka varmgång (B32)",B32
+679,B33 - Registrera varmgång i anslutning,"Mätsystemet ska registrera och lagra information när följande Händelser inträffar:
+17. Vid varmgång i anslutning (B33)",B33
+680,B34 - Konfigurera register som ska lagras för händelser,För varje Händelse ska (B34) det finnas möjlighet att valfritt konfigurera vilka register (OBIS-koder) i Mätenheten som ska lagras.,B34
+681,B35 - Inaktivera skickandet av Händelser från specifik Mätenhet,Det ska (B35) vara möjligt att inaktivera skickandet av Händelser från utpekad Mätenhet från HES i syfte att inte behöva få in en stor mängd Händelser från en viss Mätenhet.,B35
+682,B36 - Tidsangivelsen får max avvika med 1 sek,Tidsangivelsen ska (B36) högst avvika med 1 sekunder från Normaltid för Mätenhet.,B36
+683,B37 - Trådlös MBUS,Mätenheten bör (B37) kunna kommunicera med trådlös MBUS.,B37
+684,B38 - Trådad MBUS,Mätenheten bör (B38) kunna kommunicera med trådad MBUS.,B38
+685,B39 - Utgångar för laststyrning,Mätenheten bör (B39) kunna hantera utgångar för t.ex. laststyrning.,B39
+686,B40 - Brytarknapp på mätaren,Brytaren ska (B40) kunna manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.,B40
+687,B41 - kumulativa räkneverket återges på Mätenhetens display,"Det kumulativa räkneverket ska (B41) kunna återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen.",B41
+688,B42 - Kommunikationsstatus,"Det ska (B42) vara möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus.",B42
+689,B43 - lysdioder i röd färg,Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska (B43) dessa inte ha röd färg.,B43
+690,B44 - passiv elektronisk tagg,Mätenhet ska (B44) ha en passiv elektronisk tagg för att vara spårbar när den inte är uppsatt.,B44
+691,B45 - skruvinfästningar,Det ska (B45) inte finnas några förhöjningar runt Mätenhetens skruvinfästningar som begränsar storlek på skruvhuvud.,B45
+692,B46 - montagehängsle,Det ska (B46) finnas ett montagehängsle placerad på Mätenhetens ovansida för montage.,B46
+693,B47 - montagehängsle minst 5 mm,Tjockleken på Mätenhetens montagehängsle ska (B47) vara minst 5 mm.,B47
+694,B48 - plomberingsanordning,Mätenhetens plomberingsanordning ska (B48) vara upphöjd och väl synlig för smidig och åtkomlig genomföring av plomberingstråden.,B48
+695,B49 - skruvhuvud på plomberingsskruvarna,Det ska (B49) vara samma typ av skruvhuvud på plomberingsskruvarna som på anslutningsskruvarna för ledarna.,B49
+696,B50 - Kortare plintlock,Kortare plintlock för Mätenheten ska (B50) finnas som alternativ om utrymmet på montageplatsen är begränsat.,B50
+697,B51 - utbytbar kommunikationsenhet,Mätenhetens kommunikationsenhet bör (B51) vara utbytbar utan att spänningen till anläggningen bryts för att kunna ersättas vid felaktigheter eller för byte av kommunikationsmetod.,B51
+698,B52 - 3-fas anpassas till 1-fasig mätning,3-fas Mätenheter ska (B52) kunna anpassas till 1-fasig mätning och då uppfylla de normkrav (MID) som finns på en rent 1-fasig mätare.,B52
+699,B53 - dimensionerad minst strömstyrka 5A,Mätenheten ska (B53) vara dimensionerad för minst strömstyrka 5 (Imax 100) A.,B53
+700,"B54 - anslutningsplin minst kabelarea 2,5–35 mm2","Mätenhetens anslutningsplint ska (B54) klara minst kabelarea 2,5–35 mm2.",B54
+701,B55 - turordningen för olika sätt att samla in Mätvärden,Användare ska (B55) ha möjlighet att sätta turordningen för olika sätt att samla in Mätvärden till HES. Detta gäller manuella och schemalagda mätinsamlingar.,B55
+702,B56 - Insamling i olika tidsintervall,Insamling av Mätvärden för Mätpunkterna ska (B56) kunna sättas i olika tidsintervall.,B56
+703,B57 - Repetera kommunikationsförsök,Om ett kommunikationsförsök för mätinsamling misslyckas ska (B57) Mätsystemet repetera försöken det antal gånger som är förinställt.,B57
+704,B58 - Konfigurerara kommunikationsförsök,Antalet kommunikationsförsök för mätinsamling ska (B58) kunna ändras.,B58
+705,B59 - Lagring av Mätvärden i HES,"Lagring av Mätvärden i HES ska (B59) kunna ske periodiskt med följande valbara tidsintervall:
+- Minutvärden (1–15 minuter)
+- Timvärden
+- Dygnsvärden
+- Månadsvärden",B59
+706,B60 -  sätta turordningen för olika exporter,Användare ska (B60) ha möjlighet att sätta turordningen för olika exporter från HES. Detta gäller både manuella och schemalagda exporter.,B60
+707,B61 - Responstider i användargränssnittet,"Responstider i användargränssnittet i HES ska (B61) inte överstiga:
+- 0,5 s från inmatning, knapptryckning el. motsv. till första respons på bildskärm
+- 0,5 s för visning av formulär-vy inklusive data
+- 5 s för visning av enkel rapport
+- 15 s för inloggning",B61
+708,B62 - Energivärden till annat system inom 10 sek,Energivärdena (15-minutersvärden) ska (B62) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,B62
+709,B63 - PQ-värden till annat system inom 10 sek,PQ-värdena (15-minutersvärden) ska (B63) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,B63
+710,B64 - Avbrottshändelse till annat system inom 1 sek,Avbrottshändelse ska (B64) kunna exporteras från HES via integrationer till annat system senast 1 sekund efter registrering i HES.,B64
+711,B65 - Kommunikationsmetadata till annat system inom 1 sek,Kommunikationsmetadata (15-minutersvärden) ska (B65) kunna exporteras från HES via integrationer till annat system senast 1 sekund efter registrering i HES.,B65
+712,B66 - Rapport - Rubrik som motsvarar attributet,För alla attribut som väljs att ingå i en rapport ska (LB66) det finnas en rubrik som motsvarar attributet. T.ex. en rubrik ”adress” när det är adressdata som ingår i rapporten,B66
+713,B67 - Fördefinierade rapporter,"Det ska (B67) finnas fördefinierade rapporter i HES, t.ex.:
+- Mätinsamlingsstatistik innehållande tidsintervall, nyttighet, kommunikationsteknik och vilken grupp Mätenheten tillhör
+- Mätvärden för enskild Mätenhet innehållande tidsintervall, nyttighet, kommunikationsteknik och vilken grupp Mätenheten tillhör",B67
+714,B68 - Info om användare,"HES ska (LB68) ha en vy där information presenteras om systemets Användare, t.ex. användar-id, namn, roll och behörighet.",B68
+715,B69 - Händelser och Larm i kartvy,Händelser och Larm ska (B69) kunna visas i en kartvy där det ska vara möjligt för Användaren att filtrera och söka på händelsetyp och visst tidsspann.,B69
+716,B70 - Mätpunkt med fritextfält,För varje Mätpunkt ska (B70) det finnas noteringsfält där Användaren kan lägga in fritext.,B70
+717,B71 - Hjälpfunktion,I HES användargränssnitt ska (LB71) det finnas en hjälpfunktion som hjälper Användaren att förstå hur arbetsuppgifter utförs med hjälp av systemets funktionalitet.,B71
+718,B72 - Rensa mätvärden och loggar,HES ska (B72) innehålla automatiska funktioner för att rensa Mätvärden och loggningar utefter uppsatta regler. Detta för att undvika att mängden av lagrad data (historiska Mätvärden och Händelseloggar) successivt växer.,B72
+719,B73 - Filtrering och sortering i larmlista,En Användare ska (B73) ha möjlighet att filtrera och sortera i larmlistan.,B73
+720,B74 - Administrera larmvärden,"En Användare med rätt behörighet ska (B74) ha möjlighet att administrera larmvärden t.ex. sätta larmintervall, aktivera och inaktivera Larm.",B74
+721,B75 - Kvittera larm,"Användare i HES ska (B75) kunna kvittera ett Larm i larmlistan med olika statustyper t.ex. godkänna, stänga och radera.",B75
+722,B76 - Storlek på händelselistan,Händelselistans storlek ska (B76) endast begränsas av tillgänglig lagringsyta.,B76
+723,B77 - Dynamisk kartvy,Presentation av data i karta ska (B77) vara dynamiskt anpassningsbart av Användaren t.ex. visning utifrån status eller geografiskt område.,B77
+724,B78 - Följa mätinsamlingsprocessen,Det ska (B78) finnas funktionalitet i HES för att följa mätinsamlingsprocessen. t.ex. att de är pågående eller avslutade insamlingsjobb.,B78
+725,B79 - Historiska insamlingsjobb,Det ska (B79) finnas funktionalitet i HES för att titta på historiska insamlingsjobb under en vald tidsperiod.,B79
+726,B80 - Kommunikationsövervakning,Det  ska (B80) finnas kommunikationsövervakning av Mätenheter och infrastruktur.,B80
+727,B81 - Upptäcka mätare med kommunikationsproblem,I HES ska (B81) det vara möjligt för Användaren att upptäcka och se enskilda Mätenheter som har kommunikationsproblem.,B81
+728,B82 - Upptäcka område med kommunikationsproblem,I HES ska (B82) det vara möjligt för Användaren att upptäcka och se områden där flera Mätenheter har kommunikationsproblem.,B82
+729,B83 - Visa mätare med kommunikationsproblem i karta,I HES ska (B83) det vara möjligt att visualisera Mätenheter med kommunikationsproblem i en grafisk vy/karta som går att zooma in och ut.,B83
+730,B84 - Visa mätare med kommunikationsproblem i lista,"I HES ska (B84) det vara möjligt att presentera Mätenheter som har kommunikationsproblem i en lista med information, t ex. felorsak, tidpunkt.",B84
+731,B85 - Visa senaste mätvärde och tidpunkt,Senaste Mätvärdet och tidpunkten för kommunikation med Mätenheten ska (B85) visas i HES.,B85
+732,B86 - historik för infrastrukturens kommunikation,Det ska (B86) vara möjligt att i HES kunna se minst en månads historik för infrastrukturens kommunikation för enskild Mätenhet.,B86
+733,B87 - kopiera statiska fält,"Det ska (B87) vara möjligt för Användaren att kunna kopiera statiska fält i HES som t.ex. rubriker, status, svar på Händelser i systemet.",B87
+734,B88 - markera flera objekt och ge kommando,Det ska (B88) vara möjligt för Användaren att markera flera objekt (t.ex. i en larmlista) och därefter ge ett kommando (t.ex. ändra eller radera) som då utförs på alla markerade objekt.,B88
+735,B89 - Kräv ytterligare bekräftelse,"Kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) ska kräva ytterligare bekräftelse innan de utförs. Övriga kommandon ska (B89) utföras direkt.",B89
+736,B90 - Massradering,I HES ska (B90) det finnas en funktion för att genomföra massradering av övergripande strukturdataobjekt så att alla kopplade relationer också raderas. T.ex. att detta genomföras via grupptillhörighet.,B90
+737,B91 - Konfigurering av Mätenheten,Konfigurering av Mätenheten från HES ska (B91) kunna utföras utan att ladda ner ny Firmware.,B91
+738,B92 - Detektera avsaknad av neutralledare,Från HES ska (B92) det gå att konfigurera kriterier för att detektera avsaknad av neutralledare i Mätenheten.,B92
+739,B93 - Skapa grupper,"Grupper ska (B93) kunna skapas dynamiskt av Användaren i HES med hjälp av olika parametrar, t.ex. Anläggnings-ID för export av insamlat data eller uppgradering av mätarens mjukvara där grupp kan vara per postnummer eller mätarens identitet.",B93
+740,B94 - Grupper för utförande av kommandon,"Konfigurerade grupper ska (B94) kunna användas för att utföra olika kommandon t.ex. förändra insamlingsintervall, exportera insamlat data etc.",B94
+741,B95 - Spara personliga vyer,I HES ska (B95) det gå att konfigurera och spara personliga vyer som visas behörighetsstyrt för respektive Användare.,B95
+742,B96 - Konfigurera data för kundgränssnittet,I HES ska (B96) det gå att konfigurera vilket data som skickas ut via Kundgränssnittet.,B96
+743,B97 - Manuell Estimering av saknade Mätvärden,Det ska (B97) finnas en funktion för manuell Estimering av saknade Mätvärden.,B97
+744,B98 - Användargränssnitt på engelska,"Användargränssnittet ska (B98) per Användare kunna väljas att, förutom svenska, vara på engelska.",B98
+745,B99 - Systemarbete på svenska,För systemarbete i HES ska (B99) svenska användas.,B99
+746,B100 - Återställningstid efter strömavbrott,Återställningstiden för infrastrukturkommunikationen efter ett strömavbrott ska (B100) högst vara 15 minuter efter den tidpunkt då elnätet åter är i drift.,B100
+747,B101 - Återställningstid efter kommunikationsavbrott,Återställningstid för infrastrukturkommunikationen efter kommunikationsavbrott bör (B101) högst vara 15 minuter.,B101
+748,B102 - Hämta mätardata för 24h för  95% av mätare inom 60 min,Kommunikationslösningen ska  (B102) klara av att hämta in 95 % av all Mätdata från 400 000 mätare och för de senaste 24 timmarna inom 60 minuter,B102
+749,B103 - DLMS/ COSEM Suite 2,Mätenheterna bör (B103) stödja kommunikation enligt specifikation DLMS/ COSEM Suite 2.,B103
+750,B104 - Licensieringsmetod,HES eller någon av dess underliggande komponenter ska (B104) ej använda en licensieringsmetod som låser installationen till ett visst hårdvaru-id (och därigenom förhindrar eller försvårar driften av systemlösningen i en virtualiserad driftsmiljö).,B104
+751,B105 - Databashotell,HES databas ska (B105) kunna placeras i Beställarens databashotell.,B105
+752,B106 - Hårdvara för användargränssnittet,"HES ska (B106) vara utformad för att kunna användas med olika typer av datorer, datorplattor och smarta telefoner, med olika arkitektur och operativsystem.",B106
+753,B107 - Versionshantering av webservice-gränssnitt,Webservice-gränssnitt ska (B107) vara versionshanterade så att det finns möjlighet att använda gamla Versioner vid behov.,B107
+754,B108 - Skicka samma info igen,Det ska (B108) vara möjligt att skicka samma information till HES flera gånger,B108
+755,B109 - Konfigurationsförändring för att ändra info som integreras,Beställaren ska (B109) kunna ändra struktur och omfattning på information som integreras till och/eller från HES genom konfigurationsförändring eller likvärdigt.,B109
+756,B110 - Katalogtjänst för behörighetsstyrning,Katalogtjänst ska (B110) användas för behörighetsstyrning,B110
+757,B111 - Sign on-inloggning,"HES ska (B111) ha single sign on-inloggning för Beställarens Användare på de av Beställaren, för närvarande, använda standardklienter.",B111
+758,B112 - PKI,Systemet ska (B112) stödja PKI.,B112
+759,B113 - Synkronisering med GE kontrollerad NTP,Mätsystemet och kringliggande infrastruktur som ligger inom GE's nätverk ska (B113) synkroniseras med GE kontrollerad NTP.,B113
+760,B114 - Stratum nivå för synkning med NTP,Synkning med NTP ska (B114) vara med stratum nivå som är max 3.,B114
+761,B115 - Info i loggposten,Loggposten ska (B115) ge tillräcklig information för att kunna analyseras utan systemåtkomst.,B115
+762,B116 - Centralt loggningssystem,Loggarna ska (B116) kunna överföras till ett centralt loggningssystem,B116
+763,B117 - Mätare med intrångsskydd och intrångsdetektering,Mätenheterna ska (B117) vara försedda med intrångsskydd och funktioner för intrångsdetektering.,B117
+764,B118 - Analysverktyg för intrång,Det ska (B118) finnas lämpliga analysverktyg för att spåra och följa upp intrång och intrångsförsök i Mätenheterna.,B118
+765,B119 - Certifierad i enlighet med EUs cybersäkerhetsakt,Mätenheterna bör (B119) vara certifierade i enlighet med EUs cybersäkerhetsakt.,B119
+766,B120 - Segmenterad kommunikationslösning,Kommunikationslösningen ska (B120) vara segmenterad.,B120
+991,S537 - Utformande av lösning,Leverantören ska (S537) designa och utforma Lösningen enligt ställda krav i Appendix B.2.1 Kravspecifikation Teknisk Lösning.,S537
+992,S538 - Tillhandahålla lösningsspecifikationer,Leverantören ska (S538) ta fram design- och lösningsspecifikationer som godkänns av Beställaren innan Leverantören utformar Lösningen.,S538
+993,S539 - Ta fram testplan,Leverantören ansvarar för att vid projektstart ta fram en detaljerad testplan som granskas av Beställaren. Utifrån synpunkter som framkommer vid Beställarens granskning ska (S539) Leverantören komplettera testplanen.,S539
+994,S540 - Godkännande av testplan,Den således kompletterade planen ska (S540) därefter lämnas till Beställaren för slutligt godkännande.,S540
+995,S541 - Testplans innehåll,"Testplanen ska (S541) minst innehålla: 
+-Beskrivning av testprocessen enligt innehåll i figur 1 i punkt 3.2, d.v.s. beskrivning av testplanering, förberedelser, genomförande och avslut av test. 
+-En beskrivning som steg för steg ger instruktion för genomförande och underlag för utvärdering av testresultat. 
+-Beskrivning, bedömning och beslut kring åtgärder av rapporterade fel samt deras allvarlighetsgrad.",S541
+996,S542 - Uppdatering av testplan,Leverantören ska (S542) kontinuerligt uppdatera testplanen med de överenskomna förändringar som sker.,S542
+997,S543 - Ta fram testfall,"Leverantören ska (S543) utarbeta testfall baserade på avtalade krav, d.v.s. avtalad Specifikation såvida ej annat avtalats.",S543
+998,S544 - Testfalls innehåll,Varje testfall ska (S544) innehålla en detaljerad instruktion för genomförande och underlag för utvärdering av testresultat för berörd funktion.,S544
+999,S545 - Testverktyg,Leverantören ska (S545) använda ett av Beställaren anvisat verktyg för att följa Beställarens rapportering av testresultat. Leverantören ansvarar för att i verktyget registrera sin återkoppling och status på Beställarens rapporterade fel och synpunkter. Beställaren använder idag ReQtest i felhanteringsprocessen.,S545
+1000,S546 - Beställarens testfall,Beställaren ska(S546) ha rätt att utarbeta egna och nya testfall baserade på Specifikation. Nya testfall kan skapas fram till Slutgodkännande av Leveransprojektet.,S546
+1001,S547 - Utförande av testfall,"Leverantörer ska (S547) ha möjlighet i de fall det bedöms lämpligt enligt överenskommelse med Beställaren, överlåta till Beställaren att utföra vissa testfall i punkt 3.2.5.",S547
+1002,S548 - Testrapport,"Leverantören ska (S548) upprätta en testrapport för de testfaser som Leverantören ansvarar för under Leveransprojektet, enligt figur 1 i punkt 3.2.",S548
+1003,S549 - Testrapports innehåll,"Testrapporten ska (S549) minst innehålla: 
+-Testfall som körts -Resultat av testerna -Ev. kvarstående fel -Ev. kvarstående testfall -Förslag på åtgärder",S549
+1004,S550 - Godkännande av testrapport,Leverantören ska (S550) överlämna testrapporten till Beställaren för kontroll och godkännande.,S550
+1005,S551 - Godkännande som startkriterie,Efterföljande test enligt figur 1 under punkt 3.2 ska (S551) ej påbörjas utan att testrapporten från föregående testfas är godkänd av Beställaren.,S551
+1006,S552 - Krav på FAT,Leverantören ska (S552) före leverans av Mätsystemet genomföra en systemtest/FAT (FAT – Factory Acceptance Test) hos Leverantören.,S552
+1007,S553 - Deltagande på FAT,Leverantören ska (S553) bereda Beställaren eller dennes representant(er) möjlighet att medverka som observatör vid genomförandet av FAT.,S553
+1008,S554 - Redovisa förändringar efter FAT,"Modifieringar av Mätsystemet utförda mellan FAT och installation hos Beställaren ska (S554) redovisas av Leverantören,",S554
+1009,S555 - Omtest efter modifieringar,Leverantören ska även (S555) redovisa möjliga konsekvenser och påverkan på andra funktioner från gjorda modifieringar. Beställaren har rätt att kräva upprepning av de tester som gjorts i FAT om sådana modifieringar utförs.,S555
+1010,S556 - Krav vid leverans och installation i testmiljön,"Leverantören ska (S556) vid leverans och installation av Mätsystemet i Beställarens testmiljö: 
+-installera, -konfigurera/parametersätta, -eventuellt migrera strukturdata, -genomföra test med liknande omfattning som FAT samt inkluderat systemintegrationstest (SIT), samt -genomföra felrättningar och omtester.",S556
+1011,S557 - Omfattning UAT,Beställarens UAT (User Acceptance Test) ska (S557) omfatta test och verifiering av samtliga krav enligt Specifikationen om inte annat överenskommes.,S557
+1012,S558 - Utbildning inför UAT,Leverantören ska (S558) genomföra nödvändig utbildning samt överlämna relevant dokumentation enligt punkt 5 innan Beställarens UAT påbörjas.,S558
+1013,S559 - Support under UAT,Leverantören ska (S559) närvara hos Beställaren och vara behjälplig då Beställaren genomför UAT.,S559
+1014,S560 - Krav vid leverans och installation i produktionsmiljönmiljön,"Leverantören ska (S560) vid installation och driftsättning av Mätsystemet i Beställarens produktionsmiljö: 
+-installera, -eventuellt konfigurera/parametersätta, -eventuellt migrera strukturdata, -driftsätta, -verifiera och testa Mätsystemet inklusive integrationer i produktionsmiljön, samt -genomföra felrättningar och omtester",S560
+1015,S561 - Support under Produktionstest,Leverantören ska (S561) närvara hos Beställaren och vara behjälplig då Beställarens genomför produktionstest.,S561
+1016,S562 - Fel i produktionsmiljön,Om utfallet av produktionstestet utvisar att någon del av Mätsystemet inte är riktigt driftsatt eller i övrigt inte fungerar som avtalat ska (S562) Leverantören så snart som möjligt vidta sådana åtgärder som erfordras för att den felande delen ska (S563) fungera i produktionsmiljön.,S562
+1017,S563 - Åtgärd vid fel i produktionsmiljön,Om utfallet av produktionstestet utvisar att någon del av Mätsystemet inte är riktigt driftsatt eller i övrigt inte fungerar som avtalat ska (S562) Leverantören så snart som möjligt vidta sådana åtgärder som erfordras för att den felande delen ska (S563) fungera i produktionsmiljön.,S563
+1018,S564 - Pilot,"Leverantören ska (S564) efter Beställarens godkända produktionstest genomföra en Pilot inkluderande provdrift i produktionsmiljö, enligt Bilaga B.3 Leverans- och Införandeavtal.",S564
+1019,S565 - Funktion under pilot,Mätsystemet ska (S565) fungera operativt i Beställarens IT-tekniska miljö utan väsentliga driftstörningar under provdriften.,S565
+1139,B507 - Systemdokumentation,Systemdokumentation och övrig dokumentation ska (B507) vara på svenska och levereras i elektroniskt format.,B507

@@ -1,0 +1,704 @@
+ID,Rubrik,Beskrivning
+1,S196 - Virtuella och fysiska servrar,Verifiera att dokumentationen beskriver hur det går att installera applikationen både i en fysisk och i en virtuell miljö.
+2,S197 - Redundans i teorin,Verifiera att dokumentationen från Kamstrup beskriver hur och för vilka komponenter redundans appliceras. Verifiera att dokumentationen från Tieto beskriver hur och för vilka komponenter redundans appliceras i enlighet med Kamstrups beskrivning.
+3,S197 - Redundans i praktiken,"För alla komponenter som har redundans verifiera att dokumentationen beskriver redundant lösning för samtliga ingående servers inom HES, inklusive SQL databaser. Begär ett ""Fail-over"" test från Tieto i flera steg som verifierar samtliga ""nivåer"" av redundans inom HES."
+4,S198 - Servrar,Verifiera att dokumentation som leverantören presenterar inför installation stämmer överens med de servrar/operativ som Göteborg Energi/Tieto supporterar.
+5,S199 - Köras som tjänst,Verifiera att information om tjänster och vilka servrar de finns på är beskrivet i systemdokumentationen. Hör med Tieto att de inte fått problem med Licenser eller annat praktiskt vid installationerna inför UAT.
+6,S201 - Lista licenser och program - teori,Verifiera att leverantören i dokumentet Customer PlatformSpecifikation GBE PRD listat samtliga licenser som inkluderas i systemleveransen.
+7,S202 - Beställarens licenser - förvaltning,Verifiera att samtliga licenser som Göteborg Energi står för finns listade i Snow och hanteras i applikationen.
+8,S204 - Databashanterare med versionsnummer,Verifiera att plattformspecifikationen innehåller information om databashanterare och versionsnummer.
+9,S244 - Återläsa data,FAT: Kamstrup visar rekommendationer. UAT: Med skarp data beställs återläsning i testmiljön på ett givet tidsintervall från Tieto. PROD: Med skarp data beställs återläsning i produktionsmiljö på ett givet tidsintervall från Tieto.
+10,B105 - Databashotell,Verifiera att systemdokumentationen beskriver vilka databaser och databasversioner som används.
+11,S202 - Beställarens licenser - teori,Verifiera att leverantören i dokumentet Customer PlatformSpecifikation GBE PRD listat samtliga licenser som Göteborg Energi ska stå för.
+13,S193 - DLMS/ COSEM Suite 1,Granska dokumentation som beskriver hur DLMS/ COSEM Suite 1 är implementerat i lösningen.
+14,S223 - Behörighet till subjekt,Verifiera att samtliga loggposter är knutet till ett subjekt. Verifiera att alla loggposter inte är kopplade till en person.
+15,S224 - Dölja lösenord,Verifiera att lösenord inte lagras i klartext.
+16,S226 - Krypterad inloggning,Verifiera att inloggningen sker krypterat I CM. Verifiera att inloggningen sker krypterat I Vision. Verifiera att inloggningen sker krypterat I Vision Audit. Verifiera att inloggningen sker krypterat I Omnia Flex.
+17,S227 - Behörighetsstyrning för verktyg,"Verifiera att Omnia Flex använder behörighetsstyrning. Verifiera  KMS använder behörighetsstyrning. Verifiera  Meter Tool (mätehet) använder behörighetsstyrning. Verifiera  CM använder behörighetsstyrning. Verifiera  Samtliga Visionmoduler använder behörighetsstyrning. Verifiera att åtkomst till systemet sker via tvåfaktors autentisering - Ivanti Connect Secure och behörighetsstyrning i Active Directory. Verifiera om Configuration Tool som Avance använder för att anpassa systemet behörighetsmässigt kan användas på ett felaktigt sätt
+(Från leverantörens svar på kravet: Programvaror som kan kringgå säkerhetsåtgärder t.ex. konfigurationsprogram kan enbart köras på Collection Managers applikationsservrar och skyddas genom begränsad inloggningsaccess till applikationsservrarna.)."
+18,S229 - Kryptera kommunikation,Verifiera att det inte förekommer någon okrypterad kommunikation.
+19,S230 - Krypteringsalgoritmer och kryptografiska hash-funktioner,"Verifiera genom granskning av dokumentation vilka lösningar som bygger på krypteringsteknik,."
+20,S231 - Krypteringsnycklar,Verifiera att lösningsbeskrivning detaljerar hur krypteringsnycklar hanteras.
+21,S234/S235/S236/S237 - Säkerhetslogg,Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg.
+22,S235 - Innehåll i säkerhetslogg,Säkerhetsloggen innehåller all autentisering och försök till autentisering.
+23,S236 - Logga datum och systemtid,Verifiera att alla poster i loggen innehåller datum och systemtid.
+24,S238 - Skydd av mätare,Verifiera att mätaren är skyddad mot intrång. Verifiera att mätaren är skyddad mot manipulering. Verifiera att mätaren är skyddad mot exekvering av skadlig kod.
+25,B107 - Versionshantering av webservice-gränssnitt,Verifiera att föregående version av webservice-gränssnitt går att läsa tillbaka och är kompatibelt med den nya versionen eller föregående version av ACM.
+26,S232 & B113 - Synkronisering med GE kontrollerad NTP,Ställ in fel tid i mätare. Synka mätare med systemet. Kontrollera att server web01 har inställning för att synkronisera tid med tidsserver.
+27,B76 - Storlek på händelselistan,
+28,S144 - Händelselistan,
+29,S171 & S172 - Till och frånkoppling och status av brytare från annat GE system,Verifiera att tillkoppling inte är möjligt genom integration från annat system. Verifiera att frånkoppling inte är möjligt genom integration från annat system. Verifiera att status på brytare är möjlig att se genom integration.
+30,S179 - Testmiljö,
+31,S203 - Visa version,
+32,B108 - Skicka samma info igen,Ta emot samma info från fil. Ta emot samma info från mätare.
+33,S228 - Styra tid för utloggning,Vänta 45 minuter.
+34,B109 - Konfigurationsförändring för att ändra info som integreras,Lägg till den nya parametern i exporten.
+35,S2 - Spårbara mätenheter,Kamstrup demonstrerar hur komponenter kan spåras till batch och tidpunkt för tillverkning.
+36,S3 - Spårbar kommunikationsutrustione,Kamstrup demonstrerar hur Kommunikationsutrustningar är spårbara och kan knytas minst till tillverkningsbatch och tidpunkt för tillverkning.
+37,S4 - Nytillverkat,Vi väljer att inte verifiera detta i detalj. Om problem uppstår där vi noterar att äldre komponenter används kommer det att hanteras som ett avtalsbrott.
+38,S5/B2 - Registrering av strömavbrott - Kat1,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 3-fas.
+39,S5/B2 - Registrering av strömavbrott - Kat2,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat2.
+40,S5/B2 - Registrering av strömavbrott - Kat1 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES för Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 3-fas.
+41,S5/B2 - Registrering av strömavbrott - Kat2 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat2.
+42,S22 - Mätenhetens strålningsnivå,RISE genomför mätningar.
+43,S24 - Mätenhets funktion efter bortfall av faser på Kat1,Ta bort spänning på två av tre faser.
+44,S24 - Mätenhets funktion efter bortfall av faser på Kat2,Ta bort spänning på två av tre faser.
+45,S25 - Mätenhetens gränssnitt  Kat1 1-fas,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning.
+46,S25 - Mätenhetens gränssnitt  Kat1 3-fas,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning / fas. Verifiera att det i mätarens display går att se fasernas ordningsföljd.
+47,S25 - Mätenhetens gränssnitt  Kat2,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning / fas. Verifiera att det i mätarens display går att se fasernas ordningsföljd.
+48,S26 - automatisk uppstart efter strömavbrott Kat1 - 1-fas,Verifiera att efter strömavbrott startar mätaren upp automatiskt. Använd Omnipower tool eller liknande för att kontrollera mätarens konfiguration.
+49,S116 - Skalning av miljö,Mät prestanda under normal rapporteringsdrift. Öka CPU&RAM i kluster. Mät prestanda.
+50,S117 & S217 - 50 samtidiga användare,Kör operationer med en inloggad användare. Exempelvis sökningar och exporter. Mät responstider i webbgränssnittet. Kör samma operationer med 50 samtidiga användare.  Mät responstider i webbgränssnittet.
+51,S200 - Startas automatiskt,Starta om systemet (alla applikationsservrar).
+52,S205 - Säkerhetskopiering under drift,Trigga säkerhetskopiering.
+53,S207 - Fjärruppkoppling,Anslut till GEs nätverk genom VPN tjänst. Gå till HES URL.
+54,S208 - HES från beställarens IT-arbetsplats,Anslut till HES från interna GE nätverket med GEs standard-klient.
+55,S211 - Stödja marknadsledande webbläsare,Anslut till HES via Chrome. Anslut till HES via Edge.
+56,S213 - Webserviceanrop,Kör export av data.
+57,S214 - Utbyte av data via köhanterare,Lägg upp 3-5 exporter i kön.
+58,S215 - Integrationer via filer,Lägg importfilen på importmappen.
+59,S216 - Händelsedrivna integrationer,Händelsen inträffar.
+60,S219 - Loggar för integrationer,Visa integrationsloggar i Vision Audit.
+61,S220 - Återsända information,Trigga export från HES.
+62,S233 - Tidavvikelse max 7s,Sätt tidsinställningen i en av mätarna att vara mer än 7 sek senare än övriga mätare. Trigga synk mot systemet.
+63,S28 - Livslängd Kat1,En Mätenhet ska (S28) ha en förväntad livslängd som är 15 år räknat från tidpunkten då den levererats till GE.
+64,S29 - inget behov av batteribyte,Mätaren innehåller inget batteri. Godkänns mot avtal.
+66,S33 - Inmating och uttag - aktiv och reaktiv / 15 min (Mätartest),Verifiera med Kamstrups verktyg för lokal konfiguration med optiskt öga att värden för intag av aktiv och reaktiv energi lagras i mätaren. Verifiera med Kamstrups verktyg för lokal konfiguration med optiskt öga att värden för uttag av aktiv och reaktiv energi lagras i mätaren.
+67,S33 - Inmating och uttag - aktiv och reaktiv / 15 min (HES),Verifiera från HES att värden för intag av aktiv och reaktiv energi lagras i mätaren. Verifiera från HES att värden för uttag av aktiv och reaktiv energi lagras i mätaren.
+69,S36 - Konfigurera värden för händelser från HES,Verifiera att det går att byta profil i HES (tex från vanlig mätare till solcellsmätare).
+70,S37 - Innehåll för händelse,I HES verifiera att varje händelse har ett händelse ID. I HES verifiera att det finns ett löpnummer för varje händelse. I HES verifiera att det finns en tidsstämpel  för varje händelse. I HES verifiera att det finns ett tillverkningsnummer för mätenheten på varje händelse.
+71,S38 - Grid snapshot - Standardvärden,Provocera fram en överspänning på en av mätarens faser och verifiera att händelser skickas momentant till HES. Verifiera att korrekt register (OBIS-koder) tillsammans med händelsen. Verifiera att det i Optiskt öga går att se grid snapshot för händelsen felaktig effektriktning. Verifiera att det i Optiskt öga går att se grid snapshot för händelsen spänningshöjning.
+73,S188 - Korrekt kommunikation,Granska lösningsdokumentation och verifiera att standard efterföljs.
+74,S246 - Dokumentation av interna gränssnitt,Granska lösningsbeskrivningen.
+75,S253 - Rutin för säkerhetsuppdateringar,Granska processer för säkerhetsuppdateringar.
+76,S254 - Skydd i djupled,Granska OMNIA flex dokumentationen.
+77,S257 - Ny nyckel/lösenord,Exporta nyckel för mätaren från KMS. Koppla upp mot mätaren med den exporterade nyckeln med MeterTool. Byt nyckel för mätaren i KMS. Exportera nycklar för mätaren igen från KMS. Koppla upp mot mätaren med MeterTool igen med de gamla kryptonycklarna. Importera nya nycklarna i MeterTool. Koppla upp mot mätaren med MeterTool igen med de nya kryptonycklarna.
+78,S259 - Beroenden mot andra system,Stäng exempelvis av kopplingen mellan Collection Manager och OMNIA Flex.
+79,B110 - Katalogtjänst för behörighetsstyrning,Logga in med ett aktivt AD konto. Byt behörighet på en användare genom ACM. Logga in med den användaren.
+80,B111 - Sign on-inloggning,Gå till ACMs URL.
+81,S539 och S540 - Ta fram testplan,Leverantören ansvarar för att vid projektstart ta fram en detaljerad testplan som granskas av Beställaren. Utifrån synpunkter som framkommer vid Beställarens granskning ska (S539) Leverantören komplettera testplanen.
+82,S541 - Testplans innehåll,"Testplanen ska (S541) minst innehålla: 
+-Beskrivning av testprocessen enligt innehåll i figur 1 i punkt 3.2, d.v.s. beskrivning av testplanering, förberedelser, genomförande och avslut av test. 
+-En beskrivning som steg för steg ger instruktion för genomförande och underlag för utvärdering av testresultat. 
+-Beskrivning, bedömning och beslut kring åtgärder av rapporterade fel samt deras allvarlighetsgrad."
+83,S542 - Uppdatering av testplan,Leverantören ska (S542) kontinuerligt uppdatera testplanen med de överenskomna förändringar som sker.
+84,S543 - Ta fram testfall,"Leverantören ska (S543) utarbeta testfall baserade på avtalade krav, d.v.s. avtalad Specifikation såvida ej annat avtalats."
+85,S544 - Testfalls innehåll,Varje testfall ska (S544) innehålla en detaljerad instruktion för genomförande och underlag för utvärdering av testresultat för berörd funktion.
+86,S545 - Testverktyg,Leverantören ska (S545) använda ett av Beställaren anvisat verktyg för att följa Beställarens rapportering av testresultat. Leverantören ansvarar för att i verktyget registrera sin återkoppling och status på Beställarens rapporterade fel och synpunkter. Beställaren använder idag ReQtest i felhanteringsprocessen.
+87,S546 - Beställarens testfall,Beställaren ska(S546) ha rätt att utarbeta egna och nya testfall baserade på Specifikation. Nya testfall kan skapas fram till Slutgodkännande av Leveransprojektet.
+88,S547 - Utförande av testfall,"Leverantörer ska (S547) ha möjlighet i de fall det bedöms lämpligt enligt överenskommelse med Beställaren, överlåta till Beställaren att utföra vissa testfall i punkt 3.2.5."
+89,S548 - Testrapport,"Leverantören ska (S548) upprätta en testrapport för de testfaser som Leverantören ansvarar för under Leveransprojektet, enligt figur 1 i punkt 3.2."
+90,S549 - Testrapports innehåll,"Testrapporten ska (S549) minst innehålla: 
+-Testfall som körts -Resultat av testerna -Ev. kvarstående fel -Ev. kvarstående testfall -Förslag på åtgärder."
+91,S550 - Godkännande av testrapport,Leverantören ska (S550) överlämna testrapporten till Beställaren för kontroll och godkännande.
+92,S551 - Godkännande som startkriterie,Efterföljande test enligt figur 1 under punkt 3.2 ska (S551) ej påbörjas utan att testrapporten från föregående testfas är godkänd av Beställaren.
+93,S552 - Krav på FAT,Leverantören ska (S552) före leverans av Mätsystemet genomföra en systemtest/FAT (FAT – Factory Acceptance Test) hos Leverantören.
+94,S553 - Deltagande på FAT,Leverantören ska (S553) bereda Beställaren eller dennes representant(er) möjlighet att medverka som observatör vid genomförandet av FAT.
+95,S554 - Redovisa förändringar efter FAT,"Modifieringar av Mätsystemet utförda mellan FAT och installation hos Beställaren ska (S554) redovisas av Leverantören,."
+96,S555 - Omtest efter modifieringar,Leverantören ska även (S555) redovisa möjliga konsekvenser och påverkan på andra funktioner från gjorda modifieringar. Beställaren har rätt att kräva upprepning av de tester som gjorts i FAT om sådana modifieringar utförs.
+97,S556 - Krav vid leverans och installation i testmiljön,"Leverantören ska (S556) vid leverans och installation av Mätsystemet i Beställarens testmiljö: 
+-installera, -konfigurera/parametersätta, -eventuellt migrera strukturdata, -genomföra test med liknande omfattning som FAT samt inkluderat systemintegrationstest (SIT), samt -genomföra felrättningar och omtester."
+98,S557 - Omfattning UAT,Beställarens UAT (User Acceptance Test) ska (S557) omfatta test och verifiering av samtliga krav enligt Specifikationen om inte annat överenskommes.
+99,S558 - Utbildning inför UAT,Leverantören ska (S558) genomföra nödvändig utbildning samt överlämna relevant dokumentation enligt punkt 5 innan Beställarens UAT påbörjas.
+100,S559 - Support under UAT,Leverantören ska (S559) närvara hos Beställaren och vara behjälplig då Beställaren genomför UAT.
+101,S560 - Krav vid leverans och installation i produktionsmiljönmiljön,"Leverantören ska (S560) vid installation och driftsättning av Mätsystemet i Beställarens produktionsmiljö: 
+-installera, -eventuellt konfigurera/parametersätta, -eventuellt migrera strukturdata, -driftsätta, -verifiera och testa Mätsystemet inklusive integrationer i produktionsmiljön, samt -genomföra felrättningar och omtester."
+102,S561 - Support under Produktionstest,Leverantören ska (S561) närvara hos Beställaren och vara behjälplig då Beställarens genomför produktionstest.
+103,S562 - Fel i produktionsmiljön,Om utfallet av produktionstestet utvisar att någon del av Mätsystemet inte är riktigt driftsatt eller i övrigt inte fungerar som avtalat ska (S562) Leverantören så snart som möjligt vidta sådana åtgärder som erfordras för att den felande delen ska (S563) fungera i produktionsmiljön.
+104,S563 - Åtgärd vid fel i produktionsmiljön,Om utfallet av produktionstestet utvisar att någon del av Mätsystemet inte är riktigt driftsatt eller i övrigt inte fungerar som avtalat ska (S562) Leverantören så snart som möjligt vidta sådana åtgärder som erfordras för att den felande delen ska (S563) fungera i produktionsmiljön.
+105,S564 - Pilot,"Leverantören ska (S564) efter Beställarens godkända produktionstest genomföra en Pilot inkluderande provdrift i produktionsmiljö, enligt Bilaga B.3 Leverans- och Införandeavtal."
+106,S565 - Funktion under pilot,Mätsystemet ska (S565) fungera operativt i Beställarens IT-tekniska miljö utan väsentliga driftstörningar under provdriften.
+107,S566 - Längd på pilot,Provdriften ska (S566) pågå i 4 veckor.
+108,S567 - Avbrytande av testfas,"Om Lösningen, eller del därav vid test eller provdrift, enligt Beställarens sakliga bedömning, baserat på testfall/testprocess, uppvisar sådana brister att testen eller provdriften inte kan fullföljas med tillfredsställande kvalitet, kan Beställaren kräva att testen eller provdriften avbryts. Leverantören ska (S567) då åtgärda bristerna innan testen eller provdriften återupptas."
+109,S568 - Modifieringar i databas,"Leverantören ska (S568) tillåta att Beställaren har rätt att utföra ändringar i databaser, lägga in nya objekt, definiera ny hårdvara med kommunikation etc., under förutsättning att detta sker enligt av Leverantören lämnade anvisningar skriftligt eller via e-post."
+110,S569 - Rätt till ny pilot,Vid en av Leverantören avbruten Provdrift ska (S569) Beställaren vara berättigad till en ny fullständig Provdrift.
+111,S570 - Modifieringar under pilot,Modifiering av Mätsystemet under pågående Provdrift ska (S570) endast få ske efter särskild överenskommelse mellan Beställaren och Leverantör.
+112,B501 - Iterativt arbetssätt,"Beställaren förordar att implementation och installation av Mätsystemet, om möjligt och lämpligt, ska (B501) ske på ett iterativt sätt av Leverantören. Med detta menas att Mätsystemet levereras, installeras och testas i ett mindre antal delleveranser."
+113,B502 - Integrationstest under FAT,"Leverantören ska (B502), om möjligt, under FAT även genomföra systemintegrationstest (SIT – System Integration Test) där gränssnitten mellan Leverantörens Mätsystem och Beställarens system och integrationsplattform testas."
+141,S89 - Mätenhet i HES,"Verifiera att det går att installera ny Mätenhet - Kat 1, 1 fas. Verifiera att det går att installera ny Mätenhet - Kat 1, 3 fas. Verifiera att det går att installera ny Mätenhet - Kat 2. Byt mätare av typ Kat 1, 1 fas. Byt mätare av typ Kat 1, 3 fas. Byt mätare av typ Kat 2. Ta ner mätare av typ Kat 1, 1 fas. Ta ner mätare av typ Kat 1, 3 fas. Ta ner mätare av typ Kat 2."
+142,S90 - Kommunikationsutrustning i HES,I köpt lösning ingår kommunikationsutrustningen som en del av mätaren. Det byts inte separat.
+143,S91 - Data i HES,"Verifiera att strukturdata kan hanteras i HES. (t.ex. Anläggnings-ID, Mätenhet). Verifiera att Mätvärden kan hanteras i HES (Mätvärden med t.ex. ID-nummer, status, tidsstämpel). Verifiera att Händelser kan hanteras i HES (Händelse med t.ex. Händelse-ID, tidpunkter, Larm)."
+144,S92 - Register/OBIS-koder,Verifiera att det finns olika profiler att välja på som styr vilka OBIS koder som läses in till HES. Byt profil i HES.
+145,S93 - Strukturdata i HES,Verifiera att det går att manuellt registrera strukturdata i HES.
+147,S95 - Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden skickas automatiskt till HES. Verifiera att saknade mätvärden kan hämtas manuellt till HES.
+148,S95 - Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden automatiskt skickas till HES av mätaren. Verifiera att saknade mätvärden manuellt kan hämtas från mätaren.
+149,S94 - Automatisk insamling av Mätvärden,Verifiera att mätsystemet kan konfigureras för regelbunden automatisk insamling av Mätvärden från Mätenheter till HES.
+150,S96 - Begära mätvärden från utvalda mätare,Verifiera att det är möjligt att manuellt begära in momentana  mätvärden från enstaka mätenheter. Verifiera att det är möjligt att manuellt begära in tidsperiodiska mätvärden från enstaka mätenheter. Verifiera att det är möjligt att manuellt begära in momentana  mätvärden från utvalda mätenheter. Verifiera att det är möjligt att manuellt begära in tidsperiodiska mätvärden från utvalda mätenheter. Verifiera att det är möjligt att manuellt begära in momentana  mätvärden fråndefinierad grupp av mätenheter. Verifiera att det är möjligt att manuellt begära in tidsperiodiska mätvärden fråndefinierad grupp av mätenheter.
+151,S97 - schemalägga Jobb för mätinsamling,Leverantörens svar på kravet under upphandlingen: Systemet är baserat på push av data. Därför skickar alla OMNIA e-meter automatiskt värden in till HES. Det behövs därför inga planerade jobb för insamling av data. Önskas andra data än de automatiskt inhämtade registren finns det funktionalitet i den erbjudna HES-lösningen för upprättande och planering av sådana jobb.
+152,S98 - Flera insamlingsjobb samtidigt,Verifiera att två manuella hämtningar kan genomföras samtidigt.
+153,S99 - Manuella Jobb för mätinsamling,Verifiera att en användare i HES kan skapa och starta manuella Jobb för mätinsamling.
+154,B55 - turordningen för olika sätt att samla in Mätvärden,"Leverantörens svar från upphandlingen:
+Differentiering av pushintervall och starttidpunkt kan användas. Då data skickas in via push-teknik styr mätarna själva ordningsföljden på datasändningen utifrån en randomiseringsalgoritm."
+155,B56 - Insamling i olika tidsintervall,"Leverantörens svar från upphandlingen:
+Differentiering av pushintervall och starttidpunkt kan användas. Då data skickas in via push-teknik styr mätarna själva ordningsföljden på datasändningen utifrån en randomiseringsalgoritm."
+156,B57 - Repetera kommunikationsförsök,"Leverantörens svar från upphandlingen:
+Data skickas till HES via PUSH-teknik. Därför kommer OMNIA e-meter att försöka att skicka data tills det lyckas. På så vis löser tekniken behovet av detta krav."
+157,B58 - Konfigurerara kommunikationsförsök,"Leverantörens svar från upphandlingen:
+Data skickas till HES via PUSH-teknik. Därför kommer OMNIA e-meter att försöka att skicka data tills det lyckas. På så vis löser tekniken behovet av detta krav."
+158,S100 - Behandling av manuellt insamlade mätvärden,Verifiera att HES kan ta emot och behandla Mätvärden som insamlats på manuell begäran. Verifiera att manuellt insamlade mätvärden behandlas på samma sätt som automatiskt insamlade.
+159,S101 - Alla mätvärden ska märkas med status,Verifiera att alla mätvärden märks med status för värdet.
+160,"S6 - Last Gasp, Kat1, 1 fas","Verifiera att mätare Kat 1, 1 fas har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+162,"S44 - Energivärden lagras 40 dygn Kat1, 3 fas","Verifiera att Energivärdena (15-minutersvärden)  lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+163,"S45 - PQ värden lagras 7 dygn, Kat1 - 3 fas",Verifiera att PQ-värdena lagras minst i 7 dygn i Mätenheterna av typ Kat 1 3 fas.
+164,"S46 - Avbrottshändelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att Avbrottshändelse lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+165,"S47 - PQ händelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att PQ-händelser ska lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+166,"S48 - Övriga händelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att Övriga Händelser lagras minst i 40 dygn i Mätenheterna av typen Kat 1, 3 fas."
+167,"S49 - Registrera tid i Normaltid, Kat1 - 3 fas","Verifiera att Mätenheterna registrerar tid i Normaltid (UTC+1) i mätare av Kat 1, 3 fas."
+168,S50 - Högst avvika med 7 sek,"Verifiera mätenhetens tid för minst 10 mätare, innan sync med HES genomförs. Verifiera mätenheternas tid efter sync med HES genomförs."
+169,"S6 - Last Gasp, Kat1, 3 fas","Verifiera att mätare Kat 1, 3 fas har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+170,"S6 - Last Gasp, Kat2","Verifiera att mätare Kat 2 har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+171,S44 - Energivärden lagras 40 dygn Kat2,Verifiera att Energivärdena (15-minutersvärden)  lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+172,"S45 - PQ värden lagras 7 dygn, Kat2",Verifiera att PQ-värdena lagras minst i 7 dygn i Mätenheterna av typ Kat 2.
+173,"S46 - Avbrottshändelser lagras 40 dygn, Kat2",Verifiera att Avbrottshändelse lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+174,"S47 - PQ händelser lagras 40 dygn, Kat2",Verifiera att PQ-händelser ska lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+175,"S48 - Övriga händelser lagras 40 dygn, Kat2",Verifiera att Övriga Händelser lagras minst i 40 dygn i Mätenheterna av typen Kat 2.
+176,"S49 - Registrera tid i Normaltid, Kat2",Verifiera att Mätenheterna registrerar tid i Normaltid (UTC+1) i mätare av Kat 2.
+177,S102 - Rapporter utifrån status,Verifiera att status kommer med för mätvärden i de rapporter vi genererar.
+178,S103 - Energivärdena lagras 13 mån,Lägg in ett gammalt värde i HES (äldre än 13 månader. Verifiera att värdet tas bort automatiskt.
+179,S104 - PQ-värdena lagras 60 dygn,Lägg in ett gammalt PQ värde i HES. Verifiera värdet ligger kvar > 60 dygn senare.
+180,S105 - Kommunikationsmetadata lagras 36 mån,Lägg in ett gammalt värde. Verifiera att det finns kvar i upp till 36 månader senare.
+181,B59 - Lagring av Mätvärden i HES,"För mätvärden, verifiera att lagring av data kan göras med följande tidsintervall:
+- Minutvärden (1–15 minuter)
+- Timvärden
+- Dygnsvärden
+- Månadsvärden."
+182,S106 - Skapa mätserier för tidsintervall,"Verifiera att det är möjligt att skapa mätserier för ett valt tidsintervall för:
+- Minutserie (1–15 minuter). Verifiera att det är möjligt att skapa mätserier för ett valt tidsintervall för:
+- Timserie. Verifiera att det är möjligt att skapa mätserier för ett valt tidsintervall för:
+- Dygnsserie. Verifiera att det är möjligt att skapa mätserier för ett valt tidsintervall för:
+- Månadsserie."
+183,S107 - Positionskoordinater,Verifiera att det i HES går att lagra och presentera positionskoordinater för Mätenhet.
+184,S108 - Konfigurera händelser med  gränsvärden,"Verifiera att det är möjligt att från HES konfigurera Händelser för olika gränsvärden i Mätenhetens register. Den nya konfigurationen ska kunna distribueras till Mätenheterna. Ändra konfigaration för två olika parametrar - t ex temperatur, och skicka till mätenheten."
+185,S109 - Händelse-ID till händelsetext,Verifiera att händelse-ID presenteras som en läsbar text/förklaring för användaren i HES.
+186,S110 - Händelser lagras 13 mån,Be Kamstrup visa hur systemet konfigurerats för att lagra händelser i minst 13 månader.
+187,B60 -  sätta turordningen för olika exporter,Användare ska (B60) ha möjlighet att sätta turordningen för olika exporter från HES. Detta gäller både manuella och schemalagda exporter.
+188,S111 - Exportera rapporter och data,"Verifiera att framsökta mät- och strukturdata samt färdiga rapporter kan exporteras till ett valfritt standardiserat textfilsformat, exempelvis csv."
+189,S112 - Skapa och schemalägga Jobb för mätinsamling,Verifiera att en Användare i HES kan skapa och schemalägga insamlingsjobb.
+190,S113 - Skapa och starta manuella exportjobb,Verifiera att en Användare i HES kan skapa och starta manuella exportjobb.
+191,S114 - Importera strukturdata,"Verifiera att det i HES går att importera strukturdata från ett valfritt standardiserat textfilsformat, exempelvis csv."
+192,S115 - Importera Mätdata,"Verifiera att det finnas funktionalitet i HES för att kunna importera Mätdata från ett valfritt standardiserat textfilsformat, exempelvis csv."
+193,S119- Energivärden exporteras inom 30 sek,
+194,B62 - Energivärden till annat system inom 10 sek,Verifiera att engergivärdena levereras från HES enligt överenskommet exportintervall.
+195,S120 - PQ-värden exporteras inom 30 sek,
+196,B63 - PQ-värden till annat system inom 10 sek,
+197,S124 - Sammanställa statistik för mätvärden,Verifiera att det i HES finns funktionalitet för att sammanställa statistik över Mätvärden och visa detta grafiskt och i tabellform. Verifiera att det i HES finns funktionalitet för att sammanställa statistik över Mätvärden och visa detta grafiskt och i tabellform.
+198,B66 - Rapport - Rubrik som motsvarar attributet,Verifiera att attribut som väljs att ingå i en rapport har en rubrik som motsvarar attributet. T.ex. en rubrik ”adress” när det är adressdata som ingår i rapporten.
+199,B67 - Fördefinierade rapporter,Verifiera att det finns fördefinierade rapporter i HE.
+200,S125 - Skapa egna rapporter,Verifiera att det är möjligt för Användaren att själv skapa rapporter och definiera innehåll i HES.
+201,S126 - Presentera mätarställning för tidpunkt,Verifiera att det i HES går att presentera en Mätarställning för en viss tidpunkt.
+202,S127 - Förbrukningsvärden för tidsintervall,"Verifiera att det i HES går att beräkna, lagra och presentera förbrukningsvärden för olika tidsintervall. Förbrukning beräknas som skillnaden mellan Mätarställningar vid olika tidpunkter."
+203,S128 - Användargränssnitt enligt standard,"Användargränssnittet ska (S128) vara ändamålsenligt, effektivt och ge god tillfredsställelse i användningen, såsom definierat i den internationella standarden ISO 9241-11 eller likvärdig."
+204,S121 - PQ-händelser exporteras inom 1 min,
+205,S122 - Avbrottshändelser exporteras inom 10 sek,
+206,S123 - Kommunikationsmetadata exporteras inom 10 sek,
+207,B64 - Avbrottshändelse till annat system inom 1 sek,Verifiera att avbrottshändelser skickas till LSP scada. Verifiera att avbrottshändelser skickas till Vision Task.
+208,B65 - Kommunikationsmetadata till annat system inom 1 sek,
+209,S129 - Responsivt användargränssnitt,Verifiera att HES gränssnittet anpassar sig efter skärmens storlek och upplösning.
+210,S130/S131 - Dynamiska fält,Verifiera att fälten i Fälten i HES är dynamiska och anpassade för den information som kommer att visas upp för Användaren.
+211,B68 - Info om användare,"Verifiera att HES har en vy där information presenteras om systemets Användare, t.ex. användar-id, namn, roll och behörighet."
+212,S132 - Formulärvyer,Verifiera att det finns formulärvyer för presentation och inmatning/modifiering av strukturdata.
+213,S133 - Formulärvyers upplägg,Verifiera att det i formulären framgår hur ingående delar i strukturen hänger samman hierarkiskt.
+214,S134 - Vy för mätvärden,Verifiera att det i HES finnas vyer där Mätvärden från en eller flera Mätenheter presenteras i tabellform.
+215,B69 - Händelser och Larm i kartvy,Verifiera att händelser och larm visas i en kartvy där det ska vara möjligt för Användaren att filtrera och söka på händelsetyp och visst tidsspann. Verifiera att det går att filtrera och söka på händelsetyper. Verifiera att det går att filtrera och söka inom valda tidsspann.
+216,S135 - Tidsintervall för mätvärden,Verifiera att det finns funktionalitet för att välja olika tidsintervaller och tidsupplösning för de Mätvärden som presenteras.
+217,B70 - Mätpunkt med fritextfält,Verifiera att det för varje Mätpunkt finns noteringsfält där Användaren kan lägga in fritext.
+218,B71 - Hjälpfunktion,Verifiera att det i HES användargränssnitt finns en hjälpfunktion som hjälper Användaren att förstå hur arbetsuppgifter utförs med hjälp av systemets funktionalitet.
+219,S136 - Ställa in antalet decimaler,Verifiera att det är möjligt att konfigurera antalet decimaler som ska visas för ett mätvärde.
+220,S137 - Registrering av mätvärde,"Verifiera att Mätvärdet som registreras och lagras i HES är oförvanskat, dvs. exakt samma värde som registrerats av Mätenheten.
+Begär ett momentanväder från mätaren och jämför det som visas på mätaren med den information som kommer in till HES."
+221,S138 - Visning av mätvärde,Verifiera att samtliga Mätvärden som kan samlas in från Mätenheten kan visas i HES. Verifiera att samtliga Mätvärden som kan samlas in från Mätenheten kan visas i HES.
+222,S139 - Händelser till larmlista,"Ställ om klockan i mätaren. Trigga självdiagnos och generera en störning under själva diagnosen. Bryt strömmen på en fas. Bryt strömmen på flera faser. Koppla produktion till mätaren, och mätpunkten i HES har en prfil för enbart konsumtion. Skruva ur en spänningssäkring på mätartavlan så att en händelse genereras i mätaren. Skruva loss ""nollan"" så att en händelse genereras i mätaren. Använd supermagnet vid mätaren för att orsaka en händelse i mätaren. Sätt ett lågt gränsvärde i mätaren???. För både kat 1 och kat 2? Generera hög ström på mätare så händelse skapas. För både kat 1 och kat 2? Generera hög effekt på mätare så händelse skapas. Generera varmgång?."
+223,B72 - Rensa mätvärden och loggar,Verifiera att HES innehåller automatiska funktioner för att rensa Mätvärden och loggningar utefter uppsatta regler. Detta för att undvika att mängden av lagrad data (historiska Mätvärden och Händelseloggar) successivt växer.
+224,B73 - Filtrering och sortering i larmlista,Verifiera att en Användare har möjlighet att filtrera och sortera i larmlistan. Verifiera att en Användare har möjlighet att filtrera och sortera i larmlistan.
+225,B74 - Administrera larmvärden,"Verifiera att en Användare med rätt behörighet ska har  möjlighet att administrera larmvärden t.ex. sätta larmintervall, aktivera och inaktivera Larm. Verifiera att en Användare utan behörighet inte har  möjlighet att administrera larmvärden t.ex. sätta larmintervall, aktivera och inaktivera Larm."
+226,B75 - Kvittera larm,"Verifiera att användare i HES kan kvittera ett Larm i larmlistan med olika statustyper t.ex. godkänna, stänga och radera."
+227,S140 - Larminformation,"Verifiera att varje Larm ska innehåller information om  Händelse-ID som går att sortera och söka på. Verifiera att varje Larm ska innehåller information om  löpnummer, som går att sortera och söka på. Verifiera att varje Larm ska innehåller information om   tidsstämpel, som går att sortera och söka på. Verifiera att varje Larm ska innehåller information om  tillverkningsnummer på Mätenhet som går att sortera och söka på. Verifiera att varje Larm ska innehåller information om  Anläggnings-ID som går att sortera och söka på. Verifiera att varje Larm ska innehåller information om  anläggningsadress som går att sortera och söka på."
+229,S142 - Händelseinformation,"Verifiera att varje händelse innehåller information om  Händelse-ID som går att sortera och söka på. Verifiera att varje händelse innehåller information om  löpnummer, som går att sortera och söka på. Verifiera att varje händelse innehåller information om   tidsstämpel, som går att sortera och söka på. Verifiera att varje händelse innehåller information om  tillverkningsnummer på Mätenhet som går att sortera och söka på. Verifiera att varje händelse innehåller information om  Anläggnings-ID som går att sortera och söka på. Verifiera att varje händelse  innehåller information om  anläggningsadress som går att sortera och söka på."
+231,S145 - Sortering av händelser,Verifiera att det i HES går att sortera Händelser från Mätenheten kronologisk ordning utifrån Händelsens tidsstämpel.
+232,S146 - Översiktsbild för mätvärdesinsamling,Verifiera att finns funktionalitet i HES för att övervaka mätinsamlingen med hjälp av t.ex. en översiktsbild som visar insamlade och saknade Mätvärden vid en valbar tidpunkt.
+233,B77 - Dynamisk kartvy,Verifiera att Presentation av data i karta är dynamiskt anpassningsbart av Användaren t.ex. visning utifrån status eller geografiskt område.
+234,B78 - Följa mätinsamlingsprocessen,Verifiera att det finns funktionalitet i HES för att följa mätinsamlingsprocessen. t.ex. att de är pågående eller avslutade insamlingsjobb.
+235,B79 - Historiska insamlingsjobb,Verifiera att  det  finns funktionalitet i HES för att titta på historiska insamlingsjobb under en vald tidsperiod.
+236,B80 - Kommunikationsövervakning,Verifiera att det finns kommunikationsövervakning av Mätenheter och infrastruktur.
+237,B81 - Upptäcka mätare med kommunikationsproblem,Verifiera att det i HES är möjligt för Användaren att upptäcka och se enskilda Mätenheter som har kommunikationsproblem.
+238,B85 - Visa senaste mätvärde och tidpunkt,Verifiera att senaste Mätvärdet och tidpunkten för kommunikation med Mätenheten visas i HES. Verifiera att senaste Mätvärdet och tidpunkten för kommunikation med Mätenheten visas i HES.
+239,B86 - historik för infrastrukturens kommunikation,Verifiera att det i HES går att se minst en månads historik för infrastrukturens kommunikation för enskild Mätenhet.
+240,S51 - Självdiagnos,Verifiera att Mätenheterna innehåller en självdiagnos som detekterar olika typer av felaktigheter.
+241,S52 - Kundgränssnittet ska följa standard,"Verifiera att Kundgränssnittet i Mätenheten följer standarden beskriven i ”P1 Companion Standard, version 5.0.2, 2016-02-26” eller likvärdigt."
+242,S53 - Spec för kundgränssnittet,"Verifiera att förutom att det format, datatyp och omfattning ska (S53) vara enligt bilaga 3 Förslag på datapresentation i ”Branschrekommendation för lokalt Kundgränssnitt för elmätare"", utgivet av Energiföretagen - Swedenergy – AB version 2.0 2019-12-03."
+243,S54 - ID ska ksickas ut via kundgränssnittet,Verifiera att Mätarleverantörens ID på Mätaren (motsvarar Equipment identifier i 7.1 P1 Companion Standard) ska (S54) skickas ut via Kundgränssnittet.
+244,S55 - Aktivering och deaktivering av Kundgränssnittet ska kunna göras lokalt,Verifiera att aktivering och deaktivering av Kundgränssnittet ska (S55) kunna göras lokalt från Mätenheten av Beställaren.
+245,S56 - Kundgränssnitt är som default deaktiverat,Verifiera att vid leverans från fabrik är Mätenhetens Kundgränssnitt vara deaktiverat.
+246,S57 - Brytare kan hanteras lokalt,Verifiera att brytaren kan manövreras lokalt på Mätenheten.
+247,S58 - Kumulativt räkneverk,Verifiera att Mätenheten är försedd med ett kumulativt räkneverk och visar minst 7 heltalssiffror samt 3 decimalsiffror.
+248,S59 - Mätenhetens display - Kat1 1 fas,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+249,S59 - Mätenhetens display - Kat1 3 fas,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+250,S59 - Mätenhetens display - Kat2,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+251,S60 - Korrekt mätarställnigng,"Verifiera att Mätarställningen på Mätenheten alltid överensstämmer med sifferkapaciteten på insamlat Energivärde och displayen, även om Mätarställningen varvas."
+252,S61 - Serviceport för konfiguration,Verifiera att det finns funktionalitet för att lokalt konfigurera Mätenheten via serviceport eller motsvarande.
+253,S62 - Konfiguration från fabrik,Verifiera att Mätenheterna är komplett konfigurerade enligt Beställarens krav från fabrik.
+254,S141 - Presentation av händelser,"Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+1. Tid i mätenhetens klocka förändrats utifrån det konfigurerade tidsintervallet. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+2. Om tiden i Mätenhetens klocka skiljer sig från tiden i HES. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+3. Avvikelse vid självdiagnos. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+4. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare (gäller endast Kategori 1). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+5. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare med kommando från HES 
+(gäller endast Kategori 1). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+6. Misslyckad till- eller frånkoppling via Mätenhetens brytare (gäller endast Kategori 1). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+7. Strömavbrott i en eller flera faser. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+8. Spänning saknas på fas. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+9. Långvarig underspänning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+10. Långvarig överspänning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+11. Kortvarig överspänning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+12. Kortvarig underspänning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+13. Obalans spänning mellan faser (gäller ej enfasmätare). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+14. Felaktig effektriktning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+15. Ström utan spänning. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+16. THD i spänning överskrider inställt gränsvärde. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+17. THD i ström överskrider inställt gränsvärde. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+18. Bortfall av neutralledare. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+19. Fel fasföljd (gäller ej enfasmätare). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+20. Magnetisk åverkan. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+21. Öppen lucka för Kommunikationsmodul. Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+22. Öppen lucka för anslutningar  (kombinera med att det inte finns AO på mätaren för att det ska bli larm). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+1. ”First Breath” från Mätenhet (B16). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+2. Mjukvara mottagen (B17). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+3. Mjukvaruverifiering – misslyckad (B18). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+4. Mjukvaruverifiering – lyckad (B19). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+5. Mjukvaruuppdatering – misslyckad (B20). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+6. Mjukvaruuppdatering – lyckad (B21). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+7. Ändring av parametrar (B22). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+8. Kommunikationsfel (B23). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+9. Temperatur överskrider inställt gränsvärde (B24). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+10. Elnätets frekvens över- eller underskrider inställda gränsvärden (B25). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+11. Effektfaktor överskrider inställt gränsvärde per fas (B26). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+12. Vektordiagram spänning och ström per fas (B27). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+13. Hög ström överskrider inställt gränsvärde per fas (B28). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+14. Hög effekt överskrider inställt gränsvärde per fas (B29). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+15. Totalt effektuttag överskrider inställt gränsvärde (B30). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+16. Identifierad anslutning som kan orsaka varmgång (B31). Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista: 
+17. Vid varmgång i anslutning (B32)."
+255,S147 - Visning av PQ värden,Verifiera att det i HES finns möjlighet att analysera och visualisera PQ-värden i t.ex. grafer och staplar.
+256,S148 - Tidstämpel för mätvärde,Verifiera att samtliga mätvärden (PQ) tidstämplas med Aktuell tid då det inkom till HES. Verifiera att samtliga mätvärden (energi) tidstämplas med Aktuell tid då det inkom till HES.
+257,S149 - Klocka i HES,"Verifiera att HES innehåller en klocka som visar Aktuell tid i timmar, minuter och sekunder."
+258,S150 - Presentera normaltid/aktuell tid,"Verifiera att presentationer i HES på bildskärm, rapporter m.m. valbart kan visas i Normaltid eller Aktuell tid."
+259,S151 - Kalender med aktuell tid,"Verifiera att HES innehåller en kalender som visar Aktuell tid i år, månad och dag."
+260,S152 - Välja datum med kalenderfunktion,Verifiera att det där det finns behov av att välja datum i HES görs detta genom en tid- och kalenderfunktion.
+261,S153 - Normaltid för mätserier,Verifiera att det internt i HES är svensk Normaltid som gäller för alla mätserier.
+262,S154 - Tid i svenskt format,"Verifiera att HES tid visas i svenskt format (HH:MM:SS, H=timme, M=minut, S=sekund)."
+263,S155 - Kalender i svenskt format,"Verifiera att HES kalender visas i svenskt format (ÅÅÅÅ-MM-DD, Å=år, M=månad, D=dag)."
+264,S156 - Ingen påverkan av sommar/vintertid,"Verifiera att omställning mellan sommar- och vintertid inte ge konsekvenser beträffande t.ex. mätvärdeslagring, mätvärdespresentation, Händelse- och larmhantering i HES."
+267,S159 - Sökfunktion med filtrering,"Verifiera att det finns en sökfunktion för utsökning av data i HES där det går att skapa sökningar med hjälp av filtrering på en eller flera inparametrar.
+T.ex. Anläggnings-ID, EAN-nummer, Mätpunkter, adresser och mätartyp."
+268,S160 - Sökbar data,"Verifiera att strukturdata kan sökas ut ur HES databas. Verifiera att mätvärden, varvid sökning ska kunna ske på valfri tidsperiod – definierar begränsning av tiden för sökt mätserie,  kan sökas ut ur HES databas. Verifiera att händelse kan sökas ut ur HES databas. Verifiera att larm kan sökas ut ur HES databas."
+269,S161 - Söka på en delmängd,Verifiera att det vid sökning går att söka på en delmängd (med hjälp av ”wildcard”) av den informationen som eftersöks.
+270,"S162 - Kopiera, klippa och klistra","Verifiera att det är möjligt för Användaren att kopiera, klippa ut och klistra in data i HES samtliga formulär och fält för inmatning."
+271,B87 - kopiera statiska fält,"Verifiera att det går att kopiera statiska fält i HES som t.ex. rubriker, status, svar på Händelser i systemet."
+272,B88 - markera flera objekt och ge kommando,Verifiera att det går att markera flera objekt (t.ex. i en larmlista) och därefter ge ett kommando (t.ex. ändra eller radera) som då utförs på alla markerade objekt.
+273,S163/B89 - Kräv ytterligare bekräftelse,"Verifiera att kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) kräver ytterligare bekräftelse innan de utförs. Verifiera att kommandon som inte får alvarliga konsekvenser inte kräver ytterligare bekräftelse innan de utförs."
+274,B90 - Massradering,Verifiera att det i HES finns en funktion för att genomföra massradering av övergripande strukturdataobjekt så att alla kopplade relationer också raderas. T.ex. att detta genomföras via grupptillhörighet.
+275,S164 - Konfigurera mätenhet från HES,Verifiera att samtliga parametrar som går att konfigurera av Beställaren i Mätenheten går att konfigureras fjärrstyrt från HES.
+276,S165 - Registrera förändringar med unikt ID,"Verifiera att HES registrerar förändringar i Mätsystemet med ett unikt ID för spårbarhet för konfigurering i Mätenhet. Verifiera att HES registrerar förändringar i Mätsystemet med ett unikt ID för spårbarhet för uppgradering av mjukvara. Verifiera att HES registrerar förändringar i Mätsystemet med ett unikt ID för spårbarhet för  till- och frånkoppling av kundanläggning via Mätenhetens brytare. Verifiera att HES registrerar förändringar i Mätsystemet med ett unikt ID för spårbarhet för ändringar av strukturdata. Verifiera att HES registrerar förändringar i Mätsystemet med ett unikt ID för spårbarhet, för vilken Användare som har aktiverat eller avaktiverat ett Larm."
+277,S166 -  Behörighetprofiler för användarrättigheter,"Verifiera att HES har behörighetprofiler för följande användarrättigheter:
+- Komma åt operativsystem, starta och stoppa systemet, uppdatera databas, ändra behörighetsprofiler m.m.
+- Inmatning/uppdatering av strukturdata, insamling av Mätvärden m.m.
+- Till- och frånkoppling av kundanläggning via Mätenhetens brytare
+- Åtkomst till Mätenhetens Mätdata och inställningar
+- Endast ”titta”, ej redigera."
+278,S167 - Behörighetsstruktur baserat på rollspecifikation,Verifiera att leverantören under införandet definiera och implementera en behörighetsstruktur i HES med olika roller baserat på den rollspecifikation som tagits fram av Beställaren i samråd med Leverantören under införandet.
+279,B91 - Konfigurering av Mätenheten,Verifiera att konfigurering av Mätenheten från HES  kan utföras utan att ladda ner ny Firmware.
+280,B92 - Detektera avsaknad av neutralledare,Verifiera att det från HES går att konfigurera kriterier för att detektera avsaknad av neutralledare i Mätenheten.
+281,B93 - Skapa grupper,"Verifiera att grupper kan skapas dynamiskt av Användaren i HES med hjälp av olika parametrar, t.ex. Anläggnings-ID för export av insamlat data eller uppgradering av mätarens mjukvara där grupp kan vara per postnummer eller mätarens identitet."
+282,B94 - Grupper för utförande av kommandon,"Verifiera att konfigurerade grupper kan användas för att utföra olika kommandon t.ex. förändra insamlingsintervall, exportera insamlat data etc."
+283,B95 - Spara personliga vyer,Verifiera att det i HES går att konfigurera och spara personliga vyer som visas behörighetsstyrt för respektive Användare.
+284,S168 - Administrera behörighetsnivåer,"Verifiera att beställarens kan administrera, skapa, redigera och ta bort behörighetsnivåer och roller i HES gränssnitt."
+285,S169 - Till och frånkoppling av brytare från HES,Verifiera att Tillkoppling av kundanläggning via Mätenhetens brytare kan göras från HES av en användare med ordinarie behörighet. Verifiera att Frånkoppling av kundanläggning via Mätenhetens brytare kan göras från HES av en användare med ordinarie behörighet. Verifiera att Tillkoppling av kundanläggning via Mätenhetens brytare kan göras från HES av en användare med behörighet som kundservice. Verifiera att Frånkoppling av kundanläggning via Mätenhetens brytare kan göras från HES av en användare med  behörighet som kundservice. Verifiera att Tillkoppling av kundanläggning via Mätenhetens brytare inte kan göras från HES av en användare med behörighet att bara titta. Verifiera att Frånkoppling av kundanläggning via Mätenhetens brytare inte kan göras från HES av en användare med  behörighet att bara titta.
+286,S64 - Uppdatering av Firmware - Kat1 1 fas,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+287,S64 - Uppdatering av Firmware - Kat1 3 fas,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+288,S64 - Uppdatering av Firmware - Kat2,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+289,S65 - Felhatering vid firmware uppdatering,Verifiera att mätenheten behålera och återlagrar existerande Firmware om uppdatering med ny Firmware misslyckas.
+290,S66 - Konfigurering av Mätenhet till Händelselogg,Verifiera att ändring av konfigurering i Mätenhet registreras i en Händelselogg.
+291,S67 - Läsa ut mätdata från serviceport,Verifiera att det är möjligt att läsa ut all Mätdata från Mätenhetens serviceport eller motsvarande.
+292,S83 - Uppfylla kraven i Nationella Stickprovet,"Verifiera att Kategori 1 mätare uppfyller kraven i Nationella Stickprovet, enligt Föreskrift STAFS 2009:9, för de 2 första stickprovskontrollerna, dock maximalt 12 år efter att Slutgodkännande lämnats av Beställaren."
+293,B1 - Korrigerade mätvärden,"Verifiera att mätenheten korrigerar uppmätta värden för spänning och/eller ström vid beräkning av energiförbrukning, ska dessa värden också vara de som används i Mätsystemet."
+294,B2 - Strömavbrott längre än 10 sek - Kat1 1 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+295,B2 - Strömavbrott längre än 10 sek - Kat1 3 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+296,B2 - Strömavbrott längre än 10 sek - Kat2,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+297,B9 - Högfrekventa störningar Kat1 3 fas,Med hjälp av RISE - Verifiera att Mätenheterna klarar krav för högfrekventa störningar i strömmen enligt svensk standard SS EN 61000-4-19 ” Mät- och provningsmetoder – Provning av immunitet mot ledningsbundna symmetriska störningar och signaler i frekvensområdet 0 Hz till 150 kHz” och IEC TR 50579 eller likvärdigt.
+298,B9 - Högfrekventa störningar Kat2,Med hjälp av RISE - Verifiera att Mätenheterna klarar krav för högfrekventa störningar i strömmen enligt svensk standard SS EN 61000-4-19 ” Mät- och provningsmetoder – Provning av immunitet mot ledningsbundna symmetriska störningar och signaler i frekvensområdet 0 Hz till 150 kHz” och IEC TR 50579 eller likvärdigt.
+299,B10 - Registrera sin egen temperatur - Kat1 1 fas,Verifiera att Mätenheten kan registrera sin egen temperatur.
+300,B10 - Registrera sin egen temperatur - Kat1 3 fas,Verifiera att Mätenheten kan registrera sin egen temperatur.
+301,B10 - Registrera sin egen temperatur - Kat2,Verifiera att Mätenheten kan registrera sin egen temperatur.
+302,B11 - Möjlig varmgång - Kat1 1 fas,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+303,B11 - Möjlig varmgång - Kat1 3 fas,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+304,B11 - Möjlig varmgång - Kat2,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+305,B12 - Varmgång - Kat1 1 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+306,B12 - Varmgång - Kat1 3 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+307,B12 - Varmgång - Kat2,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+308,B13 - Mätmetod,Verifiera att det är konfigurerbart vilken mätmetod som används för mätning av in- och utmatning av energi i samtliga faser.
+309,B14 - Överförd aktiv och reaktiv energ / 5min,Verifiera att Mätenheten kan registrera mängden överförd aktiv och reaktiv energi för uttag och inmatning av el per 5 minuter.
+310,B15 - Mätning och registrering / fas,"Verifiera att Mätenheten för varje fas kan mäta och registrera min, max och medelvärde för spänning, ström, aktiv och reaktiv effekt för uttag och inmatning av el per 5 minuter."
+311,B16 - Mäta frekvensen i elnätet,Verifiera att Mätenheten kan mäta frekvensen i elnätet.
+312,B17 - Registrera First Breath,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+1. ”First Breath” från Mätenhet (B17)."
+313,B18 - Registrera mjukvara mottagen,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+2. Mjukvara mottagen (B18)."
+314,B19 - Registrera Mjukvaruverifiering – misslyckad,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+3. Mjukvaruverifiering – misslyckad (B19)."
+315,B20 - Registrera Mjukvaruverifiering – lyckad,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+4. Mjukvaruverifiering – lyckad (B20)."
+316,B21 - Registrera Mjukvaruuppdatering – misslyckad,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+5. Mjukvaruuppdatering – misslyckad (B21)."
+317,B22 - Registrera Mjukvaruuppdatering – lyckad,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+6. Mjukvaruuppdatering – lyckad (B22)."
+318,B23 - Registrera Ändring av parametrar,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+7. Ändring av parametrar (B23)."
+319,B24 - Registrera Kommunikationsfel,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+8. Kommunikationsfel (B24)."
+320,B25 - Registrera temperatur överskrider gränsvärde,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+9. Temperatur överskrider inställt gränsvärde (B25)."
+321,B26 - Registrera  Elnätets frekvens utanför gränsvärden,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+10. Elnätets frekvens över- eller underskrider inställda gränsvärden (B26)."
+322,B27 - Registrera  Effektfaktor överskrider  gränsvärde per fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+11. Effektfaktor överskrider inställt gränsvärde per fas (B27)."
+323,B28 - Registrera Vektordiagram spänning och ström per fas - Kat1 1 fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+324,B28 - Registrera Vektordiagram spänning och ström per fas - Kat1 3 fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+325,B28 - Registrera Vektordiagram spänning och ström per fas - Kat2,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+326,B29 - Registrera när hög ström överskrider gränsvärde per fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+13. Hög ström överskrider inställt gränsvärde per fas (B29)."
+327,B30 - Registrera när hög effekt överskrider gränsvärde per fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+14. Hög effekt överskrider inställt gränsvärde per fas (B30)."
+328,B31 - Registrera när effektuttag överskrider gränsvärde,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+15. Totalt effektuttag överskrider inställt gränsvärde (B31)."
+329,B32 - Registrera anslutning som kan orsaka varmgång,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+16. Identifierad anslutning som kan orsaka varmgång (B32)."
+330,B33 - Registrera varmgång i anslutning,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+17. Vid varmgång i anslutning (B33)."
+331,B34 - Konfigurera register som ska lagras för händelser,Verifiera att För varje Händelse finns det möjlighet att valfritt konfigurera vilka register (OBIS-koder) i Mätenheten som ska lagras.
+332,B35 - Inaktivera skickandet av Händelser från specifik Mätenhet,Verifiera att Det är möjligt att inaktivera skickandet av Händelser från utpekad Mätenhet från HES i syfte att inte behöva få in en stor mängd Händelser från en viss Mätenhet.
+333,B36 - Tidsangivelsen får max avvika med 1 sek,Verifiera att Tidsangivelsen högst avviker med 1 sekund från Normaltid för Mätenhet.
+334,B40 - Brytarknapp på mätaren - Kat1 1 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+335,B40 - Brytarknapp på mätaren - Kat1 3 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+336,B41 - kumulativa räkneverket återges på Mätenhetens display - Kat1 1 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+337,B41 - kumulativa räkneverket återges på Mätenhetens display - Kat1 3 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+338,B41 - kumulativa räkneverket återges på Mätenhetens display - Kat2,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+339,B42 - Kommunikationsstatus - Kat1 1 fas,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+340,B42 - Kommunikationsstatus - Kat1 3 fas,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+341,B42 - Kommunikationsstatus - Kat2,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+342,B43 - lysdioder i röd färg - Kat1 1 fas,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+343,B43 - lysdioder i röd färg - Kat1 3 fas,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+344,B43 - lysdioder i röd färg - Kat2,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+345,"B54 - anslutningsplint minst kabelarea 2,5–35 mm2 - Kat1 1 fas","Verifiera att Mätenhetens anslutningsplint klarar minst kabelarea 2,5–35 mm2."
+346,S170 - Status för brytare,Verifiera att det i HES är möjligt för Användaren att se om Mätenhetens brytare är till- eller frånkopplad.
+347,S173 - Till och frånkoppling av kundgränssnittet från HES,Verifierar att aktivering och deaktivering av Kundgränssnittet går att göra från HES av användare med kundtjänstbehörighet. Verifierar att aktivering och deaktivering av Kundgränssnittet går att göra från HES av användare med användarbehörighet. Verifierar att aktivering och deaktivering av Kundgränssnittet går att göra från HES av användare som bara ha tittabehörighet.
+348,S174 - Status för kundgränssnittet,Verifiera att det i HES är möjligt att se om Kundgränssnittet i en Mätenhet är aktiverat eller deaktiverat för datautskick.
+349,B96 - Konfigurera data för kundgränssnittet,GE har beslutat att följa standard. Vi vill inte konfigurera vilken data som skickas ut.
+350,S175 - Hantera rundgång,Verifiera att HES kan  hantera rundgång (Mätarställning går från max till 0) i Mätenheten så att förbrukningen blir korrekt.
+351,S176 - Korrigera mätvärden,"Verifiera att En Användare i HES har möjlighet att korrigera Mätvärden, t.ex. ersätta ett felaktigt värde med ett manuellt registrerat data."
+352,S177 - Interpolering i HES,Verifiera att det finns funktionalitet i HES för att kunna utföra Interpoleringar där insamlat värde saknas.
+353,B97 - Manuell Estimering av saknade Mätvärden,Verifiera att det finns en funktion för manuell Estimering av saknade Mätvärden.
+354,S178 - HES på svenska,Verifiera att Svenska och svensk teckenuppsättning gäller för HES.
+355,B98 - Användargränssnitt på engelska,"Verifiera att användargränssnittet per Användare kan väljas att, förutom svenska, vara på engelska."
+356,B99 - Systemarbete på svenska,Verifiera att för systemarbete i HES så används svenska.
+357,S181 - Skillnad på test och prod,Verifiera att det är tydligt för en Användare att se skillnad på HES test- och produktionsmiljö så att Användaren enkelt ser att hen är i rätt miljö.
+358,B61 - Responstider i användargränssnittet,"Verifiera att Responstider i användargränssnittet i HES  inte överstiger:
+- 0,5 s från inmatning, knapptryckning el. motsv. till första respons på bildskärm. Verifiera att Responstider i användargränssnittet i HES  inte överstiger:
+- 0,5 s för visning av formulär-vy inklusive data. Verifiera att Responstider i användargränssnittet i HES  inte överstiger:
+- 5 s för visning av enkel rapport. Verifiera att Responstider i användargränssnittet i HES  inte överstiger:
+- 15 s för inloggning."
+359,S7 - Strömavbrotts start och stopp,"Verifiera att det är möjligt att identifiera ett strömavbrotts ""start och stopp"" i Mätsystemet."
+360,S8 - Blockera brytare från HES,"För Kat1 - 1 fas mätare, verifiera att Mätarens brytare kan blockeras från HES för att förhindra lokal tillkoppling av strömmen. För Kat1 - 3 fas mätare, verifiera att Mätarens brytare kan blockeras från HES för att förhindra lokal tillkoppling av strömmen. För Kat2 mätare, verifiera att Mätarens brytare inte kan blockeras från HES för att förhindra lokal tillkoppling av strömmen."
+361,S10 - Manuell avfrgåning - max 10 sek,För ett flertal mätare (en åt gången) - Verifiera att svarstiden på en manuell avfrågning av Energivärden från HES till enskild Mätenhet är max 10 sekunder.
+362,S11 - Energivärden till HES inom 2h,Verifiera att Energivärdena (15-minutersvärden) levereras till HES senast inom 2 timmar från registrering i Mätenhet.
+363,B4 - Energivärdena ska levereras kontinuerligt,Verifiera att Energivärdena (15-minutersvärden) levereras kontinuerligt från Mätenhet till HES.
+364,S12 - PQ värden till HES inom 4h,Verifiera att PQ-värdena (15-minutersvärden) kan levereras senast inom 4 timmar från registrering i Mätenheterna till HES.
+365,B5 -  PQ-värden ska levereras inom 15 min,"Verifiera att PQ-värdena (15-minutersvärden) levereras senast inom 15 minuter från registrering i mätarna till HES för en utvald grupp av mätare (max 20 % av det totala antalet mätare)
+(testa i kombination med simulerade mätare)."
+366,"S13 - 98,0 %  till HES 4h efter dygnsskifte","Verifiera att  det finns rutiner som beskriver att vi kontinuerligt får rapporter som påvisar att 98,0 % av Energivärdena blir insamlade till HES inom 4 timmar efter dygnsskiftet."
+367,"S14 - 99,5 %  till HES 24h efter dygnsskifte","Verifiera att  det finns rutiner som beskriver att vi kontinuerligt får rapporter som påvisar att 99,5 % av Energivärdena är insamlade till HES inom 24 timmar efter dygnsskiftet."
+368,B6 - 100% energivärden inom 96h,Verifiera att  det finns rutiner som beskriver att vi kontinuerligt får rapporter som påvisar att 100 % av Energivärdena är insamlade till HES inom 96 timmar efter dygnsskiftet.
+369,S15 - Komdata lagras i mätare,Kommunikationsmetadata loggas varannan timma i Mätenhet och det skickas 1-3 gånger per dygn.
+370,S16 - Komdata till HES,Kommunikationsmetadata loggas varannan timma i Mätenhet och det skickas 1-3 gånger per dygn.
+371,B7 - Kommunikationsmetadata  ska levereras kontinuerligt,Verifiera att Kommunikationsmetadata loggas varannan timma i Mätenhet. Verifiera att Kommunikationsmetadata skickas till HES minst 1 gång  / dygn.
+372,S17 - PQ händelser till HES inom 5 min,Verifiera att PQ-händelser finns tillgängliga i HES systemet inom 5 minuter.
+373,S18 - Avbrottshändelser till HES inom 3 min,Verifiera att Avbrottshändelse finns tillgängliga i HES systemet inom 3 minuter.
+374,B8 - Avbrottshändelse inom 1 minut,Verifiera att Avbrottshändelse finns tillgängliga i HES systemet inom 1 minut.
+375,S19 - Övriga händelser till HES inom 5 min,Verifiera att övriga Händelser (exklusive PQ-händelser och Avbrottshändelse) finns tillgängliga i HES systemet inom 5 minuter.
+376,S63 - Uppgradering från HES,Verifiera att Mjukvara i mätare (förutom metrologisk mjukvara) och kommunikationsenhet kan uppgraderas från HES.
+377,S189 - All mätdata för alla mätare inom 60 min,Verifiera att kommunikationslösningen klarar av att hämta in 95 % av all Mätdata från 300 000 mätare och för de senaste 24 timmarna inom 60 minuter.
+378,B102 - Hämta mätardata för 24h för  95% av mätare inom 60 min,Verifiera att Kommunikationslösningen ska  klarar av att hämta in 95 % av all Mätdata från 400 000 mätare och för de senaste 24 timmarna inom 60 minuter.
+379,S651/S652 - Leverans av dokumentation,Verifiera att Leverantören har försett Beställaren med dokumentation så att Beställaren efter leveransen självständigt ska (S652) kunna arbeta och underhålla Mätsystemet med hjälp av dokumentationen. Verifiera att Leverantören har försett Beställaren med dokumentation så att Beställaren efter leveransen självständigt ska (S652) kunna arbeta och underhålla Mätsystemet med hjälp av dokumentationen.
+380,S653 - Dokumentation ingår i leveransen,Verifiera att Dokumentationen ingår i leveransen.
+381,S655 - Heltäckande dokumentation,Verifiera att Dokumentationen täcker Mätsystemets alla delar.
+382,S656 - Dokumentationens språk och format,Verifiera att Användarhandledning och övrig dokumentation är på svenska. Verifiera att Användarhandledning och övrig dokumentationlevereras i elektroniskt format.
+383,S657 - Strukturering av dokumentationen,Verifiera att Strukturering av dokumentationen är gjord i samråd med beställaren och på ett för denne lämpligt sätt.
+384,S658 - Dokumentationens målgrupper - systemingenjör,"Verifiera att Dokumentation är anpassad för Mätsystemets målgrupp:
+- Användare som från operatörsplats använder Mätsystemet för att övervaka mätinsamling, analysera mätdata, lägger arbetsorder på byte av Mätenhet, validerar Mätvärden kontrollerar spänning hos kund, gör till- och frånkoppling, samt hur man aktiverar kundgränssnittet mm."
+385,S658 - Dokumentationens målgrupper - Systemspecialist,"Verifiera att Dokumentation är anpassad för Mätsystemets målgrupp:
+- Systemspecialist förutsätts ha baskunskaper om den IT-tekniska miljön och ska svara för Mätsystemets drift i övrigt och diagnosticera fel."
+386,S658 - Dokumentationens målgrupper - Mätarmontör,"Verifiera att Dokumentation är anpassad för Mätsystemets målgrupp:
+- Mätarmontör förutsätts ha baskunskaper om underhåll av elmätare i fält, och ska ha kunskap att svara för framtida nyinstallation, underhåll av mätenheter och kommunikationsinfrastruktur."
+387,S659 - Dokumentation till UAT,"Verifiera att Leverantören tillhandahåller preliminärutgåvor av handhavandebeskrivningar, manualer, specifikationer och eventuell annan nödvändig dokumentation innan Beställaren påbörjar UAT."
+388,S660 - Fokus för dokumentationen,"Verifiera att Dokumentationen beskriver Mätsystemet med tonvikt på handhavande, installation och konfigurering."
+389,S661 - Utbildning av beställarens personal - systemspecialist,"Verifiera att Leverantören inom ramen för Leveransprojektet tillhandahåller de utbildningar av Beställarens personal som krävs för att genomföra projektet, sköta applikationsdrift samt att nyttja systemet."
+390,S661 - Utbildning av beställarens personal - montör,"Verifiera att Leverantören inom ramen för Leveransprojektet tillhandahåller de utbildningar av Beställarens personal som krävs för att genomföra projektet, sköta applikationsdrift samt att nyttja systemet."
+391,S661 - Utbildning av beställarens personal - Systemingenjör,"Verifiera att Leverantören inom ramen för Leveransprojektet tillhandahåller de utbildningar av Beställarens personal som krävs för att genomföra projektet, sköta applikationsdrift samt att nyttja systemet."
+392,S662 - Instruktioner och utbildningsmaterial i god tid,"Verifiera att Leverantören i god tid till beställaren överlämnar instruktioner och utbildningsmaterial så att beställaren kan installera, konfigurera, testa, och driftsätta all utrustning och programvara som behöver installeras av beställaren i samband med nyinstallationer."
+393,S663 - Utbildning på svenska - systemingenjör,Verifiera att all utbildning inklusive utbildningsdokumentation är vara på svenska.
+394,S663 - Utbildning på svenska - montör,Verifiera att all utbildning inklusive utbildningsdokumentation är vara på svenska.
+395,S663 - Utbildning på svenska - systemspecialist,Verifiera att all utbildning inklusive utbildningsdokumentation är vara på svenska.
+396,S664 - Material till interna utbildningar,Verifiera att Beställaren har rätt att använda utbildningsmaterialet vid interna utbildningar.
+397,S665 - Nivå på utbildning - systemingenjör,Verifiera att Utbildningen är anpassad till målgruppens kunskapsnivå.
+398,S665 - Nivå på utbildning - montör,Verifiera att Utbildningen är anpassad till målgruppens kunskapsnivå.
+399,S665 - Nivå på utbildning - systemspecialist,Verifiera att Utbildningen är anpassad till målgruppens kunskapsnivå.
+400,S666 - Utbildningens omfattning - systemingenjör,"Verifiera att Utbildningen även omfattar 
+-Kallelse till utbildning. Verifiera att Utbildningen även omfattar 
+ -Elektronisk kursdokumentation. Verifiera att Utbildningen även omfattar  
+-Kursutvärdering ska ske digitalt efter varje utbildningstillfälle och en sammanfattad kursutvärdering och överlämnas till Beställaren."
+401,S666 - Utbildningens omfattning - montör,"Verifiera att Utbildningen även omfattar 
+-Kallelse till utbildning. Verifiera att Utbildningen även omfattar 
+ -Elektronisk kursdokumentation. Verifiera att Utbildningen även omfattar  
+-Kursutvärdering ska ske digitalt efter varje utbildningstillfälle och en sammanfattad kursutvärdering och överlämnas till Beställaren."
+402,S666 - Utbildningens omfattning - systemspecialist,"Verifiera att Utbildningen även omfattar 
+-Kallelse till utbildning. Verifiera att Utbildningen även omfattar 
+ -Elektronisk kursdokumentation. Verifiera att Utbildningen även omfattar  
+-Kursutvärdering ska ske digitalt efter varje utbildningstillfälle och en sammanfattad kursutvärdering och överlämnas till Beställaren."
+403,B84 - Visa mätare med kommunikationsproblem i lista,Verifiera att det vid kommunikationsproblem genereras en händelse och ett uppdrag i en lista som visar för användaren att det är problem med mätaren.
+404,B83 - Visa mätare med kommunikationsproblem i karta,Verifiera att det i HES är möjligt att visualisera Mätenheter med kommunikationsproblem i en grafisk vy/karta som går att zooma in och ut.
+405,B82 - Upptäcka område med kommunikationsproblem,Verifiera att det i HES är möjligt för Användaren att upptäcka och se områden där flera Mätenheter har kommunikationsproblem.
+406,S1 - Lagkrav,"Kamstrup visar på hur de uppfyller:
+1. Ellag SFS 1997:857. Kamstrup visar på hur de uppfyller:
+2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el. Kamstrup visar på hur de uppfyller:
+3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el. Kamstrup visar på hur de uppfyller:
+4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument. Kamstrup visar på hur de uppfyller:
+5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi. Kamstrup visar på hur de uppfyller:
+6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el. Kamstrup visar på hur de uppfyller:
+7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi. Kamstrup visar på hur de uppfyller:
+8. EU:s MID direktiv 2014/32/EU. Kamstrup visar på hur de uppfyller:
+9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning. Kamstrup visar på hur de uppfyller:
+10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite). Kamstrup visar på hur de uppfyller:
+11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning). Kamstrup visar på hur de uppfyller:
+12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU. Kamstrup visar på hur de uppfyller:
+13. Lag (2003:389) om elektronisk kommunikation."
+407,S20 - Leverans av fabriksfil,"Verifiera att Leverantörens fabriksfil, (innehållande Mätenheternas uppgifter), levereras i ett standardiserat textfilsformat textformat, exempelvis csv. Importera filen i Generis."
+408,S21 - Mätenhetens driftområde - Kat 1,"Kamstrup demonstrerar/beskriver hur mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7). Kamstrup demonstrerar/beskriver hur mätaren är konstruerad att tåla kondenserad fuktighet."
+409,S21 - Mätenhetens driftområde - Kat 2,"Kamstrup demonstrerar/beskriver hur mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7). Kamstrup demonstrerar/beskriver hur mätaren är konstruerad att tåla kondenserad fuktighet."
+410,S21 - Mätenhetens driftområde - RISE,"Verifiera att mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7)."
+411,S23 - Mätehenten matas ov Omätt ström - Kat1 -1 fas,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+412,S23 - Mätehenten matas ov Omätt ström - Kat1 -3 fas,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+413,S23 - Mätehenten matas ov Omätt ström - Kat2,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+414,S27 - typgodkännande - Kat1,"Verifiera att Utökat typgodkännande och certifiering av Mätenheter genomför enligt metod SPM 1618, test med 12 kV stötspänning."
+415,S27 - typgodkännande - Kat2,"Verifiera att Utökat typgodkännande och certifiering av Mätenheter genomför enligt metod SPM 1618, test med 12 kV stötspänning."
+416,S31 - Vektorsummerad mätning - Kat1,Verifiera att Mätmetoden i Mätenheten är vektorsummerad mätning enligt Föreskrift STAFS 2009:8.
+417,S31 - Vektorsummerad mätning - Kat2,Verifiera att Mätmetoden i Mätenheten är vektorsummerad mätning enligt Föreskrift STAFS 2009:8.
+418,S39 - Kontroll av mätenehtet - Kat1 3 fas,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+419,S39 - Kontroll av mätenehtet - Kat2,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+420,S39 - Kontroll av mätenehtet - Kat1 1 fas,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+421,S39 - Kontroll av mätenhet - granska rutin,Kamstrup demonstrerar verbalt eller i dokumentation hur varje enskild Mätenhet är verifiera och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470/EN 62058-31.
+422,S40 - Ackrediterad part för kalibrering,Verifiera att Kalibreringen utföras av en för ändamålet ackrediterad part.
+423,S41 - Kalibreringsrapport för mätenhet,Verifiera att en kalibreringsrapport levereras digitalt till GE innan eller i samband med att Mätenheterna levereras fysiskt där det framgår att varje enskild Mätenhet (med ID-nummer) är kalibrerad och kontrollerad.
+424,S42 - Kalibreringsbevis retroaktiv,Verifiera att Beställaren kan begära och få ut kalibreringsbevis retroaktivt från Leverantören i minst 10 år efter leverans av Mätenhet.
+425,S43 - Testpuls för kalibrering - Kat1 3 fas,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+426,S43 - Testpuls för kalibrering - Kat2,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+427,S43 - Testpuls för kalibrering - Kat1 1 fas,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+428,S82 - 1-fas och 3-fas mätning ska uppfylla Mätarparametrar enligt MID,"Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Class index = B (eller bättre). Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Minimum current (Imin) = 0,25 A (eller lägre). Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Reference current (In) = 5 A. Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Maximum current (Imax) = 85 A (eller högre) (inklusive brytarfunktion)."
+429,S85 - Dokumentation om Mätenhetens typiska påverkan,"Verifiera att Leverantören utöver typgodkännande specificera och tillhandahålla dokumentation om Mätenhetens typiska påverkan av följande influensstorheter (se SS-EN 50470-3, tabell 6):
+- Temperaturkoefficient
+- Voltage variation ± 10 %
+- Frequency variation ± 2 %."
+430,S86 - Hantering av både primär- och sekundärregistrering - Kat2,"Verifiera att Mätenheterna kan hantera primärregistrering av Mätvärden. Verifiera att Mätenheterna kan hantera sekundärregistrering av Mätvärden,."
+431,S87 - Strömtransformatorns omsättningskonstant - Kat2,Verifiera att Mätaren kan hantera strömtransformatorns omsättningskonstant.
+432,S88 - Kat 2 ska uppfylla kraven för kontroll,"Verifiera att Mätenheter Kategori 2 uppfyller kraven för Kontroll, enligt Föreskrift STAFS 2009:8, för den första Kontrollen, dock maximalt 12 år efter att Slutgodkännande lämnats av Beställaren."
+433,B52 - 3-fas anpassas till 1-fasig mätning,Verifiera att 3-fas Mätenheter kan anpassas till 1-fasig mätning och då uppfylla de normkrav (MID) som finns på en rent 1-fasig mätare.
+434,B53 - dimensionerad minst strömstyrka 5A,Verifiera att Mätenheten är dimensionerad för minst strömstyrka 5 (Imax 100) A.
+435,S68 - Unikt tillverkningsnummer - Kat1,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer.
+436,S68 - Unikt tillverkningsnummer - dokumentation,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer som inte förekommer på Leverantörens tidigare eller framtida produkter.
+437,S69 - Unikt tillverkningsnummer - kommunikationsmodul - Kat1,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
+439,S69 - Unikt tillverkningsnummer - kommunikationsmodul - Kat2,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
+440,S68 - Unikt tillverkningsnummer - Kat2,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer.
+441,S70 - Synligt tillverkningsnummer - kommunikationsmodul - Kat1,Verifiera att Ett tillverkningsnummer på en Kommunikationsmodul är placerat så att det inte är synligt på Mätenhetens framsida.
+442,S70 - Synligt tillverkningsnummer - kommunikationsmodul - Kat2,Verifiera att Ett tillverkningsnummer på en Kommunikationsmodul är placerat så att det inte är synligt på Mätenhetens framsida.
+443,S71 - Synligt tillverkningsnummer - Kat1,Verifiera att Mätarens tillverkningsnummer är placerat synligt på framsidan av Mätenheten.
+444,S71 - Synligt tillverkningsnummer - Kat2,Verifiera att Mätarens tillverkningsnummer är placerat synligt på framsidan av Mätenheten.
+445,S72 - Beständig märkning - Kat1,Verifiera att Märkningen av Mätarens tillverkningsnummer är beständigt under Mätenhetens livslängd dvs inte löstagbar tejp eller tryck som går att skrapa bort.
+446,S72 - Beständig märkning - Kat2,Verifiera att Märkningen av Mätarens tillverkningsnummer är beständigt under Mätenhetens livslängd dvs inte löstagbar tejp eller tryck som går att skrapa bort.
+447,S73 - Läsbar märkning - Kat1,"Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. fontstorleken får inte vara för liten så att numret blir svårläst t.ex. för en kund."
+448,S73 - Läsbar märkning - Kat2,"Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. fontstorleken får inte vara för liten så att numret blir svårläst t.ex. för en kund."
+449,"S74 - Läsbar märkning, lock - Kat1","Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. om det finns ett lock på Mätenheten där tillverkningsnumret är placerat ska (S74) locket vara transparent så att serienumret går att avläsa även med stängt lock."
+450,"S74 - Läsbar märkning, lock - Kat2","Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. om det finns ett lock på Mätenheten där tillverkningsnumret är placerat ska (S74) locket vara transparent så att serienumret går att avläsa även med stängt lock."
+451,S75 - Märkningens placering - Kat1,"Verifiera att Mätarens tillverkningsnummer är placeras på en ej löstagbar del (ej anslutningslock, ej lock till Kommunikationsmodul, etc.)."
+452,S75 - Märkningens placering - Kat2,"Verifiera att Mätarens tillverkningsnummer är placeras på en ej löstagbar del (ej anslutningslock, ej lock till Kommunikationsmodul, etc.)."
+453,S76 - Märkning som kod och i klartext - Kat1,Verifiera att Mätenhetens tillverkningsnummer utgöras av både en streckkod eller motsvarande och ett nummer i klartext.
+454,S76 - Märkning som kod och i klartext - Kat2,Verifiera att Mätenhetens tillverkningsnummer utgöras av både en streckkod eller motsvarande och ett nummer i klartext.
+455,S77 - Utformad för väggmontage - Kat1,Verifiera att Mätenheterna är utformad för väggmontage.
+456,S77 - Utformad för väggmontage - Kat2,Verifiera att Mätenheterna är utformad för väggmontage.
+457,S78 - Montagehängslets placering - Kat1,Verifiera att Montagehängslets nyckelhålshöjd är placerad minst 12 mm från Mätenhetens ovansida.
+458,S78 - Montagehängslets placering - Kat2,Verifiera att Montagehängslets nyckelhålshöjd är placerad minst 12 mm från Mätenhetens ovansida.
+459,S79 - Montering i mätarutrymme - Kat1,Verifiera att Mätenheterna kan monteras på olika typer av mätarutrymme med måttangivelser i enlighet med det som anges under punkt 5 i den senaste utgåvan av svensk standard SS 430 01 01.
+460,S79 - Montering i mätarutrymme - Kat2,Verifiera att Mätenheterna kan monteras på olika typer av mätarutrymme med måttangivelser i enlighet med det som anges under punkt 5 i den senaste utgåvan av svensk standard SS 430 01 01.
+461,S80 - Plombering - Kat1,Verifiera att Mätenhetens lock och eventuellt separat lock till Kommunikationsmodul kan plomberas.
+462,S80 - Plombering - Kat2,Verifiera att Mätenhetens lock och eventuellt separat lock till Kommunikationsmodul kan plomberas.
+463,S81 - Plintlock - Kat1,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+464,S81 - Plintlock - Kat2,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+465,B45 - skruvinfästningar - Kat2,Verifiera att det inte finnas några förhöjningar runt Mätenhetens skruvinfästningar som begränsar storlek på skruvhuvud.
+466,B45 - skruvinfästningar - Kat1,Verifiera att det inte finnas några förhöjningar runt Mätenhetens skruvinfästningar som begränsar storlek på skruvhuvud.
+467,B46 - montagehängsle - Kat1,Verifiera att det finns ett montagehängsle placerad på Mätenhetens ovansida för montage.
+468,B46 - montagehängsle - Kat2,Verifiera att det finns ett montagehängsle placerad på Mätenhetens ovansida för montage.
+469,B47 - montagehängsle minst 5 mm - Kat1,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+470,B47 - montagehängsle minst 5 mm - Kat2,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+471,B48 - plomberingsanordning - Kat1,Verifiera att Mätenhetens plomberingsanordning är upphöjd och väl synlig för smidig och åtkomlig genomföring av plomberingstråden.
+472,B48 - plomberingsanordning - Kat2,Verifiera att Mätenhetens plomberingsanordning är upphöjd och väl synlig för smidig och åtkomlig genomföring av plomberingstråden.
+473,B49 - skruvhuvud på plomberingsskruvarna - Kat1,Verifiera att det är samma typ av skruvhuvud på plomberingsskruvarna som på anslutningsskruvarna för ledarna.
+474,B49 - skruvhuvud på plomberingsskruvarna - Kat2,Verifiera att det är samma typ av skruvhuvud på plomberingsskruvarna som på anslutningsskruvarna för ledarna.
+475,B50 - Kortare plintlock - Kat1,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
+476,B50 - Kortare plintlock - Kat2,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
+477,S84 - Mätenhet ska uppfylla Mätarparametrar enligt MID,"Mätenhet uppfyller mätarparametrar enligt MID:
+- Class index = B (eller bättre). Mätenhet uppfyller mätarparametrar enligt MID:
+- Minimum current (Imin) = 0,01 A (eller lägre). Mätenhet uppfyller mätarparametrar enligt MID:
+- Rated current (In) = 1 A. Mätenhet uppfyller mätarparametrar enligt MID:
+- Maximum current (Imax) = 6 A (eller högre)."
+478,S86 - Hantering av både primär- och sekundärregistrering - Kat1,"Verifiera att Mätenheterna kan hantera både primär- och sekundärregistrering av Mätvärden,."
+479,S192 - Licensierade telenät,Verifiera att det licensierade telenät följer Förordningar och Föreskrifter i enlighet med PTSFS 2015:2 utgiven av PTS (Post- och Telestyrelsen).
+480,S182 - Förväntad livslängd kommunikationsutrustning - Kat1,Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE.
+481,S183 - Inget batteribyte,Verifiera att Kommunikationsutrustningen är utformad så att om det ingår batteri ska de inte behöva bytas under Kommunikationsutrustningens livslängd.
+482,S194 - Automatiskt hittar ny kommunikationsväg,Verifiera att Systemlösningen innehåller funktionalitet som automatiskt hittar ny kommunikationsväg till HES även om omkopplingar eller förändringar sker i kommunikationsnätet. Verifiera att Systemlösningen innehåller funktionalitet som automatiskt hittar ny kommunikationsväg till HES även om omkopplingar eller förändringar sker i kommunikationsnätet. Verifiera att Systemlösningen innehåller funktionalitet som automatiskt hittar ny kommunikationsväg till HES även om omkopplingar eller förändringar sker i kommunikationsnätet.
+483,S30 - Mängd tillåtna felande mätare Kat1 - RISE,"Under Mätenheternas förväntade livslängd ska (S30) utfallen av Fel (som kräver mätarbyte) inte överstiga 0,75 % per år av installerad volym."
+484,S30 - Mängd tillåtna felande mätare Kat2 - RISE,"Under Mätenheternas förväntade livslängd ska (S30) utfallen av Fel (som kräver mätarbyte) inte överstiga 0,75 % per år av installerad volym."
+485,S28 - Livslängd Kat2,En Mätenhet ska (S28) ha en förväntad livslängd som är 15 år räknat från tidpunkten då den levererats till GE.
+486,S182 - Förväntad livslängd kommunikationsutrustning - Kat2,Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE.
+487,S187 - Återställningstid efter strömavbrott max 60 min,Bryta spänningen på mätare i PMU testlabb. Slå på spänningen igen efter en timme.
+488,B100 - Återställningstid efter strömavbrott,Bryta spänningen på mätare i PMU testlabb. Slå på spänningen igen efter en timme.
+489,S186 - Återställningstid efter kommunikationsavbrott max 60 min,Bryt kommunikationslänken från mätare. Spänningen är kvar i mätare. Vänta en timma och slå på länken igen.
+490,S34 - Per fas min/max/medelvärden / 15 min,Granska en mätares insamlade mätvärden från ett givet 15 min intervall.
+491,S537 - Utformande av lösning,Granska installerad lösning och jämför med krav i 2.1 Teknisk lösning.
+492,S590 - Tillgängligt gränssnitt för kundbokningar och mätarbyten,Hämta data om status för kundbokningar och mätarbyten genom tillgängligt gränssnitt.
+493,S638 - Digitalt arbetssätt och ett mobilt arbetsorderverktyg,Skapa arbetsorder genom Generis för mätarbyte som ska skickas till MWF. Slutför arbetsordern i MWF.
+494,S206 - Inkluderas i säkerhetskopiering,Uppgradera HES till nyare version. Kopiera databasen.
+549,B110 - Katalogtjänst för behörighetsstyrning - verksamheten,"Verifiera att användare inte blir utloggad medan man arbetar i HES. 
+(Detta är ett problem som upplevs i befintlig ACM och som kopplats till AD inloggning)."
+583,S38 - Grid snapshot - GE värden,"Verifiera att grid snapshot presenteras i HES för de händelser som har stöd för grid snapshot. 
+Så som felaktig effektriktning. Ström L1	0,1	A
+Ström L2	0,41	A
+Ström L3	16	A. Spänning L1	231	V
+Spänning L2	228	V
+Spänning L3	226	V. Total Aktiv effekt inmatning	0,132	kW
+Aktiv effekt inmatning L1	0,004	kW
+Aktiv effekt inmatning L2	0,077	kW
+Aktiv effekt inmatning L3	0	kW. Total Aktiv effekt utmatning	0	kW
+Aktiv effekt utmatning L1	0	kW
+Aktiv effekt utmatning L2	0	kW
+Aktiv effekt utmatning L3	3,68	kW. Total Reaktiv effekt inmatning	0	kvar
+Reaktiv effekt inmatning L1	0	kvar
+Reaktiv effekt inmatning L2	0	kvar
+Reaktiv effekt inmatning L3	0	kvar. Total Reaktiv effekt utmatning 	0,115	kvar
+Reaktiv effekt utmatning L1	0,023	kvar
+Reaktiv effekt utmatning L2	0,047	kvar
+Reaktiv effekt utmatning L3	0,045	kvar."
+584,S240 - Transaktionssäkerhetsmetod,Granska transaktionssäkerhet.
+585,B112 - PKI,
+586,B117 - Mätare med intrångsskydd och intrångsdetektering,
+587,B118 - Analysverktyg för intrång,
+588,B120 - Segmenterad kommunikationslösning,Verifiera att Kommunikationslösningen är segmenterad.
+589,B121 - Säkerhetsstandarder,
+590,S538 - Tillhandahålla lösningsspecifikationer,Granska lösningsbeskrivningar.
+591,S9 - Anrop från andra verksamhetssystem,Deaktivera kundgränssnitt från annat verksamhetssystem. Aktivera kundgränssnitt från annat verksamhetssystem.
+592,S648 - Godkända mätvärden i MDMS - verksamhet,"Verifiera att det finns en rapport som kan användas som underlag för godkännande av installation. Verifiera att rapporten innehåller förljande information:
+För varje installation kan det påvisas att timvärden levererats till MDMS under 25 konsekutiva timmar utan luckor inom 3 dygn efter installationen."
+593,S119 - Automatisk export av energivärden,Vänta tills tiden för export inträffar.
+594,S119 - Manuell export av energivärden,Starta en export från HES.
+595,S260 - Alla delar täcks,Granska dokumentationen.
+596,S143 - loggning av händelser,Verifiera i HES att följande händelse samt dess attributvärden kan visas i en händelselista.
+608,S218 - Kommunikationen med Collection Manager API (WFM) är säker och tillförlitlig,Verifiera att trafiken går via https och att ingen obehörig har åtkomst att hämta ut data från Collection Manager API (WFM).
+609,B507 - Systemdokumentation,Verifiera att Systemdokumentation och övrig dokumentation är på svenska och levereras i elektroniskt format.
+610,HAN - Aktivering av HAN-port via Mina Sidor / Digitala kundgränssnitt LYCKAS,"Aktivera HAN-porten via Mina Sidor. Verifiera i CM att HAN-porten blivit aktiverad. I Abalon, verifiera att det skapats upp en ny ”kundhändelse”. Verifiera i CAB att det skapats en lilläggsprodukt på kontraktet. I Mina Sidor, verifiera att kunen fått informaiton om att HAN-porten är aktiv. Verifiera i Generis att det på anläggningen finns information om att HAN-porten är aktiv."
+611,HAN - Aktivering av HAN-port via Mina Sidor / Digitala kundgränssnitt MISSLYCKAS,"Bryt kommunikationen till mätaren. Aktivera HAN-porten via Mina Sidor. Verifiera i CM att HAN-porten inte blivit aktiverad. I Abalon, verifiera att det skapats upp en ny ”kundhändelse”. Verifiera i CAB att det INTE skapats en tilläggsprodukt på kontraktet. I Mina Sidor, verifiera att kunden INTE fått information om att HAN-porten är aktiv. Verifiera i Generis att det på anläggningen finns information om att HAN-porten är aktiv.
+Linda kollar med P-E. Kunden meddelas att HAN-portsaktiveringen har misslyckats."
+612,HAN - Deaktivering av HAN-port via Mina Sidor / Digitala kundgränssnitt LYCKAS,"Deaktivera HAN-porten via Mina Sidor. Verifiera i CM att HAN-porten blivit deaktiverad. I Abalon, verifiera att det skapats upp en ny ”kundhändelse”. Verifiera i CAB att  tilläggsprodukten på kontraktet avslutats/tagits bort. I Mina Sidor, verifiera att kunen fått informaiton om att HAN-porten är deaktiverad. Verifiera i Generis att det på anläggningen finns information om att HAN-porten är deaktiverad."
+613,HAN - Deaktivering av HAN-port via Mina Sidor / Digitala kundgränssnitt MISSLYCKAS,"Bryt kommunikationen till mätaren. Deaktivera HAN-porten via Mina Sidor. Verifiera i CM att HAN-porten inte blivit aktiverad. I Abalon, verifiera att det skapats upp en ny ”kundhändelse”. Verifiera i CAB att tilläggsprodukt på kontraktet INTE tagits bort. I Mina Sidor, verifiera att kunden inte fått information om att HAN-porten är deaktiverad. Verifiera i Generis att det på anläggningen finns information om att HAN-porten är deaktiverad. Kunden meddelas att deaktiveringen har misslyckats."
+614,Prestandatest - Integration mot Generis,Starta simulation av data från 275000 mätare. Öka simulering med 50% till 420000 mätare.
+615,S136 - Ställa in antalet decimaler,Verifiera att antalet decimaler som visas motsvarar det antal decimaler som är konfigurerade att visas för ett mätvärde. Verifiera att antalet decimaler som visas motsvarar det antal decimaler som är konfigurerade att visas för ett mätvärde.
+616,S89 - Installation av ny mätenhet via integration,"Information gällande strukturdata för nyuppsättning skickas från integrationsgränsitten Mint till Collection Manager. Verifiera att information är angiven på användarpunkten i Collection Manager motsvarar det som är specificerat i Arbetsordern. En kvittens skickas till Generis att mätaren är uppsatt i Collection Manager. Kontrollera att användarpunkten visas under rätt koordinater i kartvyn i Vision. Kontrollera att mätaren har korrekt profil samt att Energivärden, PQ-värden och GSM-diagnostik pushas från mätaren med korrekt intervall."
+618,S89 - Nedtagning av mätenhet via integration,Information gällande strukturdata för nedtagning av en mätenhet skickas från integrationsgränsitten Mint till Collection Manager. Verifiera att mätenhet är borttagen i Collection Manager samt ej har koppling användarpunkten .
+619,S89 - Uppdatering av mätpunkt i CM,Information gällande strukturdata för uppdatering av en mätenhet skickas från integrationsgränsitten Mint till Collection Manager. Verifera att information som skall uppdateras via Mint också har ändrats på aktuell användarpunkt.
+620,S89 - Ny Mätenhet sätts upp i CM och tas ned i ACM - Nedtagning misslyckas i ACM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i ACM då nyuppsättning genomförs i CM. Meddelande skickas från CM till Generis gällande att mätenhet i ACM ej är nedtagen.
+621,S89 - Ny Mätenhet sätts upp i CM och tas ned i AiMiR - Nedtagning misslyckas i AiMiR,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i AiMiR då nyuppsättning genomförs i CM. De misslyckade nedtagningarna rapporteras till Nyckelhålet. Mail skickas till Aimir-lådan.
+622,S89 - Ny Mätenhet sätts upp i CM och tas ned i ACM - Uppsättning misslyckas i CM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten redan finns kopplad till en annan anläggning i CM. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis.
+623,S89 - Ny Mätenhet sätts upp i CM och tas ned i AiMiR - Uppsättning misslyckas i CM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i Aimir då nyuppsättning genomförs i CM. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM.
+624,S89 - Befintlig Mätenhet byts i CM  -  Mätarbyte misslyckas i CM,Initiera ett mätarbyte av en befintlig mätenhet i CM till en Ny Mätenhet. Ange felaktigt serienummer för den befintliga mätaren i Arbetsordern. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis.
+625,S89 - Ny mätenhet sätts upp i CM - Uppsättning misslyckas i CM,"Initiera nyinstallation av en mätenhet i CM.
+Ange ett serienummer för mätenheten som redan är kopplad till en anläggning i arbetsordern. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis."
+626,S89 - Mätenhet tas ned i CM - Nedtagning misslyckas i CM,Initiera en nedtaging av en mätenhet i CM där obligatorisk information i arbetsordern inte är komplett. Meddelande skickas från CM till Generis gällande att mätenhet ej är borttagen i CM. Verifiera status på arbetsordern i Generis.
+641,S180 - Testmiljö 15 samtidiga användare,
+642,B106 - Hårdvara för användargränssnittet,"HES ska (B106) vara utformad för att kunna användas med olika typer av datorer, datorplattor och smarta telefoner, med olika arkitektur och operativsystem."
+643,B115 - Info i loggposten,
+644,B116 - Centralt loggningssystem,
+645,S239 - Transaktionssäkerhet,Veriifera att kommunikation sker taransaktionssäkert.
+646,S241 - Autentisering mot angränsande system,Verifiera att autentisering används då Mätsystemet interagerar med angränsande system.
+647,S242 - Skydd av mätenheterna,Verifiera att Mätsystemet är skyddat mot intrång via Mätenheterna.
+648,S243 - Skydd mot intrång via kommunikationslösningen,Verifiera att  den av Leverantören föreslagna Lösningen är skyddad mot intrång och extern åtkomst av data via kommunikationslösningen.
+649,S245 - Mätsystemet utvecklas enligt Branschpraxis,"Verifiera att Leverantören utvecklar lösningen i enlighet med gällande Branschpraxis för säker och kvalitativ kod, såsom SDL, OWASP eller likvärdigt."
+650,S256 - Härdning,Alla ingående delar i Mätsystemet ska (S256) vara härdade av Leverantören.
+651,S261 - Fjärråtkomst,"Verifiera att dellösningar eller funktionalitet för fjärråtkomst som ingår i Mätsystemet skyddas mot obehörig användning, insyn och förändring."
+652,S262 - Kontrollutrustning,Verifiera att Kontrollutrustning i förekommande fall då de ingår i Mätsystemet omfattas av säkerhetskrav på samma sätt som annan utrustning.
+653,S221 - Common Information Model (CIM),Undersök att meddelandens innehåll från HES.
+654,HAN-port status visas i kundgränssnitt,Logga in med användaren. Gå till anläggningsdetaljer för CAB anläggningen. Klicka på Visa detaljer under relevant anläggning.
+655,Aktivering av HAN-port från kundgränssnitt,Logga in med användare. Navigera till anläggningsdetaljer. Klicka på Aktivera HAN-port. Kontrollera på anläggning i CAB att tilläggsprodukten är tillagd på rätt anläggning. Kontrollera att ett ärende skapats i Abalon. Kontrollera anläggning i Generis. Kunden informeras när aktiveringen är genomförd.
+656,Inaktivering av HAN-port från kundgränssnitt,Logga in med användare. Navigera till anläggningsdetaljer. Klicka på Inaktivera HAN-port. Kontrollera på anläggning i CAB att tilläggsprodukten är borttagen på rätt anläggning. Kontrollera att ett ärende skapats i Abalon. Kontrollera anläggning i Generis. Kunden informeras när inaktiveringen är genomförd.
+668,Systemförvaltning,Verifiera åtkomst till HES delsystem som en användare med relevant behörighet.
+669,HAN-port status visas i kundgränssnitt - Mätare svarar ej,Logga in med användaren. Gå till anläggningsdetaljer för CAB anläggningen. Klicka på Visa detaljer under relevant anläggning.
+673,GE0121B  - Förändring av  kunduppgifter,CAB skickar förändrad information om kundens namn via integrationen. CAB skickar förändrad information om kundens typ via integrationen. CAB skickar förändrad information om kundens adress via integrationen. CAB skickar förändrad information om kundens telefonnummer via integrationen. CAB skickar förändrad information om kundens e-post via integrationen.
+679,Faktura i CAB,Verifiera at kvartsvärden visas som timvärden som vnligt på Fakturan. Verifiera att microproduktion visas tydligt och korrekt på fakturan.
+680,Energivärden till Generis,Kontrollera att värden inkommer på E15. Kontrollera att förbrukning beräknas på E16. Kontrollera att värden inkommer på E17. Kontrollera att förbrukning beräknas på E18. Kontrollera att beräkningen av E01 (beräknad) fungerar. Kontrollera att beräkningen av E02 (beräknad) fungerar.
+681,Larm och händelser i CM,Kontrollera att larm uppstår i CM när klockan inte ställs med automatik – misslyckas (klockfel). Kontrollera att larm uppstår i CM när klockan ställs varje dygn under 5 dagar under sista 30 dagarna(mer än 7 sekunder). Kontrollera att larm uppstår i CM för avvikelse vid självdiagnos. Kontrollera att larm uppstår i CM vid felaktig effektriktning på en mätare som har en profil som ej avser att anläggningen är en  produktionsanläggning.
+685,B114 - Implementation av tidssynk,Kontrollera tillsammans med driftpartner hur implementationen ser ut.
+686,05 Skapa anläggning,Kontrollera att man kan skapa en för EL.
+687,06 Skapa en kommunikationspunkt,Skapa en kommunikationspunkt för EL.
+688,16 Manuell insamling,Kontrollera att manuell insamling fungerar för Omnia emeter adapter. Gör enstaka insamling och via batch.
+689,14 Kommunikationskontroll (per adaptertyp),Kontrollera att kommunikationskontroll fungerar för Omnia emeter adapter.
+690,15 Hämta aktuell mätarställning (per adaptertyp),Kontrollera att det går att hämta aktuell mätarställning för Omnia emeter adapter.
+691,"24 Kontrollera funktionen ""Kvittera osäkra värden""",Kvittera för enskild EL. Kvittera för flera EL.
+692,01 Kontrollera behörighet (skapa användare),"Skapa en användare och tilldela den behörigheter för aktör Göteborg Energi. Skapa en användare och tilldela den behörigheter för aktör Göteborg Energi, inloggad som vanlig användare."
+693,04 Kontrollera behörighet (ta bort användare),"Ta bort en användare för aktör Göteborg Energi, inloggad som vanlig användare. Ta bort en användare i systemet för aktör Göteborg Energi."
+694,02 Kontrollera behörighet (skapa nya roller),"Skapa en ny roll för aktör Göteborg Energi, inloggad som vanlig användare."
+695,03 Kontrollera behörighet (ta bort roller),"Ta bort en roll för aktör Göteborg Energi, inloggad som vanlig användare. Ta bort roller i systemet för aktör Göteborg Energi."
+696,17 Process (Pågående jobb),Kontrollera att pågående jobb visas under processfliken i CM.
+697,18 Process (Redan kört jobb),Kontrollera att man kan söka efter ett redan kört jobb under jobbhistorikfliken.
+698,26 Mätarbyte,Gör ett mätarbyte 1 fas till 1 fas. Gör ett mätarbyte 3 fas till 3 fas. Gör ett mätarbyte CT till CT.
+699,27 Ta bort mätarställning,Ta bort en mätarställning på EL.
+700,29 Estimera mätarställning,Estimera mellan två EL mätarställningar.
+701,36 Exporter,Exportera värde för EL.
+702,32 Larm på mätvärden,Kontrollera larm för EL visas i vyn. Välj typ EL Mätarställning saknas. Välj typ EL Osäkert värde. Kontrollera att man kan exportera till CSV/Excel.
+703,22 Kontrollera sökfunktion,Kontrollera att sökfunktionen fungerar för utrustning. Kontrollera att sökfunktionen fungerar för anläggning. Kontrollera att sökfunktionen fungerar för kommunikationspunkt.
+704,25 Kopiera föregående dag/vecka,"Kopiera värden från föregående dag, avstängd anläggning. Kopiera värden från föregående vecka, avstängd anläggning. Kopiera värden från föregående dag, aktiv anläggning. Kopiera värden från föregående vecka, aktiv anläggning."
+705,Nyinstallation,Gör en nyinstallation på en 1 fas mätare i CM. Gör en nyinstallation på en 3 fas mätare i CM. Gör en nyinstallation på en CT mätare i CM.
+706,Nedtagning,Gör en nedtagning av en 1 fas mätare i CM. Gör en nedtagning av en 3 fas mätare i CM. Gör en nedtagning av en CT mätare i CM.
+707,Verifiera profiler,Verifiera att relevanta profiler för anläggningar finns med. Verifiera att relevanta profiler för mätare finns med. Verifiera att relevanta profiler för kommunikationspunkter finns med. Gör profilbyte.
+708,Larm och Händelser,Klockan ställs  inte med automatik – misslyckas (klockfel). Avvikelse vid självdiagnos. Felaktig effektriktning.
+709,Kontrollera kopplingen till databasen,Kontrollera att applikationen kan nå databasen via sql+ eller tnsping. kontrollera att applikationen kan accessa databasen som förväntat genom att exempelvis göra sökningar i applikationen.
+710,Hantering solceller,"Nyinstallation av konsumtion, där produktion installeras vid senare tillfälle. Nyinstallation av konsumtion och produktion vid samma tillfälle. Mätarbyte konsumtion/produktion till konsumtion/produktion. Nedtagning av konsumtion och produktion. Nedtagning av endast produktion."
+711,Brytarfunktioner,Läs brytarstatus från CM. Utför frånkoppling från CM. Utför tillkoppling från CM. Visa brytarhistorik i CM. Verifiera att CT mätare ej går att fjärrmanövrera.
+712,HAN-port,Läs HAN-portsstatus i CM. Aktivera HAN-port från CM. Deaktivera HAN-port från CM.
+713,Baseline prestanda,"Mät prestandan, antingen manuellt eller med verktyg.
+
+Sökning, testa att söka efter ""*"" under ""Sök, Utrustning, Utrustnings ID"" - mät tiden. Mät prestandan, antingen manuellt eller med verktyg.
+
+Manuell bläddring i trädet, öppna trädet under ""Anläggningar, Göteborg Energi, Anläggningar"". Mät prestandan, antingen manuellt eller med verktyg.
+
+Vid användning av prestandamätningsverktyg, om möjligt testa 50 eller fler samtidiga användare."

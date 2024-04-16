@@ -1,0 +1,470 @@
+Nivå 1,Nivå 2,Nivå 3,GE KravID,Rubrik,Beskrivning,Prioritet,Status,Acceptanskriterier,ID,Arkiverad
+1 - Lösningskrav,12 - Koncern och Bolagsstrukturstöd,,LK-008.c,Avslut av diarium,Det skall vara möjligt att avsluta ett diarium/bolag inom GE-koncernen i systemet för att hindra ytterligare registrering av nya diarieärenden och diariehändelser.,Skall,Överlämnad till förvaltning,"
+	En funktion i gränssnitt för att initiera process att avsluta finns
+	En tydlig process för att genomföra hela processen att avsluta ett diarium
+	Avlutat diarium ska fortfarande presentera ärenden och händelser men inga ytterligare registreringar eller ändringar tillåts i diarium
+",49,Nej
+1 - Lösningskrav,13 - Användbarhet,,LK-009.f,Obligatoriska fält hindrande,Ej ifyllda tvingande fält bör hindra progress och avslut i skapande och uppdatering.,Bör,Överlämnad till förvaltning,"
+	Användaren ska på ett tydligt sätt informeras att obligatoriska fält är saknade
+	Saknade fält ska vara tydligt angivna
+	Obligatoriska fält ska under ifyllande vara passivt informerande men när spara försök att gå vidare i process sker så ska de vara mer aktivt informerande
+",56,Nej
+1 - Lösningskrav,13 - Användbarhet,,LK-009.i,Seriell bulkinmatning med ärvd metadata,Lösningen bör erbjuda möjlighet att i serie mata in flera diariehändelser där metadata ärvs från föregående så att inmatning av nya ärenden kan göras effektivt och med konsistent innehåll.,Bör,Överlämnad till förvaltning,"
+	En tidigare gjord registrering kan klonas till nya med samma information förifylld
+	All information i registerpost kopieras över till nya
+	Filer kopieras INTE över till klonad kopia
+	Händelses händelselogg ska inte följa med i klonade kopior
+	Referenser till andra registerposter ska kopieras med till ny klon
+",59,Nej
+2 - Verksamhetskrav,18 - Dokumenthantering styrande och formella dokument,,VK-001.c,Permanenta hyperlänkar för delning,Det bör gå att skapa permanenta länkar till filer och registerposter på samtliga hierarkiska nivåer som inte påverkas vid uppdateringar av dokument och filer.,Bör,Överlämnad till förvaltning,"
+	Det ska gå att kopiera en länk
+	Länken ska fungera och leda till ärende, händelse eller fil
+	Även efter uppdatering av ärende eller händelse eller om händelse flyttar till annat ärende eller bolag ska länken fortsätta att fungera
+	Länk till fil ska alltid i första hand leda till senast giltiga version av fil
+",83,Nej
+2 - Verksamhetskrav,19 - Redigering och samarbete i dokument,,VK-002.e,Dokumentstatus,Ett dokument ska sättas i en status av färdigt när registrering sker.,Skall (Tvingande),Överlämnad till förvaltning,"
+	Diariehändelse (dokument) av typen intern skall sättas till status ""Registrerat"" när handläggare markerar händelse diarieförd.
+	Diariehändelse av typen inkommande skall status sättas till ""Registrerat av handläggare"" när handläggare markerar händelse som diarieförd och ""Registrerat"" när registrator markerar den som klar.
+	Diariehändelse av typen utgående skall status sättas till ""Färdig från handläggare"" när handläggare markerar händelse till färdigställd och ""Registrerat"" när registrator markerar den som klar
+	Diariehändelse som skapas av registrator/huvudregistrator ska sättas till status ""Registrerat"" direkt vid diarieföring
+",88,Nej
+2 - Verksamhetskrav,19 - Redigering och samarbete i dokument,,VK-002.f,Återöppna och uppdatera dokument,Ett dokument som satts till status färdigt ska kunna öppnas för redigering som leder till en ny version i en ny diariehändelse.,Skall,Överlämnad till förvaltning,Sammanlänkat krav med kravet VK-011-j som har samma acceptans kriterier.,89,Nej
+2 - Verksamhetskrav,21 - Dokument och Mallar,,VK-004.c,Metadata appliceras i filer,Lösningen ska stödja att lägga till metadata som text i filer som laddas upp och konverteras.,Skall,Under testning,"
+	Den slutgiltiga konverterade filen i bevarandeformat ska innehålla vald metadata
+	Pålagd metadata ska placera på en utpekad plats i filen
+	Metadataplacering skall kunna specificeras i X/Y-led samt rotationsorientering per vald metadata
+",97,Nej
+2 - Verksamhetskrav,21 - Dokument och Mallar,,VK-004.d,Applicering av metadata till anvisade ytor i filer,Mallars utformning bör kunna bereda ytor för metadata från registerpost. Lösningen ska ha stöd för att styra metadata till förutbestämda ytor på dokument.,Skall,Under testning,"
+	Metadatafält ska kunna knytas till specifika placeringar i en mall
+	Olika mallar ska kunna ha egna placeringar av samma metadatafält
+	Metadata ska finnas representerad på den läsbara och utskrivningsbara versionen av dokumentet
+",98,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.c,Metadata appliceras till utskrift av dokument,Valbar metadata bör kunna läggas till den printbara versionen av dokument,Bör,Under testning,Se krav VK-004.d,101,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.d,Metadata i mallars sidhuvud och -fot,Dokument skapade baserat på mallar bör kunna få metadata applicerad i mallformatets t.ex. sidhuvud och sidfot.,Bör,Under testning,Se krav VK.004.d,102,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.p,Fältutforming för klassning,"Fälten ska följa det klassningssystem som avtalats med IT-Säk: konfidentialitetsmärkning med sju nivåer plus ""sekretess/särskilda personuppgifter"" med fyra nivåer. Vid sekretess ska paragraf i OSL anGE:s i särskilt, obligatoriskt fält.",Skall,Överlämnad till förvaltning,"
+	Val av markering skall öppna upp underliggande val adaptivt i GUI för Sekretessmarkering och särskilda personuppgifter
+	Sekretessklassning ska öppna ytterligare paragrafmeny att välja ur som ska vara obligatorisk
+	Särskilda personuppgifter ska öppna personuppgiftsval som ska vara obligatorisk
+	Under särskilda personuppgifter med valet ""Övrigt"" tillgängliggörs ett fritextfält
+	Konfidentialitetsmärkning har samtliga val i lista synlig
+	Både sekretess och Särskilda personuppgifter kan väljas och då visas båda underliggande menyer
+	Tas val bort på övre nivå så töms även underliggande val
+",114,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.q,Paragrafnotering,Det ska finnas fält för OSL paragrafnotering vid sekretessklassning i diarie.,Skall,Överlämnad till förvaltning,"
+	En lista med valbara OSL-paragrafer finns i formulär
+	Val i lista ger effekt på ärendets eller händelses tillgänglighet
+	Val av sekretessnivå ger en visuell indikation i GUI att ärende eller händelse har en sekretessnivå satt
+",115,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.r,Kopplad anläggning,Det ska vara möjligt att knyta ett Diarieärende och Diariehändelse mot anläggning(plats) och adress (gatuadress) från fastställd lista av objekt.,Bör,Överlämnad till förvaltning,"
+	Anläggnings och fastighetsregister kan uppdateras och nya skapas och gamla tas bort av användare systemet
+	Anläggningar kan läggas till i registreringsformulär via sökning på anläggningsnamn och adress direkt i fält för Fastighet
+",116,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.s,Medansvarig i ärende,Lösningen skall stödja val och tillägg av ytterligare ansvarig handläggare (medansvarig i ärendet).,Skall,Överlämnad till förvaltning,"
+	Tillägg av medhandläggare sker via uppslag mot befintliga och aktiva användarkonton
+	Det bör stödja att lägga till minst 30 aktiva medhandläggare inklusive ansvarig handläggare i ett ärende
+	Det ska vara väl synligt i ärendet vilka som är aktiva handläggare
+",117,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.t,Handlingstyp i diariehändelse,"Det ska i en Diariehändelse finnas möjlighet att ange handlingstyp utifrån valbara metadata t.ex. avtal, beslutsärenden.",Bör,Överlämnad till förvaltning,"
+	Handlingstyp ""Handling"" är den automatisk förvalda dokumentkategorin
+	
+",118,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.y,Klassificeringskod,Det ska finnas fält för klassificeringskod enligt GE:s klassificeringsstruktur.,Skall,Överlämnad till förvaltning,"
+	Klassificeringskoder enligt dokumenthanteringsplanen finns att välja i registreringsformulär på ärendenivå.
+	Urval i fält görs med autocomplete-sökning på antingen kod eller namn/beskrivning av klassificering
+	Klassificeringskod läggs till som metadata på ärende
+",122,Nej
+2 - Verksamhetskrav,22 - Metadata,,VK-005.z,Alternativ information vid sekretess,Det bör finnas fält för alternativ titel/Diarieärendemening och Diariehändelsemening för presentation i samband med sekretess av originaltitel.,Bör,Överlämnad till förvaltning,"
+	Fördefinierade val av offentlig titel ska presenteras i en lista
+	Valen; Sätt offentlig titel lika med titel, Skydda hela offentliga titeln, Skriv in offentlig titel manuellt.
+	Vid val ""Skriv in offentlig titel manuellt"" ska ytterligare fält öppnas för att ange offentlig titeltext 
+",123,Nej
+2 - Verksamhetskrav,23 - Gallring,,VK-006.b,Massgallring,Det bör finnas funktion för både gallring av enstaka filer samt massgallring.,Bör,Överlämnad till förvaltning,"
+	Markera enskild eller flertalet filer för gallring
+	Filer försvinner efter fullföljd gallring från användargränssnitt i P360 samt vid sökning direkt i lösningens databas
+",125,Nej
+2 - Verksamhetskrav,23 - Gallring,,VK-006.c,Automatiserad gallringsprocess,Lösningen bör erbjuda stöd för schemalagd och regelbaserad generering av urvalslistor för massgallring,Bör,Under testning,"
+	Administratör eller användare kan skapa schemalagda rutiner för generering av filer för gallring enligt regler
+	Generering av urvalslistor sker vid tidpunkt i rutin
+	Urvalslista återspeglar satta regler för urval
+	Urvalslista kan användas direkt för markering av filer som ska gallras
+",126,Nej
+2 - Verksamhetskrav,23 - Gallring,,VK-006.d,Kontrollsteg för start av gallring,Det ska finnas manuellt godkännande eller manuell start för gallringsjobb.,Skall,Överlämnad till förvaltning,"
+	Inget gallras ur lösningen utan att auktoriserad användare exekverar gallringsprocess
+	Endast filer markerade i urvalslista gallras
+",127,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.a,Utskrift av sökresultat,Lista på sökträff bör kunna exporteras eller skrivas ut.,Bör,Under testning,"
+	Hela eller valda delar i sökresultat skall kunna exporteras eller skrivas ut direkt från lösningen
+	Export till Excel/CSV ska innehålla de valda kolumnerna i sökresultatet
+",130,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.f,Söktermer bestående av flera ord,Systemet skall stödja en kombinerad och filtrerad sökfunktion där sökning efter dokument kan göras på flera ord.,Skall,Överlämnad till förvaltning,"
+	Sökning på flera ord är utsökta med ""ELLER"" som operator i logik så även icke existerande ord i sökning resulterar i resultat på de ord som har träff.
+	Sökresultat ska presenteras för alla hierarkiska nivåer
+",135,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.g,Sökbar metadata,All metadata skall vara sökbar,Skall,Överlämnad till förvaltning,"
+	Alla typer av metadata ska vara sökbara
+",136,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.h,Riktad sök,"Sökning skall kunna rikta sökning till enbart enskilda kategorier, exempelvis registerposter, filinnehåll, filnamn alternativt hela massan.",Skall,Överlämnad till förvaltning,"
+	Endast resultat där sökterm stämmer med kategorin på det riktade sökningen presenteras
+	Även sökning i bevarandeformatsfiler
+	
+",137,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.k,Sökning över samtliga status,Sökning skall kunna söka och presentera resultat oavsett status på registerpost.,Skall,Överlämnad till förvaltning,"
+	Sökning kan ske på all metadata och innehåll oavsett ärendestatus
+",140,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.l,Postlista,Det ska finnas en förteckning över samtlig diarieförd korrenspondens (postlista) för utskrift och export.,Skall,Överlämnad till förvaltning,"
+	Postlista genererad är komplett för angiven datumperiod
+",141,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.n,Användarspecifika rapporter,Det bör vara möjligt för användare av lösningen att skapa och spara egendefinierade rapporter.,Bör,Under testning,"
+	Användare kan välja att spara sökning/rapport med ett eget namn för återanvändning
+	Sparade egna rapporter och sökningar kan tas bort av användare
+	
+",143,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.o,Export av rapporter,Samtliga rapporter bör kunna exporteras till vanligt förekommande filformat.,Bör,Under testning,"
+	Användare kan exportera till olika format, Excel, word, PDF........
+",144,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.p,Export av information i Gallrade registerposter,Lösningen bör stödja export av information tillhörande gallrade Diarieärenden och diariehändelser.,Bör,Under testning,"
+	Fungerar på samma sätt som andra rapporter/sökningar
+",145,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.q,Skicka fil som bilaga,Lösningen bör stödja att skicka filer som bilaga ur systemet via e-post.,Bör,Överlämnad till förvaltning,"
+	Från en diariehändelse kan användare att skicka en bilaga direkt som e-post
+	Filer bifogas till epostmeddelande i epostklient
+	Skickad bilaga ska noteras som ny händelse 
+",146,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.s,Öppna filer direkt från sökresultat,Lösningen bör stödja att öppna filer direkt från sökresultatet.,Bör,Överlämnad till förvaltning,"
+	Samtliga filer i Office- samt godkända arkivformat öppnas och kan läsas och redigeras direkt från sökresultat
+",148,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.t,JK-lista ärendebalans,"Det bör vara möjligt att ta ut en nationellt definierad ""JK-lista"" över ärendebalans i diariet.",Bör,Överlämnad till förvaltning,"
+	Lösningens användargränssnitt har en tydlig funktion för generering av lista med ärendebalans
+	Från och till-datum går att ange för listans tidsperiod
+	Funktionen genererar en lista med sökresultat i användargränssnitt
+",149,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.x,Sökresultat tar hänsyn till behörighet,Sökfunktion ska ta hänsyn till den inloggade användarens behörigheter för information i filer samt avskilda delar av registerposter.,Skall,Överlämnad till förvaltning,"Tre alternativ finns för skydd: Offentlig titel är samma som originaltitel, Offentlig titel är annan än originaltitel, Titel är helt dold.
+Ett av de tre alternativen sätts efter att registerpost skyddats med sekretessmarkering.
+
+
+	Sökresultat ska bara visa information och filer som motsvarar användares behörighetsnivå
+	Registerposter skyddade med bara sekretessmarkering ska finnas med i sökresultat för alla användare
+	Ärenden och händelser som är skyddade med dold titel ska utelämnas helt ur sökresultat för användare med ej tillräcklig behörighet
+	Skyddade registerposter med dold titel ska visas för användare med tillräcklig behörighet
+	Både dold originaltitel och offentlig titel och information i registerposter som omfattas av sekretess ska ge träff i sökningar för behörig användare
+",152,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.ä,Spara sökparametrar,Sökningen ska kunna sparas för kommande återsökningar.,Bör,Överlämnad till förvaltning,"
+	Användare kan spara sökning
+	Användare kan välja att använda tidigare sparad sökning
+	Sparad sökning kan ändras och sparas om som samma eller ny sparad sökning
+	Sökningar ska kunna delas mellan användare via delning
+",156,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.öa,Sök på aktivitetsdatum,Lösningen bör stödja att det på Diarieärende går att söka på senaste aktivitetsdatum.,Bör,Överlämnad till förvaltning,"
+	Sökkriterie aktivitetsdatum finns i sökning
+	Sökning t.o.m och f.o.m aktivitetsdatum
+",158,Nej
+2 - Verksamhetskrav,"24 - Sök, filtrering, utskrift och export",,VK-007.öc,Export av komplett diarium,Det ska gå att exportera diariet och de filer som lagras i lösningen till ett e-arkiv eller ett annat diarium.,Skall,Under testning,"
+	E-arkiv fil (SIP*) går att generera
+	Mottagare av SIP kan ta emot och validera dess riktighet
+	Nytt diarium kan importera SIP och all information är bevarad
+
+
+*SIP Submission Information Package enligt OAIS-modell
+",160,Nej
+2 - Verksamhetskrav,25 - Sammanläkning och korsreferenser,,VK-008.c,Koppling mellan relaterade ärenden,Det skall gå att koppla Diarieärenden till varandra för att visa på att de har ett logiskt samband. Kopplingen ska kunna göras även mellan ärenden diarieförda i olika bolag inom GE-koncernen.,Skall,Överlämnad till förvaltning,"
+	Användare kan med diarienummer skapa en ärendereferens i ett ärende skapa en dubbelriktad koppling mellan ärenden
+	Ärendekoppling utgörs av en aktiv hyperlänk som tar användare direkt mellan relaterade ärenden
+	Sekretessmarkering och dolda titlar ska ha effekt på koppling mellan ärenden så att dold information inte röjs för ej behöriga användare
+",163,Nej
+2 - Verksamhetskrav,25 - Sammanläkning och korsreferenser,,VK-008.d,Koppling mellan händelser,Lösningen bör stödja sammanlänkning av Diariehändelser i olika Diarieärenden så att användare  enkelt kan hitta och öppna dem.,Bör,Överlämnad till förvaltning,"
+	Användare kan med dokumentreferens i en händelse skapa en dubbelriktad koppling mellan händelser
+	Händelsekoppling utgörs av en aktiv hyperlänk som tar användare direkt mellan relaterade händelser
+	Sekretessmarkering och dolda titlar ska ha effekt på koppling mellan händelser så att dold information inte röjs för ej behöriga användare
+
+",164,Nej
+2 - Verksamhetskrav,26 - Dokument och filimport,,VK-009.b,Dra och släppa för att bifoga filer,"Det bör finnas stöd för ”drag and drop” för handling (dokument, filer) till Diariet.",Bör,Överlämnad till förvaltning,"
+	Användare kan dra och släppa enstaka eller grupper av filer direkt in till en händelse
+	Samtliga godkända filformat ska gå att dra och släppa för att bifoga filer
+	Drar och släpps en eller flera filer direkt till ett ärende så skapas en händelse med samtliga filer bifogade
+	Filer ska kunna dras och släppas i P360 webbgränssnitt eller Outlooks sidopanel med samma resultat
+",166,Nej
+2 - Verksamhetskrav,26 - Dokument och filimport,,VK-009.c,Diarieföra relaterade e-postmeddelanden direkt från e-postklient,Vid utgående eller inkommande e-post knutet till ett ärende ska det vara möjligt att via integration diarieföra detta mailflöde som handling med ev. bilagor.,Skall,Överlämnad till förvaltning,"
+	Användare kan bifoga mail till befintligt ärende som ny händelse
+
+
+Diarieföra e-post via sidopanel :
+	i en skapad diariehändelse i webbgränssnittet P360.
+	Man skapar alltså först en diariehändelse i P360 och går sedan till Outlook. Där söker man fram diariehändelsen i sidopanelen och lägger sedan till mail inklusive bilagor
+	Direkt via sidopanelen i outlook och därmed samtidigt skapa diariehändelsen.
+	Man drar och släpper mailet till ""Skapa dokument och möten"" i sidopanelen i Outlook. Man får då upp ett registreringsformulär för en diariehändelse
+
+",167,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.c,Redigerbara metadata,Metadatafält ska vara redigerbara i samtliga fall utom där det specifikt anges.,Skall,Överlämnad till förvaltning,"
+	Redigerbara metadatafält kan så länge ärendet ej är avslutat av handläggare vara redigerbara
+	Redigerbara metadatafält kan alltid redigeras av huvudregistrator oavsett status på ärende
+",179,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.e,Massavslut av ärenden,Det ska finnas möjlighet att massavsluta ärenden baserat på metadata med hänsyn taget till behörighet.,Skall,Överlämnad till förvaltning,"
+	Via funktion för massuppdatering kan ärenden sökas och filtreras till en lista
+	Ärenden i lista kan markeras enstaka eller flertalet
+	Markerade ärenden kan avslutas via gemensamt
+	Ärenden som inte har samtliga förutsättningar för att avslutas ska ge ett fel utan att påverka avslutsprocess på de övriga i listan som har alla förutsättningar för att avslutas
+	Avslutsprocessen ska ge en tydlig visuell indikation till användare att processen har fullföljts för samtliga ärenden som avslutats 
+",181,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.f,Återöppnande avslutade ärenden,Det ska vara möjligt att återöppna avslutade ärenden och vid behov kunna justera dessa och lägga till nya handlingar.,Skall,Överlämnad till förvaltning,"
+	Återöppnat ärende ska få status som indikerar att det är åter under behandling
+	Återöppnat ärende kan editeras och läggas till nya händelser
+	Ärende kan avslutas igen med ändrad information tillagd
+",182,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.i,Handläggares organisatoriska tillhörighet,"När vald handläggarens namn presenteras bör även organisationstillhörigheten (VO, AVD och Enhet) presenteras.",Skall,Överlämnad till förvaltning,"
+	i Valbara listor som hämtar användardata från katalogtjänst (AD) ska även organisation visas jämte namn.
+	Hela strängen med namn och organisation ska vara formaterad så den syns i listan på ett tydligt sätt.
+",185,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.j,Skrivskydd vid avslut,Ärendet ska vid avslut skrivskyddas och datum för avslut ska läggs till per automatik.,Skall,Överlämnad till förvaltning,"
+	Efter avslut ska inte metadata eller händelser och bifogade dokument inte kunna ändras av handläggare
+	Huvudregistrator ska kunna återöppna för att redigera
+",186,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.k,Massuppdatering av handläggare,Lösningen ska stödja byte av handläggare på flera Diarieärenden samtidigt.,Skall,Överlämnad till förvaltning,"
+	Det ska gå att söka fram ärenden som är tilldelad en huvud eller medhandläggare för att massuppdatera till ny huvud eller medhandläggare
+	Det ska gå att massuppdatera så att en medhandläggare blir huvudhandläggare i flera ärenden 
+",187,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.p,Kloning av befintliga registerposter,Det bör vara möjligt att skapa nya Diarieärenden och Diariehändelser baserat på befintliga med bibehållen information.,Bör,Överlämnad till förvaltning,"
+	Det ska gå att skapa nytt diarieärende från ett befintligt genom att kopiera det befintliga ärendet
+	Det ska gå att skapa en ny händelse i samma ärende genom att kopiera ett befintlig händelse
+	Det ska gå att skapa en ny händelse i ett nytt eller annat ärende genom att kopiera ett befintlig händelse
+",192,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.q,Arv av metadata till underordnad registerpost,"Diariehändelser ska ärva Diarieärendets sekretessnivå och konfidentialitetsmärkning, men detta ska kunna ändras på varje enskild Diariehändelse.",Skall,Överlämnad till förvaltning,"
+	All metadata ärvs automatiskt från ärende till nya händelser i ärendet
+	Sekretessnivå
+	Konfidentialitetsnivå
+	Ansvarig handläggare
+	All metadata som ärvts kan redigeras i händelse
+	Kontakt och medhandläggare ska kunna följa med via funktion och aktivt val av användare när händelse skapas
+",193,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.v,Massuppdatering av metadata i Diarieärende,"Lösningen skall stödja massuppdatering av men inte begränsat till listade metadata i ett Diarieärende:
+- Ansvarig handläggare
+- Ärendestatus",Skall,Överlämnad till förvaltning,"Se länkade krav VK-011.k
+
+
+	Metadata som är redigerbar ska kunna massuppdateras i flertalet ärenden
+
+",198,Nej
+2 - Verksamhetskrav,29 - Processflöde Diarium,,VK-011.y,Massuppdatering av metadata i Diariehändelse,"Lösningen skall stödja massuppdatering av men inte begränsat till listade metadata i en Diariehändelse:
+- Ansvarig handläggare
+- Händelsestatus",Skall,Överlämnad till förvaltning,"
+	Händelser, oavsett om de tillhör olika ärenden ska kunna massuppdateras
+",200,Nej
+36 - Kapacitet och Stabilitet,39 - Kapacitet,,KS-001.c,Sökprestanda,Sökningar bör generera resultat utan dröjsmål och endast i fall där sökning genererar ett mycket stort antal träffar accepteras ett fördröjt svar dock aldrig mer än 5 sekunder.,Bör,Överlämnad till förvaltning,"
+	I produktionsmiljö eller i produktionsliknande miljö med produktionsdata ska sökningar göras som ger stora sökresultat med uppnådd prestandakrav
+	Sökning sker från klient i GE's nätverk mot produktionsservar hos driftspartner
+",233,Nej
+36 - Kapacitet och Stabilitet,39 - Kapacitet,,KS-001.d,Bulkuppdateringsvolym,Funktioner för massuppdatering bör klara att hantera upp till 300 ärenden eller händelser åt gången.,Bör,Överlämnad till förvaltning,"
+	Uppdatering går att göra med upp till max kravställda volymer
+",234,Nej
+36 - Kapacitet och Stabilitet,39 - Kapacitet,,KS-001.e,Bulkuppdatering minvolym,Funktioner för massuppdatering ska klara att hantera minst 50 ärenden eller händelser åt gången.,Skall,Överlämnad till förvaltning,"
+	Uppdatering går att göra med upp till max kravställda volymer
+Se krav KS-001.d för maxvolymkrav
+",235,Nej
+1 - Lösningskrav,4 - LK-001 - Diariehantering,,LK-001.d,Åtkomststyrning på personnivå,All form av åtkomst till dokument och filer i lösningen ska kunna styras på personnivå.,Skall,Under testning,"
+	Det ska gå att identifiera varje enskild användare 
+	För varje användare ska det gå att konfigurera behörighetsprofil för åtkomst av ärenden och filer
+
+
+Genererat av Chat GTP OPenAI:
+
+
+Frågan löd: Presentera 3 till 5 acceptanskriterier för följande krav: All form av åtkomst till dokument och filer i lösningen ska kunna styras på personnivå.
+Svaret:
+	Alla användare i systemet ska ha en unik identifierare som används för att styra deras åtkomst till dokument och filer.
+	Administratörer ska kunna ställa in olika nivåer av åtkomstbehörigheter för varje användare, baserat på deras roll eller befogenheter.
+	Ändringar i behörigheter för en användare ska kunna spåras och loggas i systemet, så att det går att se vem som gjort ändringarna och när de gjordes.
+Ytterligare två acceptanskriterier kan vara:
+	Åtkomst till dokument och filer ska vara säkrade med autentisering, t.ex. användarnamn och lösenord eller tvåfaktorsautentisering.
+Det 5:e avbröts och när svar regenererades blev det istället följande svar:
+Här är 5 potentiella acceptanskriterier för kravet ""All form av åtkomst till dokument och filer i lösningen ska kunna styras på personnivå"":
+	Alla användare i systemet ska kunna hantera tillgången till sina egna filer och dokument och bestämma vilka andra användare som kan se eller redigera dem.
+	Administratörer i systemet ska kunna skapa, redigera och ta bort användares behörigheter till specifika filer och dokument.
+	Systemet bör tillhandahålla en sökfunktion som gör att användare snabbt kan hitta filer och dokument som de har behörighet till.
+	Åtkomsthanteringssystemet bör ge möjlighet att definiera roller med olika nivåer av behörighet, så att administratörer snabbt kan tilldela rättigheter till flera användare samtidigt.
+	Systemet bör logga alla åtgärder som utförs på filer och dokument, inklusive vem som gör vad och när, för att möjliggöra spårbarhet och efterlevnad av regler och föreskrifter.
+
+
+
+",3,Nej
+38 - Integration och Interoperabilitet,41 - Lookup integration mot GE katalogtjänster,,INT-002.a,Katalogtjänstintegration,Det ska vid registrering av Diarieärende och Diariehändelse gå att ange handläggare via namnuppslag. (Uppslag på delar av namnet och även sökbart på inaktiva handläggare).,Skall,Överlämnad till förvaltning,"
+	Samtliga användare som matchar sök listas
+	Användarnamn och organisation är synlig
+	Både nu och tidigare aktiva användare listas
+",260,Nej
+38 - Integration och Interoperabilitet,43 - M365,,INT-004.c,Öppna dokumentapplikationer,Initiering av dokumenteditering från Diarie.,Bör,Överlämnad till förvaltning,"
+	Samtliga filformat som stöds ska kunna associeras med lämplig applikation
+	Applikation associerad ska öppnas från fil bifogad i lösningen
+",264,Nej
+38 - Integration och Interoperabilitet,43 - M365,,INT-004.d,Sökning mot diarieposter från M365,Information i Diariesystem bör vara nåbart och sökbart från M365 för sökning och access till registerposter och handlingar.,Bör,Under testning,"
+	Sharepoint instranät sök ska presentera sökresultat från Diarie
+	Diarie sökträffar kan presenteras i en egen ""sökvertikal"" (Flik)
+	Sökning ska ge träffar på all sökbar data i Diarie, Metadata och filinnehåll
+	Sökning ska gå att förfina för att filtrera ut på typ av objekt, Ärende, händelse eller dokument samt annan relevant metadata
+	Sökresultat ska ta hänsyn till användares behörighetsnivå
+",265,Nej
+38 - Integration och Interoperabilitet,43 - M365,,INT-004.e,Teamsintegration,Diariesystem bör erbjuda en integration för access från Teams i M365 för att initiera och bifoga filer till processerna för diarieföring av Interna och externa digitala handlingar.,Bör,Under testning,"
+	Användare ska kunna diarieföra ett dokument direkt i Teams
+	Vid diarieföring av dokument kan användare välja att initiera ett nytt ärende eller ny händelse
+	Efter initiering ska användare kunna slutföra process till fullständig registrering genom en för användaren sammanhållen process
+",266,Nej
+38 - Integration och Interoperabilitet,44 - Mail/Outlook,,INT-005.a,Mailintegration,Inkommande mail skall enkelt kunna diarieföras direkt från mailklient.,Skall,Överlämnad till förvaltning,Se länkat krav VK-009.c,267,Nej
+38 - Integration och Interoperabilitet,44 - Mail/Outlook,,INT-005.b,Återkoppling diarieförda mail,Mail som är diariefört bör vara ha tydlig markering att så är fallet.,Bör,Överlämnad till förvaltning,"
+	Användare kan tydligt se i mailklient om mail redan är diariefört
+	
+",268,Nej
+38 - Integration och Interoperabilitet,44 - Mail/Outlook,,INT-005.c,Hyperlänkad diariepost i mail,Från diariefört mail bör direktänk in i diarie finnas i Mailklient.,Bör,Överlämnad till förvaltning,"
+	Via mailklient kan användare ha direkt åtkomst till registerpost som är relaterat till e-postmeddelande som är registrerat
+",269,Nej
+38 - Integration och Interoperabilitet,44 - Mail/Outlook,,INT-005.d,Utgående mail från Diarie,Initiera utgående mail från diariesystem som också diarieförs som Diariehändelse,Bör,Överlämnad till förvaltning,"
+	Funktion för att initiera ett mail från Diarie baserat på registerpost
+	Komplettering och sändande av mail sker sömlöst från antingen diarie eller mailklient
+	Avsänt mail läggs till i ärende som ny händelse
+	Metadata från mail sparas automatiskt i nya händelsen
+",270,Nej
+38 - Integration och Interoperabilitet,44 - Mail/Outlook,,INT-005.e,Bifoga bilagor,Initiera från Diariehändelse att sända bifogade bilagor alternativ länk till dessa i mail.,Bör,Överlämnad till förvaltning,"
+	Mail kan initieras från bilaga i registerpost
+	Användare kan välja mellan att skicka bilaga som bifogad fil eller länk till fil
+
+",271,Nej
+37 - Projekt och kvalitet,47 - Samarbete och transparens,,PQ-003.b,Produktionsbeslut,Beställaren ska äga rätten till slutgiltigt beslut om produktionssättning baserat på testresultat och status i leverans.,Skall,Godkänt,,249,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.b,Filformatsstöd,"Lösningen bör stödja de vanligast förekommande MS Officefilformaten, Adobe acrobat-filer, vanligt förekommande bildformat (*.tiff) samt textfiler.",Skall,Överlämnad till förvaltning,"
+	Alla filformat som stöds av lösningen ska kunna öppnas och redigeras utan att filformatet förvrängs eller förloras.
+	När en fil sparas i eller exporteras från lösningen till ett av de stödda filformaten, ska filen sparas på ett sådant sätt att den kan öppnas och redigeras i andra applikationer som stöder samma filformat utan att förlora data eller formatering.
+	Lösningen ska kunna hantera filer av stora storlekar utan att prestandan påverkas negativt.
+
+
+
+Char GPT Open AI genererade AC:
+Här är 3 till 5 acceptanskriterier för kravet att lösningen bör stödja de vanligast förekommande MS Office-filformaten, Adobe Acrobat-filer, vanligt förekommande bildformat (*.tiff) samt textfiler:
+	Alla filformat som stöds av lösningen ska kunna öppnas och redigeras utan att filformatet förvrängs eller förloras.
+	När en fil sparas eller exporteras från lösningen till ett av de stödda filformaten, ska filen sparas på ett sådant sätt att den kan öppnas och redigeras i andra applikationer som stöder samma filformat utan att förlora data eller formatering.
+	Lösningen bör ha möjlighet att konvertera mellan de stödda filformaten utan att förlora data eller formatering.
+	Lösningen ska kunna hantera filer av stora storlekar utan att prestandan påverkas negativt.
+	Lösningen ska ge användarna möjlighet att söka efter och filtrera filer baserat på filformat.
+",5,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.d,Originalfiler,Lösningen bör stödja att filer diarieförs i originalformat.,Bör,Överlämnad till förvaltning,"
+	Filer som lagts till ska finnas kvar i versionshistoriken i sitt originalformat.
+
+",6,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.h,Förlustfri konvertering,Konvertering ska ske utan att information går förlorad.,Skall,Överlämnad till förvaltning,"
+	Formatering och information ska inte ha förändrat, förlorats eller förvanskats.
+
+
+
+Svar från Chat GPT:
+	Alla data från ursprungligt format ska bevaras efter konvertering: Ett acceptanskriterium kan vara att alla data som finns i originalformatet måste bevaras och överföras korrekt efter konvertering. Detta innebär att eventuella filer, dokument, bilder eller andra objekt som finns i det ursprungliga formatet måste bevaras och överföras korrekt efter konvertering.
+	Konverterade data ska ha samma innehåll och kvalitet som originaldata: Ett annat acceptanskriterium kan vara att alla data som konverteras måste ha samma innehåll och kvalitet som originaldata. Detta innebär att alla dataelement, text, bilder, färger och annat innehåll som finns i det ursprungliga formatet ska behålla samma egenskaper efter konvertering.
+	Konverteringsprocessen ska inte generera nya fel eller felaktigheter: En tredje acceptanskriterium kan vara att konverteringsprocessen inte ska generera nya fel eller felaktigheter. Detta innebär att konverteringen ska utföras på ett sätt som inte skapar nya problem, som t.ex. saknade data eller korrupta filer, som inte fanns i det ursprungliga formatet.
+
+",10,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.j,Roll och användarbaserad rättighetsstyrning,"Lösningen bör stödja roll och användarbaserade rättigheter för att ändra status på ett ärende så som:
+- Makulerad,
+- Avslutad och
+- Gallrad",Bör,Överlämnad till förvaltning,"
+	Ändring av status styrs av satta behörigheter för användare
+	Ändras roll eller behörighet för användare så ändras även möjlighet att ändra status
+",12,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.l,Bevakningsdatum,"Lösningen bör ha en funktion för bevakningsdatum av Diarieärenden och Diraiehändelser.
+Bevakningsdatum bör kunna infalla ett valbart antal dagar före sista svarsdatum.",Bör,Under testning,"
+	Användare ska kunna sätta eget valbart datum
+	Satt datum ska kunna uppdateras av användare
+	Satt datum ska får effekt i form av notifiering eller annan typ av meddelande
+",13,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.n,Sista svarsdatum,Lösningen bör stödja funktion för att ange ett sista svarsdatum kopplat till ett Diarieärende eller diariehändelse.,Bör,Under testning,"
+	Användare ska kunna sätta eget valbart datum
+	Satt datum ska kunna uppdateras av användare
+	Satt datum ska får effekt i form av notifiering eller annan typ av meddelande
+
+",14,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.o,Flytt av diariehändelser,Det bör vara möjligt att flytta diariehändelser mellan ärenden. Detta gäller även flytt av diariehändelser som flyttar mellan ärenden i skilda bolag/stiftelser inom GE-koncernen.,Bör,Överlämnad till förvaltning,"
+	Det finns tydligt i användargränssnitt en funktion för att initiera en flytt av händelse.
+	Processen för att flytta ska vara effektiv och när man är klar ska händelsen i sin helhet bytt plats i strukturen och fått ett nytt ärende som förälder.
+	Händelser kan byta ärende mellan olika diarier
+",15,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.p,Rättigheter att flytta händelser,Lösningen bör stödja roll och användarbaserade rättigheter för att ändra hemvist på ett Diariehändelse.,Bör,Överlämnad till förvaltning,"
+	Endast de roller/användare som har rätt att flytta händelser kan göra det.
+	Funktionen att flytta händelser bör inte vara tillgängligt i GUI för andra användare eller roller
+",16,Nej
+1 - Lösningskrav,5 - LK-002 - Diarium,,LK-002.s,Automatisk filkonvertering,"Filer med vanliga filformat ska, när de läggs till i lösningen,  automatiskt konverteras till PDF som ett steg i processen av färdigställa registrering.",Skall,Överlämnad till förvaltning,"
+	När händelse sätt till registrerad så ska filer konverteras till bevarandeformat.
+	En ny version av händelsen har skapats och de konverterade filerna är bifogade.
+
+
+
+",17,Nej
+37 - Projekt och kvalitet,54 - Datamigrering och anonymisering,,PQ-006.a,Data att migrera,"Data att migrera från nuvarande Diarie i produktion till nya att använda under införande, kvalitetssäkring och innan produktionssättning är:
+- Alla ärenden med tillhörande händelser i Diarie
+- All historisk data över gamla ärenden och händelser i Diarie
+- Arbetslista med samtliga pågående ärenden i väntan på kvalitetssäkring
+- Alla befintliga aktiva bevakningar
+- Alla befintliga aktiva sista svarsdatum
+- Intakta URL:er för registerposter och filer så att gamla hänvisningar distribuerade är fortsatt effektiva
+- Alla arbetsflöden
+(Notera att styrande och generella dokument INTE ska migreras)",Skall,Ny,"GE kan klarlägga att:
+	Rätt data migreras
+	All önskad data migreras
+",301,Nej
+37 - Projekt och kvalitet,54 - Datamigrering och anonymisering,,PQ-006.c,Tvätt av migrerad data,"Data som ska migreras ska rensas då inte all data i dagens P360 ska finnas med i ett framtida rent Diarie i P360. Data som INTE ska finns med är:
+- Styrande dokument
+- Generella dokument
+- Referenser mellan diarieärenden eller händelser till styrande och generella dokument",Skall,Ny,"GE kan genom test och analys av migrerad data klarlägga att:
+	Inga styrande dokument finns med
+	Inga generella dokument finns med
+	Eventuella referenser från registerposter i Diarie till styrande eller generella dokument är borttagna
+	Process för tvätt av migrerad data kan repeteras med konsistent resultat
+",303,Nej
+37 - Projekt och kvalitet,54 - Datamigrering och anonymisering,,PQ-006.d,Anonymisering av testdata,En process och metod för att säkert rensa och anonymisera data skall finnas att tillgå.,Skall,Ny,"GE har tillgång till en metod för anonymisering av produktionsdata som kan användas i samband med migrering av data från produktion eller produktionskopia.
+Metoden kan fritt användas av GE och dess driftspartner.
+Metodens källkod är tillgänglig för underhåll vid behov. (om det är ett automatiserad skript)
+Metoden tar bort och ersätter alla sekretessbelagda filer.",304,Nej
+1 - Lösningskrav,6 - Rollbaserade Arbetsflöden,,LK-003.c,Styra behörigheter för roller,Behörigheter att utföra steg i arbetsflödet skall gå att koppla till roller,Skall,Under testning,"
+	Avsluta ärenden och sätta händelser till färdig ska endast kunna göras av tilldelad roll (Registrator)
+	Flytta händelser ska endast kunna göras av tilldelad roll.
+",21,Nej
+1 - Lösningskrav,6 - Rollbaserade Arbetsflöden,,LK-003.e,Multipla roller per användare,Lösningen bör erbjuda möjlighet till att enskilda användare kan ha flera roller och att det går att välja vilken roll som är den aktiva.,Bör,Överlämnad till förvaltning,"
+	Användare ska direkt i aktiv session kunna växla mellan roller
+	Byte av roll i en och samma session ska direkt få effekt på vilka funktioner och aktiviteter användaren har tillgång till.
+",22,Nej
+1 - Lösningskrav,7 - Applikationsadmin och konfigurering,,LK-004.g,Administration av flervalslistor,Det ska vara möjligt att uppdatera valbara listor med fler/färre urval.,Bör,Under testning,"
+	Befintliga listor ska kunna utökas, minskas eller ändras i innehåll
+	Ändringar ska få direkt effekt i lösningens användargränssnitt. Kan behövas en uppdatering av session.
+",28,Nej
+1 - Lösningskrav,8 - Notifieringar och påminnelser.,,LK-005.c,Notifieringar vid inaktivitet,Lösningen bör stödja tidssatta notifieringar för ärenden och dokument som legat orörda eller öppna under lång tid,Bör,Under testning,"
+	Användare kan ställa in på ärende eller flera ärenden att om de varit orörda (ej uppdaterade) under en viss tid så ska en notifiering ske.
+	Tidsperiod skall kunna sättas individuellt per ärende
+	Om ingen individuell tid sätts så ska en global tidsperiod gälla
+	Notifiering sker när inställd tid uppnås.
+
+",32,Nej
+1 - Lösningskrav,8 - Notifieringar och påminnelser.,,LK-005.g,Notifieringstrigger,Notifiering ska gå ut till ansvarig och medhandläggare när ett nytt Diarieärende skapas eller tilldelas ny handläggare.,Skall,Under testning,"
+	Notifiering triggas
+	Notifiering adresseras avsedda roller
+",35,Nej
+1 - Lösningskrav,8 - Notifieringar och påminnelser.,,LK-005.h,Notifieringstrigger,Notifiering ska gå ut till ansvarig för ärendet när någon annan skapar en ny Diariehändelse.,Skall,Under testning,"
+	Notifiering triggas
+	Notifiering adresseras ansvarig handläggare
+
+",36,Nej
+1 - Lösningskrav,8 - Notifieringar och påminnelser.,,LK-005.j,Ärendelänk i notifieringsmeddelande,Lösningen bör stödja att länk till gällande ärende infogas i notifieringsmeddelande.,Bör,Under testning,"
+	Länk bifogas
+	Länk är funktionell
+",37,Nej
+1 - Lösningskrav,9 - Sekretess,,LK-006.c,Maskning av klassad information i presentation,"Lösningen skall stödja uppmärkning av sekretessklassade Diareärenden och Diariehändelser så att specifik information som titel och/eller avsändare/mottagare, inte visas vid presentation.",Skall (Tvingande),Under testning,"
+	När sekretessmarkering sätts i ärende eller händelse så ska användare få möjlighet att dölja viss information och att skriva in alternativ information som ska presenteras
+	När ärendet presenteras ska alltid den alternativa informationen presenteras
+	Originalinformation ska endast visas baserat på användarens rättigheter
+",40,Nej
+1 - Lösningskrav,9 - Sekretess,,LK-006.e,Sekretesstid,Lösningen bör stödja möjlighet att ange sekretesstid som metadata på Diariehändelse.,Bör,Överlämnad till förvaltning,"
+	Sekretessmarkering ska inte påverkas om sekretesstid har infallit eller ej
+	Sekretesstid kopplat till enskilda paragrafer ska kunna ställas in
+	Ärende eller händelse som lyder under specifik sekretessparagraf ska automatisk tilldelas den sekretesstiden baserat på ärendets registreringstid.
+",41,Nej
+1 - Lösningskrav,9 - Sekretess,,LK-006.f,Upphäva/ändra sekretess,Lösningen skall stödja möjlighet att upphäva/ändra den huvudsakliga sekretessmarkeringen för ett Diarieärende eller Diariehändelse.,Skall,Överlämnad till förvaltning,"
+	Användare med behörighet till ärende eller händelse ska kunna ändra och upphäva sekretess
+	Ärvda sekretessmarkeringar på händelse ska kunna avmarkeras och uppdateras att ha en oberoende sekretessnivå från andra händelser och ärende det tillhör.
+	Ändrad sekretessnivå ska ha effekt på tillgänglighet av avsändare/mottager/titel samt filer i ärendet som påverkas av sekretess
+
+",42,Nej
+1 - Lösningskrav,9 - Sekretess,,LK-006.g,Organisatorisk penetretion av sekretessinformation,"Lösningen skall stödja att den ansvarige, dess överordnade chefer i organisationen, registrator samt medansvarig handläggare ska kunna se dess sekretessbelagda Diarieärenden och Diariehändelser med tillhörande filer.",Skall,Under testning,"
+	Mottagare/Avsändare/titel och filer som berörs av sekretess kan ses av avsedda roller/personer och endast dessa
+	Flytt av ärende mellan handläggare eller mellan organisationer skall även ha effekt på vilka överordnade som kan se den sekretessbelagda informationen och filerna.
+",43,Nej
