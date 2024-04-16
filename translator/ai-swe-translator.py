@@ -71,4 +71,4 @@ sp="\n\n"
 
 print(translate_to_swedish(requirement))
 print(sp)
-print(translate_to_swedish(requirement)+sp+ translate_to_swedish(test_case))
+print(translate_to_swedish(test_case))
