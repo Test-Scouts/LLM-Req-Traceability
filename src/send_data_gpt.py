@@ -23,7 +23,10 @@ def main() -> None:
         ]
         reader: csv.DictReader = csv.DictReader(reqs)
 
-        req_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
+        req_list: list[dict[str, str]] = [
+            {k: row[k] for k in row.keys() if k in fields}
+            for row in reader
+        ]
 
 
     # Load requirements file and filter the desired fields
@@ -36,7 +39,10 @@ def main() -> None:
         ]
         reader: csv.DictReader = csv.DictReader(tests)
 
-        test_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
+        test_list: list[dict[str, str]] = [
+            {k: row[k] for k in row.keys() if k in fields}
+            for row in reader
+        ]
 
     # Set up a session
     model: str = "gpt-3.5-turbo-0125"
@@ -60,9 +66,11 @@ def main() -> None:
         input_tokens += completion.usage.prompt_tokens
         output_tokens += completion.usage.completion_tokens
 
-    now: str = str(datetime.datetime.now()).replace(" ", "-")
+    now: datetime.datetime = datetime.datetime.now()
+    date: str = str(now.date())
+    time: str = str(now.time())
 
-    log_dir: str = f"./out/{model}/{now}"
+    log_dir: str = f"./out/{model}/{date}/{time}"
     os.makedirs(log_dir, exist_ok=True)
 
     chat_log: str = f"{log_dir}/res.json"

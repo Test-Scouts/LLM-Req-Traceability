@@ -20,7 +20,7 @@ now: datetime.datetime = datetime.datetime.now()
 date: str = str(now.date())
 time: str = str(now.time())
 
-res_dir: str = f"./res/{date}/{time}"
+res_dir: str = f"./res/{date}/{time}-label"
 log_path: str = f"{res_dir}/eval.log"
 
 
@@ -102,49 +102,32 @@ def main() -> None:
                         print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID ({req_id})")
                         continue
 
+                    outliers: set[str] = actual_tests - tests
+
+                    if outliers:
+                        print(f"Error - ./out/{m}/{d}/{t}: Faulty test IDs for {req_id}:")
+                        for o in outliers:
+                            print(f"Error - \t\t{o}")
+
+                        # Remove outliers
+                        actual_tests -= outliers
+
                     print(f"Info - ./out/{m}/{d}/{t}: {req_id}:")
 
-                    # Positives
-                    curr_tp_set: set[str] = actual_tests & expected_tests
-                    curr_tp_count: int = len(curr_tp_set)
-                    print(f"Info - \t\t({curr_tp_count}) {curr_tp_set = }")
-                    curr_fp_set: set[str] = actual_tests - expected_tests
-                    curr_fp_count: int = len(curr_fp_set)
-                    print(f"Info - \t\t({curr_fp_count}) {curr_fp_set = }")
+                    is_positive: bool = bool(expected_tests)
+                    is_labelled_positive: bool = bool(actual_tests)
 
-                    # Negatives
-                    expected_ns: set[str] = tests - expected_tests
-                    actual_ns: set[str] = tests - actual_tests
-
-                    curr_tn_set: set[str] = actual_ns & expected_ns
-                    curr_tn_count: int = len(curr_tn_set)
-                    print(f"Info - \t\t({curr_tn_count}) {curr_tn_set = }")
-                    curr_fn_set: set[str] = actual_ns - expected_ns
-                    curr_fn_count: int = len(curr_fn_set)
-                    print(f"Info - \t\t({curr_fn_count}) {curr_fn_set = }")
-
-                    curr_n: int = curr_tp_count + curr_fp_count + curr_tn_count + curr_fn_count
-                    
-                    expected_curr_n: int = len(tests)
-                    if curr_n != expected_curr_n:
-                        print(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }")
-                    else:
-                        print(f"Info - \t\t{curr_n = }")
-
-                    n += curr_n
-                    tp += curr_tp_count
-                    tn += curr_tn_count
-                    fp += curr_fp_count
-                    fn += curr_fn_count
+                    n += 1
+                    tp += is_positive and is_labelled_positive
+                    tn += not is_positive and not is_labelled_positive
+                    fp += not is_positive and is_labelled_positive
+                    fn += is_positive and not is_labelled_positive
                 
                 accuracy: float = 100 * (tp + tn) / n if n != 0 else 0.0
                 recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0.0
                 precision: float = 100 * tp / (tp + fp) if tp + fp != 0 else 0.0
-                specificity: float = 100 * tn / (tn + fn) if tn + fn != 0 else 0.0
-                balanced_accuracy: float = (precision + specificity) / 2
-                f1: float = 2 * (recall * precision) / (recall + precision) if recall + precision != 0 else 0.0
 
-                eval_path = f"{os.path.dirname(out_path)}/eval.log"
+                eval_path = f"{os.path.dirname(out_path)}/label-eval.log"
                 lines: list[str] = [
                     f"{n=}",
                     f"{tp=}",
@@ -152,11 +135,8 @@ def main() -> None:
                     f"{fp=}",
                     f"{fn=}",
                     f"{accuracy=}%",
-                    f"{balanced_accuracy=}%",
-                    f"{f1=}%"
                     f"{recall=}%",
-                    f"{precision=}%",
-                    f"{specificity=}%"
+                    f"{precision=}%"
                 ]
                 res_str: str = "\n".join(lines) + "\n"
 
@@ -175,9 +155,6 @@ def main() -> None:
         avg_accuracy: float = 100 * (total_tp + total_tn) / total_n if total_n != 0 else 0.0
         avg_recall: float = 100 * total_tp / (total_tp + total_fn) if total_tp + total_fn != 0 else 0.0
         avg_precision: float = 100 * total_tp / (total_tp + total_fp) if total_tp + total_fp != 0 else 0.0
-        avg_specificity: float = 100 * total_tn / (total_tn + total_fn) if total_tn + fn != 0 else 0.0
-        avg_balanced_accuracy: float = (precision + specificity) / 2
-        avg_f1: float = 2 * (avg_recall * avg_precision) / (avg_recall + avg_precision) if avg_recall + avg_precision != 0 else 0.0
 
         lines: list[str] = [
             f"{total_n=}",
@@ -186,11 +163,8 @@ def main() -> None:
             f"{total_fp=}",
             f"{total_fn=}",
             f"{avg_accuracy=}%",
-            f"{avg_balanced_accuracy=}%",
-            f"{avg_f1=}%",
             f"{avg_recall=}%",
-            f"{avg_precision=}%",
-            f"{avg_specificity=}%"
+            f"{avg_precision=}%"
         ]
 
         print(f"Info - Logging total and avarage metrics for {m}")

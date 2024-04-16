@@ -4,6 +4,7 @@ import os
 import json
 
 from dotenv import load_dotenv
+
 from .util.model import Session
 from .util.prompt import format_req_is_tested_prompt
 
@@ -21,7 +22,10 @@ def main() -> None:
         ]
         reader: csv.DictReader = csv.DictReader(reqs)
 
-        req_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
+        req_list: list[dict[str, str]] = [
+            {k: row[k] for k in row.keys() if k in fields}
+            for row in reader
+        ]
 
 
     # Load requirements file and filter the desired fields
@@ -34,7 +38,10 @@ def main() -> None:
         ]
         reader: csv.DictReader = csv.DictReader(tests)
 
-        test_list: list[dict[str, str]] = list(map(lambda row: {k: row[k] for k in row.keys() if k in fields}, reader))
+        test_list: list[dict[str, str]] = [
+            {k: row[k] for k in row.keys() if k in fields}
+            for row in reader
+        ]
 
     # Set up a session
     model_path: str = os.getenv("MODEL_PATH")
@@ -52,9 +59,11 @@ def main() -> None:
         r = session.prompt(format_req_is_tested_prompt(test_list, req), True)
         res.append(json.loads(r))
 
-    now: str = str(datetime.datetime.now()).replace(" ", "-")
+    now: datetime.datetime = datetime.datetime.now()
+    date: str = str(now.date())
+    time: str = str(now.time())
 
-    log_dir: str = f"./out/{session_name}/{now}"
+    log_dir: str = f"./out/{session_name}/{date}/{time}"
     os.makedirs(log_dir, exist_ok=True)
 
     with open(f"{log_dir}/res.json", "w+") as out:

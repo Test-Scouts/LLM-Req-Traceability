@@ -7,6 +7,7 @@ Includes:
 `Session` - A class for handling conversations with models.
 """
 from os import PathLike
+
 from transformers import Conversation
 
 
@@ -47,7 +48,7 @@ class Model:
         """
         ...
 
-    def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str, system_prompt: str = Model._SYSTEM_PROMPT) -> str:
+    def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
         """
         Prompts a the model and gets the response. Appends the messages to the history.
 
@@ -58,7 +59,7 @@ class Model:
 
         Returns:
         --------
-        `str` - The response from the model if the model is loaded, else `None`.
+        `str` - The response from the model.
 
         Raises:
         -------
@@ -74,9 +75,10 @@ class Session:
     Methods:
     --------
     `static create -> Session` - Creates a new prompting session.\n
-    `static get -> Session | None` - Retrieves an existing prompting session if it exists, ese `None`.\n
+    `static get -> Session | None` - Retrieves an existing prompting session if it exists, else `None`.\n
     `prompt -> str` - Prompts the model.
     """
+
     @staticmethod
     def create(
         name: str,
@@ -118,8 +120,16 @@ class Session:
         `Session | None` - The requested session if it exists, else `None`.
         """
         ...
+
+    @property
+    def system_prompt(self) -> str:
+        """
+        The system prompt of the session.
+        """
+        ...
     
-    def set_system_prompt(self, system_prompt: str) -> None:
+    @system_prompt.setter
+    def system_prompt(self, system_prompt: str) -> None:
         """
         Sets the system prompt for the session.
 
@@ -154,17 +164,14 @@ class Session:
         """
         ...
 
-    def get_history(self) -> list[dict[str, str]]:
+    @property
+    def history(self) -> list[dict[str, str]]:
         """
-        Retrieves a copy of the message history of the session.
-
-        Returns:
-        --------
-        `list[dict[str, str]]` - A copy of all non-ephemeral messages and responses.
+        A copy of the message history of the session.
         """
 
     def delete(self) -> None:
         """
-        Deletes the session.
+        Deletes the session from the session cache. The session is destoyed once all references to it are gone.
         """
         ...
