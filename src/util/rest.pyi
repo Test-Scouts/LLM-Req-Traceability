@@ -3,10 +3,18 @@ Utility module for abstracting REST.
 
 Includes:
 ---------
+`FieldMismatchError` - An error raised when trying to load malformed files.
 `RESTSpecification` - A class for abstracting REST and filtering out malformed requirements and tests.
 """
 
-from .model import Session
+from os import PathLike
+
+
+class FieldMismatchError(Exception):
+    """
+    Error raised when trying to load REST specifications from malformed `.csv` files.
+    """
+    ...
 
 
 class RESTSpecification:
@@ -21,9 +29,24 @@ class RESTSpecification:
     `filter_tests -> None` - Filters out all test IDs which do not exist within a specification.
     """
 
-    def __init__(self, reqs: set[str], tests: set[str]) -> None:
+    @staticmethod
+    def load_specs(reqs_path: str | PathLike, tests_path: str | PathLike) -> RESTSpecification:
         """
-        A class for abstracting REST and filtering out malformed requirements and tests.
+        Load REST specifications from `.csv` files.
+        The files must follow specific formats.
+
+        Parameters:
+        -----------
+        reqs_path: str | PathLike - The path to the requiremnts file.\n
+        tests_path: str | PathLike - The path to the tests file.
+
+        Returns:
+        --------
+        `RESTSpecification` - A REST specification for the provided files.
+
+        Raises:
+        -------
+        `FieldMismatchError` - If the required fields are missing in the `.csv` file.
         """
         ...
 
@@ -55,26 +78,6 @@ class RESTSpecification:
         """
         ...
 
-    def filter_reqs(self, reqs: set[str]) -> None:
-        """
-        Filters out requirement IDs that do not exist in the specification.
-        
-        Parameters:
-        -----------
-        reqs: str - The requirement IDs to filter.
-        """
-        ...
-    
-    def filter_tests(self, tests: set[str]) -> None:
-        """
-        Filters out test IDs that do not exist in the specification.
-        
-        Parameters:
-        -----------
-        tests: str - The test IDs to filter.
-        """
-        ...
-
     @property
     def n(self) -> int:
         """
@@ -84,54 +87,43 @@ class RESTSpecification:
         ...
     
     @property
-    def reqs(self) -> frozenset[str]:
+    def reqs(self) -> list[dict[str, str]]:
         """
-        A frozen set of the requirement IDs of the specification.
+        A copy of the requirements of the specification.
         """
         ...
     
     @property
-    def tests(self) -> frozenset[str]:
+    def tests(self) -> list[dict[str, str]]:
         """
-        A frozen set of the test IDs of the specification.
+        A copy the tests of the specification.
         """
         ...
 
-    def to_gpt(self, model: str, reqs: list[dict[str, str]], tests: list[dict[str, str]]) -> dict[str, list[str]]:
+    def to_gpt(self, model: str) -> tuple[dict[str, list[str]], tuple[int, int]]:
         """
         Sends REST data to a specified GPT model for REST alignment analysis.
 
         Parameters:
         -----------
-        model: str - The GPT model to prompt.\n
-        reqs: list[dict[str, str]] - The list of requirements in the REST alignment analysis.
-        Each entry must conform to the following shape:\n
-        `{"ID": <req ID: str>, "Feature": <feature: str>, "Description": <req description: str>}`\n
-        tests: list[dict[str, str]] - The list of tests in the REST alignment analysis.
-        Each entry must conform to the following shape:\n
-        `{"ID": <test ID: str>, "Purpose": <purpose: str>, "Test steps": <test steps: str>}`
+        model: str - The GPT model to prompt.
 
         Returns:
         --------
-        `dict[str, list[str]]` - The REST alignment mapping from requirement to tests as follows:\n
-        `{<req ID>: [<test ID>...]}`
+        `tuple[dict[str, list[str]], tuple[int, int]]` - The REST alignment mapping from requirement to tests,
+         and token usage as follows:\n
+        `({<req ID>: [<test ID>...]}, (input tokens, output tokens))`\n
         """
         ...
 
 
-    def to_local(self, session: Session, reqs: list[dict[str, str]], tests: list[dict[str, str]]) -> dict[str, list[str]]:
+    def to_local(self, model_name_or_path: str | PathLike) -> dict[str, list[str]]:
         """
         Sends REST data to a specified local model for REST alignment analysis.
 
         Parameters:
         -----------
-        session: Session - The session to prompt.\n
-        reqs: list[dict[str, str]] - The list of requirements in the REST alignment analysis.
-        Each entry must conform to the following shape:\n
-        `{"ID": <req ID: str>, "Feature": <feature: str>, "Description": <req description: str>}`\n
-        tests: list[dict[str, str]] - The list of tests in the REST alignment analysis.
-        Each entry must conform to the following shape:\n
-        `{"ID": <test ID: str>, "Purpose": <purpose: str>, "Test steps": <test steps: str>}`
+        model_name_or_path: str | PathLike - The model to prompt.
 
         Returns:
         --------
