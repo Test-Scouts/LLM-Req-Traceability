@@ -51,7 +51,8 @@ def translate_to_swedish(text):
 requirement = """
 S257 - Ny nyckel/lösnenord
 
-Fabriksinställningar och leverantörsspecifika standardlösenord eller krypteringsnycklar ska (S257) ersättas med nyskapade motsvarigheter som uppfyller Beställarens krav.
+Fabriksinställningar och leverantörsspecifika standardlösenord eller krypteringsnycklar ska (S257) ersättas 
+med nyskapade motsvarigheter som uppfyller Beställarens krav.
 """
 test_case = """
 S257 - Ny nyckel/lösenord
@@ -67,4 +68,7 @@ Koppla upp mot mätaren med MeterTool igen med de nya kryptonycklarna.
 """
 
 sp="\n\n"
+
+print(translate_to_swedish(requirement))
+print(sp)
 print(translate_to_swedish(requirement)+sp+ translate_to_swedish(test_case))
