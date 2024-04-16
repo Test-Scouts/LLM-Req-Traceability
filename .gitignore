@@ -15,6 +15,10 @@ data/
 out/
 res/
 
+# C3SE related
+c3se/
+jobs/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
