@@ -1,32 +1,36 @@
 import streamlit as st
-from util.model import Model
+from util.model import Session
 import os
 from dotenv import load_dotenv
+
+load_dotenv()
 
 st.set_page_config(page_title="Chatbot", page_icon="🤖")
 
 st.title("Chatbot 🤖")
 st.header("Upload documents", divider='rainbow')
 
+session_name: str = "chatbot"
 model_id: str = os.getenv("MODEL_PATH")
 max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
-model: Model = Model.load(model_id, max_new_tokens)
+session: Session = Session.create(session_name, model_id, max_new_tokens)
 
-if "messages" not in st.session_state:
-    st.session_state["messages"] = list[dict[str, str]]()
+system_prompt: str = st.text_input("System Prompt")
 
-messages: list[dict[str, str]] = st.session_state["messages"]
+if system_prompt:
+    session.set_system_prompt(system_prompt)
+    session.clear()
 
+messages: list[dict[str, str]] = session.get_history()
 for message in messages:
     with st.chat_message(message["role"]):
         st.markdown(message["content"])
 
-if prompt := st.chat_input("What is up?"):
-    st.session_state.messages.append({"role": "user", "content": prompt})
+if prompt := st.chat_input("What's up?"):
     with st.chat_message("user"):
         st.markdown(prompt)
 
     with st.chat_message("assistant"):
-        output = model.prompt(messages, prompt)
+        output = session.prompt(prompt)
         response = st.markdown(output)
 

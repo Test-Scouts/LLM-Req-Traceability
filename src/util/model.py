@@ -1,13 +1,24 @@
 from __future__ import annotations
 from os import PathLike
+import copy
 from transformers import AutoTokenizer, AutoModelForCausalLM, Conversation, PreTrainedTokenizer, PreTrainedTokenizerFast, PreTrainedModel
 import torch
 from typing import Final
 from .model import *
 
 
+class ModelLoadingException(Exception):
+    def __init__(self, model_name_or_path: str | PathLike, *args):
+        super().__init__(f"{model_name_or_path} is being loaded.", *args)
+
+
 class Model:
-    def __init__(self, tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast, model: PreTrainedModel, max_new_tokens: int):
+    def __init__(
+            self,
+            tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast,
+            model: PreTrainedModel,
+            max_new_tokens: int
+        ):
         self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
         self.model: PreTrainedModel = model
         self.max_new_tokens: int = max_new_tokens
@@ -52,7 +63,7 @@ class Model:
         return Model._MODELS.get(model_name_or_path, None)
 
     @staticmethod
-    def get(model_name_or_path: str | PathLike, max_new_tokens: int) -> Model | None:
+    def get(model_name_or_path: str | PathLike, max_new_tokens: int = None) -> Model | None:
         m: Model = Model._get(model_name_or_path)
 
         # Return None if the loading placeholder is present
@@ -63,11 +74,16 @@ class Model:
         if m:
             return m
         
+        if max_new_tokens is None:
+            raise ValueError("Cannot load model without max_new_tokens.")
+        
         # Add a placeholder in the dict to prevent additional loads
         Model._MODELS[model_name_or_path] = Model._get_placeholder()
 
         # Load the model and its tokenizer
         tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
+        tokenizer.chat_template
+
         model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(model_name_or_path, torch_dtype=torch.float16, device_map="auto")
         model.eval()
 
@@ -75,8 +91,7 @@ class Model:
 
         return m
     
-    @staticmethod
-    def _gen_prompt(user_prompt: str, system_prompt: str=_SYSTEM_PROMPT) -> str:
+    def _gen_prompt(self, user_prompt: str, system_prompt: str) -> str:
         """
         Generate a prompt using a predefined system prompt.
 
@@ -97,10 +112,15 @@ class Model:
         if not prompt:
             raise ValueError("User prompt must consist of at least 1 non-whitespace character.")
 
-        return f"[SYS] {system_prompt} [/SYS]\n\n{user_prompt}"
-
-    def prompt(self, history: list[dict[str, str]] | Conversation, prompt: str) -> str:
-        history.append({"role": "user", "content": Model._gen_prompt(prompt)})
+        return f"\nSystem definition:\n{system_prompt} \nEnd system definition.\n\n{user_prompt}"
+    
+    def prompt(
+            self,
+            history: list[dict[str, str]] | Conversation,
+            prompt: str,
+            system_prompt: str = _SYSTEM_PROMPT
+        ) -> str:
+        history.append({"role": "user", "content": self._gen_prompt(prompt, system_prompt)})
         input_ids: str | list[int] = self.tokenizer.apply_chat_template(history, return_tensors="pt").to("cuda")
 
         # Reset prompt to the raw input
@@ -121,3 +141,71 @@ class Model:
         # Append response to history
         history.append({"role": "assistant", "content": res})
         return res
+
+
+
+class Session:
+    def __init__(
+            self,
+            name: str,
+            model_name_or_path: str | PathLike,
+            max_new_tokens: int,
+            system_prompt: str
+        ):
+        self.name: str = name
+        self.model: Model = Model.get(model_name_or_path, max_new_tokens)
+
+        # Don't instantiate if model is loading
+        if not self.model:
+            raise ModelLoadingException(model_name_or_path)
+
+        self.system_prompt: str = system_prompt
+        self.history: list[dict[str, str]] = []
+
+    _SESSIONS: dict[str, Session] = {}
+
+    @staticmethod
+    def create(
+        name: str,
+        model_name_or_path: str | PathLike,
+        max_new_tokens: int,
+        system_prompt: str=Model._SYSTEM_PROMPT
+    ) -> Session:
+        session: Session = Session.get(name)
+
+        if session:
+            return session
+
+        session = Session(name, model_name_or_path, max_new_tokens, system_prompt)
+
+        Session._SESSIONS[name] = session
+        return session
+
+    @staticmethod
+    def get(name: str) -> Session | None:
+        return Session._SESSIONS.get(name, None)
+    
+    def set_system_prompt(self, system_prompt: str) -> None:
+        if not system_prompt:
+            system_prompt = Model._SYSTEM_PROMPT
+        self.system_prompt = system_prompt
+    
+    def prompt(self, prompt: str, ephemeral: bool = False) -> str:
+        res: str = self.model.prompt(self.history, prompt, self.system_prompt)
+
+        # Pop twice to remove the newly added user and assistant messages if ephemeral
+        if ephemeral:
+            self.history.pop()
+            self.history.pop()
+        
+        return res
+
+    def clear(self) -> None:
+        self.history = []
+
+    def get_history(self) -> list[dict[str, str]]:
+        return copy.deepcopy(self.history)
+
+    def delete(self) -> None:
+        del Session._SESSIONS[self.name]
+        del self
