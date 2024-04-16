@@ -67,4 +67,4 @@ Koppla upp mot mätaren med MeterTool igen med de nya kryptonycklarna.
 """
 
 sp="\n\n"
-print(translate_to_swedish(requirement)+sp+ translate_to_swedish(test_case)
+print(translate_to_swedish(requirement)+sp+ translate_to_swedish(test_case))
