@@ -49,21 +49,53 @@ def translate_to_swedish(text):
 
 
 requirement = """
-S257 - Ny nyckel/lösnenord
+S1 - Lagkrav
 
-Fabriksinställningar och leverantörsspecifika standardlösenord eller krypteringsnycklar ska (S257) ersättas 
-med nyskapade motsvarigheter som uppfyller Beställarens krav.
+Vid tidpunkten för kontraktsskrivande gällande Lagar, Föreskrifter och standarder med avseende på funktion och säkerhet ska (S1) uppfyllas för Mätsystemets alla delar enligt nedanstående punkter 1–13.
+1. Ellag SFS 1997:857.
+2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el.
+3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el.
+4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument.
+5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi.
+6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el.
+7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi.
+8. EU:s MID direktiv 2014/32/EU.
+9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning.
+10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite).
+11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning).
+12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU.
+13. Lag (2003:389) om elektronisk kommunikation.
+
 """
 test_case = """
 S257 - Ny nyckel/lösenord
 
-Exporta nyckel för mätaren från KMS.
-Koppla upp mot mätaren med den exporterade nyckeln med MeterTool.
-Byt nyckel för mätaren i KMS.
-Exportera nycklar för mätaren igen från KMS.
-Koppla upp mot mätaren med MeterTool igen med de gamla kryptonycklarna.
-Importera nya nycklarna i MeterTool.
-Koppla upp mot mätaren med MeterTool igen med de nya kryptonycklarna.
+Kamstrup visar på hur de uppfyller:
+1. Ellag SFS 1997:857.
+Kamstrup visar på hur de uppfyller:
+2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el.
+Kamstrup visar på hur de uppfyller:
+3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el.
+Kamstrup visar på hur de uppfyller:
+4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument.
+Kamstrup visar på hur de uppfyller:
+5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi.
+Kamstrup visar på hur de uppfyller:
+6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el.
+Kamstrup visar på hur de uppfyller:
+7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi.
+Kamstrup visar på hur de uppfyller:
+8. EU:s MID direktiv 2014/32/EU.
+Kamstrup visar på hur de uppfyller:
+9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning.
+Kamstrup visar på hur de uppfyller:
+10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite).
+Kamstrup visar på hur de uppfyller:
+11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning).
+Kamstrup visar på hur de uppfyller:
+12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU.
+Kamstrup visar på hur de uppfyller:
+13. Lag (2003:389) om elektronisk kommunikation.
 
 """
 
