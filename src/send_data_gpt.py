@@ -1,71 +1,36 @@
-import csv
 import datetime
 import os
 import json
 
 from dotenv import load_dotenv
-from openai import OpenAI
-from openai.types.chat import ChatCompletion
 
-from .util.prompt import format_req_is_tested_prompt
+from .util.rest import RESTSpecification
 
 
 def main() -> None:
     load_dotenv()
 
-    # Load requirements file and filter the desired fields
-    req_list: list[dict[str, str]]
-    with open(os.getenv("REQ_PATH")) as reqs:
-        fields: list[str] = [
-            "ID",
-            "Feature",
-            "Description"
-        ]
-        reader: csv.DictReader = csv.DictReader(reqs)
+    # Load the REST specifications
+    specs: RESTSpecification = RESTSpecification.load_specs(
+        os.getenv("REQ_PATH"),
+        os.getenv("TEST_PATH")
+    )
 
-        req_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
-
-
-    # Load requirements file and filter the desired fields
-    test_list: list[dict[str, str]]
-    with open(os.getenv("TEST_PATH")) as tests:
-        fields: list[str] = [
-            "ID",
-            "Purpose",
-            "Test steps"
-        ]
-        reader: csv.DictReader = csv.DictReader(tests)
-
-        test_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
-
-    # Set up a session
+    # Send data to local model
+    res: dict[str, list[str]]
+    data: tuple[int, int]
+    
     model: str = "gpt-3.5-turbo-0125"
-    client: OpenAI = OpenAI()
+    res, data = specs.to_gpt(
+        model
+    )
 
-    input_tokens: int = 0
-    output_tokens: int = 0
-    history: list[dict[str, str]]
-    res: list[dict[str, str]] = []
-    for req in req_list:
-        history = [{"role": "user", "content": format_req_is_tested_prompt(test_list, req)}]
-        completion: ChatCompletion = client.chat.completions.create(
-            model=model,
-            messages=history,
-            temperature=0.1
-        )
+    input_tokens: int
+    output_tokens: int
 
-        r: dict[str, str] = json.loads(completion.choices[0].message.content)
-        res.append(r)
+    input_tokens, output_tokens = data
 
-        input_tokens += completion.usage.prompt_tokens
-        output_tokens += completion.usage.completion_tokens
-
+    # Log response to a file
     now: datetime.datetime = datetime.datetime.now()
     date: str = str(now.date())
     time: str = str(now.time())

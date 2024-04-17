@@ -76,7 +76,7 @@ def main() -> None:
                 print(f"Info - Evaluating {out_path}")
 
                 # Load the tool output
-                res: list[dict[str, str]]
+                res: dict[str, list[str]]
                 with open(out_path, "r") as f:
                     res = json.load(f)
 
@@ -88,21 +88,15 @@ def main() -> None:
                 fn: int = 0
 
                 for req in res:
-                    req_id: str = req["requirementID"]
+                    actual_tests: set[str] = set(res[req])
 
-                    if not req_id:
-                        print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID")
-                        continue
-
-                    actual_tests: set[str] = set(req["tests"].replace(" ", "").split(",")) if req["tests"] else set()
-
-                    expected_tests: set[str] = map_.get(req_id, None)
+                    expected_tests: set[str] = map_.get(req, None)
                     # Skip if req ID returned None
                     if expected_tests is None:
-                        print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID ({req_id})")
+                        print(f"Error - ./out/{m}/{d}/{t}: Faulty requirement ID ({req})")
                         continue
 
-                    print(f"Info - ./out/{m}/{d}/{t}: {req_id}:")
+                    print(f"Info - ./out/{m}/{d}/{t}: {req}:")
 
                     # Positives
                     curr_tp_set: set[str] = actual_tests & expected_tests

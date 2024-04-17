@@ -1,64 +1,29 @@
-import csv
 import datetime
 import os
 import json
 
 from dotenv import load_dotenv
 
-from .util.model import Session
-from .util.prompt import format_req_is_tested_prompt
+from .util.rest import RESTSpecification
 
 
 def main() -> None:
     load_dotenv()
 
-    # Load requirements file and filter the desired fields
-    req_list: list[dict[str, str]]
-    with open(os.getenv("REQ_PATH")) as reqs:
-        fields: list[str] = [
-            "ID",
-            "Feature",
-            "Description"
-        ]
-        reader: csv.DictReader = csv.DictReader(reqs)
-
-        req_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
-
-
-    # Load requirements file and filter the desired fields
-    test_list: list[dict[str, str]]
-    with open(os.getenv("TEST_PATH")) as tests:
-        fields: list[str] = [
-            "ID",
-            "Purpose",
-            "Test steps"
-        ]
-        reader: csv.DictReader = csv.DictReader(tests)
-
-        test_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
-
-    # Set up a session
-    model_path: str = os.getenv("MODEL_PATH")
-    max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
-    session_name: str = "MistralAI-REST-at-BTHS-eval"
-    session: Session = Session.create(
-        session_name,
-        model_path,
-        max_new_tokens,
-        "You are a helpful AI assistant."  # Default system prompt of OpenAI
+    # Load the REST specifications
+    specs: RESTSpecification = RESTSpecification.load_specs(
+        os.getenv("REQ_PATH"),
+        os.getenv("TEST_PATH")
     )
 
-    res: list[dict[str, str]] = []
-    for req in req_list:
-        r = session.prompt(format_req_is_tested_prompt(test_list, req), True)
-        res.append(json.loads(r))
+    # Send data to local model
+    res: dict[str, list[str]] = specs.to_local(
+        os.getenv("MODEL_PATH"),
+        int(os.getenv("TOKEN_LIMIT"))
+    )
 
+    # Log response to a file
+    session_name: str = "MistralAI-REST-at-BTHS-eval"
     now: datetime.datetime = datetime.datetime.now()
     date: str = str(now.date())
     time: str = str(now.time())
