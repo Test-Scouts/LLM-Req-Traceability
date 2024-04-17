@@ -147,7 +147,7 @@ def main() -> None:
                     f"{fn=}",
                     f"{accuracy=}%",
                     f"{balanced_accuracy=}%",
-                    f"{f1=}%"
+                    f"{f1=}%",
                     f"{recall=}%",
                     f"{precision=}%",
                     f"{specificity=}%"
