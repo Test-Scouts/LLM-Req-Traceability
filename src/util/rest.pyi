@@ -117,13 +117,14 @@ class RESTSpecification:
         ...
 
 
-    def to_local(self, model_name_or_path: str | PathLike) -> dict[str, list[str]]:
+    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> dict[str, list[str]]:
         """
         Sends REST data to a specified local model for REST alignment analysis.
 
         Parameters:
         -----------
-        model_name_or_path: str | PathLike - The model to prompt.
+        model_name_or_path: str | PathLike - The model to prompt.\n
+        max_new_tokens: int - The `max_new_tokens` parameter used when generating.
 
         Returns:
         --------
