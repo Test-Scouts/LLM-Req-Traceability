@@ -124,8 +124,12 @@ class RESTSpecification:
                 messages=history,
                 temperature=0.1
             )
+            r: str = completion.choices[0].message.content
 
-            curr_res: dict[str, str] = json.loads(completion.choices[0].message.content)
+            # Simple JSON finder
+            # Slice from the first "{" to the last "}"
+            r = r[r.find("{"):r.rfind("}") + 1]
+            curr_res: dict[str, str] = json.loads(r)
             links: list[str]
             
             try:
@@ -156,6 +160,9 @@ class RESTSpecification:
         for req in self._reqs:
             r: str = session.prompt(format_req_is_tested_prompt(self._tests, req), True)
 
+            # Simple JSON finder
+            # Slice from the first "{" to the last "}"
+            r = r[r.find("{"):r.rfind("}") + 1]
             curr_res = json.loads(r)
             links: list[str]
             
