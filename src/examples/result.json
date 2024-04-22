@@ -1,0 +1,16 @@
+
+[
+    {"requirementID": "4.2.1", "tests": "HSP/AG/IAC/BV-02-I, HSP/HS/IAC/BV-02-I"},
+    {"requirementID": "4.2.2", "tests": ""},
+    {"requirementID": "4.3", "tests": "HSP/HS/IAC/BV-01-I, HSP/AG/OAC/BV-01-I, HSP/HS/OAC/BV-01-I, HSP/AG/ACR/BV-01-I, HSP/HS/ACR/BV-01-I, HSP/AG/ACR/BV-02-I, HSP/HS/ACR/BV-02-I, HSP/AG/ACT/BV-01-I, HSP/HS/ACT/BV-01-I, HSP/AG/ACT/BV-02-I, HSP/HS/ACT/BV-02-I, HSP/AG/RAV/BV-02-I, HSP/HS/RAV/BV-02-I, HSP/AG/RAV/BV-01-I, HSP/HS/RAV/BV-01-I, HSP/AG/RAV/BV-03-I, HSP/HS/RAV/BV-03-I, HSP/AG/RAV/BV-05-I, HSP/HS/RAV/BV-05-I, HSP/AG/RAV/BV-04-I, HSP/HS/RAV/BV-04-I, HSP/AG/RAV/BV-06-I, HSP/HS/RAV/BV-06-I"},
+    {"requirementID": "4.4", "tests": ""},
+    {"requirementID": "4.5", "tests": "HSP/AG/ACR/BV-01-I, HSP/HS/ACR/BV-01-I, HSP/AG/ACR/BV-02-I, HSP/HS/ACR/BV-02-I"},
+    {"requirementID": "4.6", "tests": "HSP/AG/ACT/BV-01-I, HSP/HS/ACT/BV-01-I, HSP/AG/ACT/BV-02-I, HSP/HS/ACT/BV-02-I"},
+    {"requirementID": "4.6.1", "tests": "HSP/HS/ACT/BV-01-I, HSP/AG/ACT/BV-01-I"},
+    {"requirementID": "4.6.2", "tests": ""},
+    {"requirementID": "4.7", "tests": "HSP/AG/RAV/BV-05-I, HSP/HS/RAV/BV-05-I, HSP/AG/RAV/BV-04-I, HSP/HS/RAV/BV-04-I, HSP/AG/RAV/BV-06-I, HSP/HS/RAV/BV-06-I"},
+    {"requirementID": "4.8", "tests": "HSP/HS/IAC/BV-01-I, HSP/AG/IAC/BV-01-I, HSP/HS/OAC/BV-01-I, HSP/AG/OAC/BV-01-I, HSP/HS/ACR/BV-01-I, HSP/HS/ACR/BV-02-I, HSP/AG/ACR/BV-01-I, HSP/AG/ACR/BV-02-I, HSP/AG/ACT/BV-01-I, HSP/HS/ACT/BV-01-I, HSP/AG/ACT/BV-02-I, HSP/HS/ACT/BV-02-I, HSP/AG/RAV/BV-02-I, HSP/HS/RAV/BV-02-I, HSP/AG/RAV/BV-01-I, HSP/HS/RAV/BV-01-I, HSP/AG/RAV/BV-03-I, HSP/HS/RAV/BV-03-I, HSP/AG/RAV/BV-05-I, HSP/HS/RAV/BV-05-I, HSP/AG/RAV/BV-04-I, HSP/HS/RAV/BV-04-I, HSP/AG/RAV/BV-06-I, HSP/HS/RAV/BV-06-I"},
+    {"requirementID": "4.9.1.1", "tests": "HSP/HS/IAC/BV-01-I, HSP/AG/OAC/BV-01-I, HSP/HS/OAC/BV-01-I, HSP/AG/ACR/BV-01-I, HSP/HS/ACR/BV-01-I, HSP/AG/ACR/BV-02-I, HSP/HS/ACR/BV-02-I, HSP/AG/ACT/BV-01-I, HSP/HS/ACT/BV-01-I, HSP/AG/ACT/BV-02-I, HSP/HS/ACT/BV-02-I"},
+    {"requirementID": "4.9.1.2", "tests": ""},
+    {"requirementID": "4.9.1.3", "tests": ""}
+]

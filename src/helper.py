@@ -62,7 +62,7 @@ def upload_file(file_description='file', widget_name='widget_name'):
     return None
 
 
-def parse_and_display_csv(file_content):
+def parse_csv_to_json(file_content):
     """
     Parses CSV file_content from a string and displays it using Streamlit or returns parsed data.
     
@@ -85,5 +85,12 @@ def parse_and_display_csv(file_content):
             return
         
         # Parse the CSV content into a dictionary format
-        rows: csv.DictReader = csv.DictReader(f, dialect=dialect)
-        return rows
+        results: csv.DictReader = csv.DictReader(f, dialect=dialect)
+        return results
+
+def load_json_file(file_path):
+    # Open the file in read mode ('r') and load its content using json.load
+    with open(file_path, 'r') as file:
+        results = json.load(file)
+
+    return results
