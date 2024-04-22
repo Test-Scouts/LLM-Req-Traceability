@@ -143,7 +143,7 @@ class RESTSpecification:
                     .split(",") \
                     if curr_res["tests"] else []
                 links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX), "")]
+                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
                     for test in links
                 ]
             except:
@@ -186,7 +186,7 @@ class RESTSpecification:
                     .split(",") \
                     if curr_res["tests"] else []
                 links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX), "")]
+                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
                     for test in links
                 ]
             except:
