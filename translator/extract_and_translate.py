@@ -20,10 +20,11 @@ model_path = os.getenv("AI_SWE-MODEL_PATH")
 
 parser = argparse.ArgumentParser(description="Process file information.")
 #Add arguments
-parser.add_argument("--count", "-c", dest="count",type=int, help="Number of extractions")
-parser.add_argument("--dir", "-d", dest="directory",type=str, help="Directory to store the extracted files")
-parser.add_argument("--map", "-m", dest="mapping",type=str, help="Mapping header for the extracted of test")
-parser.add_argument("--mode", "-mo", dest="mode",type=str, help="")
+parser.add_argument("--count", "-c", dest="count",type=int, default= 2, help="Number of extractions")
+parser.add_argument("--dir", "-d", dest="directory",type=str, default="default", help="Directory to store the extracted files")
+parser.add_argument("--map", "-m", dest="mapHeader",type=str,default='Rubrik', help="Mapping header for the extracted of test")
+parser.add_argument("--test-name", "-tn", dest="st_name",type=str, default="ST", help="")
+parser.add_argument("--req-name", "-rn", dest="req_name",type=str, default="RE", help="")
 
 # Parse arguments
 args = parser.parse_args()
@@ -38,14 +39,13 @@ else:
 
 
 #Load the environment variables
-max_req:int = int(os.getenv("END_REQ")) #max number of requirements in the csv file
-num_of_req:int = int(os.getenv("NUM_OF_REQ"))#number of requirements to extract
-
 req_amina:str = os.getenv("REQ_AMINA_CSV")
 st_amina:str = os.getenv("ST_AMINA_CSV")
 
 ###################################################################
 # AI Sweden Model Setup
+# Using the configuration from huggingface: https://huggingface.co/AI-Sweden-Models/gpt-sw3-6.7b-v2-translator
+# Date: 2024-04-22
 ###################################################################
 
 # (Optional) - define a stopping criteria
@@ -66,10 +66,11 @@ pipe = pipeline(
 
 stop_on_token_criteria = StopOnTokenCriteria(stop_token_id=pipe.tokenizer.bos_token_id)
 
+
 ###################################################################
 # Translation Function
 ###################################################################
-def translate_to_swedish(text):
+def translate_to_swedish(value):
     # This will translate English to Swedish
     # To translate from Swedish to English the prompt would be:
     prompt = f"<|endoftext|><s>User: Översätt till Engelska från Svenska\n{text}<s>Bot:"
@@ -96,7 +97,7 @@ def random_selection_unique_values(num_to_select:int ,max_row_in_csv:int):
     
     random_list = set()
     while len(random_list) < num_to_select:
-        random_list.add(random.randint(0, max_row_in_csv-2))
+        random_list.add(random.randint(1, max_row_in_csv-2)) # zero is the headers
     sorted_list = sorted(list(random_list))
     return sorted_list
 
@@ -104,60 +105,68 @@ def random_selection_unique_values(num_to_select:int ,max_row_in_csv:int):
 ###################################################################
 # CSV File Processing
 ###################################################################
-# Select random values from the csv file
-choicen_req = random_selection_unique_values(num_of_req, max_req)
-
-#print("\n".join([str(c) for c in choicen_req]))
-#print("\n\n")
-
 #df is the DataFrame 
-df = pd.read_csv(req_amina)
+req_df = pd.read_csv(req_amina)
+st_df = pd.read_csv(st_amina)
+
+
+max_req:int = len(req_df)
+num_to_extract:int = int(args.count) #number of requirements to extract
+# Select random values from the csv file
+choicen_req = random_selection_unique_values(num_to_extract, max_req)
 
 # Extracting headers
-headers = df.columns.tolist()
-#print(headers)
+req_headers = req_df.columns.tolist()
+#print(req_headers)
+st_headers = st_df.columns.tolist()
+#print(st_headers)
 
 # Extracting specific rows based on indices
-selected_rows = df.iloc[choicen_req]
-print("Selected Rows:")
-print(selected_rows)
+req_df = req_df.iloc[choicen_req]
+#print("Selected Rows:")
+#print(selected_rows)
 
 #Save Extracted RE to a csv file
-req_file = f'{directory_path}{req_amina}_extracted_{num_of_req}.csv'
-df.to_csv(req_file, index=False)
+req_file = f'{directory_path}{args.req_name}_extracted_{num_to_extract}.csv'
+req_df.to_csv(req_file, index=False)
+print("Saved extracted RE to a csv file")
 
+req_IDdesc = req_df['Rubrik'].unique() #just to be sure that the are not duplicates
+st_df = st_df[st_df['Rubrik'].isin(req_IDdesc)] #filter the ST based on the extracted RE
 
 #Save Extracted ST to a csv file
+st_file = f'{directory_path}{args.st_name}_extracted_{num_to_extract}.csv'
+st_df.to_csv(st_file, index=False)
+print("Saved extracted ST to a csv file")
 
 ###################################################################
 # Translation process
 ###################################################################
 # Iterate over each cell in the DataFrame and update it
-for column in df.columns:
-    for index in df.index:
-        original_value = df.at[index, column]
-        new_value = translate_to_swedish(original_value)
-        df.at[index, column] = new_value
-
+def process_value(df):
+    for column in df.columns:
+        if column == 'ID':
+            continue
+        for index in df.index:
+            original_value = df.at[index, column]
+            new_value = translate_to_swedish(original_value)
+            df.at[index, column] = new_value
+    return df
 
 ###################################################################
-# Saving traslated version to a csv file
+# Translation and Saving
 ###################################################################
+# Translate the extracted RE
+print("Translating the extracted RE...")
+req_df_translated = process_value(req_df)
+traslated_req_file = f'{directory_path}{args.req_name}_translated_{num_to_extract}.csv'
+print("Saving the translated RE")
+req_df_translated.to_csv(traslated_req_file, index=False)
 
+# Translate the extracted ST
+print("Translating the extracted ST...")
+st_df_translated = process_value(st_df)
+traslated_st_file = f'{directory_path}{args.st_name}_translated_{num_to_extract}.csv'
+print("Saving the translated ST")
+st_df_translated.to_csv(traslated_st_file, index=False)
 
-
-
-"""
-TODO:
-- store the values of the array in a file, so that we can append if necessary without 
-    repeating the process.
-    - create a function that will append to the existing values selected
-    - OR create a function that can check that the existing values are not repeated
-- map the values of the RE to the ST, using the "Rubrik" header as the key
-    - extract the test headers and columns
-- create two new csv files, one for the extracted RE and the other for the ST
-
-SECOND TODO:
-- translate the headers for RE and ST
-- translate each cell in the rows
-"""
