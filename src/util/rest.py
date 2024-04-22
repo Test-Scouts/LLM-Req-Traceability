@@ -21,6 +21,9 @@ class FieldMismatchError(Exception):
 
 
 class RESTSpecification:
+    _REQ_INDEX_PREFIX: str = "R-"
+    _TEST_INDEX_PREFIX: str = "T-"
+
     def __init__(
             self,
             reqs: tuple[list[dict[str, str]], list[str]],
@@ -34,7 +37,7 @@ class RESTSpecification:
         self._reqs, self._reqs_index = reqs
         self._tests, self._tests_index = tests
 
-        self._system_prompt: str = "You are a helpful AI assistant"
+        self._system_prompt: str = "You are a helpful assistant."
 
     @staticmethod
     def load_specs(reqs_path: str | PathLike, tests_path: str | PathLike) -> RESTSpecification:
@@ -59,7 +62,7 @@ class RESTSpecification:
 
                 # Substitute the requirement ID with an index
                 id_: str = r["ID"]
-                r["ID"] = str(i)
+                r["ID"] = f"{RESTSpecification._REQ_INDEX_PREFIX}{i}"
 
                 req_list.append(r)
                 req_index.append(id_)
@@ -85,7 +88,7 @@ class RESTSpecification:
 
                 # Substitute the requirement ID with an index
                 id_: str = t["ID"]
-                t["ID"] = str(i)
+                t["ID"] = f"{RESTSpecification._TEST_INDEX_PREFIX}{i}"
 
                 test_list.append(t)
                 test_index.append(id_)
@@ -117,6 +120,7 @@ class RESTSpecification:
         output_tokens: int = 0
 
         res: dict[str, list[str]] = {}
+
         for req in self._reqs:
             history = [{"role": "user", "content": format_req_is_tested_prompt(self._tests, req)}]
             completion: ChatCompletion = client.chat.completions.create(
@@ -131,16 +135,24 @@ class RESTSpecification:
             r = r[r.find("{"):r.rfind("}") + 1]
             curr_res: dict[str, str] = json.loads(r)
             links: list[str]
-            
+
             try:
                 # Substitute the test indices back to the test IDs
-                links = curr_res["tests"].replace(" ", "").split(",") if curr_res["tests"] else []
-                links = [self._tests_index[int(test)] for test in links]
+                links = curr_res["tests"] \
+                    .replace(" ", "") \
+                    .split(",") \
+                    if curr_res["tests"] else []
+                links = [
+                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX), "")]
+                    for test in links
+                ]
             except:
                 links = []
-            
+
             # Use the requirement ID instead of its internal index
-            res[self._reqs_index[int(req["ID"])]] = links
+            req_id: str = self \
+                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+            res[req_id] = links
 
             input_tokens += completion.usage.prompt_tokens
             output_tokens += completion.usage.completion_tokens
@@ -157,6 +169,7 @@ class RESTSpecification:
         )
 
         res: dict[str, list[str]] = {}
+
         for req in self._reqs:
             r: str = session.prompt(format_req_is_tested_prompt(self._tests, req), True)
 
@@ -165,16 +178,24 @@ class RESTSpecification:
             r = r[r.find("{"):r.rfind("}") + 1]
             curr_res = json.loads(r)
             links: list[str]
-            
+
             try:
                 # Substitute the test indices back to the test IDs
-                links = curr_res["tests"].replace(" ", "").split(",") if curr_res["tests"] else []
-                links = [self._tests_index[int(test)] for test in links]
+                links = curr_res["tests"] \
+                    .replace(" ", "") \
+                    .split(",") \
+                    if curr_res["tests"] else []
+                links = [
+                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX), "")]
+                    for test in links
+                ]
             except:
                 links = []
-            
+
             # Use the requirement ID instead of its internal index
-            res[self._reqs_index[int(req["ID"])]] = links
+            req_id: str = self \
+                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+            res[req_id] = links
 
         session.delete()
         return res
