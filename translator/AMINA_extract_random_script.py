@@ -5,6 +5,7 @@ import argparse
 import pandas as pd
 import torch
 from transformers import pipeline, StoppingCriteriaList, StoppingCriteria
+import AMINA_script_info as helper
 
 dotenv.load_dotenv()
 
@@ -13,8 +14,6 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Load the path to the model from the environment variables
 #model_path = os.getenv("AI_SWE-MODEL_PATH")
 
-#flag - provide the number of requests to extract
-#flag - the mapping header 
 
 parser = argparse.ArgumentParser(description="Process file information.")
 #Add arguments
