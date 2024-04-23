@@ -1,0 +1,33 @@
+ID,GE_KravID,Rubrik,Beskrivning
+99,S558,Utbildning inför UAT,Leverantören ska (S558) genomföra nödvändig utbildning samt överlämna relevant dokumentation enligt punkt 5 innan Beställarens UAT påbörjas.
+198,B66,Rapport - Rubrik som motsvarar attributet,Verifiera att attribut som väljs att ingå i en rapport har en rubrik som motsvarar attributet. T.ex. en rubrik ”adress” när det är adressdata som ingår i rapporten.
+235,B79,Historiska insamlingsjobb,Verifiera att  det  finns funktionalitet i HES för att titta på historiska insamlingsjobb under en vald tidsperiod.
+240,S51,Självdiagnos,Verifiera att Mätenheterna innehåller en självdiagnos som detekterar olika typer av felaktigheter.
+293,B1,Korrigerade mätvärden,"Verifiera att mätenheten korrigerar uppmätta värden för spänning och/eller ström vid beräkning av energiförbrukning, ska dessa värden också vara de som används i Mätsystemet."
+305,B12,Varmgång - Kat1 1 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+306,B12,Varmgång - Kat1 3 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+307,B12,Varmgång - Kat2,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+336,B41,kumulativa räkneverket återges på Mätenhetens display - Kat1 1 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+337,B41,kumulativa räkneverket återges på Mätenhetens display - Kat1 3 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+338,B41,kumulativa räkneverket återges på Mätenhetens display - Kat2,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+359,S7,Strömavbrotts start och stopp,"Verifiera att det är möjligt att identifiera ett strömavbrotts ""start och stopp"" i Mätsystemet."
+406,S1,Lagkrav,"Kamstrup visar på hur de uppfyller:
+1. Ellag SFS 1997:857. Kamstrup visar på hur de uppfyller:
+2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el. Kamstrup visar på hur de uppfyller:
+3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el. Kamstrup visar på hur de uppfyller:
+4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument. Kamstrup visar på hur de uppfyller:
+5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi. Kamstrup visar på hur de uppfyller:
+6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el. Kamstrup visar på hur de uppfyller:
+7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi. Kamstrup visar på hur de uppfyller:
+8. EU:s MID direktiv 2014/32/EU. Kamstrup visar på hur de uppfyller:
+9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning. Kamstrup visar på hur de uppfyller:
+10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite). Kamstrup visar på hur de uppfyller:
+11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning). Kamstrup visar på hur de uppfyller:
+12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU. Kamstrup visar på hur de uppfyller:
+13. Lag (2003:389) om elektronisk kommunikation."

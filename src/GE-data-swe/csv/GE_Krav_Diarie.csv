@@ -1,4 +1,4 @@
-Nivå 1,Nivå 2,Nivå 3,GE KravID,Rubrik,Beskrivning,Prioritet,Status,Acceptanskriterier,ID,Arkiverad
+Nivå_1,Nivå_2,Nivå_3,GE_KravID,Rubrik,Beskrivning,Prioritet,Status,Acceptanskriterier,ID,Arkiverad
 1 - Lösningskrav,12 - Koncern och Bolagsstrukturstöd,,LK-008.c,Avslut av diarium,Det skall vara möjligt att avsluta ett diarium/bolag inom GE-koncernen i systemet för att hindra ytterligare registrering av nya diarieärenden och diariehändelser.,Skall,Överlämnad till förvaltning,"
 	En funktion i gränssnitt för att initiera process att avsluta finns
 	En tydlig process för att genomföra hela processen att avsluta ett diarium

@@ -1,0 +1,355 @@
+ID,Rubrik,Info & Förberedelser,Kravområde,Länkade krav,Beskrivning
+1,Konvertering och Filformat hanterade i Diarie,"Intention: Verifiera att kravställda filformat hanteras av lösningen gällande bifoga, öppna, konvertera (i vissa fall) och arkivera samt att det sker mer viss automatik.
+
+Förutsättningar: 
+
+Beroenden: Alla roller ska kunna bifoga filer till ärenden de är handläggare för",Funktioner,5 - Filformatsstöd| 6 - Originalfiler| 17 - Automatisk filkonvertering| 18 - Filformat DWG & DXF,"
+."
+2,Förlustfri konvertering av filer,"Intention: Att verifiera att filer med olika format, storlek och innehåll kan konverteras till bevarandeformat (PDF-A) utan att information förvanskas eller förloras.
+
+Förutsättningar: Täck in förutom de olika filformaten även storlek på fil, antal sidor, dokumentformat (A4, Letter, Portrait/Lansdcape...), olika typer av innehåll (bilder i olika storlek och upplösning, tabeller, sidfot/sidhuvud, pagenering, ....)
+
+Beroenden: Endast godkända filformat med Excel undantaget",Systemkrav,9 - Konvertering för långtidslagring| 10 - Förlustfri konvertering,"
+."
+3,"Tidsatta notifieringar, Bevakning och sista svarsdatum","Intention: Verifiera att funktion för bevakning och sista svarsdatum finns och fungerar
+
+Förutsättningar: Notifiering eller annan metod som ska användas för att signalera att datum infallit måste vara uppsatt. Det kan vara flera metoder men här verifieras endast att det går att sätta bevakning och att något händer när det infaller. Registrerat ärende och dokumentkort (händelse)
+
+Beroenden:",Funktioner,13 - Bevakningsdatum| 14 - Sista svarsdatum| 31 - Tidssatta notifieringar| 32 - Notifieringar vid inaktivitet,"
+."
+4,Flytt av Diariehändelser,"Intention: Att verifiera att det går att flytta händelser mellan ärenden. Både mellan ärenden inom samma organisation samt mellan organisationer.
+
+Förutsättningar: Roll för användare och access för roll till olika organisationer och ärenden. Ärenden och händelser är skapade. Roll=huvudregistrator
+
+Beroenden:",Affärsprocesser,15 - Flytt av diariehändelser| 16 - Rättigheter att flytta händelser,"
+."
+5,Växla roll,"Intention: Verifiera att funktionen för att växla roll finns och fungerar
+
+Förutsättningar: Inloggad användare ska ha fler än en roll kopplad. Roll=huvudregistrator
+
+Beroenden:",Funktioner,22 - Multipla roller per användare,"
+."
+6,Obligatoriska fält,"Intention: Verifiera att obligatoriska fält tvingar användare att fylla i samt hindrar från att spara/gå vidare i process. Även att administrera vilka fält som är obligatoriska och att det går att ändra utan att det påverkar befintliga ärenden och händelser tills dess att de redigeras och ska sparas om.
+
+Förutsättningar: Ett registrerat ärende
+
+Beroenden:",Funktioner,55 - Oblligatoriska fält markerade| 56 - Obligatoriska fält hindrande| 177 - Fält ska kunna vara tvingande| 178 - Tvingande fält,"
+."
+7,Fältutformning för klassning,"Intention: Verifiera att funktion kring Konfidentialitetsklassning och Sekretessmarkering fungerar. Att klassning och markering får rätt effekt samt att processen och GUI är utformad rätt.
+
+Förutsättningar: 
+
+Beroenden:",Lagkrav,114 - Fältutforming för klassning| 115 - Paragrafnotering,"
+."
+8,Sökning,"Intention: Verifiera sökfunktion med fokus på vilka data som går att söka på, att kombinerade söktermer med flera ord och även sammanhållande strängar av ord.
+
+Förutsättningar: Användare med olika roller, olika användare med olika behörighet, testdata med flertalet olika ärenden och händelser samt filer med olika format och innehåll. Ett registrerat ärende, dokument (händelse) samt fil med namn 'Drabantgatan'' ' Remiss'. Dokumentkortet (händelsen) samt fil är belagd med sekretess
+
+Beroenden:",Funktioner,135 - Söktermer bestående av flera ord| 136 - Sökbar metadata| 137 - Riktad sök| 140 - Sökning över samtliga status| 152 - Sökresultat tar hänsyn till behörighet| 156 - Spara sökparametrar| 157 - Sökning i avslutade diarier| 158 - Sök på aktivitetsdatum,"
+."
+9,Skicka e-post från diarie,"Intention: Verifiera att det inifrån Diarie går att initiera och skicka e-post med innehåll bifogat samt att det diarieförs.
+
+Förutsättningar: Integration mot e-postserver, testklient har e-postklient, inloggad användare har en e-postadress och att det finns e-postadresser att skicka till
+
+Beroenden:",Funktioner,146 - Skicka fil som bilaga| 269 - Hyperlänkad diariepost i mail| 270 - Utgående mail från Diarie| 271 - Bifoga bilagor,"
+."
+10,Länkar in till Diarie,"Intention: Verifiera att URL:er till olika diarieobjekt så som registerposter och filer är statiska över tid och uppdateringar i poster. 
+
+Förutsättningar: Det finns ärenden och händelser med filer med olika nivå av behörigheter
+
+Beroenden:",Funktioner,83 - Permanenta hyperlänkar för delning,"
+."
+11,Administration av metadata och flervalslistor,"Intention: Verifiera administratörsfunktioner för underhåll av metadata, fält, flervalslistor
+
+Förutsättningar:  Åtkomst till 360 administration i rollen Administratör
+
+Beroenden:",Applikationsadministration,24 - Administration av obligatoriska fält| 25 - Admininistrera metadatafält| 26 - Administration av automatgenererade metadatafält| 28 - Administration av flervalslistor| 29 - Administratrion av klassificeringsstruktur,"
+."
+12,Administration av roller och behörigheter,"Intention: Verifiera adminisitrationsförmåga av access, roller och behörigheter i Diarie
+
+Förutsättningar: 
+Rollen Användaradministration
+
+Beroenden:
+N/A",Applikationsadministration,19 - Användaradministration| 21 - Styra behörigheter för roller| 72 - Begränsning i administrativa åtgärder| 212 - Rollbaserad behörighet| 215 - Behörighetsnivåer och roller kopplat till AD,"
+."
+13,Massuppdatering av metadata och status,"Intention: Verifiera funktionalitet kring massuppdatering av metadata i ärenden och händelser
+
+Förutsättningar: Det existerar flertalet (många) ärenden med händelser i. Roll=huvudregistrator
+
+Beroenden:",Funktioner,181 - Massavslut av ärenden| 187 - Massuppdatering av handläggare| 198 - Massuppdatering av metadata i Diarieärende| 200 - Massuppdatering av metadata i Diariehändelse,"
+."
+14,Korrigering och makulering av händelse och ärende,"Intention: Att verifiera att processen för att makulera ärende eller händelse. Dokumentkort (händelse) korrigeras och sedan makuleras. Därefter korrigeras och sedan makuleras ärendet.
+
+Förutsättningar: Ärende och händelse måste finnas registrerat
+
+Beroenden:",Affärsprocesser,11 - Ärendelivscykelhantering och status| 12 - Roll och användarbaserad rättighetsstyrning,"
+."
+15,Massuppdatering vid ny handläggare,"Intention: Uppdatera flera ärende samtidigt med ny ansvarig
+Förutsättningar: Två eller fler ärenden registrerade
+Beroenden:",Funktioner,187 - Massuppdatering av handläggare,"
+."
+16,Avsluta ärende,"Intention: Handläggare har avslutat ärende som hamnar i kvalitetskontroll varefter registrator kontrollerar och avslutar
+
+Förutsättningar: Ärende registrerat inklusive händelse av handläggare
+
+Beroenden: Inloggad med rollen huvudregistrator",Affärsprocesser,12 - Roll och användarbaserad rättighetsstyrning,"
+."
+17,Medhandläggare läggs till,"Intention: Fler än ansvarig på ärendet läggs till som medhandläggare vid redigering av ärendet
+Förutsättningar: Registrerat ärende
+Beroenden:",Funktioner,117 - Medansvarig i ärende,"
+."
+18,Handläggare registrerar,"Intention: Handläggare registrerar svar på inkommande handling, markerar dokumentkort som färdigt samt avslutar ärende
+
+Förutsättningar: 
+- Ärende inklusive inkommen händelse registrerad. 
+- Roll=handläggare
+
+Beroenden:",Affärsprocesser,88 - Dokumentstatus,"
+."
+19,Skapa diarieärende,"Intention: Skapa nytt diarieärende
+Förutsättningar: Huvudregistrator
+Beroenden: Huvudregistrator",Affärsprocesser,35 - Notifieringstrigger,"
+."
+20,Skapa händelse(dokumentkort),"Intention: Skapa ny händelse (dokumentkort) i befintligt ärende och bifoga fil
+Förutsättningar: Registrerat ärende
+Beroenden:",Affärsprocesser,99 - Metadatafält,"
+."
+21,Skapa händelse utifrån e-post i outlook,"Intention: Skapa ett nytt dokumentkort (händelse) och bifoga mail från oulook via sidopanel
+
+Förutsättningar: Registrerat ärende. Tillgång till sidopanel i Outlook = produktionsmiljö
+
+Beroenden:",,167 - Diarieföra relaterade e-postmeddelanden direkt från e-postklient| 267 - Mailintegration,"
+."
+22,Skapa uppgift för handläggare att utföra,"Intention: Uppgift skapas inklusive bevakningsdatum då det skall vara färdigställt
+Förutsättningar: 
+- Registrerat ärende inklusive inkommen handling
+- Flera handläggare som uppgiften skall läggas på
+- Roll=handläggare
+Beroenden:",Affärsprocesser,,"
+."
+23,Besvara inkommen händelse med e-post,"Intention: Initiera e-post från händelse som ett svar på inkommen fråga samt registrering av händelsen
+Förutsättningar: Registrerat ärende inklusive inkommen händelse(dokumentkort) med fil. Koppling mellan P360 och Outlook
+Beroenden:",Affärsprocesser,270 - Utgående mail från Diarie,"
+."
+24,Notifieringstrigger och adressering,"Intention: Att verifiera trigger för notifieringar går att anpassa och att de fungerar som tänkt och bl.a. kan ställas in att trigga notifieringar när nytt diarieärende och ny diariehändelse skapas eller tilldelas handläggare samt att notifiering adresseras de som ska.
+
+Förutsättningar: Roller är tilldelade användare och att det finns kontaktinformation dit notifiering ska skickas
+
+Beroenden: Integrationer till meddelandetjänst, M365, Outlook....",Funktioner,35 - Notifieringstrigger| 36 - Notifieringstrigger,"
+."
+25,Gallring av filer,"Intention: Verifiering av funktionalitet kring gallring; Schemaläggning, manuell, utförande av enstaka eller i bulk samt kontroll på effekt av gallring
+
+Förutsättningar: tre gallringsbara testfiler med valfria egenskaper skapade i två testärenden/-händelser, tio gallringsbara testärenden med gallringsfrist som kommer förfalla följande dag skapade i valfritt antal testärenden/-händelser som även innehåller andra filer, tillgång för att söka efter filer direkt i lösningens databas
+
+Beroenden:",Funktioner,124 - Stöd för gallring av filer| 125 - Massgallring| 126 - Automatiserad gallringsprocess| 127 - Kontrollsteg för start av gallring| 128 - Gallrad information permanent raderad,"
+."
+26,Sökning i Diarie från M365,"Intention: Verifiera integration mellan M365 och Diarie i avseende sökningsförmåga från M365.
+
+Förutsättningar: Integration är uppsatt och gränssnitt eller applikation är anpassad för att visa information från Diarie.
+
+Beroenden:",Integration,265 - Sökning mot diarieposter från M365,"
+."
+27,Bifoga filer i registerposter,"Intention: Verifiera att filer går att bifoga och att det finns flera olika fungerande metoder för att göra det.
+
+Förutsättningar: Registrerat ärende
+
+Beroenden:",Funktioner,165 - Import av filer| 166 - Dra och släppa för att bifoga filer| 168 - Import av multipla filer,"
+."
+28,Koppla registerpost mot anläggningsregister,"Intention: Verifiera att det går att lägga upp anläggningar i ett register eller integrerat till befintligt koppla anläggningar till registerpost som metadata
+
+Förutsättningar: Anläggningar finns tillgängliga
+
+Beroenden:",Funktioner,116 - Kopplad anläggning,"
+."
+29,Koppling mellan registerposter,"Intention: Verifiera att Registerposter kan kopplas samman med korsreferenser så att det enkelt går att navigera mellan dem fram och tillbaka
+
+Förutsättningar: Två ärenden inklusive händelser, ärendedokument, i varje
+
+Beroenden:",Funktioner,163 - Koppling mellan relaterade ärenden| 164 - Koppling mellan händelser,"
+."
+30,Redigering av metadata i registerpost,"Intention: Verifiera att samtliga metadatafält antingen har ett systemgenererat innehåll eller kan redigeras med olika metoder. Även verifiera att metadata endast kan redigeras av behörig och/eller när status tillåter.
+
+Förutsättningar: 
+
+Beroenden:",Funktioner,89 - Återöppna och uppdatera dokument| 179 - Redigerbara metadata| 186 - Skrivskydd vid avslut,"
+."
+31,Öppna filer från sökresultat,"Intention: Verifiering av förmåga att från sökresultat direkt interagera och öppna bifogade filer
+
+Förutsättningar: Registrerat ett flertal ärenden och ärendedokument. Dokument med wordfil. Status under arbete.
+
+Beroenden: Integration till M365 samt andra lokalt installerade applikationer för visning och redigering av filer av olika format.",Integration,148 - Öppna filer direkt från sökresultat,"
+."
+32,Sökprestanda,"Intention: Verifiera prestanda kring sökningar och användarupplevd responsivitet i gränssnitt och presentation av resultat.
+
+Förutsättningar: Datavolymer bör vara representativa, systemresurser i backend bör återspegla ett produktionssystem, latens mellan backend och klient bör vara i relation till blivande driftsförhållanden. 
+
+Beroenden: Det finns två sökfunktioner ""snabbsök"" eller Globalsök och Avancerad sök. Snabbsöken är baserad på data i Elastic medan Avancerad söker mot SQL. De har olika sökmetoder och syntax.
+
+Antaganden:
+- Globalsök i Elastic levererar endast ID eller listor i retur som i sin tur pekar på objekt i SQL. Om detta antagande är rätt så är alltid resultaten av sök hämtade från SQL även om det är Elastic som preciserar vad som ska hämtas genom sin sök. Därför är sökresultat beroende av om Elastic och SQL är synkade. DVS, i slutänden är det oavsett sökmetod snabbheten i SQL som avgör prestandan i någon mån vid presentation av resultat. 
+- All data är sökbar så att söka på ett ord bör ge träffar oavsett vart det är lagrat.",Prestanda och Tillförlitlighet,233 - Sökprestanda,"
+."
+33,Massuppdateringar,"Intention: Verifiera förmågan att massuppdatera olika volymer av registerposter
+
+Förutsättningar: Roll=huvudregistrator
+
+Beroenden:",Funktioner,234 - Bulkuppdateringsvolym| 235 - Bulkuppdatering minvolym,"
+."
+34,Skicka fil som bilaga,"Intention: Verifiera att integration till e-postklient stödjer att från diarie markera och välja att skicka fil som bilaga i ett e-postmeddelande.
+
+Förutsättningar: Integration till M365 och e-post. Befintligt ärende, ärendedokument samt fil
+
+Beroenden:",Funktioner,146 - Skicka fil som bilaga,"
+."
+35,Presentation av användare ur AD,"Intention: Verifiera att det ur integration från AD går att se och välja användare i systemet och lägga till dem i registerposter. Även verifiera att korrekt och komplett information om användare visas i valbar lista från integration.
+
+Förutsättningar: Integration och /eller användarregister är synkad till Diarie
+
+Beroenden:",Integration,185 - Handläggares organisatoriska tillhörighet| 260 - Katalogtjänstintegration,"
+."
+36,Ärendelänk i notifiering,"Intention: Att verifiera notifieringsmeddelande så att det går att bifoga en ärende eller dokumentlänk som leder rätt.
+
+Förutsättningar: Notifieringsmeddelande är konfigurerat så att det finns en tjänst för att skicka dem, mail eller som intern notifiering i Diarie.
+Koppling mellan testmiljö och Outlook för att kunna skicka mailnotifiering inklusive länk
+Beroenden:",Funktioner,37 - Ärendelänk i notifieringsmeddelande,"
+."
+37,Sekretesshantering,"Intention: Att verifiera så att Diarie kan hantera sekretess korrekt och att endast behöriga kan ta del av sekretessinformation. Sekretess på registerpost kan slås på och av samt att handläggare och dess chefer ska kunna se men inte andra.
+
+Förutsättningar: Registrerat ärende med sekretess. Inloggad i olika roller
+
+Beroenden:",Funktioner,40 - Maskning av klassad information i presentation| 42 - Upphäva/ändra sekretess| 43 - Organisatorisk penetretion av sekretessinformation,"
+."
+38,Sekretesstid,"Intention: Att verifiera inställningar för sekretesstid i diarie. Att det går att ställa in per paragraf, att det sätter en tid på ärendet baserat på tiden för paragraf samt att inget som inte ska hända händer per automatik när sekretesstid infaller.
+
+Förutsättningar: Registrerat ärende och dokumentkort (händelse)
+
+Beroenden:",Funktioner,41 - Sekretesstid,"
+."
+39,Bulkinmatning och ärvd metadata,"Intention: Att verifiera funktion för bulkinmatning av fler ärenden i rad där metadata ärvs till de nya posterna så att förloppet snabbas upp och metadata hålls konsistent mellan ärenden. Samt funktionen att händelser ärver metadata från ärende.
+
+Förutsättningar:  Registrerat ärende med sekretess, konfidentialitetsnivå känslig och flera handläggare
+
+Beroenden:",Funktioner,59 - Seriell bulkinmatning med ärvd metadata| 183 - Kopiera information från ärende| 192 - Kloning av befintliga registerposter| 193 - Arv av metadata till underordnad registerpost,"
+."
+40,Metadata i dokument och utskrifter,"Intention: Att verifiera funktion kring metadata för placering i dokument och utskrifter. Automatiskt tillägg i konvertering, styrning av metadata till definierade fält i dokument och mallar, tillägg vid utskrift.
+
+Förutsättningar: 
+
+Beroenden: Enligt leverantör är detta endast möjligt i mallar som hålls och administreras inom P360 och inte för mallar som hanteras via plug-in i M365 (Office).",Funktioner,97 - Metadata appliceras i filer| 98 - Applicering av metadata till anvisade ytor i filer| 101 - Metadata appliceras till utskrift av dokument| 102 - Metadata i mallars sidhuvud och -fot,"
+."
+41,Skapande och export av JK-lista,"Intention: Verifiera att det går att skapa och exportera eller skriva ut en komplett och korrekt JK-lista
+
+Förutsättningar: Ärenden i olika status i lösningen.Ärenden med olika tidsperioder i metadata. 
+
+Beroenden:",Funktioner,149 - JK-lista ärendebalans,"
+."
+42,Skapa postlista,"Intention: Verifiera att det går att skapa en postlista med olika datum och tidsperioder som blir komplett och korrekt och kan exporteras och skrivas ut.
+
+Förutsättningar: Korrenspondens finns diarieförd utmed en längre tidsperiod. 
+
+Beroenden:",Funktioner,141 - Postlista,"
+."
+43,Åtkomst till servrar,"Intention: Förutsättningar: Beroenden:
+Inloggning till P360 servrar",Drift och underhåll,"71 - Språrbara, unika entitetsID i loggar","
+."
+44,Åtkomst till applikationen,"Intention: Förutsättningar: Beroenden:
+Nätverksinloggning/SSO",Applikationsadministration,,"
+."
+45,Navigera i applikationen,"Intention: Förutsättningar: Beroenden:
+Syftet med testet är att se att vi har åtkomst till olika vyer, innehållet granskas inte i detta test.
+Åtkomst till applikation",,,"
+."
+46,Admingränssnittet - Rapporter,"Intention: Förutsättningar: Beroenden:
+Behörighet att starta rapporter i admingränssnittet, t ex användarstatistik
+Testet utför i rollen administratör",Applikationsadministration,19 - Användaradministration,"
+."
+47,Behörigheter,"Intention: Förutsättningar: Beroenden:
+Inloggad som handläggare och registrator",Säkerhet och sekretess,40 - Maskning av klassad information i presentation| 43 - Organisatorisk penetretion av sekretessinformation,"
+."
+48,Åtkomst från klient,Intention: Förutsättningar: Beroenden:,Integration,,"
+."
+49,Avsluta och ställa av diarium,"Intention: Verifiera att det i lösningen går att avsluta ett diarium, att det är en tydlig och intuitiv process.
+
+Förutsättningar: Det finns ett Diarie med data i att ställa av.
+
+Beroenden:",Funktioner,49 - Avslut av diarium,"
+."
+50,Val av handlingstyp,"Intention: Verifiera att vid skapande eller uppdatering av händelse kan handlingstyp väljas. Att rätt typer finns att välja emellan samt att det är en bestämd förvald som blir den valda om inget val görs.
+
+Förutsättningar: Registrerat ärende. 
+
+Beroenden:",Funktioner,118 - Handlingstyp i diariehändelse,"
+."
+51,Klassificeringskoder,"Intention: Verifiera att det finns en lista med klassificeringskoder, att de stämmer överens med dokumenthanteringsplanen och att eventuella beroenden till valda koder triggar ytterligare funktion eller aktivitet.
+
+Förutsättningar: Tillgång till dokumenthanteringsplanen vilket finns på intranätet. Länk finns här: https://p360.goteborgenergi.se:8082/locator.aspx?name=DMS.File.CurrentRevisionFiles&recno=374404
+
+Beroenden:",Affärsprocesser,122 - Klassificeringskod,"
+."
+52,Val av publik alternativ information vid sekretess,"Intention: Verifiera att vid sekretess av ärende och händelse kan alternativ väljas för titel och ärendemening och en lista med fördefinierade val eller möjlighet att skapa egen alternativ titel och ärendemening.
+
+Förutsättningar: Testare behöver ha tillgång till flera roller på sin profil och behöver ha bl.a. Huvudregistratorbehörighet
+
+Beroenden:",Affärsprocesser,123 - Alternativ information vid sekretess,"
+."
+53,Utskrift och export av sökresultat,"Intention: Verifiera att användare kan välja att exportera och/eller skriva ut listor som utgör sökresultat. Att innehåll i listor baseras på det valda informationsfälten i vyn användaren har. Att det går  att välja till vilket format export ska göras och att innehåll i export eller utskrift är komplett.
+
+Förutsättningar: Registrerade ärenden och dokumentkort (händelse) 
+
+Beroenden:",Funktioner,130 - Utskrift av sökresultat| 143 - Användarspecifika rapporter| 144 - Export av rapporter| 145 - Export av information i Gallrade registerposter,"
+."
+54,Export av diarium till SIP,"Intention: Verifiera att diarielösning kan exportera kompletta och korrekta SIP:ar enligt OAIS-modellen som går att återläsa.
+
+Förutsättningar: Behörighet att exportera databas och filer. En motpart med annat system för inläsning än det som genererat exporten är involverat. Diskyta med tillräcklig ledig volym för att lagra exporterad fil. Verktyg för validering av export.
+
+Beroenden:",Funktioner,160 - Export av komplett diarium,"
+."
+55,Återöppning av avslutat ärende,"Intention: Verifiera att ett avslutat ärende kan återöppnas för editering.
+
+Förutsättningar: Ärende med status ""avslutat""
+
+Beroenden:",Affärsprocesser,182 - Återöppnande avslutade ärenden,"
+."
+56,Åtkomststyrning och kontroll,"Intention: Verifiera att lösningen kan styra på personnivå för access till dokument och filer samt att loggning av aktiviteter identifierar vilket användarkonto som utfört aktiviteter i systemet och i ärenden.
+
+Förutsättningar: Tillgång till adminigränssnitt och kanske även till AD eller de filer som synkas in från AD för ev. manipulation. Access till lösningens olika loggar för att läsa ut händelser i system och lösning.
+
+Beroenden:",Säkerhet och sekretess,3 - Åtkomststyrning på personnivå,"
+."
+57,Diarieföra från Teams,"Intention: Verifiera att integration mellan Teams och diarie har de förutsättningar och förmågor som efterfrågas. Initiering av diarieföring direkt från Teams och ett stöd att sömlöst slutföra uppgiften.
+
+Förutsättningar: Teamsintegration tillgänglig.
+
+Beroenden:",Integration,266 - Teamsintegration,"
+."
+58,Återkoppling i e-postklient om diariefört meddelande,"Intention: Verifiera att ett e-postmeddelande som diarieförts är tydligt markerat så att det inte riskerar att diarieföras igen. Detta ska även gälla i gemensamma funktionsbrevlådor med olika användare som hanteras samma e-postmeddelanden.
+
+Förutsättningar: E-post system (Outlook) är integrerat i testmiljö, det finns e-postkonton för enskilda användare och grupper av användare. Befintligt ärende samt ärendedokument.
+
+Beroenden: Processen att diarieföra från e-postklient hanteras i testfall #21",Integration,169 - E-postklient signalerar vid diariefört e-postmeddelande| 268 - Återkoppling diarieförda mail,"
+."
+59,Validering av migrerad data,"Intention: Validering av data migrerad mellan miljöer där viss data rensats ut. Syftet är att säkerställa att processen att migrera data resulterar i en komplett och korrekt uppsättning data.
+
+Förutsättningar: Data är fullt migrerad till ny DB, SQL DB är accessbar via SSMS samt att P360's olika gränssnitt är uppsatta att accessa systemet mot de migrerade databaserna (SQL & Elastic). Gäller både produktionsdatabaser och test/UAT.
+
+Beroenden: Roller och rättigheter är konfigurerat för användare som ska validera data",Drift och underhåll,301 - Data att migrera| 303 - Tvätt av migrerad data,"
+."
+60,Sökfunktion,Intention: Förutsättningar: Beroenden:,Funktioner,,"
+."
+61,Spara registrerad data,"Intention: Förutsättningar: Beroenden:
+Testet utförs i rollen Registrator",,,"
+."
+69,Verifiering rensad data i generella och styrande dokument,"Intention: Verifiera genom validerande stickprov att data och information som i rensninsgskript utförda av leverantör  så har det som ska tas bort tagits bort.
+
+Förutsättningar: Produktionsmiljö, Pre-prodmiljö och fullskalig kopia av produktionsdata.  
+
+Beroenden: Tillgång till samtliga roller så att alla behörighetstyper är representerade i P360 dokumenthanteringsmodul.
+Rensninskskript är kört.",Applikationsadministration,,"
+."
+70,Validering av AD-synk,"Intention: Validera att resultat av AD-synk är komplett och korrekt.
+
+Förutsättningar: 
+
+Beroenden:",Drift och underhåll,,"
+."
