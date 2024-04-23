@@ -5,7 +5,7 @@ import argparse
 import pandas as pd
 import torch
 import sys
-import helper
+import AMINA_script_info as helper
 
 dotenv.load_dotenv()
 
