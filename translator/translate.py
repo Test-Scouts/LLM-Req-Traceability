@@ -74,7 +74,9 @@ def process_value(df):
             continue
         for index in df.index:
             original_value = df.at[index, column]
+            print(f"Translating: {original_value}")
             new_value = translate_to_swedish(original_value)
+            print(f"Translated: {new_value} \n")           
             df.at[index, column] = new_value
     return df
 
@@ -82,11 +84,12 @@ def process_value(df):
 ###################################################################
 # Saving traslated version to a csv file
 ###################################################################
-directory_path = "../src/GE-data-swe/English/"
+directory_path = "./src/GE-data-swe/English/"
 
 # Translate the extracted RE
 print("Translating the extracted RE...")
 req_df_translated = process_value(req_df)
+
 traslated_req_file = f'{directory_path}AMINA_requirement_translated.csv'
 print("Saving the translated RE")
 req_df_translated.to_csv(traslated_req_file, index=False)
