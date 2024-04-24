@@ -8,11 +8,14 @@ is the outut from `send_data.py` and `send_data_gpt.py`.
 
 import csv
 import datetime
+from functools import reduce
 import json
 import os
 from contextlib import redirect_stdout
 
 from dotenv import load_dotenv
+
+from util.rest import RESTSpecification
 
 from .util.stats import Stats
 
@@ -34,6 +37,11 @@ def main() -> None:
     with open(os.getenv("TEST_PATH"), "r") as f:
         reader: csv.DictReader = csv.DictReader(f)
         tests = {row["ID"] for row in reader}
+
+    specs: RESTSpecification = RESTSpecification.load_specs(
+        os.getenv("REQ_PATH"),
+        os.getenv("TEST_PATH")
+    )
     
     # Maps Req ID -> Test IDs
     map_: dict[str, set[str]]
@@ -58,6 +66,8 @@ def main() -> None:
             e["Req ID"]: (set(e["Test IDs"]) if e["Test IDs"] else set())
             for e in tmp
         }
+
+    prevalence: float = reduce(lambda acc, key: acc + len(map_[key]), map_, 0) / specs.n
 
     res_path: str = f"{res_dir}/res.log"
 
@@ -146,10 +156,10 @@ def main() -> None:
                 all_fp.append(fp)
                 all_fn.append(fn)
                 
-                accuracy: float = 100 * (tp + tn) / n if n != 0 else 0.0
-                recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0.0
-                precision: float = 100 * tp / (tp + fp) if tp + fp != 0 else 0.0
-                specificity: float = 100 * tn / (tn + fn) if tn + fn != 0 else 0.0
+                accuracy: float = (tp + tn) / n if n != 0 else 0.0
+                recall: float = tp / (tp + fn) if tp + fn != 0 else 0.0
+                precision: float = tp / (tp + fp) if tp + fp != 0 else 0.0
+                specificity: float = tn / (tn + fn) if tn + fn != 0 else 0.0
                 balanced_accuracy: float = (precision + specificity) / 2
                 f1: float = 2 * (recall * precision) / (recall + precision) if recall + precision != 0 else 0.0
 
@@ -162,6 +172,7 @@ def main() -> None:
 
                 eval_path = f"{os.path.dirname(out_path)}/eval.json"
                 data: dict = {
+                    "prevalence": prevalence,
                     "n": n,
                     "tp": tp,
                     "tn": tn,
@@ -184,6 +195,7 @@ def main() -> None:
                     f.write("\n")
 
         data: dict = {
+            "prevalence": prevalence,
             "all_n": Stats("all_n", all_n).as_dict,
             "all_tp": Stats("all_tp", all_tp).as_dict,
             "all_tn": Stats("all_tn", all_tn).as_dict,
