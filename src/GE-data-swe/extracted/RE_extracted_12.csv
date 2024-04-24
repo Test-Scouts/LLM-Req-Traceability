@@ -1,26 +1,11 @@
 ID,Rubrik,Beskrivning,GE_KravID
-385,S1 - Lagkrav,"Vid tidpunkten för kontraktsskrivande gällande Lagar, Föreskrifter och standarder med avseende på funktion och säkerhet ska (S1) uppfyllas för Mätsystemets alla delar enligt nedanstående punkter 1–13.
-1. Ellag SFS 1997:857.
-2. Förordningen (SFS 1999:716) om mätning, beräkning och rapportering av överförd el.
-3. EIFS 2016:2 – Energimarknadsinspektionens Föreskrifter och allmänna råd om mätning, beräkning och rapportering av överförd el.
-4. STAFS 2016:1 – Swedacs Föreskrifter om mätinstrument.
-5. STAFS 2016:4 – Swedacs Föreskrifter och allmänna råd om mätare för aktiv elenergi.
-6. STAFS 2009:8 – Swedacs Föreskrifter och allmänna råd om mätsystem för mätning av överförd el.
-7. STAFS 2009:9 – Swedacs Föreskrifter och allmänna råd om återkommande kontroll av mätare för aktiv elenergi.
-8. EU:s MID direktiv 2014/32/EU.
-9. Utökat typgodkännande och certifiering av Kategori 1 och 2 mätare enligt metod SPM 1618, test med 12kV stötspänning.
-10. Standarder: SS-EN61869-1, SS-EN61869-2, SS-EN50470 och IEC 62056 (DLMS/COSEM suite).
-11. EU Förordning 2016/679 av den 27 april 2016 om skydd för fysiska personer med avseende på behandling av personuppgifter och om det fria flödet av sådana uppgifter och om upphävande av direktiv 95/46/EG (allmän dataskyddsförordning).
-12. EU-försäkran om överenstämmelse ska finnas för Mätsystemet om detta eller delar därav tillverkas i land utanför EU.
-13. Lag (2003:389) om elektronisk kommunikation.",S1
-391,S7 - Strömavbrotts start och stopp,"Det ska (S7) vara möjligt att identifiera ett strömavbrotts ""start och stopp"" i Mätsystemet.",S7
-435,S51 - Självdiagnos,Mätenheterna ska (S51) innehålla en självdiagnos som detekterar olika typer av felaktigheter.,S51
-632,S248 - Samsyn kring pen-test,Beställaren och Leverantören ska (S248) vara informerade och överens om när ett penetrationstest eller revision,S248
-647,B1 - Korrigerade mätvärden,"Om Mätenheten korrigerar uppmätta värden för spänning och/eller ström vid beräkning av energiförbrukning, ska (B1) dessa värden också vara de som används i Mätsystemet.",B1
-658,B12 - Varmgång,Mätenheten ska (B12) ha möjlighet att detektera varmgång i anslutningar.,B12
-687,B41 - kumulativa räkneverket återges på Mätenhetens display,"Det kumulativa räkneverket ska (B41) kunna återges på Mätenhetens display enligt minst ett av följande två alternativ:
-1. Både heltal och decimaler visas i displayen samtidigt
-2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen.",B41
-712,B66 - Rapport - Rubrik som motsvarar attributet,För alla attribut som väljs att ingå i en rapport ska (LB66) det finnas en rubrik som motsvarar attributet. T.ex. en rubrik ”adress” när det är adressdata som ingår i rapporten,B66
-725,B79 - Historiska insamlingsjobb,Det ska (B79) finnas funktionalitet i HES för att titta på historiska insamlingsjobb under en vald tidsperiod.,B79
-1012,S558 - Utbildning inför UAT,Leverantören ska (S558) genomföra nödvändig utbildning samt överlämna relevant dokumentation enligt punkt 5 innan Beställarens UAT påbörjas.,S558
+389,S5 - Registrering av strömavbrott,"Mätsystemet ska (S5) registrera alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 3 minuter.",S5
+447,S63 - Uppgradering från HES,Mjukvara i mätare (förutom metrologisk mjukvara) och kommunikationsenhet ska (S63) kunna uppgraderas från HES.,S63
+453,S69 - Unikt tillverkningsnummer - kommunikationsmodul,Om Mätenheten består av mätare och en Kommunikationsmodul ska (S69) dessa vara försedda med var sitt unikt tillverkningsnummer.,S69
+501,S117 - 50 samtidiga användare,HES i produktionsmiljön ska (S117) vara dimensionerad för minst 50 samtida Användare utan att Mätsystemets prestanda påverkas.,S117
+509,S125 - Skapa egna rapporter,Det ska (S125) vara möjligt för Användaren att själv skapa rapporter och definiera innehåll i HES.,S125
+601,S217 - Parallella anrop,HES ska (S217) vara utformad för att kunna hantera parallella anrop.,S217
+614,S230 - Krypteringsalgoritmer och kryptografiska hash-funktioner,"Krypteringsalgoritmer och kryptografiska hash-funktioner som används inom Lösningen ska (S230) vara säkra enligt Branschpraxis. Redovisa vilka lösningar som bygger på krypteringsteknik, samt vilka standarder dessa bygger på.",S230
+616,S232 - UTC tid med NTP synk,"Mätsystemet och kringliggande infrastruktur ska (S232) använda UTC som källa för tid, inkluderat synkning med NTP.",S232
+631,S247 - Penetrationstester,"Beställaren ska (S247), med hjälp av oberoende part, kunna genomföra penetrationstester, eller likvärdiga revisioner, på Mätsystemet.",S247
+759,B113 - Synkronisering med GE kontrollerad NTP,Mätsystemet och kringliggande infrastruktur som ligger inom GE's nätverk ska (B113) synkroniseras med GE kontrollerad NTP.,B113

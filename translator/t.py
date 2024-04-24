@@ -269,18 +269,20 @@ def process_value(df):
 # Translation and Saving
 ###################################################################
 # Translate the extracted RE
+# Translate the extracted RE
+
+directory_path2 = "../src/GE-data-swe/English/"
 print("Translating the extracted RE...")
 req_df_translated = process_value(req_df)
-traslated_req_file = f'{directory_path}{args.req_name}_translated_{num_to_extract}.csv'
+traslated_req_file = f'{directory_path2}AMINA_requirement_translated.csv'
 print("Saving the translated RE")
 req_df_translated.to_csv(traslated_req_file, index=False)
 
 # Translate the extracted ST
 print("Translating the extracted ST...")
 st_df_translated = process_value(st_df)
-traslated_st_file = f'{directory_path}{args.st_name}_translated_{num_to_extract}.csv'
+traslated_st_file = f'{directory_path2}AMINA_testcases_translated.csv'
 print("Saving the translated ST")
 st_df_translated.to_csv(traslated_st_file, index=False)
-
 
 

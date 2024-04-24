@@ -1,7 +1,6 @@
 ID,GE_KravID,Rubrik,Beskrivning
-19,S230,Krypteringsalgoritmer och kryptografiska hash-funktioner,"Verifiera genom granskning av dokumentation vilka lösningar som bygger på krypteringsteknik,."
-26,S232,Synkronisering med GE kontrollerad NTP,Ställ in fel tid i mätare. Synka mätare med systemet. Kontrollera att server web01 har inställning för att synkronisera tid med tidsserver.
-26,B113,Synkronisering med GE kontrollerad NTP,Ställ in fel tid i mätare. Synka mätare med systemet. Kontrollera att server web01 har inställning för att synkronisera tid med tidsserver.
+38,B2,Registrering av strömavbrott - Kat1,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 3-fas.
+38,B2,Registrering av strömavbrott - Kat1,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 3-fas.
 39,S5,Registrering av strömavbrott - Kat2,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat2.
 39,B2,Registrering av strömavbrott - Kat2,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat2.
 40,S5,Registrering av strömavbrott - Kat1 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES för Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 3-fas.
@@ -10,7 +9,9 @@ ID,GE_KravID,Rubrik,Beskrivning
 41,B2,Registrering av strömavbrott - Kat2 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat2.
 50,S117,50 samtidiga användare,Kör operationer med en inloggad användare. Exempelvis sökningar och exporter. Mät responstider i webbgränssnittet. Kör samma operationer med 50 samtidiga användare.  Mät responstider i webbgränssnittet.
 50,S217,50 samtidiga användare,Kör operationer med en inloggad användare. Exempelvis sökningar och exporter. Mät responstider i webbgränssnittet. Kör samma operationer med 50 samtidiga användare.  Mät responstider i webbgränssnittet.
-200,S125,Skapa egna rapporter,Verifiera att det är möjligt för Användaren att själv skapa rapporter och definiera innehåll i HES.
-376,S63,Uppgradering från HES,Verifiera att Mjukvara i mätare (förutom metrologisk mjukvara) och kommunikationsenhet kan uppgraderas från HES.
-437,S69,Unikt tillverkningsnummer - kommunikationsmodul - Kat1,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
-439,S69,Unikt tillverkningsnummer - kommunikationsmodul - Kat2,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
+89,S548,Testrapport,"Leverantören ska (S548) upprätta en testrapport för de testfaser som Leverantören ansvarar för under Leveransprojektet, enligt figur 1 i punkt 3.2."
+294,B2,Strömavbrott längre än 10 sek - Kat1 1 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+295,B2,Strömavbrott längre än 10 sek - Kat1 3 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+296,B2,Strömavbrott längre än 10 sek - Kat2,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+475,B50,Kortare plintlock - Kat1,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
+476,B50,Kortare plintlock - Kat2,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
