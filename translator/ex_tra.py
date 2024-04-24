@@ -4,9 +4,9 @@ import os
 import argparse
 import pandas as pd
 import torch
-import sys
+from transformers import pipeline, StoppingCriteriaList, StoppingCriteria
 import AMINA_script_info as helper
-import queue
+import sys
 
 dotenv.load_dotenv()
 
@@ -15,8 +15,6 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Load the path to the model from the environment variables
 #model_path = os.getenv("AI_SWE-MODEL_PATH")
 
-#flag - provide the number of requests to extract
-#flag - the mapping header 
 
 parser = argparse.ArgumentParser(description="Process file information.")
 #Add arguments
@@ -66,8 +64,7 @@ if args.amina_detailed_info:
 # they are constraint to the RE that have been visited
 ###################################################################
 def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df: pd.DataFrame, 
-                                required_without_match: int, one_to_many_tests: int, one_to_many_req: int):
-
+                                required_without_match: int, one_to_many_tests: int, ont_to_many_req: int):
     if num_to_select > len(req_df):
         raise ValueError("Number of unique values to select exceeds the range of values.")
     
@@ -76,9 +73,8 @@ def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df:
     count_oneToMany_st = 0
     count_oneToMany_req = 0
     count_select_without_restriction = 0
-    select_without_restriction = num_to_select - required_without_match - one_to_many_tests - one_to_many_req
+    select_without_restriction = num_to_select - required_without_match - one_to_many_tests
     num_of_visited_req = set() 
-
 
     # Track indices that fulfill the multiple ST requirement
     one_to_many_indices = set()
@@ -86,24 +82,8 @@ def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df:
     selected_st = set()
     # Requirement that are not tested
     re_not_tested = set()
-    re_to_select_queue = queue.Queue()
-
-    # Get all rows with duplicate  test case ID, i.e. test cases that have more than one requirement associated
-    duplicate_IDs = st_df[st_df.duplicated(subset='ID', keep=False)]
-    # Store all rows with duplicate 'ID' values in a new DataFrame
-    duplicate_IDs = st_df[st_df['ID'].isin(duplicate_IDs['ID'])]
  
-    while len(selected_req) < (count_select_without_restriction + required_without_match + one_to_many_tests + one_to_many_req):
-        
-        info = f"""
-        Nr to extract: {num_to_select}
-        Current RE: {len(selected_req)}
-        Current ST: {len(selected_st)}
-        RE with no Test: {required_without_match}
-        RE-1-M-Test: {one_to_many_req}
-        ST-1-M-RE: {one_to_many_tests}
-    """
-        
+    while len(selected_req) < (count_select_without_restriction + required_without_match + one_to_many_tests):
         if len(num_of_visited_req) == len(req_df):
             print(f"""All requirements have been visited. 
                   Information:
@@ -113,80 +93,37 @@ def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df:
                 """)
             sys.exit(1)
 
-        if(count_oneToMany_req < one_to_many_req):  #Random selection even if there are item in the queue
-            random_index = random.randint(0, len(req_df) - 1)
-        elif (re_to_select_queue.qsize() > 0):      #Select from the queue if count_oneToMany_req is equal to one_to_many_req
-            random_index = re_to_select_queue.get()
-        else:       # If the queue is empty and count_oneToMany_req is equal to one_to_many_req then we continue with random selection
-            random_index = random.randint(0, len(req_df) - 1)
+        # Randomly select an index
+        random_index = random.randint(0, len(req_df) - 1)
 
         # Check if the index has already been visited
         if(random_index in num_of_visited_req):
+            #print(f"Index {random_index} has already been visited.")
             continue
         
         num_of_visited_req.add(random_index) # Add the index to the visited set
         RE_ID_header = args.mapHeader
-        RE_ID_value = req_df.iloc[random_index][RE_ID_header] # Get the RE_ID value from the random index
-        st_matches = st_df[st_df[RE_ID_header] == RE_ID_value] # Filter ST DataFrame based on the 'Rubrik' value
+        RE_ID_value = req_df.iloc[random_index][RE_ID_header] # Get the GE_KravID' value from the random index
+        st_matches = st_df[st_df[RE_ID_header] == RE_ID_value] # Filter ST DataFrame based on the 'GE_KravID' value
 
-        # Check if the requirement has at least 2 test cases, we make sure to meet this request first so to try to ensure space for the other requirements
-        if count_oneToMany_req < one_to_many_req:
-            # Check if the current RE_ID value exists in the 'GE_KravID' column of the duplicate_IDs
-            if RE_ID_value in duplicate_IDs['GE_KravID'].values:
-                count_oneToMany_req += 1
-                # Filter duplicate_IDs_df to include rows with the specified GE_KravID value
-                filtered_df = duplicate_IDs[duplicate_IDs['GE_KravID'] == RE_ID_value]
-
-                # Save the test IDs obtained from filtered_df for later extraction
-                selected_st.update(filtered_df['ID'])
-                
-                # Get unique 'ID' values
-                unique_ids = filtered_df['ID'].unique()
-                
-                # Get GE_KravID values associated with unique IDs
-                ge_krav_ids = duplicate_IDs[duplicate_IDs['ID'].isin(unique_ids)]['GE_KravID'].unique()
-
-                for ge_krav_id in ge_krav_ids:
-                    index = req_df.index[req_df['GE_KravID'] == ge_krav_id].tolist()
-                    selected_req.add(index[0])
-                """
-                    print("\n")
-                    print(f"The GE_KravID value {RE_ID_value} exists in duplicate_IDs_df.")
-                    print(filtered_df)
-                    print("Test case ID related to M requirements:", unique_ids)
-                    print("GE_KravID values involved:", ge_krav_ids)  
-
-
-                    selected_req_df = req_df.iloc[sorted(list(selected_req))]
-                    selected_st_df = st_df[st_df['ID'].isin(selected_st)]
-
-                    print("\n")
-                    print("################ Selected RE:")
-                    print(selected_req_df)
-                    print("\n")
-                    print("################ Selected ST:")
-                    print(selected_st_df)
-                    sys.exit(1)
-                """  
-                print(info)
-
-            else:
-                re_to_select_queue.put(random_index)
-                continue
-        
-
+        #print(f"Trying index {random_index}. Current counts - Without Match(not tested): {count_without_match}, 1-M-ST: {count_double_st}, Selected: {len(selected_req)}")
+    
         # Handling cases where for requirements with  no test case or test case with empty description, i.e not tested
-        if len(st_matches) == 0 and st_matches['Beskrivning'].isnull().all(): #No test case found for the requirement
-                re_not_tested.add(random_index) # Add the index to the not tested set
-                if count_without_match < required_without_match:
-                    count_without_match += 1
-                    selected_req.add(random_index)
-                    if not st_matches.empty:
-                        selected_st.update(st_matches['ID'])
-                print(info)
-        else: # there is a test 
+        if len(st_matches) == 0 or st_matches['Beskrivning'].isnull().all(): #No test case found for the requirement
+            re_not_tested.add(random_index) # Add the index to the not tested set
+            #for e in re_not_tested:
+            #    print("Not tested:",st_df.iloc[e][RE_ID_header])
+            #print("\n\n")
 
-            # Check if the requirement has at least 2 test cases
+            if count_without_match < required_without_match:
+                count_without_match += 1
+                selected_req.add(random_index)
+                if not st_matches.empty:
+                    selected_st.update(st_matches['ID'])
+                    print(f" Current counts(wanted:{num_to_select}) - Without Match(not tested): {count_without_match}, 1-M-ST: {count_oneToMany_st}, Selected: {len(selected_req)}")
+                
+        else:
+
             if len(st_matches) > 1 and len(one_to_many_indices) < one_to_many_tests: # Check if the requirement has at least 2 test cases  
                 if count_oneToMany_st < one_to_many_tests:
                     count_oneToMany_st += 1
@@ -194,19 +131,24 @@ def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df:
                     selected_req.add(random_index)
                     #Store the test cases in st_matches
                     selected_st.update(st_matches['ID'])
-                print(info)
+                    print(f" Current counts - Without Match(not tested): {count_without_match}, 1-M-ST: {count_oneToMany_st}, Selected: {len(selected_req)}")
+
 
             elif len(selected_req) < select_without_restriction and len(st_matches) > 0:
                 count_select_without_restriction += 1
                 selected_req.add(random_index)
                 #Store the test cases in st_matches
                 selected_st.update(st_matches['ID'])
-                print(info)
+                print(f"Current counts - Without Match(not tested): {count_without_match}, 1-M-ST: {count_oneToMany_st}, Selected: {len(selected_req)}")
 
 
     # Extract rows from req_df and st_df based on the IDs
     selected_req_df = req_df.iloc[sorted(list(selected_req))]
     selected_st_df = st_df[st_df['ID'].isin(selected_st)]
+
+    print(selected_req_df)
+    print("\n\n")
+    print(selected_st_df)
 
     return selected_req_df, selected_st_df
 
@@ -214,28 +156,54 @@ def random_selection_and_filter(num_to_select: int, req_df: pd.DataFrame, st_df:
 # AI Sweden Model Setup
 ###################################################################
 
+# (Optional) - define a stopping criteria
+# We ideally want the model to stop generate once the response from the Bot is generated
+class StopOnTokenCriteria(StoppingCriteria):
+    def __init__(self, stop_token_id):
+        self.stop_token_id = stop_token_id
 
-def translate_to_swedish(value):
-    if value:
-    #print("The org value is:",value)
-        if isinstance(value, str):
-            return "new: " + value
-        
-        if isinstance(value, float):
-        # print("float:", value)
-            value = int(value)
-        if isinstance(value, int):
-            #print("int",value)
-            return value
+    def __call__(self, input_ids, scores, **kwargs):
+        return input_ids[0, -1] == self.stop_token_id
+
+
+pipe = pipeline(
+    task="text-generation",
+    model=model_path,
+    device=device
+)
+
+stop_on_token_criteria = StopOnTokenCriteria(stop_token_id=pipe.tokenizer.bos_token_id)
+
+###################################################################
+# Translation Function
+###################################################################
+def translate_to_swedish(text):
+    # This will translate English to Swedish
+    # To translate from Swedish to English the prompt would be:
+    prompt = f"<|endoftext|><s>User: Översätt till Engelska från Svenska\n{text}<s>Bot:"
+
+    #prompt = f"<|endoftext|><s>User: Översätt till Svenska från Engelska\n{text}<s>Bot:"
+
+    input_tokens = pipe.tokenizer(prompt, return_tensors="pt").input_ids.to(device)
+    max_model_length = 2048
+    dynamic_max_length = max_model_length - input_tokens.shape[1]
+
+    response = pipe(
+        prompt,
+        max_length=dynamic_max_length,
+        truncation=True,
+        stopping_criteria=StoppingCriteriaList([stop_on_token_criteria])
+    )
+
+    return response[0]["generated_text"].split("<s>Bot: ")[-1]
 
 
 ###################################################################
 # CSV File Processing
 ###################################################################
-
 #Extracting requirements and test cases
 num_to_extract = int(args.count)  # Number of requirements to extract
-req_df, st_df = random_selection_and_filter(num_to_extract, req_df, st_df, args.without_test,args.one_to_many_test,args.one_to_many_req)
+req_df, st_df = random_selection_and_filter(num_to_extract, req_df, st_df, args.without_test,args.one_to_many_test, args.one_to_many_req)
 
 
 #Save Extracted RE to a csv file
@@ -257,7 +225,7 @@ print("Saved extracted ST to a csv file")
 # Iterate over each cell in the DataFrame and update it
 def process_value(df):
     for column in df.columns:
-        if column == 'ID' or column == 'GE_KravID':
+        if column == 'ID' or column == args.mapHeader:
             continue
         for index in df.index:
             original_value = df.at[index, column]
@@ -265,9 +233,11 @@ def process_value(df):
             df.at[index, column] = new_value
     return df
 
+
 ###################################################################
-# Translation and Saving
+# Saving traslated version to a csv file
 ###################################################################
+
 # Translate the extracted RE
 print("Translating the extracted RE...")
 req_df_translated = process_value(req_df)
@@ -281,6 +251,4 @@ st_df_translated = process_value(st_df)
 traslated_st_file = f'{directory_path}{args.st_name}_translated_{num_to_extract}.csv'
 print("Saving the translated ST")
 st_df_translated.to_csv(traslated_st_file, index=False)
-
-
 
