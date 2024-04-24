@@ -15,8 +15,7 @@ from contextlib import redirect_stdout
 
 from dotenv import load_dotenv
 
-from util.rest import RESTSpecification
-
+from .util.rest import RESTSpecification
 from .util.stats import Stats
 
 
