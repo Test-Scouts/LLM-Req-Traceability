@@ -15,6 +15,7 @@ data/
 out/
 res/
 GE-data-swe/
+jupiter/
 
 # C3SE related
 c3se/
