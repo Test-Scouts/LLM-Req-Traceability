@@ -1,8 +1,0 @@
-ID,Rubrik,Beskrivning,GE_KravID
-389,S5 - Registrering av strömavbrott,"Mätsystemet ska (S5) registrera alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 3 minuter.",S5
-501,S117 - 50 samtidiga användare,HES i produktionsmiljön ska (S117) vara dimensionerad för minst 50 samtida Användare utan att Mätsystemets prestanda påverkas.,S117
-601,S217 - Parallella anrop,HES ska (S217) vara utformad för att kunna hantera parallella anrop.,S217
-648,B2 - Strömavbrott längre än 10 sek,"Mätsystemet ska (B2) registrera alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder.",B2
-684,B38 - Trådad MBUS,Mätenheten bör (B38) kunna kommunicera med trådad MBUS.,B38
-696,B50 - Kortare plintlock,Kortare plintlock för Mätenheten ska (B50) finnas som alternativ om utrymmet på montageplatsen är begränsat.,B50
-1002,S548 - Testrapport,"Leverantören ska (S548) upprätta en testrapport för de testfaser som Leverantören ansvarar för under Leveransprojektet, enligt figur 1 i punkt 3.2.",S548
