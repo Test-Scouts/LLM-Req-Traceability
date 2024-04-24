@@ -1,0 +1,16 @@
+ID,GE_KravID,Rubrik,Beskrivning
+19,S230,Cryptographic algorithms and cryptographic hash functions (Engelska),Verify by examination of documentation which solutions are based on encryption technology.
+26,S232,Synchronization with GE Controlled NTP (English),Set the wrong time in the clock.
+26,B113,Synchronization with GE Controlled NTP (English),Set the wrong time in the clock.
+39,S5,Registration of power cuts - Kat2 (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in the meter Kat2.
+39,B2,Registration of power cuts - Kat2 (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in the meter Kat2.
+40,S5,Registration of power outages - Kat1 HES (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in HES for Kat1 1-phase. Verify that power outages longer than 3 minutes are recorded and stored in HES Kat1 3-phase.
+40,B2,Registration of power outages - Kat1 HES (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in HES for Kat1 1-phase. Verify that power outages longer than 3 minutes are recorded and stored in HES Kat1 3-phase.
+41,S5,Registration of power outages - Kat2 HES (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in HES Kat2.
+41,B2,Registration of power outages - Kat2 HES (Engelska),Verify that power outages longer than 3 minutes are recorded and stored in HES Kat2.
+50,S117,50 simultaneous users simultaneously connected,"For example, searches and exports. Measure response times in the web interface. Run the same operations with 50 concurrent users. Measure response times in the web interface."
+50,S217,50 simultaneous users simultaneously connected,"For example, searches and exports. Measure response times in the web interface. Run the same operations with 50 concurrent users. Measure response times in the web interface."
+200,S125,Create your own reports in the system,Verify that it is possible for the user to create reports and define content in HES.
+376,S63,Upgrade from HES solutions for infusion,Verify that the software in the meter (except metrological software) and the communication unit can be upgraded from HES.
+437,S69,UNIQUE IDENTIFIER - HUMAN READABLE DATA,Verify that the unique manufacturing number is present on the Measurement Unit Communication Module.
+439,S69,Unique production number - communication module - Cat2,Verify that the unique manufacturing number is present on the Measurement Unit Communication Module.
