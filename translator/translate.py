@@ -3,6 +3,7 @@ from transformers import pipeline, StoppingCriteriaList, StoppingCriteria
 import dotenv
 import os
 import pandas as pd
+import datetime
 
 dotenv.load_dotenv()
 
@@ -16,6 +17,14 @@ st_amina:str = os.getenv("E_ST")
 #Load the AMINA requirements and test cases
 req_df = pd.read_csv(req_amina)
 st_df = pd.read_csv(st_amina)
+
+def generate_timestamp():
+    now = datetime.datetime.now()
+    date = now.strftime("%Y-%m-%d")  # Formats the date as Year-Month-Day
+    time = now.strftime("%H:%M")     # Formats the time as Hour:Minute
+    return f"{date}_{time}"
+
+timestamp = generate_timestamp()
 
 ###################################################################
 # AI Sweden Model Setup
@@ -90,13 +99,13 @@ directory_path = "./src/GE-data-swe/English/"
 print("Translating the extracted RE...")
 req_df_translated = process_value(req_df)
 
-traslated_req_file = f'{directory_path}AMINA_requirement_translated.csv'
+traslated_req_file = f'{directory_path}AMINA_requirement_translated_{timestamp}.csv'
 print("Saving the translated RE")
 req_df_translated.to_csv(traslated_req_file, index=False)
 
 # Translate the extracted ST
 print("Translating the extracted ST...")
 st_df_translated = process_value(st_df)
-traslated_st_file = f'{directory_path}AMINA_testcases_translated.csv'
+traslated_st_file = f'{directory_path}AMINA_testcases_translated{timestamp}.csv'
 print("Saving the translated ST")
 st_df_translated.to_csv(traslated_st_file, index=False)
