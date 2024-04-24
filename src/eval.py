@@ -14,6 +14,8 @@ from contextlib import redirect_stdout
 
 from dotenv import load_dotenv
 
+from .util.stats import Stats
+
 
 now: datetime.datetime = datetime.datetime.now()
 
@@ -64,11 +66,18 @@ def main() -> None:
     # Evaluate results of every output
     for m in os.listdir(f"./out"):
         # Model stats
-        total_n: int = 0
-        total_tp: int = 0
-        total_tn: int = 0
-        total_fp: int = 0
-        total_fn: int = 0
+        all_n: list[int] = []
+        all_tp: list[int] = []
+        all_tn: list[int] = []
+        all_fp: list[int] = []
+        all_fn: list[int] = []
+
+        all_accuracy: list[float] = []
+        all_recall: list[float] = []
+        all_precision: list[float] = []
+        all_specificity: list[float] = []
+        all_balanced_accuracy: list[float] = []
+        all_f1: list[float] = []
 
         for d in os.listdir(f"./out/{m}"):
             for t in os.listdir(f"./out/{m}/{d}"):
@@ -130,6 +139,12 @@ def main() -> None:
                     tn += curr_tn_count
                     fp += curr_fp_count
                     fn += curr_fn_count
+
+                all_n.append(n)
+                all_tp.append(tp)
+                all_tn.append(tn)
+                all_fp.append(fp)
+                all_fn.append(fn)
                 
                 accuracy: float = 100 * (tp + tn) / n if n != 0 else 0.0
                 recall: float = 100 * tp / (tp + fn) if tp + fn != 0 else 0.0
@@ -138,58 +153,53 @@ def main() -> None:
                 balanced_accuracy: float = (precision + specificity) / 2
                 f1: float = 2 * (recall * precision) / (recall + precision) if recall + precision != 0 else 0.0
 
-                eval_path = f"{os.path.dirname(out_path)}/eval.log"
-                lines: list[str] = [
-                    f"{n=}",
-                    f"{tp=}",
-                    f"{tn=}",
-                    f"{fp=}",
-                    f"{fn=}",
-                    f"{accuracy=}%",
-                    f"{balanced_accuracy=}%",
-                    f"{f1=}%",
-                    f"{recall=}%",
-                    f"{precision=}%",
-                    f"{specificity=}%"
-                ]
-                res_str: str = "\n".join(lines) + "\n"
+                all_accuracy.append(accuracy)
+                all_recall.append(recall)
+                all_precision.append(precision)
+                all_specificity.append(specificity)
+                all_balanced_accuracy.append(balanced_accuracy)
+                all_f1.append(f1)
+
+                eval_path = f"{os.path.dirname(out_path)}/eval.json"
+                data: dict = {
+                    "n": n,
+                    "tp": tp,
+                    "tn": tn,
+                    "fp": fp,
+                    "fn": fn,
+                    "accuracy": accuracy,
+                    "balanced_accuracy": balanced_accuracy,
+                    "f1": f1,
+                    "recall": recall,
+                    "precision": precision,
+                    "specificity": specificity
+                }
 
                 with open(eval_path, "w+") as f:
-                    f.write(res_str)
+                    json.dump(data, f, indent=2)
 
                 with open(res_path, "a+") as f:
-                    f.write(f"./out/{m}/{d}/{t}\n{res_str}\n")
+                    f.write(f"./out/{m}/{d}/{t}\n")
+                    json.dump(data, f, indent=2)
+                    f.write("\n")
 
-                total_n += n
-                total_tp += tp
-                total_tn += tn
-                total_fp += fp
-                total_fn += fn
-
-        avg_accuracy: float = 100 * (total_tp + total_tn) / total_n if total_n != 0 else 0.0
-        avg_recall: float = 100 * total_tp / (total_tp + total_fn) if total_tp + total_fn != 0 else 0.0
-        avg_precision: float = 100 * total_tp / (total_tp + total_fp) if total_tp + total_fp != 0 else 0.0
-        avg_specificity: float = 100 * total_tn / (total_tn + total_fn) if total_tn + fn != 0 else 0.0
-        avg_balanced_accuracy: float = (precision + specificity) / 2
-        avg_f1: float = 2 * (avg_recall * avg_precision) / (avg_recall + avg_precision) if avg_recall + avg_precision != 0 else 0.0
-
-        lines: list[str] = [
-            f"{total_n=}",
-            f"{total_tp=}",
-            f"{total_tn=}",
-            f"{total_fp=}",
-            f"{total_fn=}",
-            f"{avg_accuracy=}%",
-            f"{avg_balanced_accuracy=}%",
-            f"{avg_f1=}%",
-            f"{avg_recall=}%",
-            f"{avg_precision=}%",
-            f"{avg_specificity=}%"
-        ]
+        data: dict = {
+            "all_n": Stats("all_n", all_n).as_dict,
+            "all_tp": Stats("all_tp", all_tp).as_dict,
+            "all_tn": Stats("all_tn", all_tn).as_dict,
+            "all_fp": Stats("all_fp", all_fp).as_dict,
+            "all_fn": Stats("all_fn", all_fn).as_dict,
+            "all_accuracy": Stats("all_accuracy", all_accuracy).as_dict,
+            "all_balanced_accuracy": Stats("all_balanced_accuracy", all_balanced_accuracy).as_dict,
+            "all_f1": Stats("all_f1", all_f1).as_dict,
+            "all_recall": Stats("all_recall", all_recall).as_dict,
+            "all_precision": Stats("all_precision", all_precision).as_dict,
+            "all_specificity": Stats("all_specificity", all_specificity).as_dict,
+        }
 
         print(f"Info - Logging total and avarage metrics for {m}")
-        with open(f"{res_dir}/{m}.log", "w") as f:
-            f.write("\n".join(lines) + "\n")
+        with open(f"{res_dir}/{m}.json", "w") as f:
+            f.write(json.dumps(data, indent=2) + "\n")
 
 
 if __name__ == "__main__":
