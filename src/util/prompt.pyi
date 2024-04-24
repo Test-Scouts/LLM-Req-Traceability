@@ -14,7 +14,7 @@ def format_req_is_tested_prompt(tests: list[dict[str, str]], req: dict[str, str]
 
     Parameters:
     -----------
-    tests: list[dict[str, str]] - The list of tests to check.
+    tests: list[dict[str, str]] - The list of tests to check.\n
     req: dict[str, str] - The requirements to check.
 
     Returns:

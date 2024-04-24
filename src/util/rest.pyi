@@ -21,12 +21,37 @@ class RESTSpecification:
     """
     A class for abstracting REST and filtering out malformed requirements and tests.
 
+    Properties:
+    -----------
+    `readonly n: int` - The number of requirement-test pairs in the specification.
+    `readonly reqs: list[dict[str, str]]` - A copy of the requirements of the specification.
+    `readonly tests: list[dict[str, str]]` - A copy of the tests of the specification.
+
     Methods:
     --------
-    `check_req -> bool` - Check if a requirement ID exists within a specification.\n
-    `check_test -> bool` - Check if a test ID exists within a specification.\n
-    `filter_reqs -> None` - Filters out all requirement IDs which do not exist within a specification.\n
-    `filter_tests -> None` - Filters out all test IDs which do not exist within a specification.
+    `static load_specs -> RESTSpecification` - Loads specifications from REST files.
+    `check_req -> bool` - Check if a requirement ID exists within a specification.
+    `check_test -> bool` - Check if a test ID exists within a specification.
+    `to_gpt -> dict[str, list[str]]` - Sends REST data to an OpenAI model and returns the detected links in the following format:
+    ```json
+    {
+      "<requirement ID>": ["<test ID>"...]
+      ...
+    }
+    ```
+    `to_local -> tuple[dict[str, list[str]], tuple[int, int]]` - Sends REST data to a local model and returns the detected links and token usage in the following format:
+    ```json
+    (
+      {
+        "<requirement ID>": ["<test ID>"...]
+        ...
+      },
+      (
+        <input tokens>,
+        <output tokens>
+      )
+    )
+    ```
     """
 
     @staticmethod
@@ -82,7 +107,7 @@ class RESTSpecification:
     def n(self) -> int:
         """
         The number of requirement-test pairs in the specification.
-        Equal to `len(reqs) * len(tests)`
+        Always equal to `len(reqs) * len(tests)`
         """
         ...
     
@@ -112,7 +137,18 @@ class RESTSpecification:
         --------
         `tuple[dict[str, list[str]], tuple[int, int]]` - The REST alignment mapping from requirement to tests,
          and token usage as follows:\n
-        `({<req ID>: [<test ID>...]}, (input tokens, output tokens))`\n
+        ```json
+        (
+          {
+            "<requirement ID>": ["<test ID>"...]
+            ...
+          },
+          (
+            <input tokens>,
+            <output tokens>
+          )
+        )
+        ```
         """
         ...
 
@@ -129,6 +165,11 @@ class RESTSpecification:
         Returns:
         --------
         `dict[str, list[str]]` - The REST alignment mapping from requirement to tests as follows:\n
-        `{<req ID>: [<test ID>...]}`
+        ```json
+        {
+          "<requirement ID>": ["<test ID>"...]
+          ...
+        }
+        ```
         """
         ...
