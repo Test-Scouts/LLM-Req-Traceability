@@ -34,12 +34,12 @@ def main() -> None:
     messages: list[dict[str, str]] = []
 
     user_prompt = input("> ")
-    messages.append(user_prompt)
+    messages.append({"role": "user", "content": user_prompt})
 
-    input_ids: BatchEncoding = tokenizer.apply_chat_template(user_prompt)
+    input_ids: BatchEncoding = tokenizer.apply_chat_template(messages)
 
     outputs = model.generate(
-        **input_ids,
+        input_ids,
         max_new_tokens=max_new_tokens,
         do_sample=True,
         temperature=0.1
