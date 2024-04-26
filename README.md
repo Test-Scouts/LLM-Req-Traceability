@@ -7,14 +7,9 @@ This repository is dedicated for Bao's &amp; Nicole's thesis work.
 
 ## Running Scripts
 
-Scripts nested in the `src/` should be run as modules to ensure that the relative imports work. E.g.:
+Scripts should be run as modules to ensure that the relative imports work. E.g.:
 ```bash
 $ python -m <path.to.module> # Omit the -.py file name extension
-```
-
-The scripts directly under `src/` can be run normally, E.g.:
-```bash
-$ python src/<script> # Include -.py file name extension here
 ```
 
 

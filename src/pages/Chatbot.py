@@ -1,5 +1,5 @@
 import streamlit as st
-from core.model import Session
+from ..core.model import Session
 import os
 from dotenv import load_dotenv
 

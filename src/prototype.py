@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from helper import *
 from torch import bfloat16
 import transformers
-from core.model import Model
+from .core.model import Model
 
 
 load_dotenv()
