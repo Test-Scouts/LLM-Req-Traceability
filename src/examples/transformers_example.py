@@ -21,7 +21,6 @@ def main() -> None:
 
     # Load model# Load the model and its tokenizer
     tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = AutoTokenizer.from_pretrained(model_id)
-    tokenizer.chat_template
 
     model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
         model_id,
@@ -36,7 +35,7 @@ def main() -> None:
     user_prompt = input("> ")
     messages.append({"role": "user", "content": user_prompt})
 
-    input_ids: BatchEncoding = tokenizer.apply_chat_template(messages)
+    input_ids: str | list[str] = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
     outputs = model.generate(
         input_ids,
