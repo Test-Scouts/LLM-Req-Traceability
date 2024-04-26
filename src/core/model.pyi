@@ -1,5 +1,5 @@
 """
-Utility module for handling models.
+Core module for handling models.
 
 Includes:
 ---------

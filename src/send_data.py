@@ -4,7 +4,7 @@ import json
 
 from dotenv import load_dotenv
 
-from .util.rest import RESTSpecification
+from .core.rest import RESTSpecification
 
 
 def main() -> None:

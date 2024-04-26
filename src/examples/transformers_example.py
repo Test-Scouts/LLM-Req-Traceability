@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from ..util import model as ml
+from ..core import model as ml
 
 
 def main() -> None:

@@ -1,5 +1,5 @@
 """
-Utility module for abstracting REST.
+Core module for abstracting REST.
 
 Includes:
 ---------

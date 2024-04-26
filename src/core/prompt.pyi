@@ -1,5 +1,5 @@
 """
-Utility module for formatting prompts for REST-at.
+Core module for formatting prompts for REST-at.
 
 Includes:
 ---------

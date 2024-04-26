@@ -15,8 +15,8 @@ from contextlib import redirect_stdout
 
 from dotenv import load_dotenv
 
-from .util.rest import RESTSpecification
-from .util.stats import Stats
+from .core.rest import RESTSpecification
+from .core.stats import Stats
 
 
 now: datetime.datetime = datetime.datetime.now()

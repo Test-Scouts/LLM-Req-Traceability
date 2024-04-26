@@ -1,5 +1,5 @@
 """
-Utility module for REST-at.
+Core functionality module for REST-at.
 
 Includes:
 ---------

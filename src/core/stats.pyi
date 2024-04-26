@@ -1,5 +1,5 @@
 """
-Utility module for calculating and formatting statistical values.
+Core module for calculating and formatting statistical values.
 
 Includes:
 ---------
