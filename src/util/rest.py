@@ -4,6 +4,7 @@ import datetime
 from os import PathLike
 import csv
 import json
+from io import StringIO
 
 from openai import OpenAI
 from openai.types.chat import ChatCompletion
@@ -24,6 +25,18 @@ class RESTSpecification:
     _REQ_INDEX_PREFIX: str = "R-"
     _TEST_INDEX_PREFIX: str = "T-"
 
+    _REQ_FIELDS: set[str] = {
+        "ID",
+        "Feature",
+        "Description"
+    }
+
+    _TEST_FIELDS: set[str] = {
+        "ID",
+        "Purpose",
+        "Test steps"
+    }
+
     def __init__(
             self,
             reqs: tuple[list[dict[str, str]], list[str]],
@@ -40,60 +53,70 @@ class RESTSpecification:
         self._system_prompt: str = "You are a helpful assistant."
 
     @staticmethod
-    def load_specs(reqs_path: str | PathLike, tests_path: str | PathLike) -> RESTSpecification:
-        # Load requirements file and filter the desired fields
+    def load_specs_from_str(reqs: str, tests: str) -> RESTSpecification:
+        # Load requirements and filter the desired fields
+
+        # Wrap req data with StringIO to make it act like a file
+        req_data: StringIO = StringIO(reqs)
+
         req_list: list[dict[str, str]] = []
         req_index: list[str] = []
-        with open(reqs_path) as reqs:
-            fields: set[str] = {
-                "ID",
-                "Feature",
-                "Description"
-            }
-            reader: csv.DictReader = csv.DictReader(reqs)
+        req_fields: set[str] = RESTSpecification._REQ_FIELDS
+        req_reader: csv.DictReader = csv.DictReader(req_data)
 
-            csv_fields: set[str] = set(reader.fieldnames)
-            # Validate fields
-            if fields - csv_fields != set():
-                raise FieldMismatchError(fields, fields & csv_fields)
+        csv_req_fields: set[str] = set(req_reader.fieldnames)
+        # Validate fields
+        if req_fields - csv_req_fields != set():
+            raise FieldMismatchError(req_fields, req_fields & csv_req_fields)
 
-            for i, row in enumerate(reader):
-                r: dict[str, str] = {k: row[k] for k in row.keys() if k in fields}
+        for i, row in enumerate(req_reader):
+            r: dict[str, str] = {k: row[k] for k in row.keys() if k in req_fields}
 
-                # Substitute the requirement ID with an index
-                id_: str = r["ID"]
-                r["ID"] = f"{RESTSpecification._REQ_INDEX_PREFIX}{i}"
+            # Substitute the requirement ID with an index
+            id_: str = r["ID"]
+            r["ID"] = f"{RESTSpecification._REQ_INDEX_PREFIX}{i}"
 
-                req_list.append(r)
-                req_index.append(id_)
+            req_list.append(r)
+            req_index.append(id_)
 
-        # Load tests file and filter the desired fields
+        # Load tests and filter the desired fields
+
+        # Wrap test data with StringIO to make it act like a file
+        test_data: StringIO = StringIO(tests)
+
         test_list: list[dict[str, str]] = []
         test_index: list[str] = []
-        with open(tests_path) as tests:
-            fields: set[str] = {
-                "ID",
-                "Purpose",
-                "Test steps"
-            }
-            reader: csv.DictReader = csv.DictReader(tests)
+        test_fields: set[str] = RESTSpecification._TEST_FIELDS
+        test_reader: csv.DictReader = csv.DictReader(test_data)
 
-            csv_fields: set[str] = set(reader.fieldnames)
-            # Validate fields
-            if fields - csv_fields != set():
-                raise FieldMismatchError(fields, fields & csv_fields)
+        csv_test_fields: set[str] = set(test_reader.fieldnames)
+        # Validate fields
+        if test_fields - csv_test_fields != set():
+            raise FieldMismatchError(test_fields, test_fields & csv_test_fields)
 
-            for i, row in enumerate(reader):
-                t: dict[str, str] = {k: row[k] for k in row.keys() if k in fields}
+        for i, row in enumerate(test_reader):
+            t: dict[str, str] = {k: row[k] for k in row.keys() if k in test_fields}
 
-                # Substitute the requirement ID with an index
-                id_: str = t["ID"]
-                t["ID"] = f"{RESTSpecification._TEST_INDEX_PREFIX}{i}"
+            # Substitute the requirement ID with an index
+            id_: str = t["ID"]
+            t["ID"] = f"{RESTSpecification._TEST_INDEX_PREFIX}{i}"
 
-                test_list.append(t)
-                test_index.append(id_)
+            test_list.append(t)
+            test_index.append(id_)
 
         return RESTSpecification((req_list, req_index), (test_list, test_index))
+
+    @staticmethod
+    def load_specs(reqs_path: str | PathLike, tests_path: str | PathLike) -> RESTSpecification:
+        reqs: str
+        with open(reqs_path) as f:
+            reqs = f.read()
+
+        tests: str
+        with open(tests_path) as f:
+            tests = f.read()
+
+        return RESTSpecification.load_specs_from_str(reqs, tests)
 
     def check_req(self, req: str) -> bool:
         return req in self._reqs_index

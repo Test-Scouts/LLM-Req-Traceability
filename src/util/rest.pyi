@@ -3,7 +3,7 @@ Utility module for abstracting REST.
 
 Includes:
 ---------
-`FieldMismatchError` - An error raised when trying to load malformed files.
+`FieldMismatchError` - An error raised when trying to load malformed files.\n
 `RESTSpecification` - A class for abstracting REST and filtering out malformed requirements and tests.
 """
 
@@ -23,15 +23,16 @@ class RESTSpecification:
 
     Properties:
     -----------
-    `readonly n: int` - The number of requirement-test pairs in the specification.
-    `readonly reqs: list[dict[str, str]]` - A copy of the requirements of the specification.
+    `readonly n: int` - The number of requirement-test pairs in the specification.\n
+    `readonly reqs: list[dict[str, str]]` - A copy of the requirements of the specification.\n
     `readonly tests: list[dict[str, str]]` - A copy of the tests of the specification.
 
     Methods:
     --------
-    `static load_specs -> RESTSpecification` - Loads specifications from REST files.
-    `check_req -> bool` - Check if a requirement ID exists within a specification.
-    `check_test -> bool` - Check if a test ID exists within a specification.
+    `static load_specs_from_str -> RESTSpecification - Loads specifications from REST strings. MUST USE CSV FORMAT!\n
+    `static load_specs -> RESTSpecification` - Loads specifications from REST files. MUST USE CSV FORMAT!\n
+    `check_req -> bool` - Check if a requirement ID exists within a specification.\n
+    `check_test -> bool` - Check if a test ID exists within a specification.\n
     `to_gpt -> dict[str, list[str]]` - Sends REST data to an OpenAI model and returns the detected links in the following format:
     ```json
     {
@@ -53,6 +54,27 @@ class RESTSpecification:
     )
     ```
     """
+
+    @staticmethod
+    def load_specs_from_str(reqs: str, tests: str) -> RESTSpecification:
+        """
+        Load REST specifications from csv strings.
+        The strings must follow specific formats.
+
+        Parameters:
+        -----------
+        reqs: str - The requiremnts string.\n
+        tests: str - The tests string.
+
+        Returns:
+        --------
+        `RESTSpecification` - A REST specification for the provided files.
+
+        Raises:
+        -------
+        `FieldMismatchError` - If the required fields are missing in the `.csv` file.
+        """
+        ...
 
     @staticmethod
     def load_specs(reqs_path: str | PathLike, tests_path: str | PathLike) -> RESTSpecification:
@@ -136,7 +158,7 @@ class RESTSpecification:
         Returns:
         --------
         `tuple[dict[str, list[str]], tuple[int, int]]` - The REST alignment mapping from requirement to tests,
-         and token usage as follows:\n
+         and token usage as follows:
         ```json
         (
           {
@@ -164,7 +186,7 @@ class RESTSpecification:
 
         Returns:
         --------
-        `dict[str, list[str]]` - The REST alignment mapping from requirement to tests as follows:\n
+        `dict[str, list[str]]` - The REST alignment mapping from requirement to tests as follows:
         ```json
         {
           "<requirement ID>": ["<test ID>"...]
