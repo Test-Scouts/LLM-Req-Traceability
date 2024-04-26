@@ -43,7 +43,7 @@ def main() -> None:
         do_sample=True,
         temperature=0.1
     )
-    res = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    res = tokenizer.decode(outputs[0])
     print(f"\nLLM> {res}\n")
 
 
