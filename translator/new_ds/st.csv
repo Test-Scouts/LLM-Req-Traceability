@@ -1,0 +1,37 @@
+ID,GE_KravID,Rubrik,Beskrivning
+463,S81,Plintlock - Kat1,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+464,S81,Plintlock - Kat2,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+334,B40,Brytarknapp på mätaren - Kat1 1 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+335,B40,Brytarknapp på mätaren - Kat1 3 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+147,S95,Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden skickas automatiskt till HES. Verifiera att saknade mätvärden kan hämtas manuellt till HES.
+148,S95,Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden automatiskt skickas till HES av mätaren. Verifiera att saknade mätvärden manuellt kan hämtas från mätaren.
+469,B47,montagehängsle minst 5 mm - Kat1,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+470,B47,montagehängsle minst 5 mm - Kat2,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+7,S202,Beställarens licenser - förvaltning,Verifiera att samtliga licenser som Göteborg Energi står för finns listade i Snow och hanteras i applikationen.
+11,S202,Beställarens licenser - teori,Verifiera att leverantören i dokumentet Customer PlatformSpecifikation GBE PRD listat samtliga licenser som Göteborg Energi ska stå för.
+273,"S163,B89",Kräv ytterligare bekräftelse,"Verifiera att kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) kräver ytterligare bekräftelse innan de utförs. Verifiera att kommandon som inte får alvarliga konsekvenser inte kräver ytterligare bekräftelse innan de utförs."
+210,"S130,S131",Dynamiska fält,Verifiera att fälten i Fälten i HES är dynamiska och anpassade för den information som kommer att visas upp för Användaren.
+81,"S539,S540",Ta fram testplan,Leverantören ansvarar för att vid projektstart ta fram en detaljerad testplan som granskas av Beställaren. Utifrån synpunkter som framkommer vid Beställarens granskning ska (S539) Leverantören komplettera testplanen.
+16,S226,Krypterad inloggning,Verifiera att inloggningen sker krypterat I CM. Verifiera att inloggningen sker krypterat I Vision. Verifiera att inloggningen sker krypterat I Vision Audit. Verifiera att inloggningen sker krypterat I Omnia Flex.
+25,B107,Versionshantering av webservice-gränssnitt,Verifiera att föregående version av webservice-gränssnitt går att läsa tillbaka och är kompatibelt med den nya versionen eller föregående version av ACM.
+53,S207,Fjärruppkoppling,Anslut till GEs nätverk genom VPN tjänst. Gå till HES URL.
+61,S220,Återsända information,Trigga export från HES.
+97,S556,Krav vid leverans och installation i testmiljön,"Leverantören ska (S556) vid leverans och installation av Mätsystemet i Beställarens testmiljö: 
+-installera, -konfigurera/parametersätta, -eventuellt migrera strukturdata, -genomföra test med liknande omfattning som FAT samt inkluderat systemintegrationstest (SIT), samt -genomföra felrättningar och omtester."
+145,S93,Strukturdata i HES,Verifiera att det går att manuellt registrera strukturdata i HES.
+168,S50,Högst avvika med 7 sek,"Verifiera mätenhetens tid för minst 10 mätare, innan sync med HES genomförs. Verifiera mätenheternas tid efter sync med HES genomförs."
+177,S102,Rapporter utifrån status,Verifiera att status kommer med för mätvärden i de rapporter vi genererar.
+192,S115,Importera Mätdata,"Verifiera att det finnas funktionalitet i HES för att kunna importera Mätdata från ett valfritt standardiserat textfilsformat, exempelvis csv."
+212,S132,Formulärvyer,Verifiera att det finns formulärvyer för presentation och inmatning/modifiering av strukturdata.
+224,B73,Filtrering och sortering i larmlista,Verifiera att en Användare har möjlighet att filtrera och sortera i larmlistan. Verifiera att en Användare har möjlighet att filtrera och sortera i larmlistan.
+271,B87,kopiera statiska fält,"Verifiera att det går att kopiera statiska fält i HES som t.ex. rubriker, status, svar på Händelser i systemet."
+332,B35,Inaktivera skickandet av Händelser från specifik Mätenhet,Verifiera att Det är möjligt att inaktivera skickandet av Händelser från utpekad Mätenhet från HES i syfte att inte behöva få in en stor mängd Händelser från en viss Mätenhet.
+366,S13,"98,0 %  till HES 4h efter dygnsskifte","Verifiera att  det finns rutiner som beskriver att vi kontinuerligt får rapporter som påvisar att 98,0 % av Energivärdena blir insamlade till HES inom 4 timmar efter dygnsskiftet."
+371,B7,Kommunikationsmetadata  ska levereras kontinuerligt,Verifiera att Kommunikationsmetadata loggas varannan timma i Mätenhet. Verifiera att Kommunikationsmetadata skickas till HES minst 1 gång  / dygn.
+378,B102,Hämta mätardata för 24h för  95% av mätare inom 60 min,Verifiera att Kommunikationslösningen ska  klarar av att hämta in 95 % av all Mätdata från 400 000 mätare och för de senaste 24 timmarna inom 60 minuter.
+428,S82,1-fas och 3-fas mätning ska uppfylla Mätarparametrar enligt MID,"Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Class index = B (eller bättre). Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Minimum current (Imin) = 0,25 A (eller lägre). Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Reference current (In) = 5 A. Verifiera att 1-fas och 3-fas mätning uppfyller mätarparametrar enligt MID:
+- Maximum current (Imax) = 85 A (eller högre) (inklusive brytarfunktion)."
+652,S262,Kontrollutrustning,Verifiera att Kontrollutrustning i förekommande fall då de ingår i Mätsystemet omfattas av säkerhetskrav på samma sätt som annan utrustning.

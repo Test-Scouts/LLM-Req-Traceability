@@ -1,0 +1,192 @@
+ID,GE_KravID,Rubrik,Beskrivning
+2,S197,Redundans i teorin,Verifiera att dokumentationen från Kamstrup beskriver hur och för vilka komponenter redundans appliceras. Verifiera att dokumentationen från Tieto beskriver hur och för vilka komponenter redundans appliceras i enlighet med Kamstrups beskrivning.
+3,S197,Redundans i praktiken,"För alla komponenter som har redundans verifiera att dokumentationen beskriver redundant lösning för samtliga ingående servers inom HES, inklusive SQL databaser. Begär ett ""Fail-over"" test från Tieto i flera steg som verifierar samtliga ""nivåer"" av redundans inom HES."
+7,S202,Beställarens licenser - förvaltning,Verifiera att samtliga licenser som Göteborg Energi står för finns listade i Snow och hanteras i applikationen.
+11,S202,Beställarens licenser - teori,Verifiera att leverantören i dokumentet Customer PlatformSpecifikation GBE PRD listat samtliga licenser som Göteborg Energi ska stå för.
+21,S235,Säkerhetslogg,Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg.
+21,S236,Säkerhetslogg,Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg. Verifiera att all relevant information loggas i säkerhetslogg.
+22,S235,Innehåll i säkerhetslogg,Säkerhetsloggen innehåller all autentisering och försök till autentisering.
+23,S236,Logga datum och systemtid,Verifiera att alla poster i loggen innehåller datum och systemtid.
+38,B2,Registrering av strömavbrott - Kat1,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 3-fas.
+38,B2,Registrering av strömavbrott - Kat1,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat1 3-fas.
+39,S5,Registrering av strömavbrott - Kat2,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat2.
+39,B2,Registrering av strömavbrott - Kat2,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i mätare Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i mätare Kat2.
+40,S5,Registrering av strömavbrott - Kat1 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES för Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 3-fas.
+40,B2,Registrering av strömavbrott - Kat1 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES för Kat1 1-fas. Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat1 3-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 1-fas. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat1 3-fas.
+41,S5,Registrering av strömavbrott - Kat2 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat2.
+41,B2,Registrering av strömavbrott - Kat2 HES,Verifiera att strömavbrott längre än 3 minuter  registreras och lagras i HES Kat2. Verifiera att strömavbrott längre än 10 sekunder  registreras och lagras i HES Kat2.
+43,S24,Mätenhets funktion efter bortfall av faser på Kat1,Ta bort spänning på två av tre faser.
+44,S24,Mätenhets funktion efter bortfall av faser på Kat2,Ta bort spänning på två av tre faser.
+45,S25,Mätenhetens gränssnitt  Kat1 1-fas,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning.
+46,S25,Mätenhetens gränssnitt  Kat1 3-fas,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning / fas. Verifiera att det i mätarens display går att se fasernas ordningsföljd.
+47,S25,Mätenhetens gränssnitt  Kat2,Verifiera att det i mätarens display går att se spänning. Verifiera att det i mätarens display går att se ström. Verifiera att det i mätarens display går att se effekt. Verifiera att det i mätarens display går att se effektriktning / fas. Verifiera att det i mätarens display går att se fasernas ordningsföljd.
+63,S28,Livslängd Kat1,En Mätenhet ska (S28) ha en förväntad livslängd som är 15 år räknat från tidpunkten då den levererats till GE.
+66,S33,Inmating och uttag - aktiv och reaktiv / 15 min (Mätartest),Verifiera med Kamstrups verktyg för lokal konfiguration med optiskt öga att värden för intag av aktiv och reaktiv energi lagras i mätaren. Verifiera med Kamstrups verktyg för lokal konfiguration med optiskt öga att värden för uttag av aktiv och reaktiv energi lagras i mätaren.
+67,S33,Inmating och uttag - aktiv och reaktiv / 15 min (HES),Verifiera från HES att värden för intag av aktiv och reaktiv energi lagras i mätaren. Verifiera från HES att värden för uttag av aktiv och reaktiv energi lagras i mätaren.
+71,S38,Grid snapshot - Standardvärden,Provocera fram en överspänning på en av mätarens faser och verifiera att händelser skickas momentant till HES. Verifiera att korrekt register (OBIS-koder) tillsammans med händelsen. Verifiera att det i Optiskt öga går att se grid snapshot för händelsen felaktig effektriktning. Verifiera att det i Optiskt öga går att se grid snapshot för händelsen spänningshöjning.
+79,B110,Katalogtjänst för behörighetsstyrning,Logga in med ett aktivt AD konto. Byt behörighet på en användare genom ACM. Logga in med den användaren.
+141,S89,Mätenhet i HES,"Verifiera att det går att installera ny Mätenhet - Kat 1, 1 fas. Verifiera att det går att installera ny Mätenhet - Kat 1, 3 fas. Verifiera att det går att installera ny Mätenhet - Kat 2. Byt mätare av typ Kat 1, 1 fas. Byt mätare av typ Kat 1, 3 fas. Byt mätare av typ Kat 2. Ta ner mätare av typ Kat 1, 1 fas. Ta ner mätare av typ Kat 1, 3 fas. Ta ner mätare av typ Kat 2."
+147,S95,Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden skickas automatiskt till HES. Verifiera att saknade mätvärden kan hämtas manuellt till HES.
+148,S95,Hämtning av saknade Mätvärden,Verifiera att saknade mätvärden automatiskt skickas till HES av mätaren. Verifiera att saknade mätvärden manuellt kan hämtas från mätaren.
+160,S6,"Last Gasp, Kat1, 1 fas","Verifiera att mätare Kat 1, 1 fas har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+162,S44,"Energivärden lagras 40 dygn Kat1, 3 fas","Verifiera att Energivärdena (15-minutersvärden)  lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+163,S45,"PQ värden lagras 7 dygn, Kat1 - 3 fas",Verifiera att PQ-värdena lagras minst i 7 dygn i Mätenheterna av typ Kat 1 3 fas.
+164,S46,"Avbrottshändelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att Avbrottshändelse lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+165,S47,"PQ händelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att PQ-händelser ska lagras minst i 40 dygn i Mätenheterna av typ Kat 1, 3 fas."
+166,S48,"Övriga händelser lagras 40 dygn, Kat1 - 3 fas","Verifiera att Övriga Händelser lagras minst i 40 dygn i Mätenheterna av typen Kat 1, 3 fas."
+167,S49,"Registrera tid i Normaltid, Kat1 - 3 fas","Verifiera att Mätenheterna registrerar tid i Normaltid (UTC+1) i mätare av Kat 1, 3 fas."
+169,S6,"Last Gasp, Kat1, 3 fas","Verifiera att mätare Kat 1, 3 fas har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+170,S6,"Last Gasp, Kat2","Verifiera att mätare Kat 2 har  ""Last Gasp"" funktionalitet. Verifiera att HES kan presentera att det finns ett  ""Last Gasp"" - det som finns i mätarens logg hamnar i HES."
+171,S44,Energivärden lagras 40 dygn Kat2,Verifiera att Energivärdena (15-minutersvärden)  lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+172,S45,"PQ värden lagras 7 dygn, Kat2",Verifiera att PQ-värdena lagras minst i 7 dygn i Mätenheterna av typ Kat 2.
+173,S46,"Avbrottshändelser lagras 40 dygn, Kat2",Verifiera att Avbrottshändelse lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+174,S47,"PQ händelser lagras 40 dygn, Kat2",Verifiera att PQ-händelser ska lagras minst i 40 dygn i Mätenheterna av typ Kat 2.
+175,S48,"Övriga händelser lagras 40 dygn, Kat2",Verifiera att Övriga Händelser lagras minst i 40 dygn i Mätenheterna av typen Kat 2.
+176,S49,"Registrera tid i Normaltid, Kat2",Verifiera att Mätenheterna registrerar tid i Normaltid (UTC+1) i mätare av Kat 2.
+219,S136,Ställa in antalet decimaler,Verifiera att det är möjligt att konfigurera antalet decimaler som ska visas för ett mätvärde.
+248,S59,Mätenhetens display - Kat1 1 fas,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+249,S59,Mätenhetens display - Kat1 3 fas,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+250,S59,Mätenhetens display - Kat2,Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för spänning. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för ström. Verifiera att Mätenhetens display för varje fas kan visa momentanvärde för effekt för uttag och inmatning av el.
+286,S64,Uppdatering av Firmware - Kat1 1 fas,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+287,S64,Uppdatering av Firmware - Kat1 3 fas,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+288,S64,Uppdatering av Firmware - Kat2,Verifiera att mätenheten alltid kan ta emot uppdateringar av Firmware.
+294,B2,Strömavbrott längre än 10 sek - Kat1 1 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+295,B2,Strömavbrott längre än 10 sek - Kat1 3 fas,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+296,B2,Strömavbrott längre än 10 sek - Kat2,"Verifiera att Mätsystemet registrerar alla strömavbrott (i 1-, 2- eller 3-faser) i en Mätenhet som är längre än 10 sekunder."
+297,B9,Högfrekventa störningar Kat1 3 fas,Med hjälp av RISE - Verifiera att Mätenheterna klarar krav för högfrekventa störningar i strömmen enligt svensk standard SS EN 61000-4-19 ” Mät- och provningsmetoder – Provning av immunitet mot ledningsbundna symmetriska störningar och signaler i frekvensområdet 0 Hz till 150 kHz” och IEC TR 50579 eller likvärdigt.
+298,B9,Högfrekventa störningar Kat2,Med hjälp av RISE - Verifiera att Mätenheterna klarar krav för högfrekventa störningar i strömmen enligt svensk standard SS EN 61000-4-19 ” Mät- och provningsmetoder – Provning av immunitet mot ledningsbundna symmetriska störningar och signaler i frekvensområdet 0 Hz till 150 kHz” och IEC TR 50579 eller likvärdigt.
+299,B10,Registrera sin egen temperatur - Kat1 1 fas,Verifiera att Mätenheten kan registrera sin egen temperatur.
+300,B10,Registrera sin egen temperatur - Kat1 3 fas,Verifiera att Mätenheten kan registrera sin egen temperatur.
+301,B10,Registrera sin egen temperatur - Kat2,Verifiera att Mätenheten kan registrera sin egen temperatur.
+302,B11,Möjlig varmgång - Kat1 1 fas,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+303,B11,Möjlig varmgång - Kat1 3 fas,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+304,B11,Möjlig varmgång - Kat2,Verifiera att mätenheten har möjlighet att detektera anslutningar som kan orsaka varmgång.
+305,B12,Varmgång - Kat1 1 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+306,B12,Varmgång - Kat1 3 fas,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+307,B12,Varmgång - Kat2,Verifiera att Mätenheten har möjlighet att detektera varmgång i anslutningar.
+323,B28,Registrera Vektordiagram spänning och ström per fas - Kat1 1 fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+324,B28,Registrera Vektordiagram spänning och ström per fas - Kat1 3 fas,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+325,B28,Registrera Vektordiagram spänning och ström per fas - Kat2,"Verifiera att Mätsystemet kan registrera och lagra information när följande Händelser inträffar:
+12. Vektordiagram spänning och ström per fas (B28)."
+334,B40,Brytarknapp på mätaren - Kat1 1 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+335,B40,Brytarknapp på mätaren - Kat1 3 fas,Verifiera att Brytaren kan manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.
+336,B41,kumulativa räkneverket återges på Mätenhetens display - Kat1 1 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+337,B41,kumulativa räkneverket återges på Mätenhetens display - Kat1 3 fas,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+338,B41,kumulativa räkneverket återges på Mätenhetens display - Kat2,"Verifiera att det kumulativa räkneverket kan återges på Mätenhetens display enligt minst ett av följande två alternativ:
+1. Både heltal och decimaler visas i displayen samtidigt
+2. Endast heltal visas i displayen och genom handgrepp möjliggöra att decimalerna visas i displayen."
+339,B42,Kommunikationsstatus - Kat1 1 fas,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+340,B42,Kommunikationsstatus - Kat1 3 fas,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+341,B42,Kommunikationsstatus - Kat2,"Verifiera att det är möjligt att direkt, utan handgrepp och utan att öppna mätaren, kunna se Mätenhetens kommunikationsstatus."
+342,B43,lysdioder i röd färg - Kat1 1 fas,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+343,B43,lysdioder i röd färg - Kat1 3 fas,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+344,B43,lysdioder i röd färg - Kat2,Verifiera att Om Mätenheten är försedd med lysdioder som är synliga utanför Mätenheten ska dessa inte ha röd färg.
+408,S21,Mätenhetens driftområde - Kat 1,"Kamstrup demonstrerar/beskriver hur mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7). Kamstrup demonstrerar/beskriver hur mätaren är konstruerad att tåla kondenserad fuktighet."
+409,S21,Mätenhetens driftområde - Kat 2,"Kamstrup demonstrerar/beskriver hur mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7). Kamstrup demonstrerar/beskriver hur mätaren är konstruerad att tåla kondenserad fuktighet."
+410,S21,Mätenhetens driftområde - RISE,"Verifiera att mätaren är  anpassad för utomhusmätning med driftområde (""specified operation range"") -40 grader C till +70 grader C (3K7)."
+411,S23,Mätehenten matas ov Omätt ström - Kat1 -1 fas,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+412,S23,Mätehenten matas ov Omätt ström - Kat1 -3 fas,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+413,S23,Mätehenten matas ov Omätt ström - Kat2,Verifiera att Mätenheter ärså konstruerade att de matas av Omätt ström.
+414,S27,typgodkännande - Kat1,"Verifiera att Utökat typgodkännande och certifiering av Mätenheter genomför enligt metod SPM 1618, test med 12 kV stötspänning."
+415,S27,typgodkännande - Kat2,"Verifiera att Utökat typgodkännande och certifiering av Mätenheter genomför enligt metod SPM 1618, test med 12 kV stötspänning."
+416,S31,Vektorsummerad mätning - Kat1,Verifiera att Mätmetoden i Mätenheten är vektorsummerad mätning enligt Föreskrift STAFS 2009:8.
+417,S31,Vektorsummerad mätning - Kat2,Verifiera att Mätmetoden i Mätenheten är vektorsummerad mätning enligt Föreskrift STAFS 2009:8.
+418,S39,Kontroll av mätenehtet - Kat1 3 fas,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+419,S39,Kontroll av mätenehtet - Kat2,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+420,S39,Kontroll av mätenehtet - Kat1 1 fas,Verifiera att Varje enskild Mätenhet ska (S39) vara kalibrerad och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470.
+421,S39,Kontroll av mätenhet - granska rutin,Kamstrup demonstrerar verbalt eller i dokumentation hur varje enskild Mätenhet är verifiera och kontrollerad att den mäter inom de gränsvärden som anges i SS-EN 50470/EN 62058-31.
+425,S43,Testpuls för kalibrering - Kat1 3 fas,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+426,S43,Testpuls för kalibrering - Kat2,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+427,S43,Testpuls för kalibrering - Kat1 1 fas,Verifiera att Mätenheten är försedd med en testpuls som kan användas till kalibrering.
+430,S86,Hantering av både primär- och sekundärregistrering - Kat2,"Verifiera att Mätenheterna kan hantera primärregistrering av Mätvärden. Verifiera att Mätenheterna kan hantera sekundärregistrering av Mätvärden,."
+435,S68,Unikt tillverkningsnummer - Kat1,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer.
+436,S68,Unikt tillverkningsnummer - dokumentation,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer som inte förekommer på Leverantörens tidigare eller framtida produkter.
+437,S69,Unikt tillverkningsnummer - kommunikationsmodul - Kat1,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
+439,S69,Unikt tillverkningsnummer - kommunikationsmodul - Kat2,Verifiera att Mätenhetens Kommunikationsmodul är försedd med unikt tillverkningsnummer.
+440,S68,Unikt tillverkningsnummer - Kat2,Verifiera att Mätaren är försedd med Leverantörens unika tillverkningsnummer.
+441,S70,Synligt tillverkningsnummer - kommunikationsmodul - Kat1,Verifiera att Ett tillverkningsnummer på en Kommunikationsmodul är placerat så att det inte är synligt på Mätenhetens framsida.
+442,S70,Synligt tillverkningsnummer - kommunikationsmodul - Kat2,Verifiera att Ett tillverkningsnummer på en Kommunikationsmodul är placerat så att det inte är synligt på Mätenhetens framsida.
+443,S71,Synligt tillverkningsnummer - Kat1,Verifiera att Mätarens tillverkningsnummer är placerat synligt på framsidan av Mätenheten.
+444,S71,Synligt tillverkningsnummer - Kat2,Verifiera att Mätarens tillverkningsnummer är placerat synligt på framsidan av Mätenheten.
+445,S72,Beständig märkning - Kat1,Verifiera att Märkningen av Mätarens tillverkningsnummer är beständigt under Mätenhetens livslängd dvs inte löstagbar tejp eller tryck som går att skrapa bort.
+446,S72,Beständig märkning - Kat2,Verifiera att Märkningen av Mätarens tillverkningsnummer är beständigt under Mätenhetens livslängd dvs inte löstagbar tejp eller tryck som går att skrapa bort.
+447,S73,Läsbar märkning - Kat1,"Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. fontstorleken får inte vara för liten så att numret blir svårläst t.ex. för en kund."
+448,S73,Läsbar märkning - Kat2,"Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. fontstorleken får inte vara för liten så att numret blir svårläst t.ex. för en kund."
+449,S74,"Läsbar märkning, lock - Kat1","Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. om det finns ett lock på Mätenheten där tillverkningsnumret är placerat ska (S74) locket vara transparent så att serienumret går att avläsa även med stängt lock."
+450,S74,"Läsbar märkning, lock - Kat2","Verifiera att Märkningen av Mätarens tillverkningsnummer är väl läsbart
+- d.v.s. om det finns ett lock på Mätenheten där tillverkningsnumret är placerat ska (S74) locket vara transparent så att serienumret går att avläsa även med stängt lock."
+451,S75,Märkningens placering - Kat1,"Verifiera att Mätarens tillverkningsnummer är placeras på en ej löstagbar del (ej anslutningslock, ej lock till Kommunikationsmodul, etc.)."
+452,S75,Märkningens placering - Kat2,"Verifiera att Mätarens tillverkningsnummer är placeras på en ej löstagbar del (ej anslutningslock, ej lock till Kommunikationsmodul, etc.)."
+453,S76,Märkning som kod och i klartext - Kat1,Verifiera att Mätenhetens tillverkningsnummer utgöras av både en streckkod eller motsvarande och ett nummer i klartext.
+454,S76,Märkning som kod och i klartext - Kat2,Verifiera att Mätenhetens tillverkningsnummer utgöras av både en streckkod eller motsvarande och ett nummer i klartext.
+455,S77,Utformad för väggmontage - Kat1,Verifiera att Mätenheterna är utformad för väggmontage.
+456,S77,Utformad för väggmontage - Kat2,Verifiera att Mätenheterna är utformad för väggmontage.
+457,S78,Montagehängslets placering - Kat1,Verifiera att Montagehängslets nyckelhålshöjd är placerad minst 12 mm från Mätenhetens ovansida.
+458,S78,Montagehängslets placering - Kat2,Verifiera att Montagehängslets nyckelhålshöjd är placerad minst 12 mm från Mätenhetens ovansida.
+459,S79,Montering i mätarutrymme - Kat1,Verifiera att Mätenheterna kan monteras på olika typer av mätarutrymme med måttangivelser i enlighet med det som anges under punkt 5 i den senaste utgåvan av svensk standard SS 430 01 01.
+460,S79,Montering i mätarutrymme - Kat2,Verifiera att Mätenheterna kan monteras på olika typer av mätarutrymme med måttangivelser i enlighet med det som anges under punkt 5 i den senaste utgåvan av svensk standard SS 430 01 01.
+461,S80,Plombering - Kat1,Verifiera att Mätenhetens lock och eventuellt separat lock till Kommunikationsmodul kan plomberas.
+462,S80,Plombering - Kat2,Verifiera att Mätenhetens lock och eventuellt separat lock till Kommunikationsmodul kan plomberas.
+463,S81,Plintlock - Kat1,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+464,S81,Plintlock - Kat2,Verifiera att Mätenheten har plintlock som täcker anslutningskablaget.
+465,B45,skruvinfästningar - Kat2,Verifiera att det inte finnas några förhöjningar runt Mätenhetens skruvinfästningar som begränsar storlek på skruvhuvud.
+466,B45,skruvinfästningar - Kat1,Verifiera att det inte finnas några förhöjningar runt Mätenhetens skruvinfästningar som begränsar storlek på skruvhuvud.
+467,B46,montagehängsle - Kat1,Verifiera att det finns ett montagehängsle placerad på Mätenhetens ovansida för montage.
+468,B46,montagehängsle - Kat2,Verifiera att det finns ett montagehängsle placerad på Mätenhetens ovansida för montage.
+469,B47,montagehängsle minst 5 mm - Kat1,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+470,B47,montagehängsle minst 5 mm - Kat2,Verifiera att tjockleken på Mätenhetens montagehängsle är minst 5 mm.
+471,B48,plomberingsanordning - Kat1,Verifiera att Mätenhetens plomberingsanordning är upphöjd och väl synlig för smidig och åtkomlig genomföring av plomberingstråden.
+472,B48,plomberingsanordning - Kat2,Verifiera att Mätenhetens plomberingsanordning är upphöjd och väl synlig för smidig och åtkomlig genomföring av plomberingstråden.
+473,B49,skruvhuvud på plomberingsskruvarna - Kat1,Verifiera att det är samma typ av skruvhuvud på plomberingsskruvarna som på anslutningsskruvarna för ledarna.
+474,B49,skruvhuvud på plomberingsskruvarna - Kat2,Verifiera att det är samma typ av skruvhuvud på plomberingsskruvarna som på anslutningsskruvarna för ledarna.
+475,B50,Kortare plintlock - Kat1,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
+476,B50,Kortare plintlock - Kat2,Verifiera att kortare plintlock för Mätenheten finns som alternativ om utrymmet på montageplatsen är begränsat.
+478,S86,Hantering av både primär- och sekundärregistrering - Kat1,"Verifiera att Mätenheterna kan hantera både primär- och sekundärregistrering av Mätvärden,."
+480,S182,Förväntad livslängd kommunikationsutrustning - Kat1,Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE.
+483,S30,Mängd tillåtna felande mätare Kat1 - RISE,"Under Mätenheternas förväntade livslängd ska (S30) utfallen av Fel (som kräver mätarbyte) inte överstiga 0,75 % per år av installerad volym."
+484,S30,Mängd tillåtna felande mätare Kat2 - RISE,"Under Mätenheternas förväntade livslängd ska (S30) utfallen av Fel (som kräver mätarbyte) inte överstiga 0,75 % per år av installerad volym."
+485,S28,Livslängd Kat2,En Mätenhet ska (S28) ha en förväntad livslängd som är 15 år räknat från tidpunkten då den levererats till GE.
+486,S182,Förväntad livslängd kommunikationsutrustning - Kat2,Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE. Verifiera att kommunikationsutrustning uppfyller kravet på förväntad livslängd som är >=15 år räknat från tidpunkten då den levererats till GE.
+549,B110,Katalogtjänst för behörighetsstyrning - verksamheten,"Verifiera att användare inte blir utloggad medan man arbetar i HES. 
+(Detta är ett problem som upplevs i befintlig ACM och som kopplats till AD inloggning)."
+583,S38,Grid snapshot - GE värden,"Verifiera att grid snapshot presenteras i HES för de händelser som har stöd för grid snapshot. 
+Så som felaktig effektriktning. Ström L1	0,1	A
+Ström L2	0,41	A
+Ström L3	16	A. Spänning L1	231	V
+Spänning L2	228	V
+Spänning L3	226	V. Total Aktiv effekt inmatning	0,132	kW
+Aktiv effekt inmatning L1	0,004	kW
+Aktiv effekt inmatning L2	0,077	kW
+Aktiv effekt inmatning L3	0	kW. Total Aktiv effekt utmatning	0	kW
+Aktiv effekt utmatning L1	0	kW
+Aktiv effekt utmatning L2	0	kW
+Aktiv effekt utmatning L3	3,68	kW. Total Reaktiv effekt inmatning	0	kvar
+Reaktiv effekt inmatning L1	0	kvar
+Reaktiv effekt inmatning L2	0	kvar
+Reaktiv effekt inmatning L3	0	kvar. Total Reaktiv effekt utmatning 	0,115	kvar
+Reaktiv effekt utmatning L1	0,023	kvar
+Reaktiv effekt utmatning L2	0,047	kvar
+Reaktiv effekt utmatning L3	0,045	kvar."
+593,S119,Automatisk export av energivärden,Vänta tills tiden för export inträffar.
+594,S119,Manuell export av energivärden,Starta en export från HES.
+615,S136,Ställa in antalet decimaler,Verifiera att antalet decimaler som visas motsvarar det antal decimaler som är konfigurerade att visas för ett mätvärde. Verifiera att antalet decimaler som visas motsvarar det antal decimaler som är konfigurerade att visas för ett mätvärde.
+616,S89,Installation av ny mätenhet via integration,"Information gällande strukturdata för nyuppsättning skickas från integrationsgränsitten Mint till Collection Manager. Verifiera att information är angiven på användarpunkten i Collection Manager motsvarar det som är specificerat i Arbetsordern. En kvittens skickas till Generis att mätaren är uppsatt i Collection Manager. Kontrollera att användarpunkten visas under rätt koordinater i kartvyn i Vision. Kontrollera att mätaren har korrekt profil samt att Energivärden, PQ-värden och GSM-diagnostik pushas från mätaren med korrekt intervall."
+618,S89,Nedtagning av mätenhet via integration,Information gällande strukturdata för nedtagning av en mätenhet skickas från integrationsgränsitten Mint till Collection Manager. Verifiera att mätenhet är borttagen i Collection Manager samt ej har koppling användarpunkten .
+619,S89,Uppdatering av mätpunkt i CM,Information gällande strukturdata för uppdatering av en mätenhet skickas från integrationsgränsitten Mint till Collection Manager. Verifera att information som skall uppdateras via Mint också har ändrats på aktuell användarpunkt.
+620,S89,Ny Mätenhet sätts upp i CM och tas ned i ACM - Nedtagning misslyckas i ACM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i ACM då nyuppsättning genomförs i CM. Meddelande skickas från CM till Generis gällande att mätenhet i ACM ej är nedtagen.
+621,S89,Ny Mätenhet sätts upp i CM och tas ned i AiMiR - Nedtagning misslyckas i AiMiR,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i AiMiR då nyuppsättning genomförs i CM. De misslyckade nedtagningarna rapporteras till Nyckelhålet. Mail skickas till Aimir-lådan.
+622,S89,Ny Mätenhet sätts upp i CM och tas ned i ACM - Uppsättning misslyckas i CM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten redan finns kopplad till en annan anläggning i CM. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis.
+623,S89,Ny Mätenhet sätts upp i CM och tas ned i AiMiR - Uppsättning misslyckas i CM,Initiera en nyuppsättning av en mätenhet i CM och säkerhetställ att mätenheten finns kvar i Aimir då nyuppsättning genomförs i CM. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM.
+624,S89,Befintlig Mätenhet byts i CM  -  Mätarbyte misslyckas i CM,Initiera ett mätarbyte av en befintlig mätenhet i CM till en Ny Mätenhet. Ange felaktigt serienummer för den befintliga mätaren i Arbetsordern. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis.
+625,S89,Ny mätenhet sätts upp i CM - Uppsättning misslyckas i CM,"Initiera nyinstallation av en mätenhet i CM.
+Ange ett serienummer för mätenheten som redan är kopplad till en anläggning i arbetsordern. Meddelande skickas från CM till Generis gällande att mätenhet ej är skapad i CM. Verifiera status på arbetsordern i Generis."
+626,S89,Mätenhet tas ned i CM - Nedtagning misslyckas i CM,Initiera en nedtaging av en mätenhet i CM där obligatorisk information i arbetsordern inte är komplett. Meddelande skickas från CM till Generis gällande att mätenhet ej är borttagen i CM. Verifiera status på arbetsordern i Generis.

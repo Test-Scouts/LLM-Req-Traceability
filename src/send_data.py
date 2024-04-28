@@ -1,14 +1,25 @@
 import datetime
 import os
 import json
+import argparse
 
 from dotenv import load_dotenv
 
 from .core.rest import RESTSpecification
 
 
+parser = argparse.ArgumentParser(description="Process file information.")
+parser.add_argument("--sessionName", "-s", dest="session",type=str, default= "MistralAI-REST-at-BTHS-eval", help="Customize the session name")
+
+args = parser.parse_args()
+
 def main() -> None:
     load_dotenv()
+
+    if(args.session):
+        session_name = args.session
+    else:
+        session_name = "MistralAI-REST-at-BTHS-eval"
 
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
@@ -23,7 +34,6 @@ def main() -> None:
     )
 
     # Log response to a file
-    session_name: str = "MistralAI-REST-at-BTHS-eval"
     now: datetime.datetime = datetime.datetime.now()
     date: str = str(now.date())
     time: str = str(now.time())
