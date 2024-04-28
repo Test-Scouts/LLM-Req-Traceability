@@ -10,16 +10,22 @@ from .core.rest import RESTSpecification
 
 parser = argparse.ArgumentParser(description="Process file information.")
 parser.add_argument("--sessionName", "-s", dest="session",type=str, default= "MistralAI-REST-at-BTHS-eval", help="Customize the session name")
+parser.add_argument("--model", "-m", dest="model",type=bool, default= "mistral", help="Set the model to use")
+
 
 args = parser.parse_args()
 
 def main() -> None:
     load_dotenv()
+    session_name = args.session
 
-    if(args.session):
-        session_name = args.session
-    else:
-        session_name = "MistralAI-REST-at-BTHS-eval"
+    if args.model == "mistral":
+        model_path = os.getenv("MODEL_PATH")
+        token = int(os.getenv("TOKEN_LIMIT"))
+    else: 
+        model_path = os.getenv("MODEL_PATH_MIS")
+        token = int(os.getenv("TOKEN_LIMIT_MIS"))
+
 
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
@@ -29,8 +35,7 @@ def main() -> None:
 
     # Send data to local model
     res: dict[str, list[str]] = specs.to_local(
-        os.getenv("MODEL_PATH"),
-        int(os.getenv("TOKEN_LIMIT"))
+        model_path,token
     )
 
     # Log response to a file
