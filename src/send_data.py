@@ -19,7 +19,7 @@ def main() -> None:
     load_dotenv()
     session_name = args.session
 
-    if args.model == "mixtral":
+    if args.model.lower() == "mixtral":
         model_path = os.getenv("MODEL_PATH")
         token = int(os.getenv("TOKEN_LIMIT"))
         print(f"Using Mixtral model. Session name: {session_name}")
