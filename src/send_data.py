@@ -19,12 +19,14 @@ def main() -> None:
     load_dotenv()
     session_name = args.session
 
-    if args.model == "mistral":
+    if args.model == "mixtral":
         model_path = os.getenv("MODEL_PATH")
         token = int(os.getenv("TOKEN_LIMIT"))
+        print(f"Using Mixtral model. Session name: {session_name}")
     else: 
         model_path = os.getenv("MODEL_PATH_MIS")
         token = int(os.getenv("TOKEN_LIMIT_MIS"))
+        print(f"Using Mistral model. Session name: {session_name}")
 
 
     # Load the REST specifications
