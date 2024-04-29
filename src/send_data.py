@@ -29,8 +29,6 @@ def main() -> None:
         token = int(os.getenv("TOKEN_LIMIT_MIS"))
         print(f"Using Mistral model. Session name: {session_name}")
 
-    req_path = ""
-    test_path = ""
     if args.data.lower() == "mix":
         print("Using MIX data")
         req_path = os.getenv("MIX_REQ_PATH"),
@@ -43,8 +41,8 @@ def main() -> None:
         print("Using GBG data")
         req_path = os.getenv("GBG_REQ_PATH"),
         test_path = os.getenv("GBG_TEST_PATH")
-        return
-
+        
+    print(f"Model path: {model_path}, req_path: {req_path}, test_path: {test_path}")
 
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
