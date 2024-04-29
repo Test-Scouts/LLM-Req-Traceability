@@ -64,6 +64,9 @@ class Model:
             self.type = _ModelType.MISTRAL
         elif isinstance(model, LlamaForCausalLM):
             self.type = _ModelType.LLAMA
+        # Pass the placeholder
+        elif tokenizer is None and model is None and max_new_tokens is None:
+            pass
         else:
             raise UnsupportedModelException(type(model).__name__)
 
