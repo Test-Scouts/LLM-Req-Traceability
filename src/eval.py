@@ -19,9 +19,6 @@ from dotenv import load_dotenv
 from .core.rest import RESTSpecification
 from .core.stats import Stats
 
-parser = argparse.ArgumentParser(description="Process file information.")
-parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use mix for the mix-dataset, mix-small for the small mix-dataset, bths for the BTHS-dataset, and GBG for the GBG-dataset. Default is GBG.")
-
 
 now: datetime.datetime = datetime.datetime.now()
 
@@ -32,12 +29,17 @@ res_dir: str = f"./res/{date}/{time}"
 log_path: str = f"{res_dir}/eval.log"
 
 
-args = parser.parse_args()
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Process file information.")
+    parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+
+    args = parser.parse_args()
+    data: str = args.data.lower()
+
     load_dotenv()
 
-    if args.data.lower() == "mix":
-        print("Using MIX data")
+    if data == "mix":
+        print("Info - Using MIX data")
         req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")
         mapping_path = os.getenv("MIX_MAP_PATH")
@@ -52,13 +54,13 @@ def main() -> None:
         test_path = os.getenv("BTHS_TEST_PATH")
         mapping_path = os.getenv("BTHS_MAP_PATH")
     else:
-        print("Using GBG data")
+        print("Info - Using GBG data")
         req_path = os.getenv("GBG_REQ_PATH")
         test_path = os.getenv("GBG_TEST_PATH")
         mapping_path = os.getenv("GBG_MAP_PATH")
 
-    print(f"Request path: {req_path}")
-    print(f"Test path: {test_path}")
+    print(f"Info - Requirements path: {req_path}")
+    print(f"Info - Tests path: {test_path}")
     
     # Load the set of tests
     tests: set[str]
@@ -148,6 +150,7 @@ def main() -> None:
                     curr_tp_set: set[str] = actual_tests & expected_tests
                     curr_tp_count: int = len(curr_tp_set)
                     print(f"Info - \t\t({curr_tp_count}) {curr_tp_set = }")
+
                     curr_fp_set: set[str] = actual_tests - expected_tests
                     curr_fp_count: int = len(curr_fp_set)
                     print(f"Info - \t\t({curr_fp_count}) {curr_fp_set = }")
@@ -159,6 +162,7 @@ def main() -> None:
                     curr_tn_set: set[str] = actual_ns & expected_ns
                     curr_tn_count: int = len(curr_tn_set)
                     print(f"Info - \t\t({curr_tn_count}) {curr_tn_set = }")
+
                     curr_fn_set: set[str] = actual_ns - expected_ns
                     curr_fn_count: int = len(curr_fn_set)
                     print(f"Info - \t\t({curr_fn_count}) {curr_fn_set = }")

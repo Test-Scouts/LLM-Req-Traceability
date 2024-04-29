@@ -18,6 +18,13 @@ class ModelLoadingException(Exception):
     ...
 
 
+class UnsupportedModelException(Exception):
+    """
+    An exception raised if trying to load a model that REST-at doesn't support.
+    """
+    ...
+
+
 class Model:
     """
     A class abstracting pretrained models, providing functions to load, retrieve, and prompt a model.

@@ -7,30 +7,33 @@ from dotenv import load_dotenv
 
 from .core.rest import RESTSpecification
 
-parser = argparse.ArgumentParser(description="Process file information.")
-parser.add_argument("--sessionName", "-s", dest="session",type=str, default= "MistralAI-REST-at-BTHS-eval", help="Customize the session name")
-parser.add_argument("--model", "-m", dest="model",type=str, default= "gpt4", help="Set the model to use. Choose between GPT3.5 and GPT4. Default is GPT4.")
-parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use mix for the mix-dataset, mix-small for the small mix-dataset, bths for the BTHS-dataset, and GBG for the GBG-dataset. Default is GBG.")
 
-args = parser.parse_args()
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Process file information.")
+    parser.add_argument("--sessionName", "-s", dest="session", type=str, default="GPT-3.5-REST-at-BTHS-eval", help="Customize the session name")
+    parser.add_argument("--model", "-m", dest="model", type=str, default="gpt3.5", help="Set the model to use. Choose between GPT-3.5 and GPT-4. Default is GPT-3.5.")
+    parser.add_argument("--data", "-d", dest="data", type=str, default="GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+
+    args = parser.parse_args()
+
     load_dotenv()
 
     session_name = args.session
-    model:str = ""
+    model: str = args.model.lower()
+    data: str = args.data.lower()
 
-    if args.model.lower() == "gpt3.5":
-        model = "gpt-3.5-turbo-0125"
-        print(f"Using {model}. Session name: {session_name}")
-    else: 
+    if model == "gpt4":
         model = "gpt-4-turbo-2024-04-09"
         print(f"Using Mistral model. Session name: {session_name}")
+    else:
+        model = "gpt-3.5-turbo-0125"
+        print(f"Using {model}. Session name: {session_name}")
 
-    req_path = ""
-    test_path = ""
+    req_path: str
+    test_path: str
     
-    if args.data.lower() == "mix":
+    if data == "mix":
         print("Using MIX data")
         req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")

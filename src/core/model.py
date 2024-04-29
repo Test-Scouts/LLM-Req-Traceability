@@ -1,4 +1,5 @@
 from __future__ import annotations
+from enum import Enum
 from os import PathLike
 import copy
 
@@ -9,7 +10,10 @@ from transformers import (
     Conversation,
     PreTrainedTokenizer,
     PreTrainedTokenizerFast,
-    PreTrainedModel
+    PreTrainedModel,
+    MistralForCausalLM,
+    MixtralForCausalLM,
+    LlamaForCausalLM
 )
 import torch
 from typing import Final
@@ -22,6 +26,27 @@ class ModelLoadingException(Exception):
         super().__init__(f"{model_name_or_path} is being loaded.", *args)
 
 
+class UnsupportedModelException(Exception):
+    def __init__(self, model_type: str, *args: object) -> None:
+        super().__init__(f"{model_type} is not supported right now.", *args)
+
+
+class _ModelType(Enum):
+    MISTRAL: dict = {
+        "inst": ("[INST]", "[/INST]"),
+        "bos": "<s>",
+        "eos": "</s>"
+    }
+    LLAMA: dict = {
+        "inst": (
+            "<|start_header_id|>user<|end_header_id|>",
+            "<|eot_id|><|start_header_id|>assistant<|end_header_id|>"
+        ),
+        "bos": "<|begin_of_text|>",
+        "eos": "<|eot_id|>"
+    }
+
+
 class Model:
     def __init__(
             self,
@@ -32,14 +57,22 @@ class Model:
         self.tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = tokenizer
         self.model: PreTrainedModel = model
         self.max_new_tokens: int = max_new_tokens
+        
+        # Set the type of the model
+        self.type: _ModelType
+        if isinstance(model, (MistralForCausalLM, MixtralForCausalLM)):
+            self.type = _ModelType.MISTRAL
+        elif isinstance(model, LlamaForCausalLM):
+            self.type = _ModelType.LLAMA
+        # Pass the placeholder
+        elif tokenizer is None and model is None and max_new_tokens is None:
+            pass
+        else:
+            raise UnsupportedModelException(type(model).__name__)
 
     _MODELS: Final[dict[str | PathLike, Model]] = {}
 
     _PLACEHOLDER: Model = None
-
-    # Instruction suffix
-    _INST_SUFFIX: Final[str] = "[/INST]"
-    _INST_SUFFIX_LEN : Final[int] = len(_INST_SUFFIX)
 
     # System prompt used for REST-at
     _SYSTEM_PROMPT: Final[str] = "You are a helpful AI called Kalle."
@@ -91,8 +124,7 @@ class Model:
         Model._MODELS[model_name_or_path] = Model._get_placeholder()
 
         # Load the model and its tokenizer
-        tokenizer = AutoTokenizer.from_pretrained(model_name_or_path)
-        tokenizer.chat_template
+        tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = AutoTokenizer.from_pretrained(model_name_or_path)
 
         model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
             model_name_or_path,
@@ -105,9 +137,40 @@ class Model:
 
         return m
     
-    def _apply_chat_template(self, messages: list[dict[str, str]]) -> BatchEncoding:
+    def _apply_chat_template_llama(self, messages: list[dict[str, str]]) -> BatchEncoding:
         """
-        Applies a pre-defined chat template to a message history and tokenizes it.
+        Applies a pre-defined Llama chat template to a message history and tokenizes it.
+
+        Parameters:
+        -----------
+        messages: list[dict[str, str]] - The message history.
+
+        Returns:
+        --------
+        `BatchEncoding` - The encoded input.
+
+        Raises:
+        -------
+        `ValueError` if `message["content"]` is empty or consists of only whitespace characters for any message.
+        """
+
+        # Remove leading and trailing whitespace
+        for message in messages:
+            message["content"] = message["content"].strip()
+
+            if not message["content"]:
+                raise ValueError("Messages can't be empty!")
+
+        # The LLaMA tokeniser supports system prompts
+        return self.tokenizer(
+            self.tokenizer.apply_chat_template(messages, tokenize=False),
+            return_tensors="pt",
+            return_attention_mask=True
+        )
+    
+    def _apply_chat_template_mistral(self, messages: list[dict[str, str]]) -> BatchEncoding:
+        """
+        Applies a pre-defined Mistral/Mixtral chat template to a message history and tokenizes it.
 
         Parameters:
         -----------
@@ -158,6 +221,13 @@ class Model:
                 raise Exception("Only system, user, and assistant roles are supported!")
 
         return self.tokenizer(chat, return_tensors="pt", return_attention_mask=True)
+
+    def _apply_chat_template(self, messages: list[dict[str, str]]) -> BatchEncoding:
+        match (self.type):
+            case _ModelType.MISTRAL:
+                return self._apply_chat_template_mistral(messages)
+            case _ModelType.LLAMA:
+                return self._apply_chat_template_llama(messages)
     
     def prompt(
             self,
@@ -174,10 +244,15 @@ class Model:
             temperature=0.1
         )
 
-        raw_res: str = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        raw_res: str = self.tokenizer.decode(outputs[0])
 
+        # 1 at inst in the instruction suffix
+        inst_suffix: str = self.type.value["inst"][1]
+        inst_suffix_len: int = len(inst_suffix)
         # Cut out the instruction section of the output
-        res: str = raw_res[(raw_res.rfind(Model._INST_SUFFIX) + Model._INST_SUFFIX_LEN)::].strip()
+        res: str = raw_res[
+            (raw_res.rfind(inst_suffix) + inst_suffix_len):raw_res.rfind(self.tokenizer.eos_token)
+        ].strip()
 
         # Append response to history
         history.append({"role": "assistant", "content": res})
