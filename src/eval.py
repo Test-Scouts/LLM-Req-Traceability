@@ -61,6 +61,7 @@ def main() -> None:
 
     print(f"Info - Requirements path: {req_path}")
     print(f"Info - Tests path: {test_path}")
+    print(f"Info - Mapping path: {mapping_path}")
     
     # Load the set of tests
     tests: set[str]
