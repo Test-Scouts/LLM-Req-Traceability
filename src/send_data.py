@@ -31,22 +31,22 @@ def main() -> None:
 
     if args.data.lower() == "mix":
         print("Using MIX data")
-        req_path = os.getenv("MIX_REQ_PATH"),
+        req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")
     elif args.data.lower() == "bths":
         print("Using BTHS data")
-        req_path = os.getenv("BTHS_REQ_PATH"),
+        req_path = os.getenv("BTHS_REQ_PATH")
         test_path = os.getenv("BTHS_TEST_PATH")
     else:
         print("Using GBG data")
-        req_path = os.getenv("GBG_REQ_PATH"),
+        req_path = os.getenv("GBG_REQ_PATH")
         test_path = os.getenv("GBG_TEST_PATH")
         
     print(f"Model path: {model_path}")
     print(f"Token limit: {token}")
     print(f"Request path: {req_path}")
     print(f"Test path: {test_path}")
-    
+
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
         req_path,
