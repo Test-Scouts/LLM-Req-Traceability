@@ -12,12 +12,15 @@ from functools import reduce
 import json
 import os
 from contextlib import redirect_stdout
+import argparse
 
 from dotenv import load_dotenv
 
 from .core.rest import RESTSpecification
 from .core.stats import Stats
 
+parser = argparse.ArgumentParser(description="Process file information.")
+parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
 
 now: datetime.datetime = datetime.datetime.now()
 
@@ -28,24 +31,43 @@ res_dir: str = f"./res/{date}/{time}"
 log_path: str = f"{res_dir}/eval.log"
 
 
+args = parser.parse_args()
 def main() -> None:
     load_dotenv()
 
+    if args.data.lower() == "mix":
+        print("Using MIX data")
+        req_path = os.getenv("MIX_REQ_PATH")
+        test_path = os.getenv("MIX_TEST_PATH")
+        mapping_path = os.getenv("MIX_MAP_PATH")
+    elif args.data.lower() == "bths":
+        print("Using BTHS data")
+        req_path = os.getenv("BTHS_REQ_PATH")
+        test_path = os.getenv("BTHS_TEST_PATH")
+        mapping_path = os.getenv("BTHS_MAP_PATH")
+    else:
+        print("Using GBG data")
+        req_path = os.getenv("GBG_REQ_PATH")
+        test_path = os.getenv("GBG_TEST_PATH")
+        mapping_path = os.getenv("GBG_MAP_PATH")
+
+    print(f"Request path: {req_path}")
+    print(f"Test path: {test_path}")
+    
     # Load the set of tests
     tests: set[str]
-    with open(os.getenv("TEST_PATH"), "r") as f:
+    with open(test_path, "r") as f:
         reader: csv.DictReader = csv.DictReader(f)
         tests = {row["ID"] for row in reader}
 
     specs: RESTSpecification = RESTSpecification.load_specs(
-        os.getenv("REQ_PATH"),
-        os.getenv("TEST_PATH")
+        req_path, test_path
     )
     
     # Maps Req ID -> Test IDs
     map_: dict[str, set[str]]
     # Load the mappings
-    with open(os.getenv("MAP_PATH"), "r") as f:
+    with open(mapping_path, "r") as f:
         fields: list[str] = [
             "Req ID",
             "Test IDs"
