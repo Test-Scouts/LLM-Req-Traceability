@@ -25,6 +25,10 @@ def main() -> None:
         model_path = os.getenv("MODEL_PATH")
         token = int(os.getenv("TOKEN_LIMIT"))
         print(f"Using Mixtral model. Session name: {session_name}")
+    elif model == "mixtral22":
+        model_path = os.getenv("MODEL_PATH_MIX22")
+        token = int(os.getenv("TOKEN_LIMIT_MIX22"))
+        print(f"Using Mixtral model. Session name: {session_name}")
     elif model == "llama":
         model_path = os.getenv("MODEL_PATH_LLAMA")
         token = int(os.getenv("TOKEN_LIMIT_LLAMA"))
