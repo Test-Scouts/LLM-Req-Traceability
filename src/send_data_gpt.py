@@ -10,7 +10,7 @@ from .core.rest import RESTSpecification
 parser = argparse.ArgumentParser(description="Process file information.")
 parser.add_argument("--sessionName", "-s", dest="session",type=str, default= "MistralAI-REST-at-BTHS-eval", help="Customize the session name")
 parser.add_argument("--model", "-m", dest="model",type=str, default= "gpt4", help="Set the model to use. Choose between GPT3.5 and GPT4. Default is GPT4.")
-parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use mix for the mix-dataset, mix-small for the small mix-dataset, bths for the BTHS-dataset, and GBG for the GBG-dataset. Default is GBG.")
 
 args = parser.parse_args()
 
@@ -32,19 +32,20 @@ def main() -> None:
     
     if args.data.lower() == "mix":
         print("Using MIX data")
-        req_path = os.getenv("MIX_REQ_PATH"),
+        req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")
+    elif args.data.lower() == "mix-small":
+        print("Using MIX data")
+        req_path = os.getenv("S_MIX_REQ_PATH")
+        test_path = os.getenv("S_MIX_TEST_PATH")
     elif args.data.lower() == "bths":
         print("Using BTHS data")
-        req_path = os.getenv("BTHS_REQ_PATH"),
+        req_path = os.getenv("BTHS_REQ_PATH")
         test_path = os.getenv("BTHS_TEST_PATH")
     else:
         print("Using GBG data")
-        req_path = os.getenv("GBG_REQ_PATH"),
+        req_path = os.getenv("GBG_REQ_PATH")
         test_path = os.getenv("GBG_TEST_PATH")
-        return
-
-
 
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(

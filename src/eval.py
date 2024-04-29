@@ -20,7 +20,8 @@ from .core.rest import RESTSpecification
 from .core.stats import Stats
 
 parser = argparse.ArgumentParser(description="Process file information.")
-parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+parser.add_argument("--data", "-d", dest="data",type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use mix for the mix-dataset, mix-small for the small mix-dataset, bths for the BTHS-dataset, and GBG for the GBG-dataset. Default is GBG.")
+
 
 now: datetime.datetime = datetime.datetime.now()
 
@@ -40,6 +41,11 @@ def main() -> None:
         req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")
         mapping_path = os.getenv("MIX_MAP_PATH")
+    elif args.data.lower() == "mix-small":
+        print("Using MIX data")
+        req_path = os.getenv("S_MIX_REQ_PATH")
+        test_path = os.getenv("S_MIX_TEST_PATH")
+        mapping_path = os.getenv("S_MIX_MAP_PATH")
     elif args.data.lower() == "bths":
         print("Using BTHS data")
         req_path = os.getenv("BTHS_REQ_PATH")
