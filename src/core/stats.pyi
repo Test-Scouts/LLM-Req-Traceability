@@ -23,6 +23,7 @@ class Stats:
     `readonly max: int | float | None` - The maximum value of the population if not empty, else `None`.\n
     `readonly mean: float | None` - The mean value of the population if not empty, else `None`.\n
     `readonly median: int | float | None` - The median value of the population if not empty, else `None`.\n
+    `readonly quartiles: tuple[int | float, int | float] | None` - The 25th and 75th percentiles of the population if applicable, else `None`.\n
     `readonly sd: float | None` - The standard deviation of the population if not empty, else `None`.\n
     `readonly as_dict: dict` - A dict representation of the stats.
     """
@@ -84,6 +85,12 @@ class Stats:
         The median value of the population if not empty, else `None`.
         """
         ...
+
+    @property
+    def quartiles(self) -> tuple[int | float, int | float] | None:
+        """
+        The 25th and 75th percentiles of the population if applicable, else `None`.
+        """
 
     @property
     def sd(self) -> float | None:
