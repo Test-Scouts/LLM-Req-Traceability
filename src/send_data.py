@@ -42,8 +42,11 @@ def main() -> None:
         req_path = os.getenv("GBG_REQ_PATH"),
         test_path = os.getenv("GBG_TEST_PATH")
         
-    print(f"Model path: {model_path}, req_path: {req_path}, test_path: {test_path}")
-
+    print(f"Model path: {model_path}")
+    print(f"Token limit: {token}")
+    print(f"Request path: {req_path}")
+    print(f"Test path: {test_path}")
+    
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
         req_path,
