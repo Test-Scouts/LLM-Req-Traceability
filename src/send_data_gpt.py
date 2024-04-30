@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 from .core.rest import RESTSpecification
 
 
-
 def main() -> None:
     parser = argparse.ArgumentParser(description="Process file information.")
     parser.add_argument("--sessionName", "-s", dest="session", type=str, default="GPT-3.5-REST-at-BTHS-eval", help="Customize the session name")
@@ -75,7 +74,7 @@ def main() -> None:
     date: str = str(now.date())
     time: str = str(now.time())
 
-    log_dir: str = f"./out/{model}/{date}/{time}"
+    log_dir: str = f"./out/{model}/{session_name}/{date}-{time}"
     os.makedirs(log_dir, exist_ok=True)
 
     chat_log: str = f"{log_dir}/res.json"

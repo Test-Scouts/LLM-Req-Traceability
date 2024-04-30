@@ -144,14 +144,24 @@ class RESTSpecification:
 
         res: dict[str, list[str]] = {}
 
+        SEED = 0
+        #if model == "gpt-3.5-turbo-0125":
+        #    system_fingerprint = "fp_3b956da36b"
+
+        not_printed = True
         for req in self._reqs:
             history = [{"role": "user", "content": format_req_is_tested_prompt(self._tests, req)}]
             completion: ChatCompletion = client.chat.completions.create(
                 model=model,
                 messages=history,
-                temperature=0.1
+                temperature=0.1,
+                seed = SEED
             )
             r: str = completion.choices[0].message.content
+            #system_fingerprint = completion.system_fingerprint 
+            #if not_printed:
+                #print(f'system fingerprint = {system_fingerprint} and seed = {SEED}')
+            #    not_printed = False
 
             # Simple JSON finder
             # Slice from the first "{" to the last "}"
