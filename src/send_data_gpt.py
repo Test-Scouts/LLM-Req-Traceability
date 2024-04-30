@@ -5,7 +5,7 @@ import argparse
 
 from dotenv import load_dotenv
 
-from .core.rest import RESTSpecification
+from .core.rest import GPTResponse, RESTSpecification
 
 
 def main() -> None:
@@ -31,23 +31,28 @@ def main() -> None:
 
     req_path: str
     test_path: str
+    mapping_path: str
     
     if data == "mix":
-        print("Using MIX data")
+        print("Info - Using MIX data")
         req_path = os.getenv("MIX_REQ_PATH")
         test_path = os.getenv("MIX_TEST_PATH")
+        mapping_path = os.getenv("MIX_MAP_PATH")
     elif args.data.lower() == "mix-small":
         print("Using MIX-small data")
         req_path = os.getenv("S_MIX_REQ_PATH")
         test_path = os.getenv("S_MIX_TEST_PATH")
+        mapping_path = os.getenv("S_MIX_MAP_PATH")
     elif args.data.lower() == "bths":
         print("Using BTHS data")
         req_path = os.getenv("BTHS_REQ_PATH")
         test_path = os.getenv("BTHS_TEST_PATH")
+        mapping_path = os.getenv("BTHS_MAP_PATH")
     else:
-        print("Using GBG data")
+        print("Info - Using GBG data")
         req_path = os.getenv("GBG_REQ_PATH")
         test_path = os.getenv("GBG_TEST_PATH")
+        mapping_path = os.getenv("GBG_MAP_PATH")
 
     # Load the REST specifications
     specs: RESTSpecification = RESTSpecification.load_specs(
@@ -56,18 +61,21 @@ def main() -> None:
     )
 
     # Send data to local model
-    res: dict[str, list[str]]
-    data: tuple[int, int]
-    
+    res: GPTResponse = specs.to_gpt(model)
 
-    res, data = specs.to_gpt(
-        model
-    )
+    input_tokens: int = res.input_tokens
+    output_tokens: int = res.output_tokens
 
-    input_tokens: int
-    output_tokens: int
-
-    input_tokens, output_tokens = data
+    payload: dict[str, dict] = {
+        "meta": {
+            "req_path": req_path,
+            "test_path": test_path,
+            "mapping_path": mapping_path,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens
+        },
+        "data": res.as_dict
+    }
 
     # Log response to a file
     now: datetime.datetime = datetime.datetime.now()
@@ -79,7 +87,7 @@ def main() -> None:
 
     chat_log: str = f"{log_dir}/res.json"
     with open(chat_log, "w") as out:
-        json.dump(res, out, indent=2)
+        json.dump(payload, out, indent=2)
 
     # Log the token usage
     stats_log: str = f"{log_dir}/stats.log"
