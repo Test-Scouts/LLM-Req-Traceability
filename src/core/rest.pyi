@@ -8,6 +8,7 @@ Includes:
 """
 
 from os import PathLike
+from typing_extensions import Never, override
 
 
 class FieldMismatchError(Exception):
@@ -15,6 +16,68 @@ class FieldMismatchError(Exception):
     Error raised when trying to load REST specifications from malformed `.csv` files.
     """
     ...
+
+
+class Response:
+    """
+    Responses for calls to local models.
+
+    Attributes:
+    -----------
+    `links: dict[str, list[str]]` - The detected REST trace links mapped from requirements to lists of tests.\n
+    `err: dict[str, str]` - Errors encountered during the run mapped from requirement to the traceback.
+
+    Properties:
+    -----------
+    `as_dict: dict` - A dict representation of the response object.
+    """
+    def __init__(self, *args) -> Never:
+        self.links: dict[str, list[str]]
+        """The detected REST trace links mapped from requirements to lists of tests."""
+        self.err: dict[str, list[str]]
+        """
+        Errors encountered during the run mapped from requirement to the traceback.
+        Includes the error and the response. (`[err, res]`)
+        """
+        ...
+
+    @property
+    def as_dict(self) -> dict:
+        """
+        A dict representation of the response object.
+        """
+        ...
+
+
+class GPTResponse(Response):
+    """
+    Responses for calls to OpenAI's API.
+
+    Attributes:
+    -----------
+    `links: dict[str, list[str]]` - The detected REST trace links mapped from requirements to lists of tests.\n
+    `err: dict[str, str]` - Errors encountered during the run mapped from requirement to the traceback.\n
+    `input_tokens: int` - The amount of tokens sent to the API.\n
+    `output_tokens: int` - The amount of tokens generated through the API.
+
+    Properties:
+    -----------
+    `as_dict: dict` - A dict representation of the response object.
+    """
+    def __init__(self, *args) -> Never:
+        self.input_tokens: int
+        """The amount of tokens sent to the API."""
+        self.output_tokens: int
+        """The amount of tokens generated through the API."""
+        ...
+
+    @override
+    @property
+    def to_dict(self) -> dict:
+        """
+        A dict representation of the response object.
+        """
+        ...
 
 
 class RESTSpecification:
@@ -33,26 +96,8 @@ class RESTSpecification:
     `static load_specs -> RESTSpecification` - Loads specifications from REST files. MUST USE CSV FORMAT!\n
     `check_req -> bool` - Check if a requirement ID exists within a specification.\n
     `check_test -> bool` - Check if a test ID exists within a specification.\n
-    `to_gpt -> dict[str, list[str]]` - Sends REST data to an OpenAI model and returns the detected links in the following format:
-    ```json
-    {
-      "<requirement ID>": ["<test ID>"...]
-      ...
-    }
-    ```
-    `to_local -> tuple[dict[str, list[str]], tuple[int, int]]` - Sends REST data to a local model and returns the detected links and token usage in the following format:
-    ```json
-    (
-      {
-        "<requirement ID>": ["<test ID>"...]
-        ...
-      },
-      (
-        <input tokens>,
-        <output tokens>
-      )
-    )
-    ```
+    `to_gpt -> GPTResponse` - Sends REST data to an OpenAI model and returns a response object containing REST mapping, error data, and token usage.\n
+    `to_local -> Response` - Sends REST data to a local model and returns A response object containing REST mapping and error data.
     """
 
     @staticmethod
@@ -157,20 +202,7 @@ class RESTSpecification:
 
         Returns:
         --------
-        `tuple[dict[str, list[str]], tuple[int, int]]` - The REST alignment mapping from requirement to tests,
-         and token usage as follows:
-        ```json
-        (
-          {
-            "<requirement ID>": ["<test ID>"...]
-            ...
-          },
-          (
-            <input tokens>,
-            <output tokens>
-          )
-        )
-        ```
+        `GPTResponse` - A response object containing REST mapping, error data, and token usage.
         """
         ...
 
@@ -186,12 +218,6 @@ class RESTSpecification:
 
         Returns:
         --------
-        `dict[str, list[str]]` - The REST alignment mapping from requirement to tests as follows:
-        ```json
-        {
-          "<requirement ID>": ["<test ID>"...]
-          ...
-        }
-        ```
+        `Response` - A response object containing REST mapping and error data.
         """
         ...

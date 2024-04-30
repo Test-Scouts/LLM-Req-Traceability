@@ -5,6 +5,8 @@ from os import PathLike
 import csv
 import json
 from io import StringIO
+import traceback
+from typing_extensions import override
 
 from openai import OpenAI
 from openai.types.chat import ChatCompletion
@@ -19,6 +21,36 @@ class FieldMismatchError(Exception):
         super().__init__(f"Mismatched field names.\n\tExpected: {expected}\n\tGot: {got}", *args)
         self.expected: set[str] = expected
         self.got: set[str] = got
+
+
+class Response:
+    def __init__(self, links: dict[str, list[str]], err: dict[str, list[str]]) -> None:
+        self.links: dict[str, list[str]] = links
+        self.err: dict[str, list[str]] = err
+
+    @property
+    def as_dict(self) -> dict:
+        return {
+            "links": deepcopy(self.links),
+            "err": deepcopy(self.err)
+        }
+
+
+class GPTResponse(Response):
+    def __init__(self, links: dict[str, list[str]], err: dict[str, list[str]], tokens: tuple[int, int]) -> None:
+        super().__init__(links, err)
+        self.input_tokens: int = tokens[0]
+        self.output_tokens: int = tokens[1]
+
+    @override
+    @property
+    def as_dict(self) -> dict:
+        return super() \
+            .as_dict \
+            .update({
+                "input_tokens": self.input_tokens,
+                "output_tokens": self.output_tokens
+            })
 
 
 class RESTSpecification:
@@ -136,13 +168,14 @@ class RESTSpecification:
     def tests(self) -> list[dict[str, str]]:
         return deepcopy(self._tests)
 
-    def to_gpt(self, model: str) -> tuple[dict[str, list[str]], tuple[int, int]]:
+    def to_gpt(self, model: str) -> GPTResponse:
         client: OpenAI = OpenAI()
 
         input_tokens: int = 0
         output_tokens: int = 0
 
         res: dict[str, list[str]] = {}
+        err: dict[str, list[str]] = {}
 
         SEED = 0
         #if model == "gpt-3.5-turbo-0125":
@@ -157,19 +190,26 @@ class RESTSpecification:
                 temperature=0.1,
                 seed = SEED
             )
-            r: str = completion.choices[0].message.content
+
+            raw_res: str = completion.choices[0].message.content
             #system_fingerprint = completion.system_fingerprint 
             #if not_printed:
                 #print(f'system fingerprint = {system_fingerprint} and seed = {SEED}')
             #    not_printed = False
 
-            # Simple JSON finder
-            # Slice from the first "{" to the last "}"
-            r = r[r.find("{"):r.rfind("}") + 1]
-            curr_res: dict[str, str] = json.loads(r)
+            curr_res: str
             links: list[str]
 
+            # Use the requirement ID instead of its internal index
+            req_id: str = self \
+                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+
             try:
+                # Simple JSON finder
+                # Slice from the first "{" to the last "}"
+                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
+                curr_res: dict[str, str] = json.loads(curr_res)
+
                 # Substitute the test indices back to the test IDs
                 links = curr_res["tests"] \
                     .replace(" ", "") \
@@ -181,18 +221,17 @@ class RESTSpecification:
                 ]
             except:
                 links = []
+                # Log error in response
+                err[req_id] = [traceback.format_exc(), raw_res]
 
-            # Use the requirement ID instead of its internal index
-            req_id: str = self \
-                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
             res[req_id] = links
 
             input_tokens += completion.usage.prompt_tokens
             output_tokens += completion.usage.completion_tokens
 
-        return (res, (input_tokens, output_tokens))
+        return GPTResponse(res, err, (input_tokens, output_tokens))
 
-    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> dict[str, list[str]]:
+    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> Response:
         id_: str = f"{id(self)}-{datetime.datetime.now().timestamp()}"
         session: Session = Session.create(
             id_,
@@ -202,17 +241,24 @@ class RESTSpecification:
         )
 
         res: dict[str, list[str]] = {}
+        err: dict[str, list[str]] = {}
 
         for req in self._reqs:
-            r: str = session.prompt(format_req_is_tested_prompt(self._tests, req), True)
+            raw_res: str = session.prompt(format_req_is_tested_prompt(self._tests, req), True)
 
-            # Simple JSON finder
-            # Slice from the first "{" to the last "}"
-            r = r[r.find("{"):r.rfind("}") + 1]
-            curr_res = json.loads(r)
+            curr_res: str
             links: list[str]
 
+            # Use the requirement ID instead of its internal index
+            req_id: str = self \
+                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+
             try:
+                # Simple JSON finder
+                # Slice from the first "{" to the last "}"
+                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
+                curr_res = json.loads(curr_res)
+
                 # Substitute the test indices back to the test IDs
                 links = curr_res["tests"] \
                     .replace(" ", "") \
@@ -224,14 +270,13 @@ class RESTSpecification:
                 ]
             except:
                 links = []
+                # Log error in response
+                err[req_id] = [traceback.format_exc(), raw_res]
 
-            # Use the requirement ID instead of its internal index
-            req_id: str = self \
-                ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
             res[req_id] = links
 
         session.delete()
-        return res
+        return Response(res, err)
 
     def __str__(self) -> str:
         return f"{self.__class__.__name__} {{\n" \
