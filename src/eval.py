@@ -108,7 +108,7 @@ def main() -> None:
                 # Load the tool output
                 payload: dict[str, dict]
                 with open(out_path, "r") as f:
-                    res = json.load(f)
+                    payload = json.load(f)
 
                 meta: dict[str, str] = payload["meta"]
                 res: dict[str, list[str]] = payload["data"]["links"]
@@ -122,6 +122,9 @@ def main() -> None:
                     meta["test_path"],
                     meta["mapping_path"]
                 )
+                print("\n INFO: current test:s")
+                print(curr_tests)
+                print("\n")
 
                 # Values for confusion matrix
                 n: int = 0
@@ -129,7 +132,7 @@ def main() -> None:
                 tn: int = 0
                 fp: int = 0
                 fn: int = 0
-
+                
                 for req in res:
                     actual_tests: set[str] = set(res[req])
 
@@ -150,9 +153,13 @@ def main() -> None:
                     curr_fp_count: int = len(curr_fp_set)
                     print(f"Info - \t\t({curr_fp_count}) {curr_fp_set = }")
 
+                    # Convert curr_tests from a list of dictionaries to a set of IDs
+                    curr_test_ids: set[str] = {test['ID'] for test in curr_tests}
+                    
                     # Negatives
-                    expected_ns: set[str] = curr_tests - expected_tests
-                    actual_ns: set[str] = curr_tests - actual_tests
+                    print(f"Info - \t\t({curr_tests}) {expected_tests}")
+                    expected_ns: set[str] = curr_test_ids - expected_tests
+                    actual_ns: set[str] = curr_test_ids - actual_tests
 
                     curr_tn_set: set[str] = actual_ns & expected_ns
                     curr_tn_count: int = len(curr_tn_set)
@@ -164,7 +171,7 @@ def main() -> None:
 
                     curr_n: int = curr_tp_count + curr_fp_count + curr_tn_count + curr_fn_count
                     
-                    expected_curr_n: int = len(curr_tests)
+                    expected_curr_n: int = len(curr_test_ids)
                     if curr_n != expected_curr_n:
                         print(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }")
                     else:
