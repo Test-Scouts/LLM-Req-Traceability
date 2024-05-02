@@ -178,23 +178,31 @@ class RESTSpecification:
         err: dict[str, list[str]] = {}
 
         SEED = 0
-        #if model == "gpt-3.5-turbo-0125":
-        #    system_fingerprint = "fp_3b956da36b"
+        if model == "gpt-3.5-turbo-0125":
+            system_fingerprint = "fp_3b956da36b"
+        elif model == "gpt-3.5-turbo-0126":
+            system_fingerprint = "fp_ea6eb70039"
 
-        not_printed = True
         for req in self._reqs:
             history = [{"role": "user", "content": format_req_is_tested_prompt(self._tests, req)}]
             completion: ChatCompletion = client.chat.completions.create(
                 model=model,
                 messages=history,
                 temperature=0.1,
-                seed = SEED
+                seed = SEED,
+                system_fingerprint = system_fingerprint,
+
             )
 
             raw_res: str = completion.choices[0].message.content
+
+
+            #######################################################
+            # Uncomment to print system fingerprint and seed used
+            #######################################################
             #system_fingerprint = completion.system_fingerprint 
             #if not_printed:
-                #print(f'system fingerprint = {system_fingerprint} and seed = {SEED}')
+            #    print(f'system fingerprint = {system_fingerprint} and seed = {SEED}')
             #    not_printed = False
 
             curr_res: str
