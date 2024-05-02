@@ -12,7 +12,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Process file information.")
     parser.add_argument("--sessionName", "-s", dest="session", type=str, default="MistralAI-REST-at-BTHS-eval", help="Customize the session name")
     parser.add_argument("--model", "-m", dest="model", type=str, default="mistral", help="Set the model to use")
-    parser.add_argument("--data", "-d", dest="data", type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, Mix-small for mix-small-dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+    parser.add_argument("--data", "-d", dest="data", type=str, default="GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, Mix-small for mix-small-dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+    parser.add_argument("--system", "-S", dest="system", type=str, default=None, help="Customize the system prompt used. Falls back on a default if not provided.")
+    parser.add_argument("--prompt", "-p", dest="prompt", type=str, default=None, help="Customize the prompt used. Include `{req}` in place of the requirement and `{tests}` in place of the tests. Falls back on a default if not provided.")
 
     args = parser.parse_args()
 
@@ -20,6 +22,8 @@ def main() -> None:
     session_name = args.session
     model: str = args.model.lower()
     data: str = args.data.lower()
+    system_prompt: str = args.system
+    prompt: str = args.prompt
 
     if model == "mixtral":
         model_path = os.getenv("MODEL_PATH")
@@ -73,6 +77,16 @@ def main() -> None:
         req_path,
         test_path
     )
+
+    # Set system prompt if one was passed
+    if system_prompt:
+        specs.system_prompt = system_prompt
+        print(f"Using the following system prompt:\n{system_prompt}")
+
+    # Set prompt if one was passed
+    if prompt:
+        specs.prompt = prompt
+        print(f"Using the following prompt:\n{prompt}")
 
     # Send data to local model
     res: Response = specs.to_local(model_path, token)
