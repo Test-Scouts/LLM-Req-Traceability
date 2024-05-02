@@ -81,7 +81,6 @@ def get_specs(req_path: str, test_path: str, mapping_path: str) -> tuple[
 
 def main() -> None:
     res_path: str = f"{res_dir}/res.log"
-
     # Evaluate results of every output
     for m in os.listdir(f"./out"):
         # Model stats
@@ -99,6 +98,8 @@ def main() -> None:
         all_f1: list[float] = []
 
         all_err: list[int] = []
+
+        json_list =[]
 
         for d in os.listdir(f"./out/{m}"):
             for t in os.listdir(f"./out/{m}/{d}"):
@@ -231,7 +232,33 @@ def main() -> None:
                     f.write(f"./out/{m}/{d}/{t}\n")
                     json.dump(data, f, indent=2)
                     f.write("\n")
-        
+
+                data_json: dict = {
+                    "data_path": f"./out/{m}/{d}/{t}",
+                    "prevalence": prevalence,
+                    "n": n,
+                    "tp": tp,
+                    "tn": tn,
+                    "fp": fp,
+                    "fn": fn,
+                    "accuracy": accuracy,
+                    "balanced_accuracy": balanced_accuracy,
+                    "f1": f1,
+                    "recall": recall,
+                    "precision": precision,
+                    "specificity": specificity,
+                    "err": len(err)
+                }
+
+                json_list.append(data_json)
+                
+            res_path_json: str = f"{res_dir}/all_data_{m}.json"
+
+            # Write the list of dictionaries to a JSON file
+            with open(res_path_json, 'w') as file:
+                json.dump(json_list, file, indent=2)  # 'indent=4' for pretty printing
+                     
+
         prevalence: float = (sum(all_tp) + sum(all_fn)) / sum(all_n)
 
         data: dict = {
@@ -253,6 +280,7 @@ def main() -> None:
         print(f"Info - Logging total and avarage metrics for {m}")
         with open(f"{res_dir}/{m}.json", "w") as f:
             f.write(json.dumps(data, indent=2) + "\n")
+
 
 
 if __name__ == "__main__":
