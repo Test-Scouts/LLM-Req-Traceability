@@ -1,5 +1,5 @@
 """
-Utility module for handling models.
+Core module for handling models.
 
 Includes:
 ---------
@@ -14,6 +14,13 @@ from transformers import Conversation
 class ModelLoadingException(Exception):
     """
     An exception raised if trying to create a Session using a model that's being loaded.
+    """
+    ...
+
+
+class UnsupportedModelException(Exception):
+    """
+    An exception raised if trying to load a model that REST-at doesn't support.
     """
     ...
 
@@ -35,7 +42,7 @@ class Model:
 
         Parameters:
         -----------
-        model_name_or_path: str | PathLike - The model to get. Can be either a model name from Hugging Face Hub or a path to a local model.
+        model_name_or_path: str | PathLike - The model to get. Can be either a model name from Hugging Face Hub or a path to a local model.\n
         max_new_tokens: int - The `max_new_tokens` parameter used when generating. Required when loading.
 
         Returns:
@@ -54,7 +61,7 @@ class Model:
 
         Parameters:
         -----------
-        history: list[dict[str, str]] | Conversation - The conversation history. Must adhere to model constraints.
+        history: list[dict[str, str]] | Conversation - The conversation history. Must adhere to model constraints.\n
         prompt: str - The user prompt to send to the model. Must contain non-whitespace characters.
 
         Returns:
@@ -71,6 +78,11 @@ class Model:
 class Session:
     """
     Sessions retain interaction data from models, such as history and system prompts.
+
+    Properties:
+    -----------
+    `system_prompt: str` - The system prompt of the session.\n
+    `readonly history: list[dict[str, str]] - A copy of the message history of the session.
 
     Methods:
     --------
@@ -91,9 +103,9 @@ class Session:
 
         Parameters:
         -----------
-        name: str - The name to give the session.
-        model_name_or_path: str | PathLike - The model to use. Can be either a model name from Hugging Face Hub or a path to a local model.
-        max_new_tokens: int - The `max_new_tokens` parameter used when generating.
+        name: str - The name to give the session.\n
+        model_name_or_path: str | PathLike - The model to use. Can be either a model name from Hugging Face Hub or a path to a local model.\n
+        max_new_tokens: int - The `max_new_tokens` parameter used when generating.\n
         system_prompt: str - (Optional) The system prompt to use when prompting.
 
         Returns:
@@ -145,7 +157,7 @@ class Session:
 
         Parameters:
         -----------
-        prompt: str - The user prompt to send to the model. Must contain non-whitespace characters.
+        prompt: str - The user prompt to send to the model. Must contain non-whitespace characters.\n
         ephemeral: bool - Whether the prompt and response should be saved. Defaults to saving (`False`).
 
         Returns:

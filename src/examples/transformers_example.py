@@ -1,6 +1,15 @@
 import os
 from dotenv import load_dotenv
-from ..util import model as ml
+
+from transformers import (
+    AutoModelForCausalLM,
+    AutoTokenizer,
+    BatchEncoding,
+    PreTrainedTokenizer,
+    PreTrainedTokenizerFast,
+    PreTrainedModel
+)
+import torch
 
 
 def main() -> None:
@@ -10,25 +19,32 @@ def main() -> None:
     model_id: str = os.getenv("MODEL_PATH")
     max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
 
-    # Load model
-    model : ml.Model = ml.Model.get(model_id, max_new_tokens)
+    # Load model# Load the model and its tokenizer
+    tokenizer: PreTrainedTokenizer | PreTrainedTokenizerFast = AutoTokenizer.from_pretrained(model_id)
+
+    model: PreTrainedModel = AutoModelForCausalLM.from_pretrained(
+        model_id,
+        torch_dtype=torch.float16,
+        device_map="auto"
+    )
+    model.eval()
 
     # Create an empty message history
     messages: list[dict[str, str]] = []
 
-    # Chat loop
-    user_prompt: str = ""
-    while user_prompt.lower() != "bye":
-        user_prompt = input("> ")
+    user_prompt = input("> ")
+    messages.append({"role": "user", "content": user_prompt})
 
-        # Clear message history if wanted
-        if user_prompt.lower() == "clear":
-            messages = []
-            print("\nMessage history cleared\n")
-            continue
+    input_ids: str | list[str] = tokenizer.apply_chat_template(messages, return_tensors="pt")
 
-        res = model.prompt(messages, user_prompt)
-        print(f"\nLLM> {res}\n")
+    outputs = model.generate(
+        input_ids,
+        max_new_tokens=max_new_tokens,
+        do_sample=True,
+        temperature=0.1
+    )
+    res = tokenizer.decode(outputs[0])
+    print(f"\nLLM> {res}\n")
 
 
 if __name__ == "__main__":

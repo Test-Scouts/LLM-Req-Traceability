@@ -1,0 +1,36 @@
+ID,Rubrik,Beskrivning,GE_KravID
+568,"S184 - Felutfall under 0,75 % per år","Under Kommunikationsutrustningens förväntade livslängd ska (S184) felutfallet inte överstiga 0,75 % per år av installerad volym.",S184
+465,S81 - Plintlock,Mätenheten ska (S81) ha plintlock som täcker anslutningskablaget.,S81
+686,B40 - Brytarknapp på mätaren,Brytaren ska (B40) kunna manövreras direkt med en separat brytarknapp på utsidan av Mätenheten.,B40
+479,S95 - Hämtning av saknade Mätvärden,HES ska (S95) innehålla funktionalitet för automatisk och manuell hämtning av saknade Mätvärden.,S95
+693,B47 - montagehängsle minst 5 mm,Tjockleken på Mätenhetens montagehängsle ska (B47) vara minst 5 mm.,B47
+586,S202 - Beställarens licenser,samt redovisa vilka licenser som Beställaren ska (S202) införskaffa om så är fallet.,S202
+547,S163 - Kräv ytterligare bekräftelse,"Kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) ska (S163) kräva ytterligare bekräftelse innan de utförs",S163
+735,B89 - Kräv ytterligare bekräftelse,"Kommandon, som Användaren initierar i HES och som kan få allvarliga konsekvenser vid felaktig hantering (radering av lagrad mäta- och strukturdata och från- och tillkoppling av ström) ska kräva ytterligare bekräftelse innan de utförs. Övriga kommandon ska (B89) utföras direkt.",B89
+514,S130 - Dynamiska fält,Fälten i HES ska (S130) vara dynamiska och anpassade för den information som kommer att visas upp för Användaren (kopplat till krav S131),S130
+515,S131 - Fältet visar alla siffror,Ex på dynamiska fält - Om fältet kan innehålla 18 positioner med siffror så ska (S131) alla siffror synas för Användaren (inga dolda delar). (kopplat till krav S130),S131
+993,S539 - Ta fram testplan,Leverantören ansvarar för att vid projektstart ta fram en detaljerad testplan som granskas av Beställaren. Utifrån synpunkter som framkommer vid Beställarens granskning ska (S539) Leverantören komplettera testplanen.,S539
+994,S540 - Godkännande av testplan,Den således kompletterade planen ska (S540) därefter lämnas till Beställaren för slutligt godkännande.,S540
+610,S226 - Krypterad inloggning,Inloggning ska (S226) ske krypterat.,S226
+753,B107 - Versionshantering av webservice-gränssnitt,Webservice-gränssnitt ska (B107) vara versionshanterade så att det finns möjlighet att använda gamla Versioner vid behov.,B107
+591,S207 - Fjärruppkoppling,"För fjärrdiagnostik, support och underhåll ska (S207) systemlösningen erbjuda möjlighet till fjärruppkoppling under förutsättning att ställda säkerhets- och sekretesskrav kan tillgodoses.",S207
+604,S220 - Återsända information,"Det ska (S220) vara möjligt att återsända information som sänts via HES Integrationsgränssnitt, exempelvis om mottagarsystemet ligger nere.",S220
+434,S50 - Högst avvika med 7 sek,Tidsangivelsen ska (S50) högst avvika med 7 sekunder från Normaltid för Mätenhet.,S50
+477,S93 - Strukturdata i HES,En Användare ska (S93) manuellt kunna registrera strukturdata i HES.,S93
+486,S102 - Rapporter utifrån status,Sammanställning av statusmärkt data i HES ska (S102) kunna tas ut i rapporter t.ex. alla Mätvärden med en specifik status.,S102
+499,S115 - Importera Mätdata,"Det ska (S115) finnas funktionalitet i HES för att kunna importera Mätdata från ett valfritt standardiserat textfilsformat, exempelvis csv.",S115
+516,S132 - Formulärvyer,Det ska (S132) finnas formulärvyer för presentation och inmatning/modifiering av strukturdata.,S132
+1010,S556 - Krav vid leverans och installation i testmiljön,"Leverantören ska (S556) vid leverans och installation av Mätsystemet i Beställarens testmiljö: 
+-installera, -konfigurera/parametersätta, -eventuellt migrera strukturdata, -genomföra test med liknande omfattning som FAT samt inkluderat systemintegrationstest (SIT), samt -genomföra felrättningar och omtester.",S556
+719,B73 - Filtrering och sortering i larmlista,En Användare ska (B73) ha möjlighet att filtrera och sortera i larmlistan.,B73
+733,B87 - kopiera statiska fält,"Det ska (B87) vara möjligt för Användaren att kunna kopiera statiska fält i HES som t.ex. rubriker, status, svar på Händelser i systemet.",B87
+681,B35 - Inaktivera skickandet av Händelser från specifik Mätenhet,Det ska (B35) vara möjligt att inaktivera skickandet av Händelser från utpekad Mätenhet från HES i syfte att inte behöva få in en stor mängd Händelser från en viss Mätenhet.,B35
+397,"S13 - 98,0 %  till HES 4h efter dygnsskifte","98,0 % av Energivärdena ska (S13) vara insamlade till HES inom 4 timmar efter dygnsskiftet.",S13
+653,B7 - Kommunikationsmetadata  ska levereras kontinuerligt,Kommunikationsmetadata (15-minutersvärden) ska (B7) levereras kontinuerligt från Kommunikationsutrustning till HES.,B7
+748,B102 - Hämta mätardata för 24h för  95% av mätare inom 60 min,Kommunikationslösningen ska  (B102) klara av att hämta in 95 % av all Mätdata från 400 000 mätare och för de senaste 24 timmarna inom 60 minuter,B102
+466,S82 - 1-fas och 3-fas mätning ska uppfylla Mätarparametrar enligt MID,"1-fas och 3-fas mätning ska (S82) uppfylla mätarparametrar enligt MID:
+- Class index = B (eller bättre)
+- Minimum current (Imin) = 0,25 A (eller lägre)
+- Reference current (In) = 5 A
+- Maximum current (Imax) = 85 A (eller högre) (inklusive brytarfunktion)",S82
+646,S262 - Kontrollutrustning,Kontrollutrustning ska (S262) i förekommande fall då de ingår i Mätsystemet omfattas av säkerhetskrav på samma sätt som annan utrustning.,S262

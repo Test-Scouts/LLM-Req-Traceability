@@ -1,81 +1,93 @@
-import csv
 import datetime
 import os
 import json
+import argparse
 
 from dotenv import load_dotenv
-from openai import OpenAI
-from openai.types.chat import ChatCompletion
 
-from .util.prompt import format_req_is_tested_prompt
+from .core.rest import GPTResponse, RESTSpecification
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Process file information.")
+    parser.add_argument("--sessionName", "-s", dest="session", type=str, default="GPT-3.5-REST-at-BTHS-eval", help="Customize the session name")
+    parser.add_argument("--model", "-m", dest="model", type=str, default="gpt3.5", help="Set the model to use. Choose between GPT-3.5 and GPT-4. Default is GPT-3.5.")
+    parser.add_argument("--data", "-d", dest="data", type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, Mix-small for mix-small-dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+
+    args = parser.parse_args()
+
     load_dotenv()
 
-    # Load requirements file and filter the desired fields
-    req_list: list[dict[str, str]]
-    with open(os.getenv("REQ_PATH")) as reqs:
-        fields: list[str] = [
-            "ID",
-            "Feature",
-            "Description"
-        ]
-        reader: csv.DictReader = csv.DictReader(reqs)
+    session_name = args.session
+    model: str = args.model.lower()
+    data: str = args.data.lower()
 
-        req_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
+    if model == "gpt4":
+        model = "gpt-4-turbo-2024-04-09"
+        print(f"Using Mistral model. Session name: {session_name}")
+    else:
+        model = "gpt-3.5-turbo-0125"
+        print(f"Using {model}. Session name: {session_name}")
 
+    req_path: str
+    test_path: str
+    mapping_path: str
+    
+    if data == "mix":
+        print("Info - Using MIX data")
+        req_path = os.getenv("MIX_REQ_PATH")
+        test_path = os.getenv("MIX_TEST_PATH")
+        mapping_path = os.getenv("MIX_MAP_PATH")
+    elif args.data.lower() == "mix-small":
+        print("Using MIX-small data")
+        req_path = os.getenv("S_MIX_REQ_PATH")
+        test_path = os.getenv("S_MIX_TEST_PATH")
+        mapping_path = os.getenv("S_MIX_MAP_PATH")
+    elif args.data.lower() == "bths":
+        print("Using BTHS data")
+        req_path = os.getenv("BTHS_REQ_PATH")
+        test_path = os.getenv("BTHS_TEST_PATH")
+        mapping_path = os.getenv("BTHS_MAP_PATH")
+    else:
+        print("Info - Using GBG data")
+        req_path = os.getenv("GBG_REQ_PATH")
+        test_path = os.getenv("GBG_TEST_PATH")
+        mapping_path = os.getenv("GBG_MAP_PATH")
 
-    # Load requirements file and filter the desired fields
-    test_list: list[dict[str, str]]
-    with open(os.getenv("TEST_PATH")) as tests:
-        fields: list[str] = [
-            "ID",
-            "Purpose",
-            "Test steps"
-        ]
-        reader: csv.DictReader = csv.DictReader(tests)
+    # Load the REST specifications
+    specs: RESTSpecification = RESTSpecification.load_specs(
+        req_path,
+        test_path
+    )
 
-        test_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
+    # Send data to local model
+    res: GPTResponse = specs.to_gpt(model)
 
-    # Set up a session
-    model: str = "gpt-3.5-turbo-0125"
-    client: OpenAI = OpenAI()
+    input_tokens: int = res.input_tokens
+    output_tokens: int = res.output_tokens
 
-    input_tokens: int = 0
-    output_tokens: int = 0
-    history: list[dict[str, str]]
-    res: list[dict[str, str]] = []
-    for req in req_list:
-        history = [{"role": "user", "content": format_req_is_tested_prompt(test_list, req)}]
-        completion: ChatCompletion = client.chat.completions.create(
-            model=model,
-            messages=history,
-            temperature=0.1
-        )
+    payload: dict[str, dict] = {
+        "meta": {
+            "req_path": req_path,
+            "test_path": test_path,
+            "mapping_path": mapping_path,
+            "input_tokens": input_tokens,
+            "output_tokens": output_tokens
+        },
+        "data": res.as_dict
+    }
 
-        r: dict[str, str] = json.loads(completion.choices[0].message.content)
-        res.append(r)
-
-        input_tokens += completion.usage.prompt_tokens
-        output_tokens += completion.usage.completion_tokens
-
+    # Log response to a file
     now: datetime.datetime = datetime.datetime.now()
     date: str = str(now.date())
     time: str = str(now.time())
 
-    log_dir: str = f"./out/{model}/{date}/{time}"
+    log_dir: str = f"./out/{model}/{session_name}/{date}-{time}"
     os.makedirs(log_dir, exist_ok=True)
 
     chat_log: str = f"{log_dir}/res.json"
     with open(chat_log, "w") as out:
-        json.dump(res, out, indent=2)
+        json.dump(payload, out, indent=2)
 
     # Log the token usage
     stats_log: str = f"{log_dir}/stats.log"

@@ -1,64 +1,92 @@
-import csv
 import datetime
 import os
 import json
+import argparse
 
 from dotenv import load_dotenv
 
-from .util.model import Session
-from .util.prompt import format_req_is_tested_prompt
+from .core.rest import RESTSpecification, Response
 
 
 def main() -> None:
+    parser = argparse.ArgumentParser(description="Process file information.")
+    parser.add_argument("--sessionName", "-s", dest="session", type=str, default="MistralAI-REST-at-BTHS-eval", help="Customize the session name")
+    parser.add_argument("--model", "-m", dest="model", type=str, default="mistral", help="Set the model to use")
+    parser.add_argument("--data", "-d", dest="data", type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, Mix-small for mix-small-dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
+
+    args = parser.parse_args()
+
     load_dotenv()
+    session_name = args.session
+    model: str = args.model.lower()
+    data: str = args.data.lower()
 
-    # Load requirements file and filter the desired fields
-    req_list: list[dict[str, str]]
-    with open(os.getenv("REQ_PATH")) as reqs:
-        fields: list[str] = [
-            "ID",
-            "Feature",
-            "Description"
-        ]
-        reader: csv.DictReader = csv.DictReader(reqs)
+    if model == "mixtral":
+        model_path = os.getenv("MODEL_PATH")
+        token = int(os.getenv("TOKEN_LIMIT"))
+        print(f"Using Mixtral model. Session name: {session_name}")
+    elif model == "mixtral22":
+        model_path = os.getenv("MODEL_PATH_MIX22")
+        token = int(os.getenv("TOKEN_LIMIT_MIX22"))
+        print(f"Using Mixtral model. Session name: {session_name}")
+    elif model == "llama":
+        model_path = os.getenv("MODEL_PATH_LLAMA")
+        token = int(os.getenv("TOKEN_LIMIT_LLAMA"))
+        print(f"Using LLaMA model. Session name: {session_name}")
+    else: 
+        model_path = os.getenv("MODEL_PATH_MIS")
+        token = int(os.getenv("TOKEN_LIMIT_MIS"))
+        print(f"Using Mistral model. Session name: {session_name}")
 
-        req_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
+    req_path: str
+    test_path: str
+    mapping_path: str
 
+    if data == "mix":
+        print("Info - Using MIX data")
+        req_path = os.getenv("MIX_REQ_PATH")
+        test_path = os.getenv("MIX_TEST_PATH")
+        mapping_path = os.getenv("MIX_MAP_PATH")
+    elif args.data.lower() == "mix-small":
+        print("Using MIX-small data")
+        req_path = os.getenv("S_MIX_REQ_PATH")
+        test_path = os.getenv("S_MIX_TEST_PATH")
+        mapping_path = os.getenv("S_MIX_MAP_PATH")
+    elif args.data.lower() == "bths":
+        print("Using BTHS data")
+        req_path = os.getenv("BTHS_REQ_PATH")
+        test_path = os.getenv("BTHS_TEST_PATH")
+        mapping_path = os.getenv("BTHS_MAP_PATH")
+    else:
+        print("Info - Using GBG data")
+        req_path = os.getenv("GBG_REQ_PATH")
+        test_path = os.getenv("GBG_TEST_PATH")
+        mapping_path = os.getenv("GBG_MAP_PATH")
+        
+    print(f"Model path: {model_path}")
+    print(f"Token limit: {token}")
+    print(f"Requirements path: {req_path}")
+    print(f"Tests path: {test_path}")
 
-    # Load requirements file and filter the desired fields
-    test_list: list[dict[str, str]]
-    with open(os.getenv("TEST_PATH")) as tests:
-        fields: list[str] = [
-            "ID",
-            "Purpose",
-            "Test steps"
-        ]
-        reader: csv.DictReader = csv.DictReader(tests)
-
-        test_list: list[dict[str, str]] = [
-            {k: row[k] for k in row.keys() if k in fields}
-            for row in reader
-        ]
-
-    # Set up a session
-    model_path: str = os.getenv("MODEL_PATH")
-    max_new_tokens: int = int(os.getenv("TOKEN_LIMIT"))
-    session_name: str = "MistralAI-REST-at-BTHS-eval"
-    session: Session = Session.create(
-        session_name,
-        model_path,
-        max_new_tokens,
-        "You are a helpful AI assistant."  # Default system prompt of OpenAI
+    # Load the REST specifications
+    specs: RESTSpecification = RESTSpecification.load_specs(
+        req_path,
+        test_path
     )
 
-    res: list[dict[str, str]] = []
-    for req in req_list:
-        r = session.prompt(format_req_is_tested_prompt(test_list, req), True)
-        res.append(json.loads(r))
+    # Send data to local model
+    res: Response = specs.to_local(model_path, token)
 
+    payload: dict[str, dict] = {
+        "meta": {
+            "req_path": req_path,
+            "test_path": test_path,
+            "mapping_path": mapping_path
+        },
+        "data": res.as_dict
+    }
+
+    # Log response to a file
     now: datetime.datetime = datetime.datetime.now()
     date: str = str(now.date())
     time: str = str(now.time())
@@ -67,7 +95,7 @@ def main() -> None:
     os.makedirs(log_dir, exist_ok=True)
 
     with open(f"{log_dir}/res.json", "w+") as out:
-        json.dump(res, out, indent=2)
+        json.dump(payload, out, indent=2)
 
 
 if __name__ == "__main__":

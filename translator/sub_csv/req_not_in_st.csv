@@ -1,0 +1,84 @@
+ID,Rubrik,Beskrivning,GE_KravID
+416,S32 - Förbrukninsvärden upplösning 1Wh,De av Mätenheten registrerade Förbrukningsvärden ska (S32) minst ha upplösningen 1 Wh.,S32
+419,S35 - Händelser som registreras,"Mätsystemet ska (S35) registrera och lagra information när följande Händelser inträffar:
+1. Tid i mätenhetens klocka förändrats utifrån det konfigurerade tidsintervallet
+2. Om tiden i Mätenhetens klocka skiljer sig från tiden i HES
+3. Avvikelse vid självdiagnos
+4. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare (gäller endast Kategori 1)
+5. Till- eller frånkoppling av kundanläggning via Mätenhetens brytare med kommando från HES (gäller endast Kategori 1)
+6. Misslyckad till- eller frånkoppling via Mätenhetens brytare (gäller endast Kategori 1)
+7. Strömavbrott i en eller flera faser
+8. Spänning saknas på fas
+9. Långvarig underspänning
+10. Långvarig överspänning
+11. Kortvarig överspänning
+12. Kortvarig underspänning
+13. Obalans spänning mellan faser (gäller ej enfasmätare)
+14. Felaktig effektriktning
+15. Ström utan spänning
+B.2.1 KRAVSPECIFIKATION
+TEKNISK LÖSNING
+8 (32)
+Upphandlingsreferens
+19-0019
+16. THD i spänning överskrider inställt gränsvärde
+17. THD i ström överskrider inställt gränsvärde
+18. Bortfall av neutralledare
+19. Fel fasföljd (gäller ej enfasmätare)
+20. Magnetisk åverkan
+21. Öppen lucka för Kommunikationsmodul
+22. Öppen lucka för anslutningar",S35
+502,S118- 50% fler mätpunkter och längre lagringstid,"Det ska (S118) vara möjligt att bygga ut HES för 50 % fler Mätpunkter och längre lagringstider genom enkla åtgärder som inte kräver programutveckling, utan endast t.ex. licensändring, extra diskutrymme, nya filer för databasen.",S118
+504,S120 - PQ-värden exporteras inom 30 sek,PQ-värdena (15-minutersvärden) ska (S120) kunna exporteras från HES via integrationer till annat system senast 30 sekunder efter registrering i HES.,S120
+505,S121 - PQ-händelser exporteras inom 1 min,PQ-händelser ska (S121) kunna exporteras från HES via integrationer till annat system senast 1 minut efter registrering i HES.,S121
+506,S122 - Avbrottshändelser exporteras inom 10 sek,Avbrottshändelse ska (S122) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,S122
+507,S123 - Kommunikationsmetadata exporteras inom 10 sek,Kommunikationsmetadata (15-minutersvärden) ska (S123) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,S123
+528,S144 - Händelselistan,Händelselistan ska (S144) minst kunna omfatta samtliga Händelser 13 månader tillbaka i tiden. Händelselistans storlek bör (B76) endast begränsas av tillgänglig lagringsyta.,S144
+541,S157 - Synkronisera tiden för enskild mätare,I HES ska (S157) det vara möjligt att manuellt synkronisera tiden för enskilda Mätenheter.,S157
+542,S158 - Manuell synkroniserings konsekvenser,"Manuell synkronisering av tid på enskild Mätenhet ska (S158) inte ge konsekvenser beträffande t.ex. lagring, presentation, händelse- och larmhantering i HES.",S158
+563,S179 - Testmiljö,HES ska (S179) finnas tillgänglig i en testmiljö som ska spegla produktionsmiljön vad gäller konfigureringar och anpassningar.,S179
+564,S180 - Testmiljö 15 samtidiga användare,Testmiljön kommer att användas för att utföra tester vid förändringar i HES och vid utbildning och ska (S180) vara dimensionerad för minst 15 samtidiga Användare.,S180
+568,"S184 - Felutfall under 0,75 % per år","Under Kommunikationsutrustningens förväntade livslängd ska (S184) felutfallet inte överstiga 0,75 % per år av installerad volym.",S184
+569,S185 - Förändring utan fysiskt besök,Om kommunikationslösningen använder sig av licensierad teletrafik ska (S185) operatörsbyten (portering) samt abonnemangsförändringar och avslut kunna utföras utan fysiskt besök på plats på ett sätt som stöds av de flesta teleoperatörer på marknaden.,S185
+574,S190 - Driftas av beställaren,Om Lösningen innehåller en kommunikationslösning som ska (S190) driftas av Beställaren (hänger ihop med krav S191),S190
+575,S191 - Managementverktyg för egen drift,Eventuell kommunikationslösning  ska (S191)  innehålla ett managementsverktyg för konfiguration av kommunikationslösningen.,S191
+579,S195 - Redogör för systemlösning,"Leverantören ska (S195) i Appendix A 3.1 Leverantörens tekniska lösningsbeskrivning redogöra för sin föreslagna systemlösning utifrån Beställarens tekniska krav för HES. Redogörelsen ska vara Leverantörens förslag för hur systemlösningen installeras i Beställarens IT-miljö och ska minst innehålla:
+
+- servrar, applikationer och integrationer mm som föreslås i Leverantörens offererade systemlösning 
+- prestandakrav både på Beställarens klient- och servermiljö
+- HES möjliga Integrationsgränssnitt 
+- övergripande nätverksdesign",S195
+587,S203 - Visa version,Det ska (S203) vara enkelt för en Användaren i HES att se vilken Version som är installerad.,S203
+593,S209 - Klientinstallation på Windows,"Klientinstallation ska (S209) under avtalsperioden stödja Microsofts supporterade Versioner av Windows, inklusive Versioner som finns att tillgå på extended support. 
+Om HES är helt webbaserat och ingen installation av plugin eller annan programvara krävs på klienten så anses detta krav vara uppfyllt.",S209
+594,S210 - MSI paketering,"Klientinstallation på Användarens dator ska (S210) kunna paketeras med MSI paketering för enkel hantering. 
+Om HES är helt webbaserat och ingen installation av plugin eller annan programvara krävs på klienten så anses detta krav vara uppfyllt.",S210
+596,S212 - Standardiserade Integrationsgränssnitt,"HES ska (S212), via väldefinierade och standardiserade Integrationsgränssnitt, kunna integreras med Beställarens olika komponenter och system redovisade i Appendix B.15.1 Förutsättningar IT-miljö.",S212
+606,S222 - Byggas i en hållbar teknik,HES inklusive använda programvaror ska (S222) byggas i en teknik som i dagsläget anses vara hållbar över tid och bedöms ha lång återstående livslängd.,S222
+609,S225 - Åtskilda konton,Priviligierade konton ska (S225) vara skilda ifrån användarkonton.,S225
+631,S247 - Penetrationstester,"Beställaren ska (S247), med hjälp av oberoende part, kunna genomföra penetrationstester, eller likvärdiga revisioner, på Mätsystemet.",S247
+632,S248 - Samsyn kring pen-test,Beställaren och Leverantören ska (S248) vara informerade och överens om när ett penetrationstest eller revision,S248
+633,S249 - Samsyn kring revision,ska (S249) genomföras för att undvika att missförstånd uppstår.,S249
+634,S250 - Åtgärd utan kostnad,Om sårbarheter upptäcks ska (S250) Leverantören åtgärda dessa utan extra kostnad för Beställaren.,S250
+635,S251 - Åtgärd utan dröjsmål,Om sårbarheter i säkerhet avslöjas i Mätsystem ska (S251) Leverantören utan oskäligt Dröjsmål tillhandahålla uppdatering eller andra lösningar för att åtgärda nämnda sårbarheter.,S251
+636,S252 - Åtgärdsplan,Om en lösning inte tillhandahålles inom 24 timmar ska (S252) en åtgärdsplan och tidplan meddelas Beställaren.,S252
+639,S255 - inbyggt skydd,Mätsystemet ska (S255) uppfylla principer för inbyggt skydd.,S255
+642,S258 - Uppdaterad autentiseringsinformation,"Det ska (S258) ske i samband med påbörjande av MSA 1, så att Leverantören inte längre känner till gällande autentiseringsinformation.",S258
+649,B3 - Svarstid på en manuell avfrågning,Svarstiden på en manuell avfrågning av Energivärden från HES till enskild Mätenhet ska (B3) vara max 5 sekunder.,B3
+683,B37 - Trådlös MBUS,Mätenheten bör (B37) kunna kommunicera med trådlös MBUS.,B37
+684,B38 - Trådad MBUS,Mätenheten bör (B38) kunna kommunicera med trådad MBUS.,B38
+685,B39 - Utgångar för laststyrning,Mätenheten bör (B39) kunna hantera utgångar för t.ex. laststyrning.,B39
+690,B44 - passiv elektronisk tagg,Mätenhet ska (B44) ha en passiv elektronisk tagg för att vara spårbar när den inte är uppsatt.,B44
+697,B51 - utbytbar kommunikationsenhet,Mätenhetens kommunikationsenhet bör (B51) vara utbytbar utan att spänningen till anläggningen bryts för att kunna ersättas vid felaktigheter eller för byte av kommunikationsmetod.,B51
+709,B63 - PQ-värden till annat system inom 10 sek,PQ-värdena (15-minutersvärden) ska (B63) kunna exporteras från HES via integrationer till annat system senast 10 sekunder efter registrering i HES.,B63
+711,B65 - Kommunikationsmetadata till annat system inom 1 sek,Kommunikationsmetadata (15-minutersvärden) ska (B65) kunna exporteras från HES via integrationer till annat system senast 1 sekund efter registrering i HES.,B65
+722,B76 - Storlek på händelselistan,Händelselistans storlek ska (B76) endast begränsas av tillgänglig lagringsyta.,B76
+747,B101 - Återställningstid efter kommunikationsavbrott,Återställningstid för infrastrukturkommunikationen efter kommunikationsavbrott bör (B101) högst vara 15 minuter.,B101
+749,B103 - DLMS/ COSEM Suite 2,Mätenheterna bör (B103) stödja kommunikation enligt specifikation DLMS/ COSEM Suite 2.,B103
+750,B104 - Licensieringsmetod,HES eller någon av dess underliggande komponenter ska (B104) ej använda en licensieringsmetod som låser installationen till ett visst hårdvaru-id (och därigenom förhindrar eller försvårar driften av systemlösningen i en virtualiserad driftsmiljö).,B104
+758,B112 - PKI,Systemet ska (B112) stödja PKI.,B112
+761,B115 - Info i loggposten,Loggposten ska (B115) ge tillräcklig information för att kunna analyseras utan systemåtkomst.,B115
+762,B116 - Centralt loggningssystem,Loggarna ska (B116) kunna överföras till ett centralt loggningssystem,B116
+763,B117 - Mätare med intrångsskydd och intrångsdetektering,Mätenheterna ska (B117) vara försedda med intrångsskydd och funktioner för intrångsdetektering.,B117
+764,B118 - Analysverktyg för intrång,Det ska (B118) finnas lämpliga analysverktyg för att spåra och följa upp intrång och intrångsförsök i Mätenheterna.,B118
+765,B119 - Certifierad i enlighet med EUs cybersäkerhetsakt,Mätenheterna bör (B119) vara certifierade i enlighet med EUs cybersäkerhetsakt.,B119
