@@ -88,7 +88,9 @@ class RESTSpecification:
     -----------
     `readonly n: int` - The number of requirement-test pairs in the specification.\n
     `readonly reqs: list[dict[str, str]]` - A copy of the requirements of the specification.\n
-    `readonly tests: list[dict[str, str]]` - A copy of the tests of the specification.
+    `readonly tests: list[dict[str, str]]` - A copy of the tests of the specification.\n
+    `system_prompt: str` - The system prompt to use when prompting a model.\n
+    `prompt: str | None` - The prompt to use when prompting a model. Defaults to a predefined prompt.
 
     Methods:
     --------
@@ -190,6 +192,28 @@ class RESTSpecification:
         """
         A copy the tests of the specification.
         """
+        ...
+
+    @property
+    def system_prompt(self) -> str:
+        """
+        The system prompt to use when prompting a model.
+        """
+        ...
+
+    @system_prompt.setter
+    def system_prompt(self, new) -> None:
+        ...
+
+    @property
+    def prompt(self) -> str:
+        """
+        The prompt to use when prompting a model. Defaults to a predefined prompt.
+        """
+        ...
+
+    @prompt.setter
+    def prompt(self, new) -> None:
         ...
 
     def to_gpt(self, model: str) -> tuple[dict[str, list[str]], tuple[int, int]]:
