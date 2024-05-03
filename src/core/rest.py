@@ -53,12 +53,11 @@ class GPTResponse(Response):
     @property
     def as_dict(self) -> dict:
         return super() \
-            .as_dict \
-            .update({
+            .as_dict | {
                 "input_tokens": self.input_tokens,
                 "output_tokens": self.output_tokens,
                 "system_fingerprint": self.fingerprint
-            })
+            }
 
 
 class RESTSpecification:
