@@ -33,4 +33,4 @@ def format_req_is_tested_prompt(
 
     return prompt \
         .replace(_insert_req, json.dumps(req)) \
-        .replace(_insert_tests, "\n".join([json.dump(test) for test in tests]))
+        .replace(_insert_tests, "\n".join([json.dumps(test) for test in tests]))
