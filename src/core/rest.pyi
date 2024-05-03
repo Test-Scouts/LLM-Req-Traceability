@@ -89,7 +89,9 @@ class RESTSpecification:
     -----------
     `readonly n: int` - The number of requirement-test pairs in the specification.\n
     `readonly reqs: list[dict[str, str]]` - A copy of the requirements of the specification.\n
+    `readonly req_ids: set[str]` - A set with all requirement IDs in the specification.\n
     `readonly tests: list[dict[str, str]]` - A copy of the tests of the specification.\n
+    `readonly test_ids: set[str]` - A set with all test IDs in the specification.\n
     `system_prompt: str` - The system prompt to use when prompting a model.\n
     `prompt: str | None` - The prompt to use when prompting a model. Defaults to a predefined prompt.
 
@@ -187,11 +189,25 @@ class RESTSpecification:
         A copy of the requirements of the specification.
         """
         ...
-    
+
+    @property
+    def req_ids(self) -> set[str]:
+        """
+        A set with all requirement IDs in the specification.
+        """
+        ...
+
     @property
     def tests(self) -> list[dict[str, str]]:
         """
         A copy the tests of the specification.
+        """
+        ...
+
+    @property
+    def test_ids(self) -> set[str]:
+        """
+        A set with all test IDs in the specification.
         """
         ...
 

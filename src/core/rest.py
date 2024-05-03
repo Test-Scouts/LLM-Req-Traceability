@@ -175,10 +175,18 @@ class RESTSpecification:
     @property
     def reqs(self) -> list[dict[str, str]]:
         return deepcopy(self._reqs)
+    
+    @property
+    def req_ids(self) -> set[str]:
+        return set(self._reqs_index)
 
     @property
     def tests(self) -> list[dict[str, str]]:
         return deepcopy(self._tests)
+    
+    @property
+    def test_ids(self) -> set[str]:
+        return set(self._tests_index)
     
     @property
     def system_prompt(self) -> str:
