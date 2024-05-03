@@ -25,20 +25,20 @@ res_dir: str = f"./res/{date}/{time}"
 log_path: str = f"{res_dir}/eval.log"
 
 # Data cache for easy access
-req_data: dict[str, list[dict[str, str]]] = {}
-test_data: dict[str, list[dict[str, str]]] = {}
+req_data: dict[str, set[str]] = {}
+test_data: dict[str, set[str]] = {}
 mapping_data: dict[str, dict[str, set[str]]] = {}
 
 
 def get_specs(req_path: str, test_path: str, mapping_path: str) -> tuple[
-        list[dict[str, str]],
-        list[dict[str, str]],
+        set[str],
+        set[str],
         dict[str, set[str]]
     ]:
     # Try to find cached data
-    reqs = req_data.get(req_path, None)
-    tests = test_data.get(test_path, None)
-    mapping = mapping_data.get(mapping_path, None)
+    reqs: set[str] | None = req_data.get(req_path, None)
+    tests: set[str] | None = test_data.get(test_path, None)
+    mapping: dict[str, set[str]] | None = mapping_data.get(mapping_path, None)
 
     # Load if any of them are missing
     if None in (reqs, tests, mapping):
@@ -72,8 +72,8 @@ def get_specs(req_path: str, test_path: str, mapping_path: str) -> tuple[
                 for e in tmp
             }
 
-        req_data[req_path] = reqs = reqs or specs.reqs
-        test_data[test_path] = tests = tests or specs.tests
+        req_data[req_path] = reqs = reqs or specs.req_ids
+        test_data[test_path] = tests = tests or specs.test_ids
         mapping_data[mapping_path] = mapping = mapping or map_
 
     return reqs, tests, mapping
@@ -115,7 +115,7 @@ def main() -> None:
                 res: dict[str, list[str]] = payload["data"]["links"]
                 err: dict[str, list[str]] = payload["data"]["err"]
 
-                curr_tests: list[dict[str, str]]
+                curr_tests: set[str]
                 curr_mapping: dict[str, set[str]]
 
                 _, curr_tests, curr_mapping = get_specs(
@@ -123,8 +123,8 @@ def main() -> None:
                     meta["test_path"],
                     meta["mapping_path"]
                 )
-                print("\n INFO: current test:s")
-                print(curr_tests)
+                print("Info - Current tests:")
+                print(json.dumps(list(curr_tests), indent=2).replace("\n", "\nInfo - \t"))
                 print("\n")
 
                 # Values for confusion matrix
@@ -153,13 +153,10 @@ def main() -> None:
                     curr_fp_set: set[str] = actual_tests - expected_tests
                     curr_fp_count: int = len(curr_fp_set)
                     print(f"Info - \t\t({curr_fp_count}) {curr_fp_set = }")
-
-                    # Convert curr_tests from a list of dictionaries to a set of IDs
-                    curr_test_ids: set[str] = {test['ID'] for test in curr_tests}
                     
                     # Negatives
-                    expected_ns: set[str] = curr_test_ids - expected_tests
-                    actual_ns: set[str] = curr_test_ids - actual_tests
+                    expected_ns: set[str] = curr_tests - expected_tests
+                    actual_ns: set[str] = curr_tests - actual_tests
 
                     curr_tn_set: set[str] = actual_ns & expected_ns
                     curr_tn_count: int = len(curr_tn_set)
@@ -171,7 +168,8 @@ def main() -> None:
 
                     curr_n: int = curr_tp_count + curr_fp_count + curr_tn_count + curr_fn_count
                     
-                    expected_curr_n: int = len(curr_test_ids)
+                    # Check so only the right amount of trace links were detected
+                    expected_curr_n: int = len(curr_tests)
                     if curr_n != expected_curr_n:
                         print(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }")
                     else:
