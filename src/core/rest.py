@@ -37,10 +37,17 @@ class Response:
 
 
 class GPTResponse(Response):
-    def __init__(self, links: dict[str, list[str]], err: dict[str, list[str]], tokens: tuple[int, int]) -> None:
+    def __init__(
+            self,
+            links: dict[str, list[str]],
+            err: dict[str, list[str]],
+            tokens: tuple[int, int],
+            system_fingerprint: tuple[str | None, str | None]
+        ) -> None:
         super().__init__(links, err)
         self.input_tokens: int = tokens[0]
         self.output_tokens: int = tokens[1]
+        self.fingerprint: str = system_fingerprint[0] + (f"\n{system_fingerprint[1]}" if system_fingerprint[1] else "")
 
     @override
     @property
@@ -49,13 +56,18 @@ class GPTResponse(Response):
             .as_dict \
             .update({
                 "input_tokens": self.input_tokens,
-                "output_tokens": self.output_tokens
+                "output_tokens": self.output_tokens,
+                "system_fingerprint": self.fingerprint
             })
 
 
 class RESTSpecification:
     _REQ_INDEX_PREFIX: str = "R-"
     _TEST_INDEX_PREFIX: str = "T-"
+
+    _GPT_SEED = 0
+
+    _DEFAULT_SYSTEM_PROMPT: str = "You are a helpful assistant."
 
     _REQ_FIELDS: set[str] = {
         "ID",
@@ -72,7 +84,7 @@ class RESTSpecification:
     def __init__(
             self,
             reqs: tuple[list[dict[str, str]], list[str]],
-            tests: tuple[list[dict[str, str]], list[str]]
+            tests: tuple[list[dict[str, str]], list[str]],
         ) -> None:
         self._reqs: list[dict[str, str]]
         self._tests: list[dict[str, str]]
@@ -82,7 +94,8 @@ class RESTSpecification:
         self._reqs, self._reqs_index = reqs
         self._tests, self._tests_index = tests
 
-        self._system_prompt: str = "You are a helpful assistant."
+        self._system_prompt: str = RESTSpecification._DEFAULT_SYSTEM_PROMPT
+        self._prompt: str | None = None
 
     @staticmethod
     def load_specs_from_str(reqs: str, tests: str) -> RESTSpecification:
@@ -167,8 +180,32 @@ class RESTSpecification:
     @property
     def tests(self) -> list[dict[str, str]]:
         return deepcopy(self._tests)
+    
+    @property
+    def system_prompt(self) -> str:
+        return self._system_prompt
+    
+    @system_prompt.setter
+    def system_prompt(self, new: str) -> None:
+        # Reset system prompt if the new value is either None or a whitespace string
+        if not new.strip():
+            self._system_prompt = RESTSpecification._DEFAULT_SYSTEM_PROMPT
+            return
 
-    def to_gpt(self, model: str) -> GPTResponse:
+        self._system_prompt = new
+
+    @property
+    def prompt(self) -> str | None:
+        return self.prompt
+    
+    @prompt.setter
+    def prompt(self, new: str | None) -> None:
+        self._prompt = new
+
+    def to_gpt(
+            self,
+            model: str
+        ) -> GPTResponse:
         client: OpenAI = OpenAI()
 
         input_tokens: int = 0
@@ -177,21 +214,29 @@ class RESTSpecification:
         res: dict[str, list[str]] = {}
         err: dict[str, list[str]] = {}
 
-        SEED = 0
+        system_fingerprint: str | None = None
         if model == "gpt-3.5-turbo-0125":
             system_fingerprint = "fp_3b956da36b"
         elif model == "gpt-4-turbo-2024-04-09":
             system_fingerprint = "fp_ea6eb70039"
 
+        fp_data: tuple[str, str | None]
+        if system_fingerprint is None:
+            fp_data = ("No system fingerprint", None)
+        else:
+            fp_data = (system_fingerprint, None)
+
         for req in self._reqs:
-            history = [{"role": "user", "content": format_req_is_tested_prompt(self._tests, req)}]
+            history = [
+                {"role": "system", "content": self._system_prompt},
+                {"role": "user", "content": format_req_is_tested_prompt(self._tests, req, self._prompt)}
+            ]
+
             completion: ChatCompletion = client.chat.completions.create(
                 model=model,
                 messages=history,
                 temperature=0.1,
-                seed = SEED,
-                system_fingerprint = system_fingerprint,
-
+                seed=RESTSpecification._GPT_SEED
             )
 
             raw_res: str = completion.choices[0].message.content
@@ -200,10 +245,17 @@ class RESTSpecification:
             #######################################################
             # Uncomment to print system fingerprint and seed used
             #######################################################
-            #system_fingerprint = completion.system_fingerprint 
+            curr_system_fingerprint: str | None = completion.system_fingerprint 
             #if not_printed:
             #    print(f'system fingerprint = {system_fingerprint} and seed = {SEED}')
             #    not_printed = False
+
+            # Check if the system fingerprint has changed
+            if curr_system_fingerprint != system_fingerprint and fp_data[1] is None:
+                fp_data = (
+                    f"{system_fingerprint or "null"} -> {curr_system_fingerprint}",
+                    "Fingerprint changed, expect changes."
+                )
 
             curr_res: str
             links: list[str]
@@ -237,9 +289,13 @@ class RESTSpecification:
             input_tokens += completion.usage.prompt_tokens
             output_tokens += completion.usage.completion_tokens
 
-        return GPTResponse(res, err, (input_tokens, output_tokens))
+        return GPTResponse(res, err, (input_tokens, output_tokens), fp_data)
 
-    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> Response:
+    def to_local(
+            self,
+            model_name_or_path: str | PathLike,
+            max_new_tokens: int
+        ) -> Response:
         id_: str = f"{id(self)}-{datetime.datetime.now().timestamp()}"
         session: Session = Session.create(
             id_,
@@ -252,7 +308,7 @@ class RESTSpecification:
         err: dict[str, list[str]] = {}
 
         for req in self._reqs:
-            raw_res: str = session.prompt(format_req_is_tested_prompt(self._tests, req), True)
+            raw_res: str = session.prompt(format_req_is_tested_prompt(self._tests, req, self._prompt), True)
 
             curr_res: str
             links: list[str]
