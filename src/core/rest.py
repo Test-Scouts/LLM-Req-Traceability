@@ -180,7 +180,7 @@ class RESTSpecification:
         SEED = 0
         if model == "gpt-3.5-turbo-0125":
             system_fingerprint = "fp_3b956da36b"
-        elif model == "gpt-3.5-turbo-0126":
+        elif model == "gpt-4-turbo-2024-04-09":
             system_fingerprint = "fp_ea6eb70039"
 
         for req in self._reqs:
