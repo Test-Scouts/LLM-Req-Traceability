@@ -79,12 +79,14 @@ def main() -> None:
 
     input_tokens: int = res.input_tokens
     output_tokens: int = res.output_tokens
+    fingerprint: str = res.fingerprint
 
     payload: dict[str, dict] = {
         "meta": {
             "req_path": req_path,
             "test_path": test_path,
             "mapping_path": mapping_path,
+            "fingerprint": fingerprint,
             "input_tokens": input_tokens,
             "output_tokens": output_tokens
         },

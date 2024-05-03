@@ -69,6 +69,7 @@ class GPTResponse(Response):
         """The amount of tokens sent to the API."""
         self.output_tokens: int
         """The amount of tokens generated through the API."""
+        self.fingerprint: str
         ...
 
     @override
