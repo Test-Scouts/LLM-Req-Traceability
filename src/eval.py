@@ -158,7 +158,6 @@ def main() -> None:
                     curr_test_ids: set[str] = {test['ID'] for test in curr_tests}
                     
                     # Negatives
-                    print(f"Info - \t\t({curr_tests}) {expected_tests}")
                     expected_ns: set[str] = curr_test_ids - expected_tests
                     actual_ns: set[str] = curr_test_ids - actual_tests
 
