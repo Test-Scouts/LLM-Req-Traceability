@@ -2,6 +2,7 @@ import datetime
 import os
 import json
 import argparse
+import traceback
 
 from dotenv import load_dotenv
 
@@ -88,8 +89,9 @@ def main() -> None:
 
             specs.prompt = prompt
             print(f"Using the following system prompt:\n{system_prompt}")
-        except:
+        except Exception as e:
             print(f"Error loading system prompt from {system_prompt_path}")
+            print(traceback.format_exc())
 
     # Set prompt if one was passed
     if prompt_path:
@@ -101,8 +103,9 @@ def main() -> None:
 
             specs.prompt = prompt
             print(f"Using the following prompt:\n{prompt}")
-        except:
+        except Exception as e:
             print(f"Error loading prompt from {prompt_path}")
+            print(traceback.format_exc())
 
     # Send data to local model
     res: Response = specs.to_local(model_path, token)
