@@ -253,7 +253,7 @@ class RESTSpecification:
             # Check if the system fingerprint has changed
             if curr_system_fingerprint != system_fingerprint and fp_data[1] is None:
                 fp_data = (
-                    f"{system_fingerprint or "null"} -> {curr_system_fingerprint}",
+                    f"{system_fingerprint or 'null'} -> {curr_system_fingerprint}",
                     "Fingerprint changed, expect changes."
                 )
 
