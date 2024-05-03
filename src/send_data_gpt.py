@@ -13,8 +13,8 @@ def main() -> None:
     parser.add_argument("--sessionName", "-s", dest="session", type=str, default="GPT-3.5-REST-at-BTHS-eval", help="Customize the session name")
     parser.add_argument("--model", "-m", dest="model", type=str, default="gpt3.5", help="Set the model to use. Choose between GPT-3.5 and GPT-4. Default is GPT-3.5.")
     parser.add_argument("--data", "-d", dest="data", type=str, default= "GBG", help="Customize the dataset, not case sensitive. Use MIX for the mix dataset, Mix-small for mix-small-dataset, BTHS for the BTHS dataset, and GBG for the GBG dataset. Default is GBG.")
-    parser.add_argument("--system", "-S", dest="system", type=str, default=None, help="Customize the system prompt used. Falls back on a default if not provided.")
-    parser.add_argument("--prompt", "-p", dest="prompt", type=str, default=None, help="Customize the prompt used. Include `{req}` in place of the requirement and `{tests}` in place of the tests. Falls back on a default if not provided.")
+    parser.add_argument("--system", "-S", dest="system", type=str, default=None, help="Path to the system prompt used. Falls back on a default if not provided.")
+    parser.add_argument("--prompt", "-p", dest="prompt", type=str, default=None, help="Path to the prompt used. Include `{req}` in place of the requirement and `{tests}` in place of the tests. Falls back on a default if not provided.")
 
     args = parser.parse_args()
 
@@ -23,8 +23,8 @@ def main() -> None:
     session_name = args.session
     model: str = args.model.lower()
     data: str = args.data.lower()
-    system_prompt: str = args.system
-    prompt: str = args.prompt
+    system_prompt_path: str = args.system
+    prompt_path: str = args.prompt
 
     if model == "gpt4":
         model = "gpt-4-turbo-2024-04-09"
@@ -65,14 +65,30 @@ def main() -> None:
     )
 
     # Set system prompt if one was passed
-    if system_prompt:
-        specs.system_prompt = system_prompt
-        print(f"Using the following system prompt:\n{system_prompt}")
+    if system_prompt_path:
+        try:
+            system_prompt: str
+            with open(system_prompt_path) as f:
+                system_prompt = f.read()
+
+
+            specs.prompt = prompt
+            print(f"Using the following system prompt:\n{system_prompt}")
+        except:
+            print(f"Error loading system prompt from {system_prompt_path}")
 
     # Set prompt if one was passed
-    if prompt:
-        specs.prompt = prompt
-        print(f"Using the following prompt:\n{prompt}")
+    if prompt_path:
+        try:
+            prompt: str
+            with open(prompt_path) as f:
+                prompt = f.read()
+
+
+            specs.prompt = prompt
+            print(f"Using the following prompt:\n{prompt}")
+        except:
+            print(f"Error loading prompt from {prompt_path}")
 
     # Send data to local model
     res: GPTResponse = specs.to_gpt(model)
