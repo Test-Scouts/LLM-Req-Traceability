@@ -82,7 +82,7 @@ def main() -> None:
     date: str = str(now.date())
     time: str = str(now.time())
 
-    log_dir: str = f"./out/{model}/{session_name}/{date}-{time}"
+    log_dir: str = f"./out/{session_name}/{date}/{time}"
     os.makedirs(log_dir, exist_ok=True)
 
     chat_log: str = f"{log_dir}/res.json"
