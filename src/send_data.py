@@ -87,7 +87,7 @@ def main() -> None:
                 system_prompt = f.read()
 
 
-            specs.prompt = prompt
+            specs.prompt = system_prompt
             print(f"Using the following system prompt:\n{system_prompt}")
         except Exception as e:
             print(f"Error loading system prompt from {system_prompt_path}")
