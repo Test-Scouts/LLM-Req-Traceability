@@ -272,16 +272,15 @@ class RESTSpecification:
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
 
             try:
-                # Simple JSON finder
-                # Slice from the first "{" to the last "}"
-                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
-                curr_res: dict[str, str] = json.loads(curr_res)
+                # Simple JSON array finder
+                # Slice from the first "[" to the last "]"
+                curr_res = raw_res[raw_res.find("["):raw_res.rfind("]") + 1]
 
-                # Substitute the test indices back to the test IDs
-                links = curr_res["tests"] \
-                    .replace(" ", "") \
-                    .split(",") \
-                    if curr_res["tests"] else []
+                links = json.loads(curr_res)
+
+                if not isinstance(links, list):
+                    raise TypeError("Response not a list.")
+
                 links = [
                     self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
                     for test in links
@@ -325,16 +324,15 @@ class RESTSpecification:
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
 
             try:
-                # Simple JSON finder
-                # Slice from the first "{" to the last "}"
-                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
-                curr_res = json.loads(curr_res)
+                # Simple JSON array finder
+                # Slice from the first "[" to the last "]"
+                curr_res = raw_res[raw_res.find("["):raw_res.rfind("]") + 1]
 
-                # Substitute the test indices back to the test IDs
-                links = curr_res["tests"] \
-                    .replace(" ", "") \
-                    .split(",") \
-                    if curr_res["tests"] else []
+                links = json.loads(curr_res)
+
+                if not isinstance(links, list):
+                    raise TypeError("Response not a list.")
+
                 links = [
                     self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
                     for test in links
