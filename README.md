@@ -13,6 +13,14 @@ $ python -m <path.to.module> # Omit the -.py file name extension
 ```
 
 
+## Testing Modules
+
+Currently only some of the modules in `src/core/` are partially tested. To run the tests, run the following command in `src/core/`:
+```bash
+$ python -m unittest discover
+```
+
+
 ## File Structure
 
 The following file structures are **REQUIRED** for REST-at to work properly. All input files **MUST**
