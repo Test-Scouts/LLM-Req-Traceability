@@ -72,12 +72,13 @@ def main() -> None:
             with open(system_prompt_path) as f:
                 system_prompt = f.read()
 
-
             specs.prompt = system_prompt
             print(f"Using the following system prompt:\n{system_prompt}")
-        except Exception as e:
+        except Exception:
             print(f"Error loading system prompt from {system_prompt_path}")
-            print(traceback.format_exc())
+            traceback.print_exc()
+    else:
+        print("Using default system prompt")
 
     # Set prompt if one was passed
     if prompt_path:
@@ -86,12 +87,13 @@ def main() -> None:
             with open(prompt_path) as f:
                 prompt = f.read()
 
-
             specs.prompt = prompt
             print(f"Using the following prompt:\n{prompt}")
-        except Exception as e:
+        except Exception:
             print(f"Error loading prompt from {prompt_path}")
-            print(traceback.format_exc())
+            traceback.print_exc()
+    else:
+        print("Using default prompt")
 
     # Send data to local model
     res: GPTResponse = specs.to_gpt(model)
