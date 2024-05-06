@@ -15,7 +15,6 @@ data/
 out/
 res/
 archive/
-prompts/
 
 # C3SE related
 c3se/
