@@ -83,31 +83,59 @@ def main() -> None:
     if system_prompt_path:
         try:
             system_prompt: str
+            # Read the prompt from the specified file
             with open(system_prompt_path) as f:
                 system_prompt = f.read()
 
-            specs.prompt = system_prompt
+            # Set the system prompt
+            specs.system_prompt = system_prompt
             print(f"Using the following system prompt:\n{system_prompt}")
         except Exception:
             print(f"Error loading system prompt from {system_prompt_path}")
             traceback.print_exc()
+    # Otherwise, use the default system prompt
     else:
-        print("Using default system prompt")
+        try:
+            system_prompt: str
+            # Read the prompt from the default file
+            with open("./prompts/system/default.txt") as f:
+                system_prompt = f.read()
+
+            # Set the system prompt
+            specs.system_prompt = system_prompt
+            print(f"Using the default system prompt:\n{system_prompt}")
+        except Exception:
+            print(f"Error loading default system prompt")
+            traceback.print_exc()
 
     # Set prompt if one was passed
     if prompt_path:
         try:
             prompt: str
+            # Read the prompt from the specified file
             with open(prompt_path) as f:
                 prompt = f.read()
 
+            # Set the prompt
             specs.prompt = prompt
             print(f"Using the following prompt:\n{prompt}")
         except Exception:
-            print(f"Error loading prompt from {prompt_path}")
+            print(f"Error loading prompt")
             traceback.print_exc()
+    # Otherwise, use the default prompt
     else:
-        print("Using default prompt")
+        try:
+            prompt: str
+            # Read the prompt from the default file
+            with open("./prompts/user/default.txt") as f:
+                prompt = f.read()
+
+            # Set the prompt
+            specs.prompt = prompt
+            print(f"Using the default prompt:\n{prompt}")
+        except Exception:
+            print(f"Error loading default prompt")
+            traceback.print_exc()
 
     # Send data to local model
     res: Response = specs.to_local(model_path, token)
