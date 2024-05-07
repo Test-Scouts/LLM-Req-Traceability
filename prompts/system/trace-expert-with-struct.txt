@@ -25,9 +25,9 @@ Your output will be parsed by a program, so it is imperative that you ONLY RESPO
 
 # Output Format (Traces Found)
 
-"[\"<test ID 1>\", \"<test ID 2>\", \"<test ID 3>\", ...]"
+["<test ID 1>", "<test ID 2>", "<test ID 3>", ...]
 
 
 # Output Format (No Traces Found)
 
-"[]"
+[]
