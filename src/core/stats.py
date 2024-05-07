@@ -146,7 +146,7 @@ class Stats:
         }
 
     def __str__(self) -> str:
-        return json.dumps(self.as_dict(), indent=2)
+        return json.dumps(self.as_dict, indent=2)
     
     def __repr__(self) -> str:
         return f"{self.__class__.__name__}(\"{self._name}\", {self._population})"
