@@ -87,9 +87,9 @@ class Stats:
         ...
 
     @property
-    def quartiles(self) -> tuple[int | float, int | float] | None:
+    def quartiles(self) -> tuple[int | float | None, int | float | None]:
         """
-        The 25th and 75th percentiles of the population if applicable, else `None`.
+        The 25th and 75th percentiles of the population if applicable, else `(None, None)`.
         """
 
     @property
