@@ -37,6 +37,12 @@ class TestStatsEmptyPopulation(TestCase):
             expected_size,
             f"Expected: {expected_size}. Got: {actual_size}"
         )
+
+    def test_quartiles_is_tuple(self):
+        self.assertTrue(
+            isinstance(self.stats.quartiles, tuple),
+            f"Quartiles should be a tuple. Got: {type(self.stats.quartiles).__name__}"
+        )
     
     def test_is_undefined_metrics(self):
         self.assertIsNone(
