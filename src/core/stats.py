@@ -16,7 +16,7 @@ class Stats:
         self._sd: float | None
 
         self._median: int | float | None
-        self._quartiles: tuple[int | float | None]
+        self._quartiles: tuple[int | float | None, int | float | None]
 
         # Sort population to get min, max, and median
         sorted_population: list[int | float] = sorted(self._population)
@@ -122,7 +122,7 @@ class Stats:
         return self._median
     
     @property
-    def quartiles(self) -> tuple[int | float, int | float] | None:
+    def quartiles(self) -> tuple[int | float | None, int | float | None]:
         return self._quartiles
 
     @property
@@ -137,9 +137,9 @@ class Stats:
             "size": self._size,
             "total": self._total,
             "min": self._min,
-            "q1": self.quartiles[0] if self.quartiles else None,
+            "q1": self._quartiles[0],
             "median": self._median,
-            "q3": self.quartiles[1] if self.quartiles else None,
+            "q3": self._quartiles[1],
             "max": self._max,
             "mean": self._mean,
             "sd": self._sd
