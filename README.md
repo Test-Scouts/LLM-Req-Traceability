@@ -15,7 +15,7 @@ $ python -m <path.to.module> # Omit the -.py file name extension
 
 ## Testing Modules
 
-Currently only some of the modules in `src/core/` are partially tested. To run the tests, run the following command in `src/core/`:
+Currently only some of the modules in `src/core/` are partially tested. To run the tests, run the following command from `src/`:
 ```bash
 $ python -m unittest discover
 ```
