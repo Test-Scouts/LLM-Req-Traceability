@@ -1,0 +1,7 @@
+Your task is to identify and return the test cases that directly validate the requirement
+Here are the requirements:
+{req}
+and here are the test cases:
+{tests}
+
+Please preserve the formatting and overall template specified above.
