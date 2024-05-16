@@ -139,7 +139,8 @@ def main() -> None:
             "input_tokens": input_tokens,
             "output_tokens": output_tokens
         },
-        "data": res.as_dict
+        "data": res.as_dict,
+        "raw": res.raw_res
     }
 
     # Log response to a file

@@ -41,10 +41,12 @@ class GPTResponse(Response):
             self,
             links: dict[str, list[str]],
             err: dict[str, list[str]],
+            raw_res: dict[str, list[dict[str, str]]],
             tokens: tuple[int, int],
             system_fingerprint: tuple[str | None, str | None]
         ) -> None:
         super().__init__(links, err)
+        self.raw_res: list[dict[str, str]] = raw_res
         self.input_tokens: int = tokens[0]
         self.output_tokens: int = tokens[1]
         self.fingerprint: str = system_fingerprint[0] + (f"\n{system_fingerprint[1]}" if system_fingerprint[1] else "")
@@ -233,6 +235,10 @@ class RESTSpecification:
         else:
             fp_data = (system_fingerprint, None)
 
+        # All message histories across all requirements
+        # Mapped from requirement ID to the associated message history
+        all_history: dict[str, list[dict[str, str]]] = {}
+
         for req in self._reqs:
             history = [
                 {"role": "system", "content": self._system_prompt},
@@ -247,7 +253,7 @@ class RESTSpecification:
             )
 
             raw_res: str = completion.choices[0].message.content
-
+            history.append({"role": "assistant", "content": raw_res})
 
             #######################################################
             # Uncomment to print system fingerprint and seed used
@@ -270,6 +276,9 @@ class RESTSpecification:
             # Use the requirement ID instead of its internal index
             req_id: str = self \
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+            
+            # Add the message history to all histories
+            all_history[req_id] = history.copy()
 
             try:
                 # Simple JSON array finder
@@ -295,7 +304,7 @@ class RESTSpecification:
             input_tokens += completion.usage.prompt_tokens
             output_tokens += completion.usage.completion_tokens
 
-        return GPTResponse(res, err, (input_tokens, output_tokens), fp_data)
+        return GPTResponse(res, err, all_history, (input_tokens, output_tokens), fp_data)
 
     def to_local(
             self,

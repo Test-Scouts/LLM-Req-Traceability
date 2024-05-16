@@ -65,11 +65,14 @@ class GPTResponse(Response):
     `as_dict: dict` - A dict representation of the response object.
     """
     def __init__(self, *args) -> Never:
+        self.raw_res: list[dict[str, str]]
+        """The raw response from the model."""
         self.input_tokens: int
         """The amount of tokens sent to the API."""
         self.output_tokens: int
         """The amount of tokens generated through the API."""
         self.fingerprint: str
+        """The system fingerprint of the model"""
         ...
 
     @override
