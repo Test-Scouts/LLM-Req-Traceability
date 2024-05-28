@@ -5,6 +5,14 @@ Includes:
 ---------
 `FieldMismatchError` - An error raised when trying to load malformed files.\n
 `RESTSpecification` - A class for abstracting REST and filtering out malformed requirements and tests.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 from os import PathLike
@@ -65,11 +73,14 @@ class GPTResponse(Response):
     `as_dict: dict` - A dict representation of the response object.
     """
     def __init__(self, *args) -> Never:
+        self.raw_res: list[dict[str, str]]
+        """The raw response from the model."""
         self.input_tokens: int
         """The amount of tokens sent to the API."""
         self.output_tokens: int
         """The amount of tokens generated through the API."""
         self.fingerprint: str
+        """The system fingerprint of the model"""
         ...
 
     @override

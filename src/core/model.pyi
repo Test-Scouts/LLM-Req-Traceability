@@ -5,6 +5,14 @@ Includes:
 ---------
 `Model` - A class abstracting pretrained models, providing methods to load, retrieve, and prompt a model.\n
 `Session` - A class for handling conversations with models.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 from os import PathLike
 

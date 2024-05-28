@@ -4,6 +4,16 @@ folder.
 
 Uses the format `out/{model}/{date}/{time}/res.json`, which
 is the outut from `send_data.py` and `send_data_gpt.py`.
+The evaluation requires the files specified by the responses'
+metadata.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 import csv
@@ -99,7 +109,11 @@ def main() -> None:
 
         all_err: list[int] = []
 
-        json_list =[]
+        json_list = []
+
+        # Frequency table of predicted true links split into true and false
+        # Accumulates the links over all runs in a session
+        frequency_table: dict[bool, dict[str, dict[str, int]]] = {True: {}, False: {}}
 
         for d in os.listdir(f"./out/{m}"):
             for t in os.listdir(f"./out/{m}/{d}"):
@@ -112,6 +126,8 @@ def main() -> None:
                     payload = json.load(f)
 
                 meta: dict[str, str] = payload["meta"]
+
+                # Each key is a requirement ID
                 res: dict[str, list[str]] = payload["data"]["links"]
                 err: dict[str, list[str]] = payload["data"]["err"]
 
@@ -174,6 +190,30 @@ def main() -> None:
                         print(f"Error - \t\tExpected curr_n = {expected_curr_n}, got {curr_n = }")
                     else:
                         print(f"Info - \t\t{curr_n = }")
+
+                    # Update the frequency table
+
+                    # Get the true positives
+                    true_positives: dict[str, int] = frequency_table[True].get(req, None)
+                    # Assign a dict if one doesn't exist
+                    if true_positives is None:
+                        true_positives = {}
+                        frequency_table[True][req] = true_positives
+                    
+                    # Get the false positives
+                    false_positives: dict[str, int] = frequency_table[False].get(req, None)
+                    # Assign a dict if one doesn't exist
+                    if false_positives is None:
+                        false_positives = {}
+                        frequency_table[False][req] = false_positives
+
+                    # Add 1 for each true positive link
+                    for test in curr_tp_set:
+                        true_positives[test] = true_positives.get(test, 0) + 1
+
+                    # Add 1 for each false positive link
+                    for test in curr_fp_set:
+                        false_positives[test] = false_positives.get(test, 0) + 1
 
                     n += curr_n
                     tp += curr_tp_count
@@ -271,6 +311,7 @@ def main() -> None:
             "all_recall": Stats("all_recall", all_recall).as_dict,
             "all_precision": Stats("all_precision", all_precision).as_dict,
             "all_specificity": Stats("all_specificity", all_specificity).as_dict,
+            "frequency_table": frequency_table,
             "all_err": Stats("all_err", all_err).as_dict
         }
 

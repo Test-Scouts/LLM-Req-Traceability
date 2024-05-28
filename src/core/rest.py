@@ -1,3 +1,12 @@
+"""
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
+"""
 from __future__ import annotations
 from copy import deepcopy
 import datetime
@@ -41,10 +50,12 @@ class GPTResponse(Response):
             self,
             links: dict[str, list[str]],
             err: dict[str, list[str]],
+            raw_res: dict[str, list[dict[str, str]]],
             tokens: tuple[int, int],
             system_fingerprint: tuple[str | None, str | None]
         ) -> None:
         super().__init__(links, err)
+        self.raw_res: list[dict[str, str]] = raw_res
         self.input_tokens: int = tokens[0]
         self.output_tokens: int = tokens[1]
         self.fingerprint: str = system_fingerprint[0] + (f"\n{system_fingerprint[1]}" if system_fingerprint[1] else "")
@@ -233,6 +244,10 @@ class RESTSpecification:
         else:
             fp_data = (system_fingerprint, None)
 
+        # All message histories across all requirements
+        # Mapped from requirement ID to the associated message history
+        all_history: dict[str, list[dict[str, str]]] = {}
+
         for req in self._reqs:
             history = [
                 {"role": "system", "content": self._system_prompt},
@@ -247,7 +262,7 @@ class RESTSpecification:
             )
 
             raw_res: str = completion.choices[0].message.content
-
+            history.append({"role": "assistant", "content": raw_res})
 
             #######################################################
             # Uncomment to print system fingerprint and seed used
@@ -270,22 +285,13 @@ class RESTSpecification:
             # Use the requirement ID instead of its internal index
             req_id: str = self \
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
+            
+            # Add the message history to all histories
+            all_history[req_id] = history.copy()
 
             try:
-                # Simple JSON finder
-                # Slice from the first "{" to the last "}"
-                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
-                curr_res: dict[str, str] = json.loads(curr_res)
-
-                # Substitute the test indices back to the test IDs
-                links = curr_res["tests"] \
-                    .replace(" ", "") \
-                    .split(",") \
-                    if curr_res["tests"] else []
-                links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
-                    for test in links
-                ]
+                # Parse the output of the LLM
+                links = self._parse_intermediary_output(raw_res)
             except:
                 links = []
                 # Log error in response
@@ -296,7 +302,7 @@ class RESTSpecification:
             input_tokens += completion.usage.prompt_tokens
             output_tokens += completion.usage.completion_tokens
 
-        return GPTResponse(res, err, (input_tokens, output_tokens), fp_data)
+        return GPTResponse(res, err, all_history, (input_tokens, output_tokens), fp_data)
 
     def to_local(
             self,
@@ -325,20 +331,8 @@ class RESTSpecification:
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
 
             try:
-                # Simple JSON finder
-                # Slice from the first "{" to the last "}"
-                curr_res = raw_res[raw_res.find("{"):raw_res.rfind("}") + 1]
-                curr_res = json.loads(curr_res)
-
-                # Substitute the test indices back to the test IDs
-                links = curr_res["tests"] \
-                    .replace(" ", "") \
-                    .split(",") \
-                    if curr_res["tests"] else []
-                links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
-                    for test in links
-                ]
+                # Parse the output of the LLM
+                links = self._parse_intermediary_output(raw_res)
             except:
                 links = []
                 # Log error in response
@@ -356,3 +350,129 @@ class RESTSpecification:
              + f"tests: {json.dumps(self._tests, indent=2)}\n" \
              + f"tests_index: {self._tests_index}\n" \
              + "}"
+    
+    def _parse_intermediary_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of either a
+        JSON object with the following field:
+        ```json
+        {
+          "tests": "<test ID>, <test ID>, <test ID>"
+        }
+        ```
+        or a list in the following format:
+        ```json
+        ["<test ID>", "<test ID>", "<test ID>"]
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        if "{" in res and "}" in res:
+            return self._parse_json_output(res)
+        
+        return self._parse_list_output(res)
+
+    def _parse_json_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of a
+        JSON object with the following field:
+        ```json
+        {
+          "tests": "<test ID>, <test ID>, <test ID>"
+        }
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        # Simple JSON finder
+        # Slice from the first "{" to the last "}"
+        curr_res = res[res.find("{"):res.rfind("}") + 1]
+        res_obj: dict[str, str] = json.loads(curr_res)
+
+        # Assert that the response is a valid object
+        if not isinstance(res_obj, dict):
+            raise TypeError("Response not a JSON object.")
+        
+        for key in res_obj:
+            if not isinstance(key, str):
+                raise TypeError(f"Key ({key}) not a string.")
+            
+            if not isinstance(res_obj[key], str):
+                raise TypeError(f"Value ({res_obj[key]}) of key ({key}) not a string.")
+
+        # Substitute the test indices back to the test IDs
+        links = res_obj["tests"] \
+            .replace(" ", "") \
+            .split(",") \
+            if res_obj["tests"] else []
+        
+        links = [
+            self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
+            for test in links
+        ]
+
+        return links
+
+    def _parse_list_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of a
+        list in the following format:
+        ```json
+        ["<test ID>", "<test ID>", "<test ID>"]
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        # Simple JSON array finder
+        # Slice from the first "[" to the last "]"
+        curr_res = res[res.find("["):res.rfind("]") + 1]
+
+        links = json.loads(curr_res)
+
+        # Assert that the response is a valid list
+        if not isinstance(links, list):
+            raise TypeError("Response not a list.")
+        
+        for id_ in links:
+            if not isinstance(id_, str):
+                raise TypeError(f"Element ({id_}) not a string.")
+
+        links = [
+            self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
+            for test in links
+        ]
+
+        return links
