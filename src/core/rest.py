@@ -281,19 +281,8 @@ class RESTSpecification:
             all_history[req_id] = history.copy()
 
             try:
-                # Simple JSON array finder
-                # Slice from the first "[" to the last "]"
-                curr_res = raw_res[raw_res.find("["):raw_res.rfind("]") + 1]
-
-                links = json.loads(curr_res)
-
-                if not isinstance(links, list):
-                    raise TypeError("Response not a list.")
-
-                links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
-                    for test in links
-                ]
+                # Parse the output of the LLM
+                links = self._parse_intermediary_output(raw_res)
             except:
                 links = []
                 # Log error in response
@@ -333,19 +322,8 @@ class RESTSpecification:
                 ._reqs_index[int(req["ID"].replace(RESTSpecification._REQ_INDEX_PREFIX, ""))]
 
             try:
-                # Simple JSON array finder
-                # Slice from the first "[" to the last "]"
-                curr_res = raw_res[raw_res.find("["):raw_res.rfind("]") + 1]
-
-                links = json.loads(curr_res)
-
-                if not isinstance(links, list):
-                    raise TypeError("Response not a list.")
-
-                links = [
-                    self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
-                    for test in links
-                ]
+                # Parse the output of the LLM
+                links = self._parse_intermediary_output(raw_res)
             except:
                 links = []
                 # Log error in response
@@ -363,3 +341,129 @@ class RESTSpecification:
              + f"tests: {json.dumps(self._tests, indent=2)}\n" \
              + f"tests_index: {self._tests_index}\n" \
              + "}"
+    
+    def _parse_intermediary_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of either a
+        JSON object with the following field:
+        ```json
+        {
+          "tests": "<test ID>, <test ID>, <test ID>"
+        }
+        ```
+        or a list in the following format:
+        ```json
+        ["<test ID>", "<test ID>", "<test ID>"]
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        if "{" in res and "}" in res:
+            return self._parse_json_output(res)
+        
+        return self._parse_list_output(res)
+
+    def _parse_json_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of a
+        JSON object with the following field:
+        ```json
+        {
+          "tests": "<test ID>, <test ID>, <test ID>"
+        }
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        # Simple JSON finder
+        # Slice from the first "{" to the last "}"
+        curr_res = res[res.find("{"):res.rfind("}") + 1]
+        res_obj: dict[str, str] = json.loads(curr_res)
+
+        # Assert that the response is a valid object
+        if not isinstance(res_obj, dict):
+            raise TypeError("Response not a JSON object.")
+        
+        for key in res_obj:
+            if not isinstance(key, str):
+                raise TypeError(f"Key ({key}) not a string.")
+            
+            if not isinstance(res_obj[key], str):
+                raise TypeError(f"Value ({res_obj[key]}) of key ({key}) not a string.")
+
+        # Substitute the test indices back to the test IDs
+        links = res_obj["tests"] \
+            .replace(" ", "") \
+            .split(",") \
+            if res_obj["tests"] else []
+        
+        links = [
+            self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
+            for test in links
+        ]
+
+        return links
+
+    def _parse_list_output(self, res: str) -> list[str]:
+        """
+        Parses the response of a model to a list of test IDs.
+        The raw response must include a string representation of a
+        list in the following format:
+        ```json
+        ["<test ID>", "<test ID>", "<test ID>"]
+        ```
+
+        Parameters:
+        -----------
+        res: str - The raw response string from the model.
+
+        Returns:
+        --------
+        `list[str]` - A list with the test IDs found in the response.
+
+        Raises:
+        -------
+        `TypeError` - If the type of the parsed string mismatches the expected type.
+        """
+        # Simple JSON array finder
+        # Slice from the first "[" to the last "]"
+        curr_res = res[res.find("["):res.rfind("]") + 1]
+
+        links = json.loads(curr_res)
+
+        # Assert that the response is a valid list
+        if not isinstance(links, list):
+            raise TypeError("Response not a list.")
+        
+        for id_ in links:
+            if not isinstance(id_, str):
+                raise TypeError(f"Element ({id_}) not a string.")
+
+        links = [
+            self._tests_index[int(test.replace(RESTSpecification._TEST_INDEX_PREFIX, ""))]
+            for test in links
+        ]
+
+        return links
