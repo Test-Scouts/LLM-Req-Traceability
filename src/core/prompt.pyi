@@ -5,6 +5,14 @@ Includes:
 ---------
 `format_req_is_tested_prompt -> str` - A function that formats a prompt for checking whether a
 requirement is tested or not.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 

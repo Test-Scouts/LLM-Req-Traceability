@@ -5,6 +5,14 @@ Includes:
 ---------
 `FieldMismatchError` - An error raised when trying to load malformed files.\n
 `RESTSpecification` - A class for abstracting REST and filtering out malformed requirements and tests.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 from os import PathLike

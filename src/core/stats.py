@@ -1,3 +1,12 @@
+"""
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
+"""
 from copy import copy
 from functools import reduce
 import json

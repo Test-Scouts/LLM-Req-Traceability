@@ -4,6 +4,14 @@ Core module for calculating and formatting statistical values.
 Includes:
 ---------
 `Stats` - A class that calculates and formats statistical data.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 

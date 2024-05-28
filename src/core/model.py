@@ -1,3 +1,12 @@
+"""
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
+"""
 from __future__ import annotations
 from enum import Enum
 from os import PathLike
