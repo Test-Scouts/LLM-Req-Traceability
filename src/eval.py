@@ -4,6 +4,16 @@ folder.
 
 Uses the format `out/{model}/{date}/{time}/res.json`, which
 is the outut from `send_data.py` and `send_data_gpt.py`.
+The evaluation requires the files specified by the responses'
+metadata.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
 """
 
 import csv

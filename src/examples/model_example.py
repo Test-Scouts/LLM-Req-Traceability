@@ -1,3 +1,14 @@
+"""
+Example command line chatbot using the core module.
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
+"""
 import os
 from dotenv import load_dotenv
 from ..core import model as ml
@@ -27,7 +38,7 @@ def main() -> None:
             print("\nMessage history cleared\n")
             continue
 
-        res = model.prompt(messages, user_prompt)
+        res: str = model.prompt(messages, user_prompt)
         print(f"\nLLM> {res}\n")
 
 

@@ -1,3 +1,45 @@
+"""
+Script for running REST-at using a local model specified through the command line.
+System prompt and user prompt are also specified through the command line.
+The dataset and session name to use are also specified through the command line.
+
+Requires the following envs to work:
+```python
+# Paths to local models
+MODEL_PATH: Path
+MODEL_PATH_MIX22: Path
+MODEL_PATH_LLAMA: Path
+MODEL_PATH_MIS: Path
+
+# max_new_tokens variables for models
+TOKEN_LIMIT: int
+TOKEN_LIMIT_MIX22: int
+TOKEN_LIMIT_LLAMA: int
+TOKEN_LIMIT_MIS: int
+
+# Data paths to REST spec files
+MIX_REQ_PATH: Path
+S_MIX_REQ_PATH: Path
+BTHS_REQ_PATH: Path
+GBG_REQ_PATH: Path
+MIX_TEST_PATH: Path
+S_MIX_TEST_PATH: Path
+BTHS_TEST_PATH: Path
+GBG_TEST_PATH: Path
+MIX_MAP_PATH: Path
+S_MIX_MAP_PATH: Path
+BTHS_MAP_PATH: Path
+GBG_MAP_PATH: Path
+```
+
+Copyright:
+----------
+(c) 2024 Test-Scouts
+
+License:
+--------
+MIT (see LICENSE for more information)
+"""
 import datetime
 import os
 import json
@@ -29,19 +71,17 @@ def main() -> None:
     if model == "mixtral":
         model_path = os.getenv("MODEL_PATH")
         token = int(os.getenv("TOKEN_LIMIT"))
-        print(f"Using Mixtral model. Session name: {session_name}")
     elif model == "mixtral22":
         model_path = os.getenv("MODEL_PATH_MIX22")
         token = int(os.getenv("TOKEN_LIMIT_MIX22"))
-        print(f"Using Mixtral model. Session name: {session_name}")
     elif model == "llama":
         model_path = os.getenv("MODEL_PATH_LLAMA")
         token = int(os.getenv("TOKEN_LIMIT_LLAMA"))
-        print(f"Using LLaMA model. Session name: {session_name}")
     else: 
         model_path = os.getenv("MODEL_PATH_MIS")
         token = int(os.getenv("TOKEN_LIMIT_MIS"))
-        print(f"Using Mistral model. Session name: {session_name}")
+
+    print(f"Info - Using {model.capitalize()} model. Session name: {session_name}")
 
     req_path: str
     test_path: str
@@ -53,12 +93,12 @@ def main() -> None:
         test_path = os.getenv("MIX_TEST_PATH")
         mapping_path = os.getenv("MIX_MAP_PATH")
     elif args.data.lower() == "mix-small":
-        print("Using MIX-small data")
+        print("Info - Using MIX-small data")
         req_path = os.getenv("S_MIX_REQ_PATH")
         test_path = os.getenv("S_MIX_TEST_PATH")
         mapping_path = os.getenv("S_MIX_MAP_PATH")
     elif args.data.lower() == "bths":
-        print("Using BTHS data")
+        print("Info - Using BTHS data")
         req_path = os.getenv("BTHS_REQ_PATH")
         test_path = os.getenv("BTHS_TEST_PATH")
         mapping_path = os.getenv("BTHS_MAP_PATH")
