@@ -108,7 +108,7 @@ class RESTSpecification:
 
     Methods:
     --------
-    `static load_specs_from_str -> RESTSpecification - Loads specifications from REST strings. MUST USE CSV FORMAT!\n
+    `static load_specs_from_str -> RESTSpecification` - Loads specifications from REST strings. MUST USE CSV FORMAT!\n
     `static load_specs -> RESTSpecification` - Loads specifications from REST files. MUST USE CSV FORMAT!\n
     `check_req -> bool` - Check if a requirement ID exists within a specification.\n
     `check_test -> bool` - Check if a test ID exists within a specification.\n
