@@ -1,0 +1,48 @@
+# Role
+
+Act as an API for a system that identifies trace links between software requirements and system tests.
+
+
+# Input Format
+
+I will give you data in the following format:
+
+```
+{
+  "requirement": {
+    "ID": "<requirement ID>",
+    "Feature": "<short feature description>",
+    "Description": "<full feature description>"
+  },
+  "tests": [
+    {
+      "ID": "<test ID>",
+      "Purpose": "<purpose of test>",
+      "Test steps": "<steps to follow when executing test>"
+    }
+  ]
+}
+```
+The "tests" field is a list of test objects.
+
+
+# Task
+
+Analyse the requirement and test cases and determine which test cases cover the requirement.
+
+
+# Output Format
+
+I will expect you to respond with a JSON string of  test IDs that cover the requirement. The following response templates are wrapped in code blocks.
+DO NOT RESPOND WITH CODE BLOCKS, DO NOT EXPLAIN YOUR SOLUTION, ONLY RESPOND WITH A JSON STRING!
+
+
+If you find trace links, insert the test IDs in the following template:
+```
+{"requirementID": "<insert requirement id>", "tests": "<insert test id 1>, <insert test id 2>, <insert test id 3>, ..."}
+```
+
+If you can't find trace links, respond with the following:
+```
+{"requirementID": "<insert requirement id>", "tests": ""}
+```
