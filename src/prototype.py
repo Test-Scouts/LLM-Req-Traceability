@@ -1,10 +1,11 @@
 import streamlit as st
 import os
 from dotenv import load_dotenv
+from core.rest import GPTResponse, RESTSpecification, Response
 from helper import *
 from torch import bfloat16
 import transformers
-from .core.model import Model
+from core.model import Model
 
 
 load_dotenv()
@@ -15,7 +16,7 @@ st.set_page_config(page_title="REST-at", page_icon="🔍")
 #                  Upload files
 #================================================== 
 st.title('Prototype - REST-at ✍️')
-st.header("Upload documents",divider='rainbow')
+st.header("Upload documents", divider='rainbow')
 
 # Create two columns layout
 
@@ -31,6 +32,24 @@ re_file_content = upload_file('Requirment file', 'code_file')
 
 # Upload test suite file
 test_file_content = upload_file('Test Cases File', 'test_file')
+
+gpt_available: bool = bool(os.getenv("OPENAI_API_KEY"))
+# Model choices
+choices: dict[str, tuple[str | None, str, None]] = {
+    "GPT-3.5": ("gpt-3.5-turbo" if gpt_available else None, None),
+    "GPT-4": ("gpt-4-turbo" if gpt_available else None, None),
+    "Mistral": (os.getenv("MODEL_PATH_MIS"), os.getenv("TOKEN_LIMIT_MIS")),
+    "Mixtral": (os.getenv("MODEL_PATH"), os.getenv("TOKEN_LIMIT")),
+    "Llama": os.getenv("MODEL_PATH_LLAMA", os.getenv("TOKEN_LIMIT_LLAMA"))
+}
+# Filter out unavailable models
+choices = {c: choices[c] for c in choices if choices[c][0]}
+
+choice: str = st.selectbox(
+    "Model Choice",
+    tuple(choices.keys()),
+    placeholder="Select a model"
+)
 
 # Checkbox to show or hide the Python test file content
 #if st.checkbox('Show Test Cases content'):
@@ -63,17 +82,29 @@ tests_json = parse_csv_to_json(test_file_content)
 #==================================================
 
 if st.button("Generate Traceability Report"):
-    results_dummy = load_json_file('./examples/result.json')
+    rest: RESTSpecification = RESTSpecification.load_specs_from_str(
+        re_file_content,
+        test_file_content
+    )
 
-    st.header("Traceability report",divider='rainbow')
+    args: tuple
+    if choice in ("GPT-3.5", "GPT-4"):
+        args = (choices[choice][0], )
+        generate = rest.to_gpt
+    else:
+        args = choices[choice]
+        generate = rest.to_local
+
+    res: Response | GPTResponse = generate(*args)
+
+    st.header("Traceability report", divider='rainbow')
     # Prepare the data
     data_for_table = []
-    for result in results_dummy:
-        requirement_id = result['requirementID']
-        tests = result['tests']
+    for req in res.links:
+        tests = res.links[req]
 
         # Find the corresponding requirement description
-        description = next((item['Description'] for item in requirements_json if item['ID'] == requirement_id), "Description Not Found")
+        description = next((item['Description'] for item in requirements_json if item['ID'] == req), "Description Not Found")
 
         # Determine if tested and by whom
         tested = "Yes" if tests else "No"
@@ -81,10 +112,10 @@ if st.button("Generate Traceability Report"):
 
         # Add the combined information to the data_for_table list
         data_for_table.append({
-            "RequirementID": requirement_id,
+            "RequirementID": req,
             "Description": description,
             "Tested": tested,
-            "Tested by": tested_by
+            "Tested by": "\n".join(tested_by)
         })
 
     # Display the table in Streamlit
