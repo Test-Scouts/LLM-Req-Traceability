@@ -244,7 +244,7 @@ class RESTSpecification:
     def prompt(self, new) -> None:
         ...
 
-    def to_gpt(self, model: str) -> tuple[dict[str, list[str]], tuple[int, int]]:
+    def to_gpt(self, model: str) -> GPTResponse:
         """
         Sends REST data to a specified GPT model for REST alignment analysis.
 
@@ -259,7 +259,7 @@ class RESTSpecification:
         ...
 
 
-    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> dict[str, list[str]]:
+    def to_local(self, model_name_or_path: str | PathLike, max_new_tokens: int) -> Response:
         """
         Sends REST data to a specified local model for REST alignment analysis.
 
