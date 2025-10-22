@@ -1,0 +1,3 @@
+This folder contains:
+- RE.csv > the full translated and manually verified requirements specification set.
+- ST.csv > 100 test specifications that have been translated and manually verified. From these 40 were sampled for the experiment.

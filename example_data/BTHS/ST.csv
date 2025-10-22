@@ -1,0 +1,184 @@
+ID,Purpose,Test steps
+HSP/AG/IAC/BV-01-I,To verify that the AG can establish a complete audio connection towards the HS.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- Configure the AG to pass an incoming call/audio connection to the HS.
+
+Procedure: 
+AG: Initiate a call/audio connection to the AG from a test device.
+HS: The HS or AG might be alerted. In that case establish the connection by the corresponding user action (e.g. press button) at the HS
+
+Expected Outcome AG: A call/audio connection is established"
+HSP/HS/IAC/BV-01-I,To verify that the HS accepts a complete connection establishment initiated from the AG.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- Configure the AG to pass an incoming call/audio connection to the HS.
+
+Procedure: 
+AG: Initiate a call/audio connection to the AG from a test device.
+HS: The HS or AG might be alerted. In that case establish the connection by the corresponding user action (e.g. press button) at the HS
+
+Expected Outcome HS: 
+- If an alert is provided the followed user action on the HS establishes the call/audio connection and bi-directional conversation or any other intended audio application is possible. 
+- If no alert is provided the call/audio connection is established without any further user action and bi-directional conversation or any other intended audio application is possible. 
+- In the case where the AG has opened a SCO connection with in-band ring tone before sending the RING command, the HS may provide no other alert besides the playback of in-band ring. User action on the HS establishes the call/audio connection and bi-directional conversation or any other intended audio application is possible."
+HSP/AG/IAC/BV-02-I,"To verify that, if supported and provided by the AG, the AG can cause the HS to give an in-band
+ringing tone during connection establishment initiated from the AG","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- The AG is configured to provide an in-band ring tone.
+
+Procedure: 
+AG:Initiate a call/audio connection to the AG from a test device.
+HS: Upon alerting in the HS earpiece, establish the connection by the corresponding user action (e.g. press button) at the HS.
+
+Expected Outcome AG:
+- No RING unsolicited response code is sent by the AG
+- A call/audio connection is established"
+HSP/HS/IAC/BV-02-I,"To verify that, if supported and provided by the AG, the HS gives an in-band ringing tone during
+connection establishment initiated from the AG.","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- The AG is configured to provide an in-band ring tone.
+
+Procedure: 
+AG:Initiate a call/audio connection to the AG from a test device.
+HS: Upon alerting in the HS earpiece, establish the connection by the corresponding user action (e.g. press button) at the HS.
+
+Expected Outcome HS: 
+-Upon the call/audio connection initiation to the AG, the HS alerts the user.
+- The followed user action on the HS establishes the call/audio connection and bi-directional conversation is possible."
+HSP/AG/OAC/BV-01-I,To verify that the AG accepts a complete connection establishment initiated from the HS.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- The AG has to be prepared for establishing outgoing connections upon user action on the HS (e.g. last dialed or pre-programmed number). The manufacturer must state, which options for determination of the number are implemented. It is sufficient to test with one of these.
+
+Procedure: 
+HS: Initiate the user action (e.g. press button) on the HS to establish an outgoing call/audio connection.
+AG: No user action is required.
+
+Expected Outcome AG: A call/audio connection is established"
+HSP/HS/OAC/BV-01-I,To verify that the HS can establish a complete audio connection towards the AG,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- The AG has to be prepared for establishing outgoing connections upon user action on the HS (e.g. last dialed or pre-programmed number). The manufacturer must state, which options for determination of the number are implemented. It is sufficient to test with one of these.
+
+Procedure: 
+HS: Initiate the user action (e.g. press button) on the HS to establish an outgoing call/audio connection.
+AG: No user action is required.
+  
+Expected Outcome HS: The user action on the HS establishes the call/audio connection and bi-directional conversation is
+possible."
+HSP/AG/ACR/BV-01-I,To verify that the AG accepts a connection release initiated from the headset.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active
+- For AG a call/audio connection is active (voice I/O on HS)
+
+Procedure: 
+HS: Initiate the user action (e.g. press button) on the headset to release the connection.
+AG: No user action is required.
+
+Expected Outcome AG: A call/audio connection is established"
+HSP/HS/ACR/BV-01-I,To verify a connection release initiated from the headset.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active
+- For AG a call/audio connection is active (voice I/O on HS)
+
+Procedure: 
+HS: Initiate the user action (e.g. press button) on the headset to release the connection.
+AG: No user action is required.
+  
+Expected Outcome HS: Upon the user action, the HS shall send AT+CKPD=200 command to the AG."
+HSP/HS/ACR/BV-02-I,To verify that the HS accepts an audio connection release initiated on the AG.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- AG is in Standby mode, no active call and no connection to HS
+- The AG has to be prepared for establishing outgoing connections upon user action on the HS (e.g. last dialed or pre-programmed number). The manufacturer must state, which options for determination of the number are implemented. It is sufficient to test with one of these.
+
+
+Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active
+- For AG a call/audio connection is active (voice I/O on HS)
+
+Procedure: 
+HS: No user action is required
+AG:Initiate the user action or internal event to release the connection.
+  
+Expected Outcome HS and AG: The user action on the AG releases the call/audio connection."
+HSP/AG/ACT/BV-01-I,"To verify that the AG can perform an audio connection transfer from AG to HS initiated by a user
+action on the headset.","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- HS is in Standby mode, no connection to AG
+- For AG a call/audio connection is active at the AG.
+
+Procedure: 
+HS: Initiate the user action (e.g. press button) on the HS to transfer the audio connection from AG to HS
+AG:No user action is required
+  
+Expected Outcome AG:The user action on the HS transfers the audio connection from AG to HS"
+HSP/AG/ACT/BV-02-I,"To verify that the HS accepts an audio connection transfer from HS to AG initiated by a user
+action on the AG.","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection to AG is ongoing with audio I/O on HS.
+- For AG a call/audio connection to HS is ongoing.
+
+Procedure: 
+HS:No user action is required
+AG: Initiate the user action (e.g. press button) on the AG to transfer the audio connection from HS to AG.
+  
+Expected Outcome AG: The user action on the AG transfers the audio connection from HS to AG. The call/audio connection is available at the AG."
+HSP/HS/ACT/BV-02-I,To verify the audio connection transfer from HS to AG initiated by a user action on the AG.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection to AG is ongoing with audio I/O on HS.
+- For AG a call/audio connection to HS is ongoing.
+
+Procedure: 
+HS:No user action is required
+AG: Initiate the user action (e.g. press button) on the AG to transfer the audio connection from HS to AG.
+  
+Expected Outcome HS: The user action on the AG transfers the audio connection from HS to AG. The HS returns to Standby mode."
+HSP/AG/RAV/BV-02-I,To verify the speaker volume control of the headset if remote speaker volume control is supported.,"Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active.
+- For AG a call/audio connection is active (voice I/O on HS).
+
+Procedure: 
+HS: No user action is required.
+AG: 
+- Initiate the user action (e.g. press button) on the AG to set the speaker volume on the HS to the
+maximum level.
+- Initiate the user action (e.g. press button) on the AG to set the speaker volume on the HS to the
+minimum level
+
+Expected Outcome HS and AG: The user actions on the HS and AG result in the respective speaker volume settings."
+HSP/AG/RAV/BV-03-I,"To verify that if storing the speaker volume settings in the HS is supported the correct settings
+are used when establishing a new connection.","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active.
+- For AG a call/audio connection is active (voice I/O on HS).
+
+Procedure: 
+1. Set the volume control to a value significantly different from the nominal volume either by the HS or AG. 
+2. Realease the connection either by HS or AG. 
+3. Establish a new connection to the HS either by HS or AG. 
+
+Expected Outcome AG: The user may be notified of the restored volume level after establishing the new call/audio connection"
+HSP/HS/RAV/BV-03-I,"To verify that if storing the speaker volume settings in the HS is supported the correct settings
+are used when establishing a new connection.","Initial condition: 
+- Both devices are initilized. Ensure HS and AG are initially paired, confirming interoperability for the headset profile. 
+- For HS a call/audio connection is active.
+- For AG a call/audio connection is active (voice I/O on HS).
+
+Procedure: 
+1. Set the volume control to a value significantly different from the nominal volume either by the HS or AG. 
+2. Realease the connection either by HS or AG. 
+3. Establish a new connection to the HS either by HS or AG. 
+
+Expected Outcome HS: After establishing the new connection the speaker volume is restored to the value which was set before releasing the call/audio connection."
